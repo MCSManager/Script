@@ -15,46 +15,44 @@ Install_Node() {
   echo "[x] Delete the original Node environment"
   rm -irf ${node_install_path}
 
-  echo "[→] 进入 Node 安装目录"
+  echo "[→] Enter the Node installation directory"
   cd /opt || exit
 
-  echo "[↓] 下载 Node v14.17.6 压缩包..."
+  echo "[↓] Download Node V14.17.6..."
   wget https://npm.taobao.org/mirrors/node/v14.17.6/node-v14.17.6-linux-x64.tar.gz
 
-  echo "[↑] 解压 node-v14.17.6-linux-x64.tar.gz"
+  echo "[↑] Unpack node-v14.17.6-linux-x64.tar.gz"
   tar -zxf node-v14.17.6-linux-x64.tar.gz
 
-  echo "[x] 删除 node-v14.17.6-linux-x64.tar.gz"
+  echo "[x] Delete node-v14.17.6-linux-x64.tar.gz"
   rm -rf node-v14.17.6-linux-x64.tar.gz
 
-  echo "[x] 删除原有 Node 链接"
+  echo "[x] Delete original Node link"
   rm -f /usr/bin/npm
   rm -f /usr/bin/node
   rm -f /usr/local/bin/npm
   rm -f /usr/local/bin/node
 
-  echo "[+] 创建 Node 链接"
+  echo "[+] Create new Node link"
   ln -s ${node_install_path}/bin/npm /usr/bin/
   ln -s ${node_install_path}/bin/node /usr/bin/
   ln -s ${node_install_path}/bin/npm /usr/local/bin/
   ln -s ${node_install_path}/bin/node /usr/local/bin/
 
-  printf "\033c"
   echo "=============== Node Version ==============="
   echo " node: $(node -v)"
   echo " npm: $(npm -v)"
   echo "=============== Node Version ==============="
   echo
-  echo "[-] Node 安装完成，即将开始安装 MCSManager..."
+  echo "[-] Node Installed!"
   echo
   sleep 3
 }
 
 Install_MCSManager() {
-  printf "\033c"
 
-  echo "[x] 删除原有 MCSManager"
-  rm -irf ${mcsmanager_install_path}
+  # echo "[x] 删除原有 MCSManager"
+  # rm -irf ${mcsmanager_install_path}
 
   echo "[+] 创建 MCSManager 安装目录"
   mkdir -p ${mcsmanager_install_path} || exit
@@ -191,9 +189,9 @@ EOF
 
 
 echo "+----------------------------------------------------------------------
-| MCSManager FOR CentOS/Ubuntu/Debian
+| MCSManager Installer
 +----------------------------------------------------------------------
-| Copyright © 2017-2021 Suwings(MCSManager.com) All rights reserved.
+| Copyright © 2021 Suwings All rights reserved.
 +----------------------------------------------------------------------
 | Shell Install Script by Nuomiaa & Suwings
 +----------------------------------------------------------------------
