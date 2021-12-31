@@ -142,6 +142,8 @@ EOF
   echo "[+] systemctl enable mcsm-daemon.service --now"
   systemctl enable mcsm-daemon.service --now
 
+  sleep 4
+
   echo "[+] systemctl enable mcsm-web.service --now"
   systemctl enable mcsm-web.service --now
 
