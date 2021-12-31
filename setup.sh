@@ -61,11 +61,11 @@ Install_MCSManager() {
   echo "[→] cd ${mcsmanager_install_path}"
   cd ${mcsmanager_install_path} || exit
 
-  echo "[↓] git clone https://gitee.com/mcsmanager/mcsmanager-daemon-production.git"
-  git clone https://gitee.com/mcsmanager/mcsmanager-daemon-production.git
+  echo "[↓] git clone https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
+  git clone https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git
 
-  echo "[-] mv mcsmanager-daemon-production daemon"
-  mv mcsmanager-daemon-production daemon
+  echo "[-] mv MCSManager-Daemon-Production daemon"
+  mv MCSManager-Daemon-Production daemon
 
   echo "[→] cd daemon"
   cd daemon || exit
@@ -76,11 +76,11 @@ Install_MCSManager() {
   echo "[←] cd .."
   cd ..
 
-  echo "[↓] git clone https://gitee.com/mcsmanager/mcsmanager-web-production.git"
-  git clone https://gitee.com/mcsmanager/mcsmanager-web-production.git
+  echo "[↓] git clone https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
+  git clone https://gitee.com/mcsmanager/MCSManager-Web-Production.git
 
-  echo "[-] mv mcsmanager-web-production web"
-  mv mcsmanager-web-production web
+  echo "[-] mv MCSManager-Web-Production web"
+  mv MCSManager-Web-Production web
 
   echo "[→] cd web"
   cd web || exit
