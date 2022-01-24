@@ -61,8 +61,8 @@ Install_MCSManager() {
   echo "[→] cd ${mcsmanager_install_path}"
   cd ${mcsmanager_install_path} || exit
 
-  echo "[↓] git clone https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
-  git clone https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git
+  echo "[↓] git clone MCSManager/MCSManager-Daemon-Production.git"
+  git clone https://github.com.cnpmjs.org/MCSManager/MCSManager-Daemon-Production.git
 
   echo "[-] mv MCSManager-Daemon-Production daemon"
   mv MCSManager-Daemon-Production daemon
@@ -76,8 +76,8 @@ Install_MCSManager() {
   echo "[←] cd .."
   cd ..
 
-  echo "[↓] git clone https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
-  git clone https://gitee.com/mcsmanager/MCSManager-Web-Production.git
+  echo "[↓] git clone mcsmanager/MCSManager-Web-Production.git"
+  git clone https://github.com.cnpmjs.org/MCSManager/MCSManager-Web-Production.git
 
   echo "[-] mv MCSManager-Web-Production web"
   mv MCSManager-Web-Production web
@@ -156,7 +156,9 @@ EOF
   echo "Daemon Service Address: http://localhost:24444"
   echo "Username: root"
   echo "Password: 123456"
-  echo -e "\033[33mYou must expose ports 23333 and 24444 to use the service properly on the Internet.\033[0m"
+  echo -e "\033[33mEnglish: You must expose ports 23333 and 24444 to use the service properly on the Internet.\033[0m"
+  echo -e "\033[33mChinese: 安装且启动完毕，您必须开放 23333 与 24444 端口来确保面板的正常使用。\033[0m"
+  echo ""
   echo "=================================================================="
   echo "systemctl restart mcsm-{daemon,web}.service"
   echo "systemctl disable mcsm-{daemon,web}.service"
