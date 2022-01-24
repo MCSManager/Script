@@ -25,7 +25,7 @@ if "%vars1%"=="git" (
 
     echo [-] ≥ı ºªØ Git
     git init
-    git remote add origin https://gitee.com/mcsmanager/mcsmanager-web-production.git
+    git remote add origin https://github.com.cnpmjs.org/mcsmanager/mcsmanager-web-production.git
     git fetch --all
     git reset --hard origin/master
     echo.
