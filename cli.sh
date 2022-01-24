@@ -99,19 +99,19 @@ then
 
 elif [ "$cmd" == 8 ]
 then
-  systemctl restart mcsm-web.service
+  systemctl restart mcsm-daemon.service
 elif [ "$cmd" == 9 ]
 then
-  systemctl stop mcsm-web.service
+  systemctl stop mcsm-daemon.service
 elif [ "$cmd" == 10 ]
 then
-  systemctl start mcsm-web.service
+  systemctl start mcsm-daemon.service
 elif [ "$cmd" == 11 ]
 then
-  systemctl disable mcsm-web.service
+  systemctl disable mcsm-daemon.service
 elif [ "$cmd" == 12 ]
 then
-  systemctl enable mcsm-web.service
+  systemctl enable mcsm-daemon.service
 elif [ "$cmd" == 13 ]
 then
   rm -ifr /opt/mcsmanager/web/logs
@@ -119,7 +119,7 @@ then
   echo "[-] 已清空日志！"
 elif [ "$cmd" == 14 ]
 then
-  echo "a 等于 b"
+  systemctl restart mcsm-{daemon,web}.service
 else
   echo "==============================================="
   echo "[-] 已取消！"
