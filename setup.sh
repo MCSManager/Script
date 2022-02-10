@@ -62,7 +62,7 @@ Install_MCSManager() {
   cd ${mcsmanager_install_path} || exit
 
   echo "[↓] git clone MCSManager/MCSManager-Daemon-Production.git"
-  git clone https://github.com.cnpmjs.org/MCSManager/MCSManager-Daemon-Production.git
+  git clone https://github.com/MCSManager/MCSManager-Daemon-Production.git
 
   echo "[-] mv MCSManager-Daemon-Production daemon"
   mv MCSManager-Daemon-Production daemon
@@ -77,7 +77,7 @@ Install_MCSManager() {
   cd ..
 
   echo "[↓] git clone mcsmanager/MCSManager-Web-Production.git"
-  git clone https://github.com.cnpmjs.org/MCSManager/MCSManager-Web-Production.git
+  git clone https://github.com/MCSManager/MCSManager-Web-Production.git
 
   echo "[-] mv MCSManager-Web-Production web"
   mv MCSManager-Web-Production web
