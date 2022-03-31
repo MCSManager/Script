@@ -21,13 +21,13 @@ Install_Node() {
   echo "[→] cd /opt || exit"
   cd /opt || exit
 
-  echo "[↓] wget https://npm.taobao.org/mirrors/node/v14.18.3/node-v14.18.3-linux-${arch}.tar.gz"
-  wget https://npm.taobao.org/mirrors/node/v14.18.3/node-14.19.1-linux-${arch}.tar.gz
+  echo "[↓] wget https://npm.taobao.org/mirrors/node/v14.19.1/node-v14.19.1-linux-${arch}.tar.gz"
+  wget https://npm.taobao.org/mirrors/node/v14.19.1/node-v14.19.1-linux-${arch}.tar.gz
 
-  echo "[↑] tar -zxf node-v14.18.3-linux-${arch}.tar.gz"
+  echo "[↑] tar -zxf node-v14.19.1-linux-${arch}.tar.gz"
   tar -zxf node-v14.19.1-linux-${arch}.tar.gz
 
-  echo "[x] rm -rf node-v14.18.3-linux-${arch}.tar.gz"
+  echo "[x] rm -rf node-v14.19.1-linux-${arch}.tar.gz"
   rm -rf node-v14.19.1-linux-${arch}.tar.gz
 
   #echo "[x] Delete the original Node link"
