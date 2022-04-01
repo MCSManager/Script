@@ -54,7 +54,7 @@ Install_Node() {
 }
 
 Install_MCSManager() {
-
+  PATH=${PATH}:${node_install_path}
   echo "[x] Delete the original MCSManager"
   rm -irf ${mcsmanager_install_path}
 
