@@ -41,10 +41,10 @@ Install_Node() {
   #ln -s ${node_install_path}/bin/node /usr/bin/
   #ln -s ${node_install_path}/bin/npm /usr/local/bin/
   #ln -s ${node_install_path}/bin/node /usr/local/bin/
-
+  PATH=${PATH}:${node_install_path}
   echo "=============== Node Version ==============="
-  echo " node: $(node -v)"
-  echo " npm: $(npm -v)"
+  echo " node: $(${node_install_path}/bin/node -v)"
+  echo " npm: $(${node_install_path}/bin/npm -v)"
   echo "=============== Node Version ==============="
   echo
   echo "[-] Node Installed Successfully!"
