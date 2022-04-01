@@ -137,7 +137,6 @@ ExecStop=/bin/kill -s QUIT $MAINPID
 
 [Install]
 WantedBy=multi-user.target
-EOF
 " > /etc/systemd/system/mcsm-web.service
 
   echo "[-] systemctl daemon-reload"
