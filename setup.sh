@@ -74,7 +74,7 @@ Install_MCSManager() {
   cd daemon || exit
 
   echo "[+] npm install --registry=https://registry.npm.taobao.org"
-  ${node_install_path}/bin/npm install --registry=https://registry.npm.taobao.org
+  env ${node_install_path}/bin/node ${node_install_path}/bin/npm install --registry=https://registry.npm.taobao.org
 
   echo "[←] cd .."
   cd ..
@@ -89,7 +89,7 @@ Install_MCSManager() {
   cd web || exit
 
   echo "[+] npm install --registry=https://registry.npm.taobao.org"
-  ${node_install_path}/bin/npm install --registry=https://registry.npm.taobao.org
+  env ${node_install_path}/bin/node  ${node_install_path}/bin/npm install --registry=https://registry.npm.taobao.org
 
   echo "=============== MCSManager ==============="
   echo " Daemon: ${mcsmanager_install_path}/daemon"
