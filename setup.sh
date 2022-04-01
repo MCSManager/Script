@@ -44,7 +44,7 @@ Install_Node() {
   PATH=${PATH}:${node_install_path}
   echo "=============== Node Version ==============="
   echo " node: $(${node_install_path}/bin/node -v)"
-  echo " npm: $(${node_install_path}/bin/npm -v)"
+  #echo " npm: $(${node_install_path}/bin/npm -v)"
   echo "=============== Node Version ==============="
   echo
   echo "[-] Node Installed Successfully!"
