@@ -21,8 +21,8 @@ Install_Node() {
   echo "[→] cd /opt || exit"
   cd /opt || exit
 
-  echo "[↓] wget https://npm.taobao.org/mirrors/node/v14.19.1/node-v14.19.1-linux-${arch}.tar.gz"
-  wget https://npm.taobao.org/mirrors/node/v14.19.1/node-v14.19.1-linux-${arch}.tar.gz
+  echo "[↓] wget https://npmmirror.com/mirrors/node/v14.19.1/node-v14.19.1-linux-${arch}.tar.gz"
+  wget https://npmmirror.com/mirrors/node/v14.19.1/node-v14.19.1-linux-${arch}.tar.gz
 
   echo "[↑] tar -zxf node-v14.19.1-linux-${arch}.tar.gz"
   tar -zxf node-v14.19.1-linux-${arch}.tar.gz
@@ -72,8 +72,8 @@ Install_MCSManager() {
   echo "[→] cd daemon"
   cd daemon || exit
 
-  echo "[+] npm install --registry=https://registry.npm.taobao.org"
-  /usr/bin/env ${node_install_path}/bin/node ${node_install_path}/bin/npm install --registry=https://registry.npm.taobao.org
+  echo "[+] npm install --registry=https://registry.npmmirror.com"
+  /usr/bin/env ${node_install_path}/bin/node ${node_install_path}/bin/npm install --registry=https://registry.npmmirror.com
 
   echo "[←] cd .."
   cd ..
@@ -87,8 +87,8 @@ Install_MCSManager() {
   echo "[→] cd web"
   cd web || exit
 
-  echo "[+] npm install --registry=https://registry.npm.taobao.org"
-  /usr/bin/env ${node_install_path}/bin/node ${node_install_path}/bin/npm install --registry=https://registry.npm.taobao.org
+  echo "[+] npm install --registry=https://registry.npmmirror.com"
+  /usr/bin/env ${node_install_path}/bin/node ${node_install_path}/bin/npm install --registry=https://registry.npmmirror.com
 
   echo "=============== MCSManager ==============="
   echo " Daemon: ${mcsmanager_install_path}/daemon"
