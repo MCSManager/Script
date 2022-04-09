@@ -211,7 +211,7 @@ echo "+----------------------------------------------------------------------
 +----------------------------------------------------------------------
 | Copyright © 2022 Suwings All rights reserved.
 +----------------------------------------------------------------------
-| Shell Install Script by Nuomiaa
+| Shell Install Script by Nuomiaa & CreeperKong
 +----------------------------------------------------------------------
 "
 
@@ -219,6 +219,7 @@ echo "[+] Installing dependent software... (git,tar)"
 yum install -y git tar
 apt install -y git tar
 pacman -Syu --noconfirm git tar
+zypper --non-interactive install git tar
 
 Install_Node
 Install_MCSManager
