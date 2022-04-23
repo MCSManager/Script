@@ -310,13 +310,20 @@ else
 fi
 
 # MCSManager 已安装
-if [ -d "/root" ]; then
+if [ -d "$mcsmanager_install_path" ]; then
   printf "\033c"
-  echo_red "----------------------------------------------------
+  if [ "$zh" == 1 ];
+      then echo_red "----------------------------------------------------
 检查到已有 MCSManager 安装在 \"$mcsmanager_install_path\"
 继续安装会删除原有 MCSManager 面版的所有数据！
 ----------------------------------------------------
 将在 10 秒后继续安装，取消请按 Ctrl + Z/C 键！"
+      else echo_red "----------------------------------------------------
+MCSManager is installed at \"$mcsmanager_install_path\"
+Continuing the installation will delete the original MCSManager!
+----------------------------------------------------
+Installation will continue in 10 seconds, press Ctrl + Z/C to cancel!"
+  fi
   sleep 10
 fi
 
@@ -325,14 +332,14 @@ if [ "$zh" == 1 ];
       then echo_cyan_n "[-] 安装相关软件(git,tar)... "
       else echo_cyan_n "[+] Installing dependent software(git,tar)... "
 fi
-if [ -f /usr/bin/yum ]; then yum install -y git tar > error;
-elif [ -f /usr/bin/apt ]; then apt install -y git tar > error;
-elif [ -f /usr/bin/pacman ]; then pacman -Ryu --noconfirm git tar > error;
-elif [ -f /usr/bin/zypper ]; then zypper --non-interactive install git tar > error;
+if [ -x "$(command -v yum1)" ]; then yum install -y git tar > error;
+elif [ -x "$(command -v apt-get)" ]; then apt-get install -y git tar > error;
+elif [ -x "$(command -v pacman)" ]; then pacman -Ryu --noconfirm git tar > error;
+elif [ -x "$(command -v zypper)" ]; then zypper --non-interactive install git tar > error;
 fi
 
 # 判断相关软件是否安装成功
-if [[ -f /usr/bin/git && -f /usr/bin/tar ]]
+if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]
   then
     if [ "$zh" == 1 ];
       then echo_green "成功"
