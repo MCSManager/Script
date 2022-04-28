@@ -332,7 +332,7 @@ if [ "$zh" == 1 ];
       then echo_cyan_n "[-] 安装相关软件(git,tar)... "
       else echo_cyan_n "[+] Installing dependent software(git,tar)... "
 fi
-if [ -x "$(command -v yum1)" ]; then yum install -y git tar > error;
+if [ -x "$(command -v yum)" ]; then yum install -y git tar > error;
 elif [ -x "$(command -v apt-get)" ]; then apt-get install -y git tar > error;
 elif [ -x "$(command -v pacman)" ]; then pacman -Ryu --noconfirm git tar > error;
 elif [ -x "$(command -v zypper)" ]; then zypper --non-interactive install git tar > error;
