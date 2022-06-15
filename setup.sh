@@ -163,6 +163,7 @@ WorkingDirectory=/opt/mcsmanager/daemon
 ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 [Install]
 WantedBy=multi-user.target
@@ -177,6 +178,7 @@ WorkingDirectory=/opt/mcsmanager/web
 ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s HUP $MAINPID
 ExecStop=/bin/kill -s QUIT $MAINPID
+Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 
 [Install]
 WantedBy=multi-user.target
