@@ -212,6 +212,7 @@ WantedBy=multi-user.target
     echo_cyan "启用 systemctl enable mcsm-{daemon,web}.service"
     echo_cyan "启动 systemctl start mcsm-{daemon,web}.service"
     echo_cyan "停止 systemctl stop mcsm-{daemon,web}.service"
+    echo_cyan "更多使用说明，请参考：https://docs.mcsmanager.com/"
   else
     echo_green "Welcome to MCSManager, you can access it by the following ways:"
     echo_yellow "=================================================================="
@@ -226,6 +227,7 @@ WantedBy=multi-user.target
     echo_cyan "systemctl enable mcsm-{daemon,web}.service"
     echo_cyan "systemctl start mcsm-{daemon,web}.service"
     echo_cyan "systemctl stop mcsm-{daemon,web}.service"
+    echo_cyan "More info: https://docs.mcsmanager.com/"
   fi
   echo_yellow "=================================================================="
 
