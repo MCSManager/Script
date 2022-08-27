@@ -82,6 +82,13 @@ Install_MCSManager() {
     then echo_cyan "[+] 安装 MCSManager..."
     else echo_cyan "[+] Install MCSManager..."
   fi
+
+  # 删除服务
+  rm -f /etc/systemd/system/mcsm-daemon.service
+  rm -f /etc/systemd/system/mcsm-web.service
+
+  # 重载服务
+  systemctl daemon-reload
   
   # echo "[x] Delete the original MCSManager"
   rm -irf ${mcsmanager_install_path}
@@ -150,9 +157,6 @@ Create_Service() {
     then echo_cyan "[+] 创建 MCSManager 服务..."
     else echo_cyan "[+] Create MCSManager service..."
   fi
-
-  rm -f /etc/systemd/system/mcsm-daemon.service
-  rm -f /etc/systemd/system/mcsm-web.service
 
   echo "
 [Unit]
