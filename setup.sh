@@ -87,7 +87,7 @@ Install_MCSManager() {
   rm -f /etc/systemd/system/mcsm-daemon.service
   rm -f /etc/systemd/system/mcsm-web.service
 
-  # 重载服务
+  # 重载
   systemctl daemon-reload
   
   # echo "[x] Delete the original MCSManager"
@@ -256,7 +256,7 @@ fi
 echo_cyan "+----------------------------------------------------------------------
 | MCSManager Installer
 +----------------------------------------------------------------------
-| Copyright © 2022 Suwings All rights reserved.
+| Copyright © 2022 MCSManager All rights reserved.
 +----------------------------------------------------------------------
 | Shell Install Script by Nuomiaa & CreeperKong
 +----------------------------------------------------------------------
