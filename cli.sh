@@ -122,7 +122,7 @@ then
   systemctl restart mcsm-{daemon,web}.service
 else
   echo "==============================================="
-  echo "[-] 已取消！"
+  echo "[-] 已取消"
 fi
 
 
