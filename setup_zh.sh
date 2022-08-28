@@ -207,8 +207,6 @@ WantedBy=multi-user.target
     echo_yellow "=================================================================="
     echo_cyan_n "Daemon 服务地址："; echo_yellow "http://localhost:24444"
     echo_cyan_n "Web 服务地址：   "; echo_yellow "http://localhost:23333"
-    echo_cyan_n "账号: "; echo_yellow "root"
-    echo_cyan_n "密码: "; echo_yellow "123456"
     echo_red "若无法访问面板，请检查防火墙/安全组是否有放行面板[23333/24444]端口"
     echo_yellow "=================================================================="
     echo_cyan "重启 systemctl restart mcsm-{daemon,web}.service"
