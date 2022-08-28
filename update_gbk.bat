@@ -1,16 +1,16 @@
 @echo off
 
-Title MCSManager-Web ×Ô¶¯¸üÐÂ
+Title MCSManager-Web ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
 color 9
 echo ######################################################
 echo #                                                    #
-echo #               MCSManager-Web ×Ô¶¯¸üÐÂ              #
-echo #                  by Å´Ã×(nuomiaa)                  #
+echo #               MCSManager-Web ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½              #
+echo #                  by Å´ï¿½ï¿½(nuomiaa)                  #
 echo #                                                    #
 echo ######################################################
 echo.
-echo [-] ¼ì²é Git ÊÇ·ñ°²×°...
+echo [-] ï¿½ï¿½ï¿½ Git ï¿½Ç·ï¿½×°...
 
 for /F %%i in ('git --version') ^
 do (
@@ -20,27 +20,27 @@ do (
 echo.
 
 if "%vars1%"=="git" (
-    echo [-] Git ÒÑ°²×°
+    echo [-] Git ï¿½Ñ°ï¿½×°
     echo.
 
-    echo [-] ³õÊ¼»¯ Git
+    echo [-] ï¿½ï¿½Ê¼ï¿½ï¿½ Git
     git init
     git remote add origin https://github.com.cnpmjs.org/mcsmanager/mcsmanager-web-production.git
     git fetch --all
     git reset --hard origin/master
     echo.
 
-    echo [-] ÕýÔÚÀ­È¡×îÐÂ°æ±¾...
+    echo [-] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Â°æ±¾...
     git pull origin master
 
-    echo [-] ¸üÐÂÍê³É£¡
+    echo [-] ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É£ï¿½
 ) else (
-    echo [x] Git Î´°²×°£¬³¢ÊÔÊ¹ÓÃ winget °²×°...
+    echo [x] Git Î´ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ winget ï¿½ï¿½×°...
     winget install --id Git.Git -e --source winget
 
     color 4
-    echo [-] °²×°½ø³ÌÒÑ½áÊø£¬ÇëÖØÐÂÔËÐÐ½Å±¾¼ì²é°²×°£¡
-    echo [-] Èç Git °²×°Ê§°Ü£¬ÇëÊÖ¶¯°²×° Git: https://git-scm.com/download/win
+    echo [-] ï¿½ï¿½×°ï¿½ï¿½ï¿½ï¿½ï¿½Ñ½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð½Å±ï¿½ï¿½ï¿½é°²×°ï¿½ï¿½
+    echo [-] ï¿½ï¿½ Git ï¿½ï¿½×°Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½ï¿½ï¿½×° Git: https://git-scm.com/download/win
 )
 
 
