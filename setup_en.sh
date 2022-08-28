@@ -67,11 +67,11 @@ Install_Node() {
 Install_MCSManager() {
   echo_cyan "[+] Install MCSManager..."
 
-  # 删除服务
+  # delete service
   rm -f /etc/systemd/system/mcsm-daemon.service
   rm -f /etc/systemd/system/mcsm-web.service
 
-  # 重载
+  # reload
   systemctl daemon-reload
   
   # echo "[x] Delete the original MCSManager"
@@ -188,12 +188,12 @@ WantedBy=multi-user.target
 }
 
 
-# ----------------- 程序启动 -----------------
+# ----------------- Program Start -----------------
 
-# 删除 Shell 脚本自身
+# delete the shell script itself
 rm -f "$0"
 
-# 检查执行用户权限
+# Check execute user permissions
 if [ "$(whoami)" != "root" ]; then
   Red_Error "[x] Please execute the MCSManager installation command with root permission!"
 fi
@@ -207,7 +207,7 @@ echo_cyan "+--------------------------------------------------------------------
 +----------------------------------------------------------------------
 "
 
-# 环境检查
+# Environmental inspection
 if [ "$arch" == x86_64 ]; then
   arch=x64
   #echo "[-] x64 architecture detected"
@@ -228,10 +228,10 @@ else
   exit
 fi
 
-# 定义变量 Node 安装目录
+# Define the variable Node installation directory
 node_install_path="/opt/node-$node-linux-$arch"
 
-# 检查网络连接
+# Check network connection
 echo_cyan "[-] Architecture: $arch"
 echo_cyan_n "[+] Check network connection(ping github.com)... "
 if ping -c 1 github.com > /dev/null;
@@ -241,10 +241,10 @@ else
     echo_red "Fail"
     Red_Error "[x] Unable to connect to github.com repository!"
     #exit
-    # 暂时注释，以防禁 ping 服务器无法安装
+    # Temporarily commented in case the ban ping server fails to install
 fi
 
-# MCSManager 已安装
+# MCSManager Installed
 if [ -d "$mcsmanager_install_path" ]; then
   printf "\033c"
   echo_red "----------------------------------------------------
@@ -255,7 +255,7 @@ Installation will continue in 10 seconds, press Ctrl + Z/C to cancel!"
   sleep 10
 fi
 
-# 安装相关软件
+# Install related software
 echo_cyan_n "[+] Installing dependent software(git,tar)... "
 if [ -x "$(command -v yum)" ]; then yum install -y git tar > error;
 elif [ -x "$(command -v apt-get)" ]; then apt-get install -y git tar > error;
@@ -263,7 +263,7 @@ elif [ -x "$(command -v pacman)" ]; then pacman -Ryu --noconfirm git tar > error
 elif [ -x "$(command -v zypper)" ]; then zypper --non-interactive install git tar > error;
 fi
 
-# 判断相关软件是否安装成功
+# Determine whether the relevant software is installed successfully
 if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]
   then
     echo_green "Success"
@@ -275,11 +275,11 @@ if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]
 fi
 
 
-# 安装 Node 环境
+# Install the Node environment
 Install_Node
 
-# 安装 MCSManager
+# Install MCSManager
 Install_MCSManager
 
-# 创建 MCSManager 后台服务
+# Create MCSManager background service
 Create_Service
