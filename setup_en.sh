@@ -233,13 +233,13 @@ node_install_path="/opt/node-$node-linux-$arch"
 
 # 检查网络连接
 echo_cyan "[-] Architecture: $arch"
-echo_cyan_n "[+] Check network connection(ping gitee.com)... "
+echo_cyan_n "[+] Check network connection(ping github.com)... "
 if ping -c 1 github.com > /dev/null;
 then
     echo_green "Success"
 else
     echo_red "Fail"
-    Red_Error "[x] Unable to connect to gitee.com repository!"
+    Red_Error "[x] Unable to connect to github.com repository!"
     #exit
     # 暂时注释，以防禁 ping 服务器无法安装
 fi
