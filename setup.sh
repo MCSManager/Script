@@ -103,7 +103,7 @@ Install_MCSManager() {
     then echo_cyan "[↓] Git 克隆 MCSManager-Daemon..."
     else echo_cyan "[↓] Git clone MCSManager-Daemon..."
   fi
-  git clone https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git
+  git clone --single-branch -b master --depth 1 https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git
 
   # echo "[-] mv MCSManager-Daemon-Production daemon"
   mv MCSManager-Daemon-Production daemon
@@ -124,7 +124,7 @@ Install_MCSManager() {
     then echo_cyan "[↓] Git 克隆 MCSManager-Web..."
     else echo_cyan "[↓] Git clone MCSManager-Web..."
   fi
-  git clone https://gitee.com/mcsmanager/MCSManager-Web-Production.git
+  git clone --single-branch -b master --depth 1 https://gitee.com/mcsmanager/MCSManager-Web-Production.git
 
   # echo "[-] mv MCSManager-Web-Production web"
   mv MCSManager-Web-Production web
