@@ -10,7 +10,7 @@
 
 The files here are all platform-wide install, delete, update scripts, etc. for MCSManager 9.
 
-The default installation script on the official website is the `setup.sh` file of this repository.
+The default installation script on the official website is the `setup_en.sh` file of this repository.
 
 Contains multiple languages.
 
