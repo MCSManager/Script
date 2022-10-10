@@ -233,16 +233,6 @@ node_install_path="/opt/node-$node-linux-$arch"
 
 # Check network connection
 echo_cyan "[-] Architecture: $arch"
-echo_cyan_n "[+] Check network connection(ping github.com)... "
-if ping -c 1 github.com > /dev/null;
-then
-    echo_green "Success"
-else
-    echo_red "Fail"
-    Red_Error "[x] Unable to connect to github.com repository!"
-    #exit
-    # Temporarily commented in case the ban ping server fails to install
-fi
 
 # MCSManager Installed
 if [ -d "$mcsmanager_install_path" ]; then
