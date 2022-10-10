@@ -291,28 +291,8 @@ node_install_path="/opt/node-$node-linux-$arch"
 if [ "$zh" == 1 ];
       then
         echo_cyan "[-] 体系架构：$arch"
-        echo_cyan_n "[-] 检查网络连接(ping gitee.com)... "
       else
         echo_cyan "[-] Architecture: $arch"
-        echo_cyan_n "[+] Check network connection(ping gitee.com)... "
-fi
-if ping -c 1 gitee.com > /dev/null;
-then
-    if [ "$zh" == 1 ];
-          then echo_green "成功"
-          else echo_green "Success"
-    fi
-else
-    if [ "$zh" == 1 ];
-          then
-            echo_red "失败"
-            Red_Error "[x] 无法连接到 gitee.com 代码仓库！"
-          else
-            echo_red "Fail"
-            Red_Error "[x] Unable to connect to gitee.com repository!"
-    fi
-    #exit
-    # 暂时注释，以防禁 ping 服务器无法安装
 fi
 
 # MCSManager 已安装
