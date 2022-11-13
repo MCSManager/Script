@@ -205,9 +205,8 @@ WantedBy=multi-user.target
   then
     echo_green "欢迎使用 MCSManager，您可以通过以下方式访问："
     echo_yellow "=================================================================="
-    echo_cyan_n "Daemon 服务地址："; echo_yellow "http://localhost:24444"
-    echo_cyan_n "Web 服务地址：   "; echo_yellow "http://localhost:23333"
-    echo_red "若无法访问面板，请检查防火墙/安全组是否有放行面板[23333/24444]端口"
+    echo_cyan_n "控制面板地址：   "; echo_yellow "http://localhost:23333"
+    echo_red "若无法访问面板，请检查防火墙/安全组是否有放行面板 23333 和 24444 端口，控制面板需要这两个端口才能正常工作。"
     echo_yellow "=================================================================="
     echo_cyan "重启 systemctl restart mcsm-{daemon,web}.service"
     echo_cyan "禁用 systemctl disable mcsm-{daemon,web}.service"
@@ -218,10 +217,7 @@ WantedBy=multi-user.target
   else
     echo_green "Welcome to MCSManager, you can access it by the following ways:"
     echo_yellow "=================================================================="
-    echo_cyan_n "Daemon Service Address: "; echo_yellow "http://localhost:24444"
     echo_cyan_n "Web Service Address:    "; echo_yellow "http://localhost:23333"
-    echo_cyan_n "Username: "; echo_yellow "root"
-    echo_cyan_n "Password: "; echo_yellow "123456"
     echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
     echo_yellow "=================================================================="
     echo_cyan "systemctl restart mcsm-{daemon,web}.service"
