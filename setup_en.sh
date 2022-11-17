@@ -154,13 +154,8 @@ Environment="PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
 WantedBy=multi-user.target
 " > /etc/systemd/system/mcsm-web.service
 
-  # 重载
   systemctl daemon-reload
-
-  # 创建 Daemon 服务
   systemctl enable mcsm-daemon.service --now
-
-  # 创建 Web 服务
   systemctl enable mcsm-web.service --now
 
   sleep 3
@@ -183,7 +178,6 @@ WantedBy=multi-user.target
     echo_cyan "More info: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 
-  
 
 }
 
