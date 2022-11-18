@@ -24,7 +24,7 @@ else
 fi
 
 ## Other
-firewall=""
+#firewall=""
 
 ### Tools ###
 ## Localize echo
@@ -90,8 +90,8 @@ Start() {
         iptables -A INPUT -p tcp --dport 23333 -j ACCEPT
         iptables -A INPUT -p tcp --dport 24444 -j ACCEPT
         iptables-save
-    else
-        firewall="problem"
+    #else
+    #    firewall="problem"
     fi
 
     # Output auth information
@@ -113,11 +113,11 @@ AuthInfo() {
     
     [ ${installMode} == "upgrade" ] && LEcho cyan "http://${ip}:${port}" "http://${ip}:${port}"
     [ ${installMode} == "upgrade" ] && LEcho yellow "若无法访问面板, 请检查 [云防火墙 / 安全组] 是否有放行面板 ${port} 和 ${daemonPort} 端口, 控制面板需要这两个端口才能正常工作" "You must expose ports ${port} and ${daemonPort} to use the service properly on the Internet."
-    [ ${installMode} == "upgrade" ] && [ ${firewall} == "problem" ] && LEcho red "您的服务器没有安装防火墙, 请自行放行面板 ${port} 和 ${daemonPort} 端口, 控制面板需要这两个端口才能正常工作" "Your server does not have a firewall installed, please expose ports ${port} and ${daemonPort} to use the service properly on the Internet."
+    #[ ${installMode} == "upgrade" ] && [ ${firewall} == "problem" ] && LEcho red "您的服务器没有安装防火墙, 请自行放行面板 ${port} 和 ${daemonPort} 端口, 控制面板需要这两个端口才能正常工作" "Your server does not have a firewall installed, please expose ports ${port} and ${daemonPort} to use the service properly on the Internet."
     
     [ ${installMode} == "install" ] && LEcho cyan "http://localhost:23333" "http://localhost:23333"
     [ ${installMode} == "install" ] && LEcho yellow "若无法访问面板, 请检查 [云防火墙 / 安全组] 是否有放行面板 23333 和 24444 端口, 控制面板需要这两个端口才能正常工作" "You must expose ports 23333 and 24444 to use the service properly on the Internet."
-    [ ${installMode} == "install" ] && [ ${firewall} == "problem" ] && LEcho red "您的服务器没有安装防火墙, 请自行放行面板 23333 和 24444 端口, 控制面板需要这两个端口才能正常工作" "Your server does not have a firewall installed, please expose ports 23333 and 24444 to use the service properly on the Internet."
+    #[ ${installMode} == "install" ] && [ ${firewall} == "problem" ] && LEcho red "您的服务器没有安装防火墙, 请自行放行面板 23333 和 24444 端口, 控制面板需要这两个端口才能正常工作" "Your server does not have a firewall installed, please expose ports 23333 and 24444 to use the service properly on the Internet."
     
     LEcho cyan "更多使用说明, 请参考: https://docs.mcsmanager.com/" "More info: https://docs.mcsmanager.com/"
     LEcho cyan "==================================================================" "=================================================================="

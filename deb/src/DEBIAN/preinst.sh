@@ -182,7 +182,7 @@ CheckNodejs() {
         fi
     fi
     while true; do
-        if /usr/local/bin/n ${nodeVersion} -d || [ ${try} == 3 ]; then
+        if /usr/local/bin/n ${nodeVersion} -q -d || [ ${try} == 3 ]; then
             break
         else
             LEcho yellow "[!] 安装 Node.js ${nodeVersion} 失败, 重试中... (${try}/3)" "[!] Failed to install Node.js ${nodeVersion}, retrying... (${try}/3)"
@@ -275,6 +275,21 @@ Clean() {
 }
 
 ### Start ###
+LEcho cyan "+----------------------------------------------------------------------
+| MCSManager Installer
++----------------------------------------------------------------------
+| Copyright © 2022 MCSManager All rights reserved.
++----------------------------------------------------------------------
+| Shell Install Script by Nuomiaa & CreeperKong
++----------------------------------------------------------------------
+" "+----------------------------------------------------------------------
+| MCSManager Installer
++----------------------------------------------------------------------
+| Copyright © 2022 MCSManager All rights reserved.
++----------------------------------------------------------------------
+| Shell Install Script by Nuomiaa & CreeperKong
++----------------------------------------------------------------------
+"
 Init
 Install
 exit 0

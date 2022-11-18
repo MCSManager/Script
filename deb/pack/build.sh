@@ -10,9 +10,9 @@ if ! command -v dpkg;then
 fi
 
 # Some prepare work
-mv -f ../src/DEBIAN/postinst.sh ../src/DEBIAN/postinst
-mv -f ../src/DEBIAN/preinst.sh ../src/DEBIAN/preinst
-mv -f ../src/DEBIAN/prerm.sh ../src/DEBIAN/prerm
+[ -f ../src/DEBIAN/postinst.sh ] && mv -f ../src/DEBIAN/postinst.sh ../src/DEBIAN/postinst
+[ -f ../src/DEBIAN/preinst.sh ] && mv -f ../src/DEBIAN/preinst.sh ../src/DEBIAN/preinst
+[ -f ../src/DEBIAN/prerm.sh ] && mv -f ../src/DEBIAN/prerm.sh ../src/DEBIAN/prerm
 
 # Remove old files
 echo "Remove old files..."
@@ -44,10 +44,9 @@ chmod 775 ./*/DEBIAN/pre*
 chmod 775 ./*/DEBIAN/post*
 chown -R debian ./*
 
-mv -f ../src/DEBIAN/postinst ../src/DEBIAN/postinst.sh
-mv -f ../src/DEBIAN/preinst ../src/DEBIAN/preinst.sh
-mv -f ../src/DEBIAN/prerm ../src/DEBIAN/prerm.sh
-# OH THE SHIT CODE
+[ -f ../src/DEBIAN/postinst ] && mv -f ../src/DEBIAN/postinst ../src/DEBIAN/postinst.sh
+[ -f ../src/DEBIAN/preinst ] && mv -f ../src/DEBIAN/preinst ../src/DEBIAN/preinst.sh
+[ -f ../src/DEBIAN/prerm ] && mv -f ../src/DEBIAN/prerm ../src/DEBIAN/prerm.sh
 
 # Build
 if ! dpkg -b ./amd64/ MCSManager-amd64.deb; then
