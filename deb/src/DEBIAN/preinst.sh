@@ -281,6 +281,7 @@ LEcho cyan "+-------------------------------------------------------------------
 | Copyright © 2022 MCSManager All rights reserved.
 +----------------------------------------------------------------------
 | Shell Install Script by Nuomiaa & CreeperKong
+| Remake to adapt the DEB package by BlueFunny_
 +----------------------------------------------------------------------
 " "+----------------------------------------------------------------------
 | MCSManager Installer
@@ -288,6 +289,7 @@ LEcho cyan "+-------------------------------------------------------------------
 | Copyright © 2022 MCSManager All rights reserved.
 +----------------------------------------------------------------------
 | Shell Install Script by Nuomiaa & CreeperKong
+| Remake to adapt the DEB package by BlueFunny_
 +----------------------------------------------------------------------
 "
 Init
