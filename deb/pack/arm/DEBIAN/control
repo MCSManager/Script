@@ -2,7 +2,7 @@ Package:MCSManager
 Version:9
 Section:stable
 Priority:optional
-Depends:wget,curl,git,tar
+Depends:wget,curl,git,tar,sudo
 Suggests:language-pack-zh-hans,fonts-droid-fallback,ttf-wqy-zenhei,ttf-wqy-microhei,fonts-arphic-ukai,fonts-arphic-uming
 Architecture:arm
 Maintainer:unitwk

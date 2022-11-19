@@ -19,16 +19,6 @@ echo "Remove old files..."
 rm -rf ./*/DEBIAN/preinst
 rm -rf ./*/DEBIAN/postinst
 rm -rf ./*/DEBIAN/prerm
-rm -rf ./*/etc
-
-# Copy new files
-echo "Copy new service files..."
-cp -r -v ../src/etc/ ./amd64/etc/
-cp -r -v ../src/etc/ ./arm64/etc/
-cp -r -v ../src/etc/ ./arm/etc/
-cp -r -v ../src/etc/ ./i386/etc/
-cp -r -v ../src/etc/ ./ppc64le/etc/
-cp -r -v ../src/etc/ ./s390x/etc/ 
 
 echo "Copy new script files..."
 cp -r -v ../src/DEBIAN/* ./amd64/DEBIAN/
