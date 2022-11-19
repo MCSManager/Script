@@ -12,7 +12,7 @@ mcsmPath="/opt/mcsmanager"
 nodePath="${mcsmPath}/node"
 
 ## Node
-nodeVersion="18.12.1"
+nodeVersion="14.19.1"
 node="${nodePath}/bin/node"
 npm="${node} ${nodePath}/bin/npm"
 
@@ -81,14 +81,14 @@ LEcho() {
 ### Init ###
 ## Check environment
 Init() {
-    LEcho echo "[-] 正在初始化环境..." "[-] Initializing environment..."
+    LEcho cyan "[-] 正在初始化环境..." "[-] Initializing environment..."
 
     # Check functions
     CheckMCSM
     CheckCN
     CheckNodejs
 
-    LEcho echo "[-] 环境初始化完成" "[-] Environment initialization completed"
+    LEcho cyan "[-] 环境初始化完成" "[-] Environment initialization completed"
     return
 }
 
@@ -105,7 +105,7 @@ CheckMCSM() {
 
         # A little easteregg
         # Maybe you wanna play Inscryption?
-        LEcho echo "[-] 正在将 旧数据 打包并移动至临时文件夹..." "[-] Packing and moving old data to temporary folder..."
+        LEcho cyan "[-] 正在将 旧数据 打包并移动至临时文件夹..." "[-] Packing and moving old data to temporary folder..."
 
         # Backup old data
         if [ -d ${mcsmOldPath}/daemon/data ]; then
@@ -156,11 +156,11 @@ CheckCN() {
         [ "${zh}" == 0 ] && read -e -r -p "[?] Whether to use the Chinese mirror to complete the installation? [y/n] " input
         case ${input} in
         [yY][eE][sS] | [yY])
-            LEcho echo "[-] 选用中国镜像" "[-] Use Chinese mirror"
+            LEcho cyan "[-] 选用中国镜像" "[-] Use Chinese mirror"
             CN=1
             ;;
         *)
-            LEcho echo "[-] 不选用中国镜像" "[-] Do not use Chinese mirror"
+            LEcho cyan "[-] 不选用中国镜像" "[-] Do not use Chinese mirror"
             ;;
         esac
     fi
@@ -195,33 +195,33 @@ CheckNodejs() {
     if ! ${node} --version; then
         LEcho error "[x] 未能成功安装最新版本 Node.js" "[x] Failed to install the latest version of Node.js"
     fi
-    LEcho echo "=============== Node Version ===============" "=============== Node Version ==============="
-    LEcho echo "Node 版本: $(${node} --version)" "Node Version: $(${node} --version)"
-    LEcho echo "NPM 版本: $(${npm} --version)" "NPM Version: $(${npm} --version)"
-    LEcho echo "============================================" "============================================"
+    LEcho cyan "=============== Node Version ===============" "=============== Node Version ==============="
+    LEcho cyan "Node 版本: $(${node} --version)" "Node Version: $(${node} --version)"
+    LEcho cyan "NPM 版本: $(${npm} --version)" "NPM Version: $(${npm} --version)"
+    LEcho cyan "============================================" "============================================"
     return
 }
 
 ### Main ###
 ## Main Install Function
 Install() {
-    LEcho echo "[-] 正在安装 MCSManager ..." "[-] Installing MCSManager ..."
+    LEcho cyan "[-] 正在安装 MCSManager ..." "[-] Installing MCSManager ..."
 
     # Move to MCSM
     cd ${mcsmPath} || LEcho error "[x] 未能成功进入 MCSM 安装目录" "[x] Failed to enter the MCSM installation directory"
 
     # Download MCSM Daemon
-    LEcho echo "[↓] 正在下载 MCSManager Daemon..." "[↓] Downloading MCSManager Daemon..."
+    LEcho cyan "[↓] 正在下载 MCSManager Daemon..." "[↓] Downloading MCSManager Daemon..."
     git clone --single-branch -b master --depth 1 ${daemonCloneURL}
     mv -f MCSManager-Daemon-Production daemon
 
     # Download MCSM Web
-    LEcho echo "[↓] 正在下载 MCSManager Web..." "[↓] Downloading MCSManager Web..."
+    LEcho cyan "[↓] 正在下载 MCSManager Web..." "[↓] Downloading MCSManager Web..."
     git clone --single-branch -b master --depth 1 ${webCloneURL}
     mv -f MCSManager-Web-Production web
 
     # Install MCSM Daemon
-    LEcho echo "[+] 正在安装 MCSManager Daemon..." "[+] Installing MCSManager Daemon..."
+    LEcho cyan "[+] 正在安装 MCSManager Daemon..." "[+] Installing MCSManager Daemon..."
     cd daemon || LEcho error "[x] 未能成功进入 MCSM Daemon 安装目录" "[x] Failed to enter the MCSM Daemon installation directory"
     if [ "${CN}" == 1 ]; then
         ${npm} i --registry=https://registry.npmmirror.com
@@ -230,7 +230,7 @@ Install() {
     fi
 
     # Install MCSM Web
-    LEcho echo "[+] 正在安装 MCSManager Web..." "[+] Installing MCSManager Web..."
+    LEcho cyan "[+] 正在安装 MCSManager Web..." "[+] Installing MCSManager Web..."
     cd ../web || LEcho error "[x] 未能成功进入 MCSM Web 安装目录" "[x] Failed to enter the MCSManager Web installation directory"
     if [ "${CN}" == 1 ]; then
         ${npm} i --registry=https://registry.npmmirror.com
@@ -242,7 +242,7 @@ Install() {
 
     # Check install mode
     if [ "${installMode}" == "upgrade" ]; then
-        LEcho echo "[-] 正在移动旧数据..." "[-] Moving old data..."
+        LEcho cyan "[-] 正在移动旧数据..." "[-] Moving old data..."
         mv -f /tmp/mcsmanager/data/daemon ${mcsmPath}/daemon/data || LEcho yellow "[-] 未检测到旧版 Daemon 数据, 跳过迁移..." "[-] Old Daemon data was not detected, skipping migration..."
         mv -f /tmp/mcsmanager/data/web ${mcsmPath}/web/data || LEcho yellow "[-] 未检测到旧版 Web 数据, 跳过迁移..." "[-] Old Web data was not detected, skipping migration..."
         rm -rf /tmp/mcsmanager
@@ -281,7 +281,6 @@ LEcho cyan "+-------------------------------------------------------------------
 | Copyright © 2022 MCSManager All rights reserved.
 +----------------------------------------------------------------------
 | Shell Install Script by Nuomiaa & CreeperKong
-| Remake to adapt the DEB package by BlueFunny_
 +----------------------------------------------------------------------
 " "+----------------------------------------------------------------------
 | MCSManager Installer
@@ -289,9 +288,9 @@ LEcho cyan "+-------------------------------------------------------------------
 | Copyright © 2022 MCSManager All rights reserved.
 +----------------------------------------------------------------------
 | Shell Install Script by Nuomiaa & CreeperKong
-| Remake to adapt the DEB package by BlueFunny_
 +----------------------------------------------------------------------
 "
+## Try to cheat APT
 Init
 Install
 exit 0

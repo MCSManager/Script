@@ -7,6 +7,10 @@
 ### Variables ###
 ## Files
 mcsmPath="/opt/mcsmanager"
+nodePath="${mcsmPath}/node"
+
+## Node
+node="${nodePath}/bin/node"
 
 ## Language
 if [ "$(locale -a | grep "zh_CN")" != "" ]; then
@@ -68,7 +72,39 @@ LEcho() {
 
 ### Main ###
 Start() {
-    LEcho echo "[-] 正在启动 MCSManager..." "[-] Starting MCSManager..."
+    LEcho cyan "[-] 正在注册系统服务..." "[-] Registering system service..."
+
+    echo "
+[Unit]
+Description=MCSManager Daemon
+
+[Service]
+WorkingDirectory=/opt/mcsmanager/daemon
+ExecStart=${node} app.js
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+Environment=\"PATH=${PATH}\"
+
+[Install]
+WantedBy=multi-user.target
+" >/etc/systemd/system/mcsm-daemon.service
+
+    echo "
+[Unit]
+Description=MCSManager Web
+
+[Service]
+WorkingDirectory=/opt/mcsmanager/web
+ExecStart=${node} app.js
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+Environment=\"PATH=${PATH}\"
+
+[Install]
+WantedBy=multi-user.target
+" >/etc/systemd/system/mcsm-web.service
+
+    LEcho cyan "[-] 正在启动 MCSManager..." "[-] Starting MCSManager..."
 
     # Start MCSM service
     systemctl enable mcsm-daemon.service --now
@@ -110,15 +146,15 @@ AuthInfo() {
     LEcho cyan "欢迎使用 MCSManager, 您可以通过以下方式访问 MCSManager " "Welcome to MCSManager, you can access it by the following ways"
     LEcho cyan "==================================================================" "=================================================================="
     LEcho cyan_n "控制面板地址: " "Web Service Address: "
-    
+
     [ ${installMode} == "upgrade" ] && LEcho cyan "http://${ip}:${port}" "http://${ip}:${port}"
     [ ${installMode} == "upgrade" ] && LEcho yellow "若无法访问面板, 请检查 [云防火墙 / 安全组] 是否有放行面板 ${port} 和 ${daemonPort} 端口, 控制面板需要这两个端口才能正常工作" "You must expose ports ${port} and ${daemonPort} to use the service properly on the Internet."
     #[ ${installMode} == "upgrade" ] && [ ${firewall} == "problem" ] && LEcho red "您的服务器没有安装防火墙, 请自行放行面板 ${port} 和 ${daemonPort} 端口, 控制面板需要这两个端口才能正常工作" "Your server does not have a firewall installed, please expose ports ${port} and ${daemonPort} to use the service properly on the Internet."
-    
+
     [ ${installMode} == "install" ] && LEcho cyan "http://localhost:23333" "http://localhost:23333"
     [ ${installMode} == "install" ] && LEcho yellow "若无法访问面板, 请检查 [云防火墙 / 安全组] 是否有放行面板 23333 和 24444 端口, 控制面板需要这两个端口才能正常工作" "You must expose ports 23333 and 24444 to use the service properly on the Internet."
     #[ ${installMode} == "install" ] && [ ${firewall} == "problem" ] && LEcho red "您的服务器没有安装防火墙, 请自行放行面板 23333 和 24444 端口, 控制面板需要这两个端口才能正常工作" "Your server does not have a firewall installed, please expose ports 23333 and 24444 to use the service properly on the Internet."
-    
+
     LEcho cyan "更多使用说明, 请参考: https://docs.mcsmanager.com/" "More info: https://docs.mcsmanager.com/"
     LEcho cyan "==================================================================" "=================================================================="
     return
