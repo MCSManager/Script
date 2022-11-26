@@ -2,7 +2,7 @@
 printf "\033c"
 
 error=""
-node="v14.19.1"
+node="v18.12.1"
 arch=$(uname -m)
 mcsmanager_install_path="/opt/mcsmanager"
 zh=$([[ $(locale -a) =~ "zh" ]] && echo 1; export LANG=zh_CN.UTF-8 || echo 0)
