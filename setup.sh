@@ -316,7 +316,7 @@ if [ "$zh" == 1 ];
 fi
 if [ -x "$(command -v yum)" ]; then yum install -y git tar > error;
 elif [ -x "$(command -v apt-get)" ]; then apt-get install -y git tar > error;
-elif [ -x "$(command -v pacman)" ]; then pacman -Ryu --noconfirm git tar > error;
+elif [ -x "$(command -v pacman)" ]; then pacman -Syu --noconfirm git tar > error;
 elif [ -x "$(command -v zypper)" ]; then zypper --non-interactive install git tar > error;
 fi
 
