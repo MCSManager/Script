@@ -12,7 +12,7 @@ mcsmPath="/opt/mcsmanager"
 nodePath="${mcsmPath}/node"
 
 ## Node
-nodeVersion="18.12.1"
+nodeVersion="14.19.1"
 node="${nodePath}/bin/node"
 npm="${node} ${nodePath}/bin/npm"
 
