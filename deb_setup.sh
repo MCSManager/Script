@@ -164,24 +164,8 @@ CheckMCSM() {
         # Switch to update mode
         installMode="upgrade"
 
-        # Prepare for backup old data
-        mkdir -p /tmp/mcsmanager/data
-
-        # A little easteregg
-        # Maybe you wanna play Inscryption?
-        LEcho cyan "[-] 正在将 旧数据 打包并移动至临时文件夹..." "[-] Packing and moving old data to temporary folder..."
-
-        # Backup old data
-        if [ -d ${mcsmOldPath}/daemon/data ]; then
-            mv -f ${mcsmOldPath}/daemon/data /tmp/mcsmanager/data/daemon
-        else
-            LEcho yellow "[-] 未检测到旧版 Daemon 数据, 跳过迁移..." "[-] Old Daemon data was not detected, skipping migration..."
-        fi
-        if [ -d ${mcsmOldPath}/web/data ]; then
-            mv -f ${mcsmOldPath}/web/data /tmp/mcsmanager/data/web
-        else
-            LEcho yellow "[-] 未检测到旧版 Web 数据, 跳过迁移..." "[-] Old Web data was not detected, skipping migration..."
-        fi
+        # Move old MCSM to backup path
+        mv -f ${mcsmOldPath} ${mcsmOldPath}.bak
 
         # Remove old service
         if [ -f /etc/systemd/system/mcsm-daemon.service ]; then
@@ -306,10 +290,11 @@ Install() {
 
     # Check install mode
     if [ "${installMode}" == "upgrade" ]; then
-        LEcho cyan "[-] 正在移动旧数据..." "[-] Moving old data..."
-        mv -f /tmp/mcsmanager/data/daemon ${mcsmPath}/daemon/data || LEcho yellow "[-] 未检测到旧版 Daemon 数据, 跳过迁移..." "[-] Old Daemon data was not detected, skipping migration..."
-        mv -f /tmp/mcsmanager/data/web ${mcsmPath}/web/data || LEcho yellow "[-] 未检测到旧版 Web 数据, 跳过迁移..." "[-] Old Web data was not detected, skipping migration..."
-        rm -rf /tmp/mcsmanager
+        mv -f ${mcsmOldPath}.bak/daemon/data/ ${mcsmPath}/daemon/data/
+        mv -f ${mcsmOldPath}.bak/web/data/ ${mcsmPath}/web/data/
+        if [ ! -d ${mcsmPath}/daemon/data/ ] || [ ! -d ${mcsmPath}/web/data/ ]; then
+            LEcho yellow "[!] 部分数据迁移失败, 您可能需要到 ${mcsmOldPath}.bak 手动进行迁移" "[!] Some data migration failed, you may need to manually migrate to ${mcsmOldPath}.bak"
+        fi
         LEcho green "[√] 数据迁移完成" "[√] Data migration completed"
     fi
     LEcho cyan "[-] 正在注册系统服务..." "[-] Registering system service..."
@@ -419,6 +404,16 @@ Clean() {
     # Remove MCSManager
     if [ -d "${mcsmPath}" ]; then
         rm -rf "${mcsmPath}"
+    fi
+
+    # Check install mode
+    if [ ${mcsmOldPath} == "upgrade" ]; then
+        LEcho cyan "[-] 检测到旧版 MCSManager 备份, 自动恢复中" "[-] Old version of MCSManager backup detected, automatic recovery"
+        if ! mv -f ${mcsmOldPath}.bak ${mcsmOldPath}; then
+            LEcho yellow "[!] 旧版 MCSManager 备份文件移动失败, 请手动移动 ${mcsmOldPath}.bak 至 ${mcsmOldPath}" "[!] Old version of MCSManager backup file move failed, please manually move ${mcsmOldPath}.bak to ${mcsmOldPath}"
+        else
+            rm -rf ${mcsmOldPath}.bak
+        fi
     fi
     return
 }
