@@ -49,6 +49,16 @@ Install_Node() {
   tar -zxf node-"$node"-linux-"$arch".tar.gz
 
   rm -rf node-"$node"-linux-"$arch".tar.gz
+  
+  if [ ! -L /usr/bin/node ] && [ ! -f /usr/bin/node ];then
+    ln -s "$node_install_path"/bin/node /usr/bin/node
+  fi
+  if [ ! -L /usr/bin/npm ] && [ ! -f /usr/bin/npm ];then
+    ln -s "$node_install_path"/bin/npm /usr/bin/npm
+  fi
+
+  chmod +x "$node_install_path"/bin/node
+  chmod +x "$node_install_path"/bin/npm
 
   if [ -f "$node_install_path"/bin/node ] && [ "$("$node_install_path"/bin/node -v)" == "$node" ]
   then
