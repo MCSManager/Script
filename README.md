@@ -12,6 +12,9 @@ The files here are all platform-wide install, delete, update scripts, etc. for M
 
 The default installation script on the official website is the `setup_en.sh` file of this repository.
 
-Contains multiple languages.
+English: [setup_en.sh](setup_en.sh)
+
+Chinese: [setup.sh](setup.sh)
+
 
 <br />
