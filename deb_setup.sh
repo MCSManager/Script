@@ -260,13 +260,11 @@ Install() {
 
     # Download MCSM Daemon
     LEcho cyan "[↓] 正在下载 MCSManager Daemon..." "[↓] Downloading MCSManager Daemon..."
-    git clone --single-branch -b master --depth 1 ${daemonCloneURL}
-    mv -f MCSManager-Daemon-Production daemon
+    git clone --single-branch -b master --depth 1 ${daemonCloneURL} daemon
 
     # Download MCSM Web
     LEcho cyan "[↓] 正在下载 MCSManager Web..." "[↓] Downloading MCSManager Web..."
-    git clone --single-branch -b master --depth 1 ${webCloneURL}
-    mv -f MCSManager-Web-Production web
+    git clone --single-branch -b master --depth 1 ${webCloneURL} web
 
     # Install MCSM Daemon
     LEcho cyan "[+] 正在安装 MCSManager Daemon..." "[+] Installing MCSManager Daemon..."
