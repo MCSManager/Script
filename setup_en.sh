@@ -84,10 +84,7 @@ Install_MCSManager() {
   cd ${mcsmanager_install_path} || exit
 
   echo_cyan "[↓] Git clone MCSManager-Daemon..."
-  git clone --single-branch -b master --depth 1 https://github.com/MCSManager/MCSManager-Daemon-Production.git
-
-  # echo "[-] mv MCSManager-Daemon-Production daemon"
-  mv MCSManager-Daemon-Production daemon
+  git clone --single-branch -b master --depth 1 https://github.com/MCSManager/MCSManager-Daemon-Production.git daemon
 
   # echo "[→] cd daemon"
   cd daemon || exit
@@ -99,10 +96,7 @@ Install_MCSManager() {
   cd ..
 
   echo_cyan "[↓] Git clone MCSManager-Web..."
-  git clone --single-branch -b master --depth 1 https://github.com/MCSManager/MCSManager-Web-Production.git
-
-  # echo "[-] mv MCSManager-Web-Production web"
-  mv MCSManager-Web-Production web
+  git clone --single-branch -b master --depth 1 https://github.com/MCSManager/MCSManager-Web-Production.git web
 
   # echo "[→] cd web"
   cd web || exit
