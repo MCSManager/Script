@@ -41,6 +41,7 @@ os=$(uname -a)
 arch=$(uname -m)
 skipNodeInstall=0
 skipMCSMInstall=0
+oldSystem=0
 
 ### Tools ###
 ## Localize echo
@@ -109,7 +110,7 @@ Main() {
   fi
 
   # Create temp dir
-  [ ! -d "${tmpPath}" ] && mkdir -p "${tmpPath}" || rm -rf "${tmpPath}" && mkdir -p "${tmpPath}"  
+  [ ! -d "${tmpPath}" ] && mkdir -p "${tmpPath}" || rm -rf "${tmpPath}" && mkdir -p "${tmpPath}"
   if [ ! -d "${tmpPath}" ]; then
     CheckRoot
     LEcho error "[x] 未能成功创建临时目录, 请检查权限" "[x] Failed to create temporary directory, please check permissions"
@@ -159,6 +160,16 @@ CheckOS() {
   if [ "$(echo "${os}" | grep "Ubuntu")" == "" ] && [ "$(echo "${os}" | grep "Debian")" == "" ] && [ "$(echo "${os}" | grep "CentOS")" == "" ]; then
     LEcho error "[x] 本脚本仅支持 Ubuntu/Debian/CentOS 系统!" "[x] This script only supports Ubuntu/Debian/CentOS systems!"
   fi
+  if [ "$(cat /etc/redhat-release | grep ' 6.' | grep -iE 'centos|Red Hat')" ]; then
+    LEcho yellow "[!] 检测到您的系统版本过低, 可能会存在一定的兼容性问题, 请了解" "[!] It is detected that your system version is too low, there may be certain compatibility issues, please understand"
+    LEcho cyan "[-] 切换为兼容性模式" "[-] Switch to compatibility mode"
+    oldSystem=1
+  fi
+  if [ "$(cat /etc/issue | grep Ubuntu | awk '{print $2}' | cut -f 1 -d '.')" ] && [ "$(cat /etc/issue | grep Ubuntu | awk '{print $2}' | cut -f 1 -d '.')" -lt "16" ]; then
+    LEcho yellow "[!] 检测到您的系统版本过低, 可能会存在一定的兼容性问题, 请了解" "[!] It is detected that your system version is too low, there may be certain compatibility issues, please understand"
+    LEcho cyan "[-] 切换为兼容性模式" "[-] Switch to compatibility mode"
+    oldSystem=1
+  fi
   return
 }
 
@@ -180,7 +191,11 @@ CheckSystem() {
   if [ -f /etc/redhat-release ]; then
     yum install -y git tar wget curl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
   else
-    apt-get install -y git tar wget curl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
+    if [ ${oldSystem} == 1 ]; then
+      apt-get install --force-yes git tar wget curl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
+    else
+      apt-get install -y git tar wget curl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
+    fi
   fi
 
   # Check Arch
