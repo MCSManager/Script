@@ -2,12 +2,11 @@
 
 <br />
 
-[Official Website](http://mcsmanager.com/) 
+[Official Website](http://mcsmanager.com/) | [中文文档](https://github.com/MCSManager/Script/blob/master/README_cn.md) | [Gitee](https://gitee.com/mcsmanager/script)
 
 <br />
 
 ## What is this?
-[中文文档]()
 
 The files here are all platform-wide install, delete, update scripts, etc. for MCSManager 9.
 
@@ -18,7 +17,7 @@ You can also use the following one-click command to perform a quick installation
 ## Installation commands
 
 ```bash
-
+wget https://raw.githubusercontent.com/MCSManager/Script/master/setup.sh -O setup.sh && bash setup.sh
 ```
 
 <br />

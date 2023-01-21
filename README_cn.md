@@ -2,7 +2,7 @@
 
 <br />
 
-[MCSManager 9 官方网站](http://mcsmanager.com/) 
+[MCSManager 9 官方网站](http://mcsmanager.com/) | [English](https://github.com/MCSManager/Script/blob/master/README.md) | [Gitee 仓库](https://gitee.com/mcsmanager/script)
 
 <br />
 
@@ -17,7 +17,13 @@
 ## 安装命令
 
 ```bash
+wget https://raw.githubusercontent.com/MCSManager/Script/master/setup.sh -O setup.sh && bash setup.sh
+```
 
+当然, 一般国内用户因为某些神奇的原因都连不上 Github, 下方为 Gitee 国内镜像源链接
+
+```bash
+wget https://gitee.com/mcsmanager/script/raw/master/setup.sh -O setup.sh && bash setup.sh
 ```
 
 <br />
