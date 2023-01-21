@@ -85,6 +85,7 @@ LEcho() {
     [ "${zh}" == 1 ] && printf '\033[1;31;40m%b\033[0m\n' "$2"
     [ "${zh}" == 0 ] && printf '\033[1;31;40m%b\033[0m\n' "$3"
     echo '================================================='
+    Clean
     exit 1
     ;;
 
@@ -108,7 +109,7 @@ Main() {
   fi
 
   # Create temp dir
-  [ ! -d "${tmpPath}" ] && mkdir -p "${tmpPath}" || rm -rf "${tmpPath}" && mkdir -p "${tmpPath}"
+  [ ! -d "${tmpPath}" ] && mkdir -p "${tmpPath}" || rm -rf "${tmpPath}" && mkdir -p "${tmpPath}"  
   if [ ! -d "${tmpPath}" ]; then
     CheckRoot
     LEcho error "[x] 未能成功创建临时目录, 请检查权限" "[x] Failed to create temporary directory, please check permissions"
@@ -556,15 +557,12 @@ Revert() {
   systemctl enable mcsm-daemon.service
   systemctl enable mcsm-web.service
 
-  Clean
-
   LEcho error "[x] 安装失败" "[x] Installation failed"
 }
 
 ## Clean Function
 Clean() {
   rm -rf "${tmpPath}"
-  rm -rf "$0"
   return
 }
 
