@@ -161,14 +161,16 @@ CheckOS() {
     LEcho error "[x] 本脚本仅支持 Ubuntu/Debian/CentOS 系统!" "[x] This script only supports Ubuntu/Debian/CentOS systems!"
   fi
   if [ "$(cat /etc/redhat-release | grep ' 6.' | grep -iE 'centos|Red Hat')" ]; then
-    LEcho yellow "[!] 检测到您的系统版本过低, 可能会存在一定的兼容性问题, 请了解" "[!] It is detected that your system version is too low, there may be certain compatibility issues, please understand"
-    LEcho cyan "[-] 切换为兼容性模式" "[-] Switch to compatibility mode"
-    oldSystem=1
+    #  LEcho yellow "[!] 检测到您的系统版本过低, 可能会存在一定的兼容性问题, 请了解" "[!] It is detected that your system version is too low, there may be certain compatibility issues, please understand"
+    #  LEcho cyan "[-] 切换为兼容性模式" "[-] Switch to compatibility mode"
+    #  oldSystem=1
+    LEcho error "[x] 本脚本不支持 CentOS 6, 请升级到 CentOS 7 或更高版本" "[x] This script does not support CentOS 6, please upgrade to CentOS 7 or higher"
   fi
   if [ "$(cat /etc/issue | grep Ubuntu | awk '{print $2}' | cut -f 1 -d '.')" ] && [ "$(cat /etc/issue | grep Ubuntu | awk '{print $2}' | cut -f 1 -d '.')" -lt "16" ]; then
-    LEcho yellow "[!] 检测到您的系统版本过低, 可能会存在一定的兼容性问题, 请了解" "[!] It is detected that your system version is too low, there may be certain compatibility issues, please understand"
-    LEcho cyan "[-] 切换为兼容性模式" "[-] Switch to compatibility mode"
-    oldSystem=1
+    #  LEcho yellow "[!] 检测到您的系统版本过低, 可能会存在一定的兼容性问题, 请了解" "[!] It is detected that your system version is too low, there may be certain compatibility issues, please understand"
+    #  LEcho cyan "[-] 切换为兼容性模式" "[-] Switch to compatibility mode"
+    #  oldSystem=1
+    LEcho error "[x] 本脚本不支持 Ubuntu 14, 请升级到 Ubuntu 16 或更高版本" "[x] This script does not support Ubuntu 14, please upgrade to Ubuntu 16 or higher"
   fi
   return
 }
