@@ -192,7 +192,7 @@ CheckSystem() {
     yum install -y git tar wget curl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
   else
     if [ ${oldSystem} == 1 ]; then
-      apt-get install --force-yes git tar wget curl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
+      apt-get install --force-yes -y git tar wget curl systemctl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
     else
       apt-get install -y git tar wget curl || LEcho error "[x] 未能成功安装必备软件包" "[x] Failed to install required software packages"
     fi
@@ -355,8 +355,13 @@ InstallNode() {
     LEcho echo "[+] 正在安装 Node.js" "[+] Installing Node.js"
 
     # Download Node.js
-    wget -t=${try} -q --no-check-certificate --show-progress -O ${tmpPath}/node.tar.gz "${nodeFileURL}"
-    wget -t=${try} -q --no-check-certificate --show-progress -O ${tmpPath}/node.sha256 "${nodeHashURL}"
+    if [ ${oldSystem} != 1 ]; then
+      wget -t=${try} -q --no-check-certificate --show-progress -O ${tmpPath}/node.tar.gz "${nodeFileURL}"
+      wget -t=${try} -q --no-check-certificate --show-progress -O ${tmpPath}/node.sha256 "${nodeHashURL}"
+    else
+      wget -t ${try} -q --no-check-certificate --show-progress -O ${tmpPath}/node.tar.gz "${nodeFileURL}"
+      wget -t ${try} -q --no-check-certificate --show-progress -O ${tmpPath}/node.sha256 "${nodeHashURL}"
+    fi
 
     # Check hash
     cat ${tmpPath}/node.sha256 | grep "${nodeVersion}/node-${nodeVersion}-linux-${arch}.tar.gz" | tee ${tmpPath}/node.sha256
