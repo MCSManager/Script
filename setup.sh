@@ -108,7 +108,8 @@ Main() {
   fi
 
   # Create temp dir
-  if ! [ ! -d "${tmpPath}" ] && mkdir -p "${tmpPath}" || rm -rf "${tmpPath}" && mkdir -p "${tmpPath}"; then
+  [ ! -d "${tmpPath}" ] && mkdir -p "${tmpPath}" || rm -rf "${tmpPath}" && mkdir -p "${tmpPath}"
+  if [ -d "${tmpPath}" ]; then
     CheckRoot
     LEcho error "[x] 未能成功创建临时目录, 请检查权限" "[x] Failed to create temporary directory, please check permissions"
   fi
