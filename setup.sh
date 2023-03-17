@@ -254,7 +254,7 @@ Install() {
         wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
         
         # Check nodejs files
-        if ! grep "node-$nodeVer-linux-$arch.tar.gz" sha256sum.txt | cut -d ' ' -f 1 | xargs sha256sum -c $tmpDir/node.tar.gz; then
+        if ! grep "node-$nodeVer-linux-$arch.tar.gz" $tmpDir/node.sha256 | cut -d ' ' -f 1 | xargs sha256sum -c $tmpDir/node.tar.gz; then
             LEcho error "[x] Node.js 安装包校验失败, 请重试" "[x] Node.js installation package verification failed, please try again"
         fi
         
