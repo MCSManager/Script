@@ -250,8 +250,8 @@ Install() {
     if ! CheckNode;then
         LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
         # Download nodejs files
-        wget -t=3 -q --no-check-certificate --show-progress -O $tmpDir/node.tar.gz "$nodeFileURL"
-        wget -t=3 -q --no-check-certificate --show-progress -O $tmpDir/node.sha256 "$nodeHashURL"
+        wget -q --no-check-certificate --show-progress -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
+        wget -q --no-check-certificate --show-progress -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
         
         # Check nodejs files
         if [ "$(sha256sum $tmpDir/node.tar.gz | awk '{print $1}')" != "$(cat $tmpDir/node.sha256)" ]; then
@@ -262,10 +262,14 @@ Install() {
         tar -xzf $tmpDir/node.tar.gz -C $tmpDir
         cp -r "$tmpDir/node-$nodeVer-linux-$arch/*" $nodePath
         
-        LEcho cyan "===============================================" "==============================================="
-        LEcho cyan "Node.js 版本: $($nodeBin --version)" "Node.js version: $($nodeBin --version)"
-        LEcho cyan "NPM 版本: $($npmBin -v)" "NPM version: $($npmBin -v)"
-        LEcho cyan "===============================================" "==============================================="
+        if command -v $nodeBin > /dev/null; then
+            LEcho cyan "===============================================" "==============================================="
+            LEcho cyan "Node.js 版本: $($nodeBin --version)" "Node.js version: $($nodeBin --version)"
+            LEcho cyan "NPM 版本: $($npmBin -v)" "NPM version: $($npmBin -v)"
+            LEcho cyan "===============================================" "==============================================="
+        else
+            LEcho error "[x] Node.js 安装失败, 请重试" "[x] Node.js installation failed, please try again"
+        fi
     else
         LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
         nodeBin="$(which node)"
