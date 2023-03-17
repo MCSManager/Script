@@ -125,7 +125,7 @@ CheckRoot() {
 
 ## Detect server geographic location
 CheckCN() {
-    LEcho echo "[*] 正在检查服务器地理位置" "[*] Checking server location"
+    LEcho cyan "[*] 正在检查服务器地理位置" "[*] Checking server location"
     server_ip=$(curl -s ifconfig.me)
     if [[ "$(curl -s "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" == "CN" ]]; then
         LEcho yellow "[!] 根据 'ipapi.co' 提供的信息, 当前服务器可能在中国, 已自动切换为中国镜像源" "[!] According to the information provided by 'ipapi.co', the current server IP may be in China, and the Chinese mirror source has been automatically switched"
@@ -139,7 +139,7 @@ CheckCN() {
 
 ## Detect system architecture
 CheckArch() {
-    LEcho echo "[*] 正在检查系统架构" "[*] Checking system architecture"
+    LEcho cyan "[*] 正在检查系统架构" "[*] Checking system architecture"
     arch=$(uname -m)
     case $arch in
         x86_64)
@@ -166,6 +166,7 @@ CheckArch() {
 
 ## Detect system version
 CheckOS() {
+    LEcho cyan "[*] 正在检查系统版本" "[*] Checking system version"
     if [ -f /etc/os-release ]; then
         # shellcheck source=/dev/null
         . /etc/os-release
