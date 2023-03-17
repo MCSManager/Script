@@ -133,8 +133,6 @@ CheckCN() {
         webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
         nodeBaseURL="https://npmmirror.com/mirrors/node"
         cn=1
-    else
-        LEcho cyan "[-] 检测服务器地理位置出错, 跳过检测" "[-] Error detecting server location, skipping detection"
     fi
     return
 }
@@ -326,7 +324,7 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory="$webPath"
+WorkingDirectory=$webPath
 ExecStart=$webExecStart
 Restart=always
 
@@ -340,7 +338,7 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory="$daemonPath"
+WorkingDirectory=$daemonPath
 ExecStart=$daemonExecStart
 Restart=always
 
@@ -350,8 +348,13 @@ EOF
     # Enable systemd service
     LEcho cyan "[*] 正在启动 MCSManager 服务" "[*] Starting MCSManager services"
     systemctl daemon-reload
-    systemctl enable mcsm-web --now || LEcho error "[x] 无法启动 MCSManager 前端管理面板服务" "[x] Unable to start MCSManager web panel service"
-    systemctl enable mcsm-daemon --now || LEcho error "[x] 无法启动 MCSManager 守护程序服务" "[x] Unable to start MCSManager daemon service"
+    if [ $mode == "update" ];then
+        systemctl restart mcsm-web || LEcho error "[x] 无法启动 MCSManager 前端管理面板服务" "[x] Unable to start MCSManager web panel service"
+        systemctl restart mcsm-daemon || LEcho error "[x] 无法启动 MCSManager 守护程序服务" "[x] Unable to start MCSManager daemon service"
+    else
+        systemctl enable mcsm-web --now || LEcho error "[x] 无法启动 MCSManager 前端管理面板服务" "[x] Unable to start MCSManager web panel service"
+        systemctl enable mcsm-daemon --now || LEcho error "[x] 无法启动 MCSManager 守护程序服务" "[x] Unable to start MCSManager daemon service"
+    fi
     
     # Output login info
     LEcho green "[√] MCSManager 安装完毕" "[√] MCSManager installation completed"
