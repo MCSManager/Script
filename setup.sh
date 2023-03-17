@@ -261,8 +261,7 @@ Install() {
         # Install nodejs
         [ -d $nodePath ] && rm -rf $nodePath
         mkdir -p $nodePath
-        tar -xzf "$tmpDir/node.tar.gz" -C $tmpDir
-        mv -f "$tmpDir/node-$nodeVer-linux-$arch/" "$mcsmPath/node"
+        tar -xzf "$tmpDir/node.tar.gz" -C $nodePath
         
         if command -v $nodeBin > /dev/null; then
             LEcho cyan "===============================================" "==============================================="
