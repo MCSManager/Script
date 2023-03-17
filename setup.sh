@@ -118,8 +118,6 @@ LEcho() {
 ## Check root
 CheckRoot() {
     if [[ $EUID -ne 0 ]]; then
-        LEcho debug "User: $(whoami)"
-        LEcho debug "EUID: $EUID"
         LEcho error "[!] 请使用 root 用户运行此脚本" "[!] Please run this script as root"
     fi
     return
@@ -128,11 +126,9 @@ CheckRoot() {
 ## Detect server geographic location
 CheckCN() {
     LEcho echo "[*] 正在检查服务器地理位置" "[*] Checking server location"
-    if [[ $(curl -m 10 -s https://ipapi.co/json | grep 'China') != "" ]]; then
+    server_ip=$(curl -s ifconfig.me)
+    if [[ "$(curl -s "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" == "CN" ]]; then
         LEcho yellow "[!] 根据 'ipapi.co' 提供的信息, 当前服务器可能在中国, 已自动切换为中国镜像源" "[!] According to the information provided by 'ipapi.co', the current server IP may be in China, and the Chinese mirror source has been automatically switched"
-        LEcho debug "=============================================="
-        LEcho debug "Raw data: $(curl -m 10 -s https://ipapi.co/json)"
-        LEcho debug "=============================================="
         daemonURL="https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
         webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
         nodeBaseURL="https://npmmirror.com/mirrors/node"
@@ -146,7 +142,6 @@ CheckCN() {
 ## Detect system architecture
 CheckArch() {
     LEcho echo "[*] 正在检查系统架构" "[*] Checking system architecture"
-    LEcho debug "Raw architecture: $arch"
     arch=$(uname -m)
     case $arch in
         x86_64)
@@ -176,9 +171,6 @@ CheckOS() {
     if [ -f /etc/os-release ]; then
         # shellcheck source=/dev/null
         . /etc/os-release
-        LEcho debug "========================================"
-        LEcho debug "Raw data: $(cat /etc/os-release)"
-        LEcho debug "========================================"
         case "$ID" in
             debian|ubuntu)
                 os="debian"
@@ -253,9 +245,9 @@ Install() {
     LEcho cyan "[*] 正在安装安装所需的工具" "[*] Installing the tools required for installation"
     if [ "$os" == "debian" ]; then
         apt-get update
-        apt-get install -y curl git wget
+        apt-get install -y curl git wget jq
         elif [ "$os" == "redhat" ]; then
-        yum install -y curl git wget
+        yum install -y curl git wget jq
     fi
     
     # Install nodejs
@@ -328,32 +320,32 @@ Install() {
     # Create systemd service
     LEcho cyan "[*] 正在创建 systemd 服务" "[*] Creating systemd service"
     cat > /etc/systemd/system/mcsm-web.service << EOF
-    [Unit]
-    Description=MCSManager Web Panel Service
-    After=network.target
+[Unit]
+Description=MCSManager Web Panel Service
+After=network.target
 
-    [Service]
-    User=root
-    WorkingDirectory=\"$webPath\"
-    ExecStart=$webExecStart
-    Restart=always
+[Service]
+User=root
+WorkingDirectory="$webPath"
+ExecStart=$webExecStart
+Restart=always
 
-    [Install]
-    WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 EOF
     cat > /etc/systemd/system/mcsm-daemon.service << EOF
-    [Unit]
-    Description=MCSManager Daemon Service
-    After=network.target
+[Unit]
+Description=MCSManager Daemon Service
+After=network.target
 
-    [Service]
-    User=root
-    WorkingDirectory=\"$daemonPath\"
-    ExecStart=$daemonExecStart
-    Restart=always
+[Service]
+User=root
+WorkingDirectory="$daemonPath"
+ExecStart=$daemonExecStart
+Restart=always
 
-    [Install]
-    WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
 EOF
     # Enable systemd service
     LEcho cyan "[*] 正在启动 MCSManager 服务" "[*] Starting MCSManager services"
