@@ -122,7 +122,7 @@ CheckCN() {
     LEcho cyan "[*] 正在检查服务器地理位置" "[*] Checking server location"
     server_ip=$(curl -s ifconfig.me)
     if [[ "$(curl -s "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" == "CN" ]]; then
-        LEcho yellow "[!] 根据 'ipapi.co' 提供的信息, 当前服务器可能在中国, 已自动切换为中国镜像源" "[!] According to the information provided by 'ipapi.co', the current server IP may be in China, and the Chinese mirror source has been automatically switched"
+        LEcho yellow "[!] 根据 'ip-api.com' 提供的信息, 当前服务器可能在中国, 已自动切换为中国镜像源" "[!] According to the information provided by 'ipapi.co', the current server IP may be in China, and the Chinese mirror source has been automatically switched"
         daemonURL="https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
         webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
         nodeBaseURL="https://npmmirror.com/mirrors/node"
