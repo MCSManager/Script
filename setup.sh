@@ -30,8 +30,6 @@ mode="install"
 ## URLs
 # Node.js
 nodeBaseURL="https://nodejs.org/dist"
-nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
-nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
 
 # MCSManager
 daemonURL="https://github.com/mcsmanager/MCSManager-Daemon-Production.git"
@@ -250,6 +248,8 @@ Install() {
     if ! CheckNode;then
         LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
         # Download nodejs files
+        nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
+        nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
         wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
         wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
         
