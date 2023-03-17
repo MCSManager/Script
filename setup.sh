@@ -226,7 +226,7 @@ GUI(){
             return
         ;;
         *)
-            LEcho error "[x] 无效的选项" "[x] Invalid option"
+            LEcho red "[x] 无效的选项" "[x] Invalid option"
             GUI
         ;;
     esac
@@ -250,8 +250,8 @@ Install() {
     if ! CheckNode;then
         LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
         # Download nodejs files
-        wget -q --no-check-certificate --show-progress -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
-        wget -q --no-check-certificate --show-progress -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
+        wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
+        wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
         
         # Check nodejs files
         if [ "$(sha256sum $tmpDir/node.tar.gz | awk '{print $1}')" != "$(cat $tmpDir/node.sha256)" ]; then
