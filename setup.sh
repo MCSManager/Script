@@ -250,16 +250,16 @@ Install() {
         # Download nodejs files
         nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
         nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
-        wget -q --no-check-certificate -O $tmpDir/node-$nodeVer-linux-$arch.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
+        wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
         wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
         
         # Check nodejs files
-        if [ "$(sha256sum $tmpDir/node-$nodeVer-linux-$arch.tar.gz)" != "$(cat $tmpDir/node.sha256 | grep "node-$nodeVer-linux-$arch.tar.gz")" ]; then
+        if ! grep "node-$nodeVer-linux-$arch.tar.gz" sha256sum.txt | cut -d ' ' -f 1 | xargs sha256sum -c $tmpDir/node.tar.gz; then
             LEcho error "[x] Node.js 安装包校验失败, 请重试" "[x] Node.js installation package verification failed, please try again"
         fi
         
         # Install nodejs
-        tar -xzf $tmpDir/node-$nodeVer-linux-$arch.tar.gz -C $tmpDir
+        tar -xzf "$tmpDir/node.tar.gz" -C $tmpDir
         cp -r "$tmpDir/node-$nodeVer-linux-$arch/*" $nodePath
         
         if command -v $nodeBin > /dev/null; then
