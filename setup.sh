@@ -415,7 +415,7 @@ Clean() {
 
 ### Start
 
-LEcho echo "[-] 正在检查基础环境, 请稍等" "[-] Checking basic environment, please wait"
+LEcho cyan "[-] 正在检查基础环境, 请稍等" "[-] Checking basic environment, please wait"
 CheckRoot
 CheckArch
 CheckOS
