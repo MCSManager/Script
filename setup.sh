@@ -44,6 +44,10 @@ else
     zh=0
 fi
 
+## Systemd service command
+webExecStart="\"$nodeBin\" \"$webPath/app.js\""
+daemonExecStart="\"$nodeBin\" \"$daemonPath/app.js\""
+
 ## Debug
 debug=0
 
@@ -276,6 +280,8 @@ Install() {
         LEcho cyan "===============================================" "==============================================="
     else
         LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
+        nodeBin="$(which node)"
+        npmBin="$(which npm)"
     fi
     
     # Install MCSManager
@@ -328,8 +334,8 @@ Install() {
 
     [Service]
     User=root
-    WorkingDirectory="\$webPath"
-    ExecStart="\$nodeBin" "\$webPath/app.js"
+    WorkingDirectory=\"$webPath\"
+    ExecStart=$webExecStart
     Restart=always
 
     [Install]
@@ -342,8 +348,8 @@ EOF
 
     [Service]
     User=root
-    WorkingDirectory="\$daemonPath"
-    ExecStart="\$nodeBin" "\$daemonPath/app.js"
+    WorkingDirectory=\"$daemonPath\"
+    ExecStart=$daemonExecStart
     Restart=always
 
     [Install]
@@ -390,15 +396,15 @@ Remove() {
     LEcho cyan "[*] 正在停止 MCSManager 服务" "[*] Stopping MCSManager service"
     systemctl disable mcsm-daemon --now || LEcho error "[x] 无法停止 MCSManager 守护程序服务" "[x] Unable to stop MCSManager daemon service"
     systemctl disable mcsm-web --now || LEcho error "[x] 无法停止 MCSManager 前端管理面板服务" "[x] Unable to stop MCSManager web panel service"
-
+    
     LEcho cyan "[*] 正在删除 MCSManager 服务" "[*] Deleting MCSManager service"
     rm -rf /etc/systemd/system/mcsm-daemon.service
     rm -rf /etc/systemd/system/mcsm-web.service
     systemctl daemon-reload
-
+    
     LEcho cyan "[*] 正在删除 MCSManager 目录" "[*] Deleting MCSManager directory"
     rm -rf $mcsmPath
-
+    
     LEcho green "[√] MCSManager 删除完毕" "[√] MCSManager deletion completed"
     return
 }
