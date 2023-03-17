@@ -10,7 +10,7 @@
 
 The files here are all platform-wide install, delete, update scripts, etc. for MCSManager 9.
 
-The default installation script on the official website is the `setup.sh` file of this repository, it contains multiple languages.
+The default installation script on the official website is the `setup.sh` file of gitee repository, it contains multiple languages.
 
 You can also use the following one-click command to perform a quick installation
 
