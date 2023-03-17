@@ -187,6 +187,7 @@ CheckOS() {
         apt-get update
         apt-get install -y curl git wget jq
         elif [ "$os" == "redhat" ]; then
+        yum install -y epel-release
         yum install -y curl git wget jq
     fi
     return
