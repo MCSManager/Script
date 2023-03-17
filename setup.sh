@@ -262,7 +262,7 @@ Install() {
         [ -d $nodePath ] && rm -rf $nodePath
         mkdir -p $nodePath
         tar -xzf "$tmpDir/node.tar.gz" -C $tmpDir
-        mv -f "$tmpDir/node-$nodeVer-linux-$arch/*" $nodePath
+        mv -f "$tmpDir/node-$nodeVer-linux-$arch/" "$mcsmPath/node"
         
         if command -v $nodeBin > /dev/null; then
             LEcho cyan "===============================================" "==============================================="
