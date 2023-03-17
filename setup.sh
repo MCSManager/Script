@@ -275,7 +275,7 @@ Install() {
         LEcho cyan "NPM 版本: $($npmBin -v)" "NPM version: $($npmBin -v)"
         LEcho cyan "===============================================" "==============================================="
     else
-        Lecho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
+        LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
     fi
     
     # Install MCSManager
@@ -328,8 +328,8 @@ Install() {
 
     [Service]
     User=root
-    WorkingDirectory="$webPath"
-    ExecStart="$nodeBin" "$webPath/app.js"
+    WorkingDirectory="\$webPath"
+    ExecStart="\$nodeBin" "\$webPath/app.js"
     Restart=always
 
     [Install]
@@ -342,8 +342,8 @@ EOF
 
     [Service]
     User=root
-    WorkingDirectory="$daemonPath"
-    ExecStart="$nodeBin" "$daemonPath/app.js"
+    WorkingDirectory="\$daemonPath"
+    ExecStart="\$nodeBin" "\$daemonPath/app.js"
     Restart=always
 
     [Install]
