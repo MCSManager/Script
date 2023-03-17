@@ -180,6 +180,15 @@ CheckOS() {
     else
         LEcho error "[x] 未能正常检测到系统类型, 无法继续安装" "[x] Unable to detect system type, installation cannot continue"
     fi
+    
+    # Install dependencies
+    LEcho cyan "[*] 正在安装安装所需的工具" "[*] Installing the tools required for installation"
+    if [ "$os" == "debian" ]; then
+        apt-get update
+        apt-get install -y curl git wget jq
+        elif [ "$os" == "redhat" ]; then
+        yum install -y curl git wget jq
+    fi
     return
 }
 
@@ -235,15 +244,6 @@ Install() {
     [ -d $mcsmPath ] && LEcho yellow "[!] 检测到旧版 MCSManager, 切换为更新模式" "[!] Old version of MCSManager detected, switch to update mode"
     [ -d $mcsmPath ] && mode="update"
     mkdir -p $mcsmPath
-    
-    # Install dependencies
-    LEcho cyan "[*] 正在安装安装所需的工具" "[*] Installing the tools required for installation"
-    if [ "$os" == "debian" ]; then
-        apt-get update
-        apt-get install -y curl git wget jq
-        elif [ "$os" == "redhat" ]; then
-        yum install -y curl git wget jq
-    fi
     
     # Install nodejs
     if ! CheckNode;then
