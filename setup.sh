@@ -44,10 +44,6 @@ else
     zh=0
 fi
 
-## Systemd service command
-webExecStart="\"$nodeBin\" \"$webPath/app.js\""
-daemonExecStart="\"$nodeBin\" \"$daemonPath/app.js\""
-
 ## Debug
 debug=0
 
@@ -318,6 +314,9 @@ Install() {
     
     # Create systemd service
     LEcho cyan "[*] 正在创建 systemd 服务" "[*] Creating systemd service"
+    
+    webExecStart="\"$nodeBin\" \"$webPath/app.js\""
+    daemonExecStart="\"$nodeBin\" \"$daemonPath/app.js\""
     cat > /etc/systemd/system/mcsm-web.service << EOF
 [Unit]
 Description=MCSManager Web Panel Service
