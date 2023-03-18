@@ -201,36 +201,6 @@ CheckNode() {
     return 1
 }
 
-## Main GUI
-GUI(){
-    clear
-    LEcho cyan "===============================================" "==============================================="
-    LEcho cyan "MCSManager Installer"                            "MCSManager Installer"
-    LEcho cyan "===============================================" "==============================================="
-    LEcho cyan "1. 安装 MCSManager"                               "1. Install MCSManager"
-    LEcho cyan "2. 卸载 MCSManager"                               "2. Uninstall MCSManager"
-    LEcho cyan "3. 退出"                                          "3. Exit"
-    LEcho cyan "===============================================" "==============================================="
-    LEcho cyan_n "请输入选项: " "Please enter an option: "
-    read -r option
-    case $option in
-        1)
-            Install
-        ;;
-        2)
-            Remove
-        ;;
-        3)
-            return
-        ;;
-        *)
-            LEcho red "[x] 无效的选项" "[x] Invalid option"
-            GUI
-        ;;
-    esac
-    return
-}
-
 ## Install MCSManager
 Install() {
     clear
@@ -386,32 +356,6 @@ EOF
     return
 }
 
-## Remove MCSManager
-Remove() {
-    clear
-    LEcho yellow "=================================================================="          "=================================================================="
-    LEcho yellow "[!] 你确定要卸载 MCSManager 吗"                                                 "[!] Are you sure you want to uninstall MCSManager"
-    LEcho yellow "[!] 卸载 MCSManager 后, 所有由 MCSManager 自动创建实例文件夹内的服务器数据将会丢失"   "[!] After uninstalling MCSManager, all server data in the automatically created instance folder will be lost"
-    LEcho yellow "[!] 请在 10 秒内按下 Ctrl + C 取消卸载"                                          "[!] Please press Ctrl + C within 10 seconds to cancel the uninstall"
-    LEcho yellow "=================================================================="          "=================================================================="
-    sleep 10
-    
-    LEcho cyan "[*] 正在停止 MCSManager 服务" "[*] Stopping MCSManager service"
-    systemctl disable mcsm-daemon --now  || LEcho error "[x] 无法停止 MCSManager 守护程序服务" "[x] Unable to stop MCSManager daemon service"
-    systemctl disable mcsm-web --now  || LEcho error "[x] 无法停止 MCSManager 前端管理面板服务" "[x] Unable to stop MCSManager web panel service"
-    
-    LEcho cyan "[*] 正在删除 MCSManager 服务" "[*] Deleting MCSManager service"
-    rm -rf /etc/systemd/system/mcsm-daemon.service
-    rm -rf /etc/systemd/system/mcsm-web.service
-    systemctl daemon-reload
-    
-    LEcho cyan "[*] 正在删除 MCSManager 目录" "[*] Deleting MCSManager directory"
-    rm -rf $mcsmPath
-    
-    LEcho green "[√] MCSManager 删除完毕" "[√] MCSManager deletion completed"
-    return
-}
-
 ## Clean up
 Clean() {
     LEcho cyan "[*] 正在清理残余文件" "[*] Cleaning up"
@@ -427,5 +371,5 @@ CheckRoot
 CheckArch
 CheckOS
 CheckCN
-GUI
+Install
 LEcho cyan "[-] 期待与您的下次见面" "[-] Looking forward to seeing you again"
