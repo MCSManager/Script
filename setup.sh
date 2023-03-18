@@ -16,7 +16,7 @@ webPath="$mcsmPath/web"
 # Node.js
 nodePath="$mcsmPath/node"
 nodeBin="$nodePath/bin/node"
-npmBin="$nodePath/bin/npm"
+npmBin="$nodeBin $nodePath/bin/npm"
 
 # Junk
 tmpDir="/tmp/mcsmanager"
@@ -178,7 +178,7 @@ CheckOS() {
     else
         LEcho error "[x] 未能正常检测到系统类型, 无法继续安装" "[x] Unable to detect system type, installation cannot continue"
     fi
-    
+
     # Install dependencies
     LEcho cyan "[*] 正在安装安装所需的工具" "[*] Installing the tools required for installation"
     if [ "$os" == "debian" ]; then
@@ -261,14 +261,9 @@ Install() {
         # Install nodejs
         [ -d $nodePath ] && rm -rf $nodePath
         mkdir -p $nodePath
-        tar -xzf "$tmpDir/node.tar.gz" -C $nodePath
+        tar -xzf "$tmpDir/node.tar.gz" -C $nodePath --strip-components=1
         
-        if command -v $nodeBin > /dev/null; then
-            LEcho cyan "===============================================" "==============================================="
-            LEcho cyan "Node.js 版本: $($nodeBin --version)" "Node.js version: $($nodeBin --version)"
-            LEcho cyan "NPM 版本: $($npmBin -v)" "NPM version: $($npmBin -v)"
-            LEcho cyan "===============================================" "==============================================="
-        else
+        if ! command -v $nodeBin ; then
             LEcho error "[x] Node.js 安装失败, 请重试" "[x] Node.js installation failed, please try again"
         fi
     else
@@ -276,6 +271,11 @@ Install() {
         nodeBin="$(which node)"
         npmBin="$(which npm)"
     fi
+    
+    LEcho yellow "===============================================" "==============================================="
+    LEcho cyan "Node.js 版本: $($nodeBin --version)" "Node.js version: $($nodeBin --version)"
+    LEcho cyan "NPM 版本: $($npmBin -v)" "NPM version: $($npmBin -v)"
+    LEcho yellow "===============================================" "==============================================="
     
     # Install MCSManager
     if [ $mode == "update" ];then
@@ -288,7 +288,7 @@ Install() {
         git fetch origin
         git checkout master
         git reset --hard origin/master
-        git pull
+        git pull 
         
         LEcho cyan "[*] 正在更新 MCSManager 守护晨曦股" "[*] Updating MCSManager daemon"
         
@@ -299,24 +299,24 @@ Install() {
         git fetch origin
         git checkout master
         git reset --hard origin/master
-        git pull
+        git pull 
     else
         # Clone MCSManager web panel
         LEcho cyan "[*] 正在安装 MCSManager 前端管理面板" "[*] Installing MCSManager web panel"
-        git clone --single-branch -b master --depth 1 $webURL $webPath
+        git clone --single-branch -b master --depth 1 $webURL $webPath 
         
         # Clone MCSManager daemon
         LEcho cyan "[*] 正在安装 MCSManager 守护程序" "[*] Installing MCSManager web panel"
-        git clone --single-branch -b master --depth 1 $daemonURL $daemonPath
+        git clone --single-branch -b master --depth 1 $daemonURL $daemonPath 
     fi
     # Update dependencies
     LEcho cyan "[*] 正在更新依赖" "[*] Updating dependencies"
     cd $webPath || LEcho error "[x] 无法进入 MCSManager 前端管理目录, 请检查权限" "[x] Unable to enter MCSManager web panel directory, please check permissions"
-    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com
-    [ $cn == 0 ] && $npmBin install
+    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com 
+    [ $cn == 0 ] && $npmBin install 
     cd $daemonPath || LEcho error "[x] 无法进入 MCSManager 守护程序目录, 请检查权限" "[x] Unable to enter MCSManager daemon directory, please check permissions"
-    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com
-    [ $cn == 0 ] && $npmBin install
+    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com 
+    [ $cn == 0 ] && $npmBin install 
     
     # Create systemd service
     LEcho cyan "[*] 正在创建 systemd 服务" "[*] Creating systemd service"
@@ -364,20 +364,22 @@ EOF
     
     # Output login info
     LEcho green "[√] MCSManager 安装完毕" "[√] MCSManager installation completed"
-    LEcho yellow "==================================================================" "=================================================================="
-    LEcho green "欢迎使用 MCSManager, 您可以通过以下方式访问: " "Welcome to use MCSManager, you can access it through the following ways:"
-    LEcho yellow "==================================================================" "=================================================================="
-    LEcho cyan_n "控制面板地址：   " "Control panel address:   "
-    LEcho yellow "http://localhost:23333" "http://localhost:23333"
+    sleep 3
+    clear
+    LEcho yellow "=================================================================="                       "=================================================================="
+    LEcho green "欢迎使用 MCSManager, 您可以通过以下方式访问: "                                                  "Welcome to MCSManager, you can access it through the following ways:"
+    LEcho yellow "=================================================================="                       "=================================================================="
+    LEcho cyan_n "控制面板默认访问地址：   "                                                                    "Control panel default address:   "
+    LEcho yellow "http://localhost:23333"                                                                    "http://localhost:23333"
     LEcho red "若无法访问面板，请检查防火墙/安全组是否有放行面板 23333 和 24444 端口，控制面板需要这两个端口才能正常工作。" "If you can't access the panel, please check if the firewall/security group has opened the panel 23333 and 24444 ports. The control panel needs these two ports to work properly."
-    LEcho yellow "==================================================================" "=================================================================="
-    LEcho cyan "重启 systemctl restart mcsm-{daemon,web}.service" "Restart systemctl restart mcsm-{daemon,web}.service"
-    LEcho cyan "禁用 systemctl disable mcsm-{daemon,web}.service" "Disable systemctl disable mcsm-{daemon,web}.service"
-    LEcho cyan "启用 systemctl enable mcsm-{daemon,web}.service" "Enable systemctl enable mcsm-{daemon,web}.service"
-    LEcho cyan "启动 systemctl start mcsm-{daemon,web}.service" "Start systemctl start mcsm-{daemon,web}.service"
-    LEcho cyan "停止 systemctl stop mcsm-{daemon,web}.service" "Stop systemctl stop mcsm-{daemon,web}.service"
-    LEcho cyan "更多使用说明, 请参考: https://docs.mcsmanager.com/" "More usage instructions, please refer to: https://docs.mcsmanager.com/"
-    LEcho yellow "==================================================================" "=================================================================="
+    LEcho yellow "=================================================================="                        "=================================================================="
+    LEcho cyan "启动 MCSM: systemctl start mcsm-{daemon,web}.service"                                         "Start MCSM: systemctl start mcsm-{daemon,web}.service"
+    LEcho cyan "重启 MCSM: systemctl restart mcsm-{daemon,web}.service"                                       "Restart MCSM: systemctl restart mcsm-{daemon,web}.service"
+    LEcho cyan "停止 MCSM: systemctl stop mcsm-{daemon,web}.service"                                          "Stop MCSM: systemctl stop mcsm-{daemon,web}.service"
+    LEcho cyan "启用自启动: systemctl enable mcsm-{daemon,web}.service"                                        "Enable: systemctl enable mcsm-{daemon,web}.service"
+    LEcho cyan "禁用自启动: systemctl disable mcsm-{daemon,web}.service"                                       "Disable: systemctl disable mcsm-{daemon,web}.service"
+    LEcho cyan "更多使用说明, 请参考: https://docs.mcsmanager.com/"                                              "More usage instructions, please refer to: https://docs.mcsmanager.com/"
+    LEcho yellow "=================================================================="                        "=================================================================="
     
     # Clean up
     rm -rf $tmpDir
@@ -387,16 +389,16 @@ EOF
 ## Remove MCSManager
 Remove() {
     clear
-    LEcho yellow "==================================================================" "=================================================================="
-    LEcho yellow "[!] 你确定要删除 MCSManager 吗" "[!] Are you sure you want to delete MCSManager"
-    LEcho yellow "[!] 删除 MCSManager 后, 所有服务器数据将会丢失" "[!] All server data will be lost after deleting MCSManager"
-    LEcho yellow "[!] 请在 10 秒内按下 Ctrl + C 取消删除" "[!] Please press Ctrl + C within 10 seconds to cancel deletion"
-    LEcho yellow "==================================================================" "=================================================================="
+    LEcho yellow "=================================================================="          "=================================================================="
+    LEcho yellow "[!] 你确定要卸载 MCSManager 吗"                                                 "[!] Are you sure you want to uninstall MCSManager"
+    LEcho yellow "[!] 卸载 MCSManager 后, 所有由 MCSManager 自动创建实例文件夹内的服务器数据将会丢失"   "[!] After uninstalling MCSManager, all server data in the automatically created instance folder will be lost"
+    LEcho yellow "[!] 请在 10 秒内按下 Ctrl + C 取消卸载"                                          "[!] Please press Ctrl + C within 10 seconds to cancel the uninstall"
+    LEcho yellow "=================================================================="          "=================================================================="
     sleep 10
     
     LEcho cyan "[*] 正在停止 MCSManager 服务" "[*] Stopping MCSManager service"
-    systemctl disable mcsm-daemon --now || LEcho error "[x] 无法停止 MCSManager 守护程序服务" "[x] Unable to stop MCSManager daemon service"
-    systemctl disable mcsm-web --now || LEcho error "[x] 无法停止 MCSManager 前端管理面板服务" "[x] Unable to stop MCSManager web panel service"
+    systemctl disable mcsm-daemon --now  || LEcho error "[x] 无法停止 MCSManager 守护程序服务" "[x] Unable to stop MCSManager daemon service"
+    systemctl disable mcsm-web --now  || LEcho error "[x] 无法停止 MCSManager 前端管理面板服务" "[x] Unable to stop MCSManager web panel service"
     
     LEcho cyan "[*] 正在删除 MCSManager 服务" "[*] Deleting MCSManager service"
     rm -rf /etc/systemd/system/mcsm-daemon.service
