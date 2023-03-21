@@ -14,16 +14,22 @@
 
 你也可以使用下列一键命令安装 MCSManager 9
 
-## 安装命令
+## 安装方法
+
+### 一键命令安装
 
 ```bash
 wget https://raw.githubusercontent.com/MCSManager/Script/master/setup.sh -O setup.sh && bash setup.sh
 ```
 
-当然, 一般国内用户因为某些神奇的原因都连不上 Github, 下方为 Gitee 国内镜像源链接
+_当然, 一般国内用户因为某些神奇的原因都连不上 Github, 下方为 Gitee 国内镜像源链接_
 
 ```bash
 wget https://gitee.com/mcsmanager/script/raw/master/setup.sh -O setup.sh && bash setup.sh
 ```
+
+### Docker (Beta)
+
+请查看此[教程](https://github.com/MCSManager/Script/blob/master/docker/README_cn.md)
 
 <br />

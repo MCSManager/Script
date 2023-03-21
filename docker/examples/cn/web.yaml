@@ -1,0 +1,15 @@
+version: "2.4"
+
+services:
+  web:
+    image: bluefunny/mcsm-web:latest
+    volumes:
+      # 此处为 MCSManager 控制面板日志存储目录
+      # 默认为 [/var/logs/mcsmanager/web]
+      - /var/logs/mcsmanager/web:/logs
+
+      # 此处为 MCSManager 控制面板日志存储目录
+      # 默认为当前目录下的 data/web 文件夹
+      - ./data/web:/data
+    network_mode: host
+    command: /start

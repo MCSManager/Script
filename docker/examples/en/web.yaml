@@ -1,0 +1,15 @@
+version: "2.4"
+
+services:
+  web:
+    image: bluefunny/mcsm-web:latest
+    volumes:
+      # This is the MCSManager daemon log storage directory
+      # The default is [/var/logs/mcsmanager/web]
+      - /var/logs/mcsmanager/web:/logs
+
+      # This is the MCSManager daemon data storage directory
+      # The default is the data/web folder in the current directory
+      - ./data/web:/data
+    network_mode: host
+    command: /start

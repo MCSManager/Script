@@ -14,10 +14,16 @@ The default installation script on the official website is the `setup.sh` file o
 
 You can also use the following one-click command to perform a quick installation
 
-## Installation commands
+## Installation method
+
+### One-click installation command
 
 ```bash
 wget https://raw.githubusercontent.com/MCSManager/Script/master/setup.sh -O setup.sh && bash setup.sh
 ```
+
+### Docker (Beta)
+
+Please check this [tutorial](https://github.com/MCSManager/Script/blob/master/docker/README.md)
 
 <br />
