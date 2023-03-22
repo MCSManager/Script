@@ -109,6 +109,11 @@ LEcho() {
     return
 }
 
+# Detect old MCSManager
+[ -d $mcsmPath ] && LEcho yellow "[!] 检测到旧版 MCSManager, 切换为更新模式" "[!] Old version of MCSManager detected, switch to update mode"
+[ -d $mcsmPath ] && mode="update"
+[ ! -d $mcsmPath ] && mkdir -p $mcsmPath
+
 ## Check root
 CheckRoot() {
     if [[ $EUID -ne 0 ]]; then
@@ -178,7 +183,7 @@ CheckOS() {
     else
         LEcho error "[x] 未能正常检测到系统类型, 无法继续安装" "[x] Unable to detect system type, installation cannot continue"
     fi
-
+    
     # Install dependencies
     LEcho cyan "[*] 正在安装安装所需的工具" "[*] Installing the tools required for installation"
     if [ "$os" == "debian" ]; then
@@ -208,11 +213,6 @@ Install() {
     # Init work environment
     LEcho cyan "[*] 正在初始化工作环境" "[*] Initializing work environment"
     mkdir -p $tmpDir
-    
-    # Detect old MCSManager
-    [ -d $mcsmPath ] && LEcho yellow "[!] 检测到旧版 MCSManager, 切换为更新模式" "[!] Old version of MCSManager detected, switch to update mode"
-    [ -d $mcsmPath ] && mode="update"
-    mkdir -p $mcsmPath
     
     # Install nodejs
     if ! CheckNode;then
@@ -258,7 +258,7 @@ Install() {
         git fetch origin
         git checkout master
         git reset --hard origin/master
-        git pull 
+        git pull
         
         LEcho cyan "[*] 正在更新 MCSManager 守护晨曦股" "[*] Updating MCSManager daemon"
         
@@ -269,24 +269,24 @@ Install() {
         git fetch origin
         git checkout master
         git reset --hard origin/master
-        git pull 
+        git pull
     else
         # Clone MCSManager web panel
         LEcho cyan "[*] 正在安装 MCSManager 前端管理面板" "[*] Installing MCSManager web panel"
-        git clone --single-branch -b master --depth 1 $webURL $webPath 
+        git clone --single-branch -b master --depth 1 $webURL $webPath
         
         # Clone MCSManager daemon
         LEcho cyan "[*] 正在安装 MCSManager 守护程序" "[*] Installing MCSManager web panel"
-        git clone --single-branch -b master --depth 1 $daemonURL $daemonPath 
+        git clone --single-branch -b master --depth 1 $daemonURL $daemonPath
     fi
     # Update dependencies
     LEcho cyan "[*] 正在更新依赖" "[*] Updating dependencies"
     cd $webPath || LEcho error "[x] 无法进入 MCSManager 前端管理目录, 请检查权限" "[x] Unable to enter MCSManager web panel directory, please check permissions"
-    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com 
-    [ $cn == 0 ] && $npmBin install 
+    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com
+    [ $cn == 0 ] && $npmBin install
     cd $daemonPath || LEcho error "[x] 无法进入 MCSManager 守护程序目录, 请检查权限" "[x] Unable to enter MCSManager daemon directory, please check permissions"
-    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com 
-    [ $cn == 0 ] && $npmBin install 
+    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com
+    [ $cn == 0 ] && $npmBin install
     
     # Create systemd service
     LEcho cyan "[*] 正在创建 systemd 服务" "[*] Creating systemd service"
