@@ -2,7 +2,7 @@
 
 <br />
 
-[Official Website](http://mcsmanager.com/) 
+[Official Website](http://mcsmanager.com/) | [中文文档](https://github.com/MCSManager/Script/blob/master/README_cn.md) | [Gitee](https://gitee.com/mcsmanager/script)
 
 <br />
 
@@ -10,11 +10,20 @@
 
 The files here are all platform-wide install, delete, update scripts, etc. for MCSManager 9.
 
-The default installation script on the official website is the `setup_en.sh` file of this repository.
+The default installation script on the official website is the `setup.sh` file of gitee repository, it contains multiple languages.
 
-English: [setup_en.sh](setup_en.sh)
+You can also use the following one-click command to perform a quick installation
 
-Chinese: [setup.sh](setup.sh)
+## Installation method
 
+### One-click installation command
+
+```bash
+wget https://raw.githubusercontent.com/MCSManager/Script/master/setup.sh -O setup.sh && bash setup.sh
+```
+
+### Docker (Beta)
+
+Please check this [tutorial](https://github.com/MCSManager/Script/blob/master/docker/README.md)
 
 <br />
