@@ -260,7 +260,7 @@ Install() {
         git reset --hard origin/master
         git pull
         
-        LEcho cyan "[*] 正在更新 MCSManager 守护晨曦股" "[*] Updating MCSManager daemon"
+        LEcho cyan "[*] 正在更新 MCSManager 守护程序" "[*] Updating MCSManager daemon"
         
         cd $daemonPath || LEcho error "[x] 无法进入 MCSManager 守护程序目录, 请检查权限" "[x] Unable to enter MCSManager daemon directory, please check permissions"
         
