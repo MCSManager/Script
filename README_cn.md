@@ -22,7 +22,7 @@
 wget https://raw.githubusercontent.com/MCSManager/Script/master/setup.sh -O setup.sh && bash setup.sh
 ```
 
-_当然, 一般国内用户因为某些神奇的原因都连不上 Github, 下方为 Gitee 国内镜像源链接_
+_当然, 一般国内用户因为众所周知的原因都连不上 Github, 下方为 Gitee 国内镜像源链接_
 
 ```bash
 wget https://gitee.com/mcsmanager/script/raw/master/setup.sh -O setup.sh && bash setup.sh
