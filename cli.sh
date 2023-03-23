@@ -74,11 +74,6 @@ LEcho() {
             exit 1
         ;;
         
-        # Debug echo
-        debug)
-            [ "$debug" == 1 ] && printf '\033[1;35m%b\033[0m\n' "[DEBUG] $2"
-        ;;
-        
         # No color echo
         *)
             [ "$zh" == 1 ] && echo "$2"
@@ -254,7 +249,8 @@ StartStop() {
                 elif [ "$status" = 2 ]; then
                 systemctl disable mcsm-daemon || LEcho error "[x] 守护程序禁用失败" "[x] Daemon disable failed"
                 elif [ "$status" = 3 ]; then
-                systemctl disable mcsm-web && systemctl disable mcsm-daemon || LEcho error "[x] 控制面板 & 守护程序禁用失败" "[x] Web panel & daemon disable failed"
+                systemctl disable mcsm-web || LEcho error "[x] 控制面板 & 守护程序禁用失败" "[x] Web panel & daemon disable failed"
+                systemctl disable mcsm-daemon || LEcho error "[x] 控制面板 & 守护程序禁用失败" "[x] Web panel & daemon disable failed"
             fi
             LEcho green "[√] 禁用成功" "[√] Disable successfully"
             sleep 3
