@@ -42,9 +42,6 @@ else
     zh=0
 fi
 
-## Debug
-debug=0
-
 ## Other
 cn=0
 
@@ -93,11 +90,6 @@ LEcho() {
             [ "$zh" == 0 ] && printf '\033[1;31;40m%b\033[0m\n' "$3"
             echo '================================================='
             exit 1
-        ;;
-        
-        # Debug echo
-        debug)
-            [ "$debug" == 1 ] && printf '\033[1;35m%b\033[0m\n' "[DEBUG] $2"
         ;;
         
         # No color echo
