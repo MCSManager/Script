@@ -83,11 +83,43 @@ LEcho() {
     return
 }
 
+Check() {
+    if [ "$1" != 2 ];then
+        CheckRoot
+        CheckInstall
+        CheckRun
+    fi
+    CheckArgs "$1"
+}
+
 ## Check the user is root
 CheckRoot() {
     if [ "$(whoami)" != "root" ]; then
         LEcho error "[x] 请使用 root 用户执行此命令" "[x] Please run this command as root"
     fi
+    return
+}
+
+## Check command args
+CheckArgs() {
+    case "${1}" in
+        2)
+            Repair
+        ;;
+        3)
+            CheckUpdate
+        ;;
+        4)
+            CleanLog
+        ;;
+        11 | 12 | 13 | 14)
+            StartStop "$1"
+        ;;
+        *)
+            LEcho error "[x] 无效的参数, 请纠正输入" "[x] Invalid parameter, please correct the input"
+        ;;
+    esac
+    
     return
 }
 
@@ -123,12 +155,6 @@ CheckRun() {
     return
 }
 
-## Check
-CheckMCSM() {
-    CheckInstall
-    CheckRun
-}
-
 ## GUI
 GUI() {
     LEcho yellow "===============================================" "==============================================="
@@ -144,7 +170,7 @@ GUI() {
     read -r option
     case $option in
         1)
-            StartStop
+            StartStop $1
         ;;
         2)
             Repair
@@ -167,36 +193,40 @@ GUI() {
 
 ## Start/Stop control
 StartStop() {
-    LEcho yellow "===============================================" "==============================================="
-    [ $status = 1 ] && LEcho cyan_n "当前 MCSManager 控制面板状态:" "Current MCSManager web panel status:"
-    [ $webRunning = 0 ] && LEcho red " 已停止" " Stopped"
-    [ $webRunning = 1 ] && LEcho green " 正在运行中" " Running"
-    [ $status = 2 ] && LEcho cyan_n "当前 MCSManager 守护程序状态:" "Current MCSManager daemon status:"
-    [ $daemonRunning = 0 ] && LEcho red " 已停止" " Stopped"
-    [ $daemonRunning = 1 ] && LEcho green " 正在运行中" " Running"
-    LEcho yellow "===============================================" "==============================================="
-    LEcho cyan_n "(1) 启动/重启"                                        "(1) Start / Restart"
-    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
-    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
-    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
-    LEcho cyan_n "(2) 停止"                                        "(2) Stop"
-    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
-    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
-    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
-    LEcho cyan   "(3) 启用"                                        "(3) Enable"
-    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
-    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
-    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
-    LEcho cyan   "(4) 禁用"                                        "(4) Disable"
-    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
-    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
-    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
-    LEcho cyan   "(5) 返回"                                        "(4) Back"
-    LEcho yellow "===============================================" "==============================================="
-    LEcho cyan_n "请输入选项: "                                    "Please enter an option: "
-    read -r option
+    if [ "$1" != "" ];then
+        option=$1
+    else
+        LEcho yellow "===============================================" "==============================================="
+        [ $status = 1 ] && LEcho cyan_n "当前 MCSManager 控制面板状态:" "Current MCSManager web panel status:"
+        [ $webRunning = 0 ] && LEcho red " 已停止" " Stopped"
+        [ $webRunning = 1 ] && LEcho green " 正在运行中" " Running"
+        [ $status = 2 ] && LEcho cyan_n "当前 MCSManager 守护程序状态:" "Current MCSManager daemon status:"
+        [ $daemonRunning = 0 ] && LEcho red " 已停止" " Stopped"
+        [ $daemonRunning = 1 ] && LEcho green " 正在运行中" " Running"
+        LEcho yellow "===============================================" "==============================================="
+        LEcho cyan_n "(11) 启动/重启"                                   "(11) Start / Restart"
+        [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+        [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+        [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+        LEcho cyan_n "(12) 停止"                                        "(12) Stop"
+        [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+        [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+        [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+        LEcho cyan   "(13) 启用"                                        "(13) Enable"
+        [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+        [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+        [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+        LEcho cyan   "(14) 禁用"                                        "(14) Disable"
+        [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+        [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+        [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+        LEcho cyan   "(15) 返回"                                        "(15) Back"
+        LEcho yellow "===============================================" "==============================================="
+        LEcho cyan_n "请输入选项: "                                    "Please enter an option: "
+        read -r option
+    fi
     case $option in
-        1)
+        11)
             if [ "$status" = 1 ]; then
                 systemctl restart mcsm-web || LEcho error "[x] 控制面板启动失败" "[x] Web panel start failed"
                 elif [ "$status" = 2 ]; then
@@ -209,7 +239,7 @@ StartStop() {
             sleep 3
             StartStop
         ;;
-        2)
+        12)
             if [ "$status" = 1 ]; then
                 systemctl stop mcsm-web || LEcho error "[x] 控制面板停止失败" "[x] Web panel stop failed"
                 elif [ "$status" = 2 ]; then
@@ -222,7 +252,7 @@ StartStop() {
             sleep 3
             StartStop
         ;;
-        3)
+        13)
             if [ "$status" = 1 ]; then
                 systemctl enable mcsm-web || LEcho error "[x] 控制面板启用失败" "[x] Web panel enable failed"
                 elif [ "$status" = 2 ]; then
@@ -235,7 +265,7 @@ StartStop() {
             sleep 3
             StartStop
         ;;
-        4)
+        14)
             if [ "$status" = 1 ]; then
                 systemctl disable mcsm-web || LEcho error "[x] 控制面板禁用失败" "[x] Web panel disable failed"
                 elif [ "$status" = 2 ]; then
@@ -248,8 +278,8 @@ StartStop() {
             sleep 3
             StartStop
         ;;
-        5)
-            GUI
+        15)
+            GUI "$1"
         ;;
         *)
             LEcho error "[x] 无效的选项, 请纠正输入" "[x] Invalid option, please correct the input"
@@ -258,3 +288,6 @@ StartStop() {
     LEcho error "[x] 未知错误, 请尝试使用修复命令修复环境" "[x] Unknown error, please try to use the repair command to repair the environment"
 }
 
+### Start
+Check "$1"
+GUI "$1"
