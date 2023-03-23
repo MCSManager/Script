@@ -1,128 +1,271 @@
-#!/bin/bash
-printf "\033c"
+#!/usr/bin/env bash
 
-Red_Error() {
-  printf '\033[1;31;40m%b\033[0m\n' "$@"
+#### MCSManager Command Line Interface
+#### Made by BlueFunny
+
+#### Copyright © 2023 MCSManager All rights reserved.
+
+### Variables
+## Files
+mcsmPath="/opt/mcsmanager"
+daemonPath="$mcsmPath/daemon"
+webPath="$mcsmPath/web"
+
+## Installed status
+daemonInstalled=0
+webInstalled=0
+status=0
+
+## Running status
+daemonRunning=0
+webRunning=0
+
+## Language
+if [ "$(echo "$LANG" | grep "zh_CN")" != "" ]; then
+    zh=1
+else
+    zh=0
+fi
+
+### Functions
+## Localize echo
+# $1: color
+# $2: zh
+# $3: en
+LEcho() {
+    case $1 in
+        # Red color echo
+        red)
+            [ "${zh}" == 1 ] && printf '\033[1;31m%b\033[0m\n' "$2"
+            [ "${zh}" == 0 ] && printf '\033[1;31m%b\033[0m\n' "$3"
+        ;;
+        
+        # Green color echo
+        green)
+            [ "${zh}" == 1 ] && printf '\033[1;32m%b\033[0m\n' "$2"
+            [ "${zh}" == 0 ] && printf '\033[1;32m%b\033[0m\n' "$3"
+        ;;
+        
+        # Cyan color echo
+        cyan)
+            [ "${zh}" == 1 ] && printf '\033[1;36m%b\033[0m\n' "$2"
+            [ "${zh}" == 0 ] && printf '\033[1;36m%b\033[0m\n' "$3"
+        ;;
+        
+        # Cyan color echo (No line break)
+        cyan_n)
+            [ "${zh}" == 1 ] && printf '\033[1;36m%b\033[0m' "$2"
+            [ "${zh}" == 0 ] && printf '\033[1;36m%b\033[0m' "$3"
+        ;;
+        
+        # Yellow color echo
+        yellow)
+            [ "${zh}" == 1 ] && printf '\033[1;33m%b\033[0m\n' "$2"
+            [ "${zh}" == 0 ] && printf '\033[1;33m%b\033[0m\n' "$3"
+        ;;
+        
+        # Red error echo
+        error)
+            Clean
+            echo '================================================='
+            [ "$zh" == 1 ] && printf '\033[1;31;40m%b\033[0m\n' "$2"
+            [ "$zh" == 0 ] && printf '\033[1;31;40m%b\033[0m\n' "$3"
+            echo '================================================='
+            exit 1
+        ;;
+        
+        # Debug echo
+        debug)
+            [ "$debug" == 1 ] && printf '\033[1;35m%b\033[0m\n' "[DEBUG] $2"
+        ;;
+        
+        # No color echo
+        *)
+            [ "$zh" == 1 ] && echo "$2"
+            [ "$zh" == 0 ] && echo "$3"
+        ;;
+    esac
+    return
 }
 
-echo "============= MCSManager 命令行 ===============
-(1) 重启面版服务       (8) 重启守护进程
-(2) 停止面版服务       (9) 停止守护进程
-(3) 启动面版服务       (10) 启动守护进程
-(4) 禁用面版服务       (11) 禁用守护进程
-(5) 启用面版服务       (12) 启用守护进程
-(6) 修改管理密码       (13) 清理面版日志
-(7) 卸载管理面版       (14) 全部重启
-(0) 退出
-==============================================="
+## Check the user is root
+CheckRoot() {
+    if [ "$(whoami)" != "root" ]; then
+        LEcho error "请使用 root 用户执行此命令" "Please run this command as root"
+    fi
+    return
+}
 
-read -r -p "[-] 请输入命令编号: " cmd;
+## Check mcsmanager installtion status
+CheckInstall() {
+    if [ -d "$daemonPath" ]; then
+        daemonInstalled=1
+    fi
+    if [ -d "$webPath" ]; then
+        webInstalled=1
+    fi
+    if [ $daemonInstalled == 1 ] && [ $webInstalled == 0 ] ;then
+        status=1
+        return
+        elif [ $daemonInstalled == 0 ] && [ $webInstalled == 1 ];then
+        status=2
+        return
+        elif [ $daemonInstalled == 1 ] && [ $webInstalled == 1 ];then
+        status=3
+        return
+    fi
+    LEcho error "[x] MCSManager 已损坏, 请尝试使用修复命令修复环境" "[x] MCSManager is broken, please try to use the repair command to repair the environment"
+}
 
-if [ "$cmd" ] && [ "$cmd" -gt 0 ] && [ "$cmd" -lt 15 ]; then
-   echo "==============================================="
-   echo "[-] 正在执行($cmd)..."
-   echo "==============================================="
-fi
+## Check mcsmanager running status
+CheckRun() {
+    if [ "$(systemctl is-active mcsm-web)" == "active" ];then
+        webRunning=1
+    fi
+    if [ "$(systemctl is-active mcsm-daemon)" == "active" ];then
+        daemonRunning=1
+    fi
+    return
+}
 
-if [ "$cmd" == 1 ]
-then
-  systemctl restart mcsm-web.service
-elif [ "$cmd" == 2 ]
-then
-  systemctl stop mcsm-web.service
-elif [ "$cmd" == 3 ]
-then
-  systemctl start mcsm-web.service
-elif [ "$cmd" == 4 ]
-then
-  systemctl disable mcsm-web.service
-elif [ "$cmd" == 5 ]
-then
-  systemctl enable mcsm-web.service
-elif [ "$cmd" == 6 ]
-then
-  read -r -p "[+] 请输入新密码: " new1;
+## Check
+CheckMCSM() {
+    CheckInstall
+    CheckRun
+}
 
-  if [ "${#new1}" -lt 6 ]; then
-    echo "==============================================="
-    echo "[x] 密码长度不能小于 6"
-    exit
-  fi
+## GUI
+GUI() {
+    LEcho yellow "===============================================" "==============================================="
+    LEcho cyan   "MCSManager 命令行                       v 1.0  " "MCSManager Command Line Interface       v 1.0  "
+    LEcho yellow "===============================================" "==============================================="
+    LEcho cyan_n "(1) 启停管理"                                    "(1) Start/Stop Control"
+    LEcho cyan   "(2) 修改管理面板用户名"                          "(2) Modify the management panel username"
+    LEcho cyan   "(3) 修改管理面板密码"                            "(3) Modify the management panel password"
+    LEcho cyan   "(4) 修复 MCSManager"                             "(4) Repair MCSManager"
+    LEcho cyan   "(5) 检查 MCSManager 更新"                        "(5) Check MCSManager update"
+    LEcho cyan   "(6) 清理 MCSManager 日志"                        "(6) Clean MCSManager log"
+    LEcho cyan   "(7) 退出"                                        "(7) Exit"
+    LEcho yellow "===============================================" "==============================================="
+    LEcho cyan_n "请输入选项: "                                    "Please enter an option: "
+    read -r option
+    case $option in
+        1)
+            StartStop
+        ;;
+        2)
+            ChangeUsername
+        ;;
+        3)
+            ChangePassword
+        ;;
+        4)
+            Repair
+        ;;
+        5)
+            CheckUpdate
+        ;;
+        6)
+            CleanLog
+        ;;
+        7)
+            exit 0
+        ;;
+        *)
+            LEcho error "[x] 无效的选项, 请纠正输入" "[x] Invalid option, please correct the input"
+        ;;
+    esac
+    LEcho error "[x] 未知错误, 请尝试使用修复命令修复环境" "[x] Unknown error, please try to use the repair command to repair the environment"
+}
 
-  read -r -p "[+] 请再次输入新密码: " new2;
-
-  if [ "$new1" != "$new2" ]; then
-    echo "==============================================="
-    echo "[x] 两次输入的密码不一致"
-    exit
-  fi
-
-  echo "[-] 修改 MCSManager-Web root 密码..."
-  passWord_old=$(awk -F"\"" '/passWord/{print $4}' /opt/mcsmanager/web/data/User/root.json)
-  passWord_new=$(echo -n "$new2" | md5sum | cut -d ' ' -f1)
-  sed -e "s@$passWord_old@$passWord_new@g" -i /opt/mcsmanager/web/data/User/root.json
-
-  echo "[-] 重启 MCSManager-Web 服务..."
-  systemctl restart mcsm-web.service
-
-  echo "[+] root 密码已更新！"
-elif [ "$cmd" == 7 ]
-then
-  Red_Error "[!] 卸载后无法找回数据，请先备份必要数据！"
-  read -r -p "[-] 确认已了解以上内容，我确定已备份完成 (输入yes继续卸载): " yes;
-  if [ "$yes" != "yes" ]; then
-    echo "==============================================="
-    echo "已取消！"
-    exit
-  fi
-
-  echo "[-] MCSManager 服务正在运行，停止服务..."
-  systemctl stop mcsm-{daemon,web}.service
-  systemctl disable mcsm-{daemon,web}.service
-
-  echo "[x] 删除 MCSManager 服务"
-  rm -f /etc/systemd/system/mcsm-daemon.service
-  rm -f /etc/systemd/system/mcsm-web.service
-
-  echo "[-] 重载服务配置文件"
-  systemctl daemon-reload
-
-  echo "[x] 删除 MCSManager 相关文件"
-  rm -irf /opt/mcsmanager
-
-  echo "[x] 删除 MCSManager-命令行 相关文件"
-  rm -f /usr/local/bin/mcsm
-  rm -f /opt/mcsm.sh
-
-  echo "==============================================="
-  echo -e "\033[1;32m卸载完成，感谢使用 MCSManager！\033[0m"
-
-elif [ "$cmd" == 8 ]
-then
-  systemctl restart mcsm-daemon.service
-elif [ "$cmd" == 9 ]
-then
-  systemctl stop mcsm-daemon.service
-elif [ "$cmd" == 10 ]
-then
-  systemctl start mcsm-daemon.service
-elif [ "$cmd" == 11 ]
-then
-  systemctl disable mcsm-daemon.service
-elif [ "$cmd" == 12 ]
-then
-  systemctl enable mcsm-daemon.service
-elif [ "$cmd" == 13 ]
-then
-  rm -ifr /opt/mcsmanager/web/logs
-  mkdir -p /opt/mcsmanager/web/logs
-  echo "[-] 已清空日志！"
-elif [ "$cmd" == 14 ]
-then
-  systemctl restart mcsm-{daemon,web}.service
-else
-  echo "==============================================="
-  echo "[-] 已取消"
-fi
-
-
+## Start/Stop control
+StartStop() {
+    LEcho yellow "===============================================" "==============================================="
+    [ $status = 1 ] && LEcho cyan_n "当前 MCSManager 控制面板状态:" "Current MCSManager web panel status:"
+    [ $webRunning = 0 ] && LEcho red " 已停止" " Stopped"
+    [ $webRunning = 1 ] && LEcho green " 正在运行中" " Running"
+    [ $status = 2 ] && LEcho cyan_n "当前 MCSManager 守护程序状态:" "Current MCSManager daemon status:"
+    [ $daemonRunning = 0 ] && LEcho red " 已停止" " Stopped"
+    [ $daemonRunning = 1 ] && LEcho green " 正在运行中" " Running"
+    LEcho yellow "===============================================" "==============================================="
+    LEcho cyan_n "(1) 启动/重启"                                        "(1) Start / Restart"
+    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+    LEcho cyan_n "(2) 停止"                                        "(2) Stop"
+    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+    LEcho cyan   "(3) 启用"                                        "(3) Enable"
+    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+    LEcho cyan   "(4) 禁用"                                        "(4) Disable"
+    [ $status = 1 ] && LEcho cyan "控制面板" "web panel"
+    [ $status = 2 ] && LEcho cyan "守护程序" "daemon"
+    [ $status = 3 ] && LEcho cyan "控制面板 & 守护程序" "web panel & daemon"
+    LEcho cyan   "(5) 返回"                                        "(4) Back"
+    LEcho yellow "===============================================" "==============================================="
+    LEcho cyan_n "请输入选项: "                                    "Please enter an option: "
+    read -r option
+    case $option in
+        1)
+            if [ "$status" = 1 ]; then
+                systemctl restart mcsm-web || LEcho error "[x] 控制面板启动失败" "[x] Web panel start failed"
+                elif [ "$status" = 2 ]; then
+                systemctl restart mcsm-daemon || LEcho error "[x] 守护程序启动失败" "[x] Daemon start failed"
+                elif [ "$status" = 3 ]; then
+                systemctl restart mcsm-web || LEcho error "[x] 控制面板 & 守护程序启动失败" "[x] Web panel & daemon start failed"
+                systemctl start mcsm-daemon || LEcho error "[x] 控制面板 & 守护程序启动失败" "[x] Web panel & daemon start failed"
+            fi
+            LEcho green "[√] 启动成功" "[√] Start successfully"
+            sleep 3
+            StartStop
+        ;;
+        2)
+            if [ "$status" = 1 ]; then
+                systemctl stop mcsm-web || LEcho error "[x] 控制面板停止失败" "[x] Web panel stop failed"
+                elif [ "$status" = 2 ]; then
+                systemctl stop mcsm-daemon || LEcho error "[x] 守护程序停止失败" "[x] Daemon stop failed"
+                elif [ "$status" = 3 ]; then
+                systemctl stop mcsm-web || LEcho error "[x] 控制面板 & 守护程序停止失败" "[x] Web panel & daemon stop failed"
+                systemctl stop mcsm-daemon || LEcho error "[x] 控制面板 & 守护程序停止失败" "[x] Web panel & daemon stop failed"
+            fi
+            LEcho green "[√] 停止成功" "[√] Stop successfully"
+            sleep 3
+            StartStop
+        ;;
+        3)
+            if [ "$status" = 1 ]; then
+                systemctl enable mcsm-web || LEcho error "[x] 控制面板启用失败" "[x] Web panel enable failed"
+                elif [ "$status" = 2 ]; then
+                systemctl enable mcsm-daemon || LEcho error "[x] 守护程序启用失败" "[x] Daemon enable failed"
+                elif [ "$status" = 3 ]; then
+                systemctl enable mcsm-web || LEcho error "[x] 控制面板 & 守护程序启用失败" "[x] Web panel & daemon enable failed"
+                systemctl enable mcsm-daemon  || LEcho error "[x] 控制面板 & 守护程序启用失败" "[x] Web panel & daemon enable failed"
+            fi
+            LEcho green "[√] 启用成功" "[√] Enable successfully"
+            sleep 3
+            StartStop
+        ;;
+        4)
+            if [ "$status" = 1 ]; then
+                systemctl disable mcsm-web || LEcho error "[x] 控制面板禁用失败" "[x] Web panel disable failed"
+                elif [ "$status" = 2 ]; then
+                systemctl disable mcsm-daemon || LEcho error "[x] 守护程序禁用失败" "[x] Daemon disable failed"
+                elif [ "$status" = 3 ]; then
+                systemctl disable mcsm-web && systemctl disable mcsm-daemon || LEcho error "[x] 控制面板 & 守护程序禁用失败" "[x] Web panel & daemon disable failed"
+            fi
+            LEcho green "[√] 禁用成功" "[√] Disable successfully"
+            sleep 3
+            StartStop
+        ;;
+        5)
+            GUI
+        ;;
+        *)
+            LEcho error "[x] 无效的选项, 请纠正输入" "[x] Invalid option, please correct the input"
+        ;;
+    esac
+    LEcho error "[x] 未知错误, 请尝试使用修复命令修复环境" "[x] Unknown error, please try to use the repair command to repair the environment"
+}
