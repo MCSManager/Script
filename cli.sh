@@ -86,7 +86,7 @@ LEcho() {
 ## Check the user is root
 CheckRoot() {
     if [ "$(whoami)" != "root" ]; then
-        LEcho error "请使用 root 用户执行此命令" "Please run this command as root"
+        LEcho error "[x] 请使用 root 用户执行此命令" "[x] Please run this command as root"
     fi
     return
 }
@@ -258,4 +258,3 @@ StartStop() {
     LEcho error "[x] 未知错误, 请尝试使用修复命令修复环境" "[x] Unknown error, please try to use the repair command to repair the environment"
 }
 
-ChangeUsername
