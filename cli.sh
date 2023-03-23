@@ -135,12 +135,10 @@ GUI() {
     LEcho cyan   "MCSManager 命令行                       v 1.0  " "MCSManager Command Line Interface       v 1.0  "
     LEcho yellow "===============================================" "==============================================="
     LEcho cyan_n "(1) 启停管理"                                    "(1) Start/Stop Control"
-    LEcho cyan   "(2) 修改管理面板用户名"                          "(2) Modify the management panel username"
-    LEcho cyan   "(3) 修改管理面板密码"                            "(3) Modify the management panel password"
-    LEcho cyan   "(4) 修复 MCSManager"                             "(4) Repair MCSManager"
-    LEcho cyan   "(5) 检查 MCSManager 更新"                        "(5) Check MCSManager update"
-    LEcho cyan   "(6) 清理 MCSManager 日志"                        "(6) Clean MCSManager log"
-    LEcho cyan   "(7) 退出"                                        "(7) Exit"
+    LEcho cyan   "(2) 修复 MCSManager"                             "(2) Repair MCSManager"
+    LEcho cyan   "(3) 检查 MCSManager 更新"                        "(3) Check MCSManager update"
+    LEcho cyan   "(4) 清理 MCSManager 日志"                        "(4) Clean MCSManager log"
+    LEcho cyan   "(5) 退出"                                        "(5) Exit"
     LEcho yellow "===============================================" "==============================================="
     LEcho cyan_n "请输入选项: "                                    "Please enter an option: "
     read -r option
@@ -149,21 +147,15 @@ GUI() {
             StartStop
         ;;
         2)
-            ChangeUsername
-        ;;
-        3)
-            ChangePassword
-        ;;
-        4)
             Repair
         ;;
-        5)
+        3)
             CheckUpdate
         ;;
-        6)
+        4)
             CleanLog
         ;;
-        7)
+        5)
             exit 0
         ;;
         *)
@@ -265,3 +257,5 @@ StartStop() {
     esac
     LEcho error "[x] 未知错误, 请尝试使用修复命令修复环境" "[x] Unknown error, please try to use the repair command to repair the environment"
 }
+
+ChangeUsername
