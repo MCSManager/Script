@@ -183,20 +183,21 @@ CheckOS() {
         apt-get install -y curl git wget jq
         elif [ "$os" == "redhat" ]; then
         yum install -y epel-release
+        yum update
         yum install -y curl git wget jq
     fi
     return
 }
 
 ## Detect nodejs version
-CheckNode() {
-    if command -v node > /dev/null; then
-        if [ "$(node -v | cut -c2- | awk -F. '{print $1}')" -ge 14 ]; then
-            return 0
-        fi
-    fi
-    return 1
-}
+# CheckNode() {
+#     if command -v node > /dev/null; then
+#         if [ "$(node -v | cut -c2- | awk -F. '{print $1}')" -ge 14 ]; then
+#             return 0
+#         fi
+#     fi
+#     return 1
+# }
 
 ## Install MCSManager
 Install() {
@@ -207,32 +208,33 @@ Install() {
     mkdir -p $tmpDir
     
     # Install nodejs
-    if ! CheckNode;then
-        LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
-        # Download nodejs files
-        nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
-        nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
-        wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
-        wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
-        
-        # Check nodejs files
-        if [ "$(sha256sum $tmpDir/node.tar.gz | cut -d ' ' -f 1)" != "$(grep "node-$nodeVer-linux-$arch.tar.gz" $tmpDir/node.sha256 | cut -d ' ' -f 1)" ]; then
-            LEcho error "[x] Node.js 安装包校验失败, 请重试" "[x] Node.js installation package verification failed, please try again"
-        fi
-        
-        # Install nodejs
-        [ -d $nodePath ] && rm -rf $nodePath
-        mkdir -p $nodePath
-        tar -xzf "$tmpDir/node.tar.gz" -C $nodePath --strip-components=1
-        
-        if ! command -v $nodeBin ; then
-            LEcho error "[x] Node.js 安装失败, 请重试" "[x] Node.js installation failed, please try again"
-        fi
-    else
-        LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
-        nodeBin="$(which node)"
-        npmBin="$(which npm)"
+    # if ! CheckNode;then
+    LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
+    # Download nodejs files
+    nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
+    nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
+    wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
+    wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
+    
+    # Check nodejs files
+    if [ "$(sha256sum $tmpDir/node.tar.gz | cut -d ' ' -f 1)" != "$(grep "node-$nodeVer-linux-$arch.tar.gz" $tmpDir/node.sha256 | cut -d ' ' -f 1)" ]; then
+        LEcho error "[x] Node.js 安装包校验失败, 请重试" "[x] Node.js installation package verification failed, please try again"
     fi
+    
+    # Install nodejs
+    [ -d $nodePath ] && rm -rf $nodePath
+    mkdir -p $nodePath
+    tar -xzf "$tmpDir/node.tar.gz" -C $nodePath --strip-components=1
+    
+    if ! command -v $nodeBin ; then
+        LEcho error "[x] Node.js 安装失败, 请重试" "[x] Node.js installation failed, please try again"
+    fi
+    # else
+    #     LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
+    #     nodeBin="$(which node)"
+    #     npmBin="$(which npm)"
+    # fi
+    
     
     LEcho yellow "===============================================" "==============================================="
     LEcho cyan "Node.js 版本: $($nodeBin --version)" "Node.js version: $($nodeBin --version)"
