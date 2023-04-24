@@ -29,11 +29,11 @@ mode="install"
 
 ## URLs
 # Node.js
-nodeBaseURL="https://nodejs.org/dist"
+nodeBaseURL="https://npmmirror.com/mirrors/node"
 
 # MCSManager
-daemonURL="https://github.com/mcsmanager/MCSManager-Daemon-Production.git"
-webURL="https://github.com/mcsmanager/MCSManager-Web-Production.git"
+daemonURL="https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
+webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
 
 ## Language
 if [ "$(echo "$LANG" | grep "zh_CN")" != "" ]; then
@@ -44,6 +44,7 @@ fi
 
 ## Other
 cn=0
+mirror=0
 
 ### Functions
 ## Localize echo
@@ -118,11 +119,13 @@ CheckRoot() {
 CheckCN() {
     LEcho cyan "[*] 正在检查服务器地理位置" "[*] Checking server location"
     server_ip=$(curl -s ifconfig.me)
-    if [[ "$(curl -s "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" == "CN" ]]; then
-        LEcho yellow "[!] 根据 'ip-api.com' 提供的信息, 当前服务器可能在中国, 已自动切换为中国镜像源" "[!] According to the information provided by 'ipapi.co', the current server IP may be in China, and the Chinese mirror source has been automatically switched"
-        daemonURL="https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
-        webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
-        nodeBaseURL="https://npmmirror.com/mirrors/node"
+    [ "$(curl -s --connect-timeout 10 "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" != "CN" ] && mirror=0
+    [ "$(curl -s --connect-timeout 10 "https://ipapi.co/${server_ip}/country_code/" | grep "CN")" == "" ] && mirror=0
+    if [ "$mirror" == "0" ]; then
+        LEcho yellow "[!] 根据 API 提供的信息, 当前服务器可能在国外, 已自动切换为 GitHub 源" "[!] According to the information provided by the API, the current server may be outside China, and the GitHub source has been automatically switched"
+        daemonURL="https://github.com/mcsmanager/MCSManager-Daemon-Production.git"
+        webURL="https://github.com/mcsmanager/MCSManager-Web-Production.git"
+        nodeBaseURL="https://nodejs.org/dist"
         cn=1
     fi
     return
