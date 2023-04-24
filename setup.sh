@@ -1,4 +1,10 @@
 #!/bin/bash
+
+#### MCSManager Command Line Interface
+#### Made by nuomiaa, CreeperKong, unitwk
+
+#### Copyright © 2023 MCSManager All rights reserved.
+
 printf "\033c"
 
 error=""

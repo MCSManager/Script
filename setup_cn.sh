@@ -29,11 +29,11 @@ mode="install"
 
 ## URLs
 # Node.js
-nodeBaseURL="https://nodejs.org/dist"
+nodeBaseURL="https://npmmirror.com/mirrors/node"
 
 # MCSManager
-daemonURL="https://github.com/mcsmanager/MCSManager-Daemon-Production.git"
-webURL="https://github.com/mcsmanager/MCSManager-Web-Production.git"
+daemonURL="https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
+webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
 
 ## Language
 if [ "$(echo "$LANG" | grep "zh_CN")" != "" ]; then
@@ -42,11 +42,9 @@ else
     zh=0
 fi
 
-## Debug
-debug=0
-
 ## Other
 cn=0
+mirror=0
 
 ### Functions
 ## Localize echo
@@ -95,11 +93,6 @@ LEcho() {
             exit 1
         ;;
         
-        # Debug echo
-        debug)
-            [ "$debug" == 1 ] && printf '\033[1;35m%b\033[0m\n' "[DEBUG] $2"
-        ;;
-        
         # No color echo
         *)
             [ "$zh" == 1 ] && echo "$2"
@@ -126,11 +119,13 @@ CheckRoot() {
 CheckCN() {
     LEcho cyan "[*] 正在检查服务器地理位置" "[*] Checking server location"
     server_ip=$(curl -s ifconfig.me)
-    if [[ "$(curl -s "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" == "CN" ]]; then
-        LEcho yellow "[!] 根据 'ip-api.com' 提供的信息, 当前服务器可能在中国, 已自动切换为中国镜像源" "[!] According to the information provided by 'ipapi.co', the current server IP may be in China, and the Chinese mirror source has been automatically switched"
-        daemonURL="https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
-        webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
-        nodeBaseURL="https://npmmirror.com/mirrors/node"
+    [ "$(curl -s --connect-timeout 10 "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" != "CN" ] && mirror=0
+    [ "$(curl -s --connect-timeout 10 "https://ipapi.co/${server_ip}/country_code/" | grep "CN")" == "" ] && mirror=0
+    if [ "$mirror" == "0" ]; then
+        LEcho yellow "[!] 根据 API 提供的信息, 当前服务器可能在国外, 已自动切换为 GitHub 源" "[!] According to the information provided by the API, the current server may be outside China, and the GitHub source has been automatically switched"
+        daemonURL="https://github.com/mcsmanager/MCSManager-Daemon-Production.git"
+        webURL="https://github.com/mcsmanager/MCSManager-Web-Production.git"
+        nodeBaseURL="https://nodejs.org/dist"
         cn=1
     fi
     return
@@ -191,20 +186,21 @@ CheckOS() {
         apt-get install -y curl git wget jq
         elif [ "$os" == "redhat" ]; then
         yum install -y epel-release
+        yum update
         yum install -y curl git wget jq
     fi
     return
 }
 
 ## Detect nodejs version
-CheckNode() {
-    if command -v node > /dev/null; then
-        if [ "$(node -v | cut -c2- | awk -F. '{print $1}')" -ge 14 ]; then
-            return 0
-        fi
-    fi
-    return 1
-}
+# CheckNode() {
+#     if command -v node > /dev/null; then
+#         if [ "$(node -v | cut -c2- | awk -F. '{print $1}')" -ge 14 ]; then
+#             return 0
+#         fi
+#     fi
+#     return 1
+# }
 
 ## Install MCSManager
 Install() {
@@ -215,32 +211,33 @@ Install() {
     mkdir -p $tmpDir
     
     # Install nodejs
-    if ! CheckNode;then
-        LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
-        # Download nodejs files
-        nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
-        nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
-        wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
-        wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
-        
-        # Check nodejs files
-        if [ "$(sha256sum $tmpDir/node.tar.gz | cut -d ' ' -f 1)" != "$(grep "node-$nodeVer-linux-$arch.tar.gz" $tmpDir/node.sha256 | cut -d ' ' -f 1)" ]; then
-            LEcho error "[x] Node.js 安装包校验失败, 请重试" "[x] Node.js installation package verification failed, please try again"
-        fi
-        
-        # Install nodejs
-        [ -d $nodePath ] && rm -rf $nodePath
-        mkdir -p $nodePath
-        tar -xzf "$tmpDir/node.tar.gz" -C $nodePath --strip-components=1
-        
-        if ! command -v $nodeBin ; then
-            LEcho error "[x] Node.js 安装失败, 请重试" "[x] Node.js installation failed, please try again"
-        fi
-    else
-        LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
-        nodeBin="$(which node)"
-        npmBin="$(which npm)"
+    # if ! CheckNode;then
+    LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
+    # Download nodejs files
+    nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
+    nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
+    wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
+    wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
+    
+    # Check nodejs files
+    if [ "$(sha256sum $tmpDir/node.tar.gz | cut -d ' ' -f 1)" != "$(grep "node-$nodeVer-linux-$arch.tar.gz" $tmpDir/node.sha256 | cut -d ' ' -f 1)" ]; then
+        LEcho error "[x] Node.js 安装包校验失败, 请重试" "[x] Node.js installation package verification failed, please try again"
     fi
+    
+    # Install nodejs
+    [ -d $nodePath ] && rm -rf $nodePath
+    mkdir -p $nodePath
+    tar -xzf "$tmpDir/node.tar.gz" -C $nodePath --strip-components=1
+    
+    if ! command -v $nodeBin ; then
+        LEcho error "[x] Node.js 安装失败, 请重试" "[x] Node.js installation failed, please try again"
+    fi
+    # else
+    #     LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
+    #     nodeBin="$(which node)"
+    #     npmBin="$(which npm)"
+    # fi
+    
     
     LEcho yellow "===============================================" "==============================================="
     LEcho cyan "Node.js 版本: $($nodeBin --version)" "Node.js version: $($nodeBin --version)"
