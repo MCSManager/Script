@@ -1,378 +1,377 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
-#### MCSManager Installer
-#### Made by BlueFunny
-#### Originally written by nuomiaa, CreeperKong, unitwk
+#### MCSManager Command Line Interface
+#### Made by nuomiaa, CreeperKong, unitwk
 
 #### Copyright © 2023 MCSManager All rights reserved.
 
-### Variables
-## Files
-# MCSManager
-mcsmPath="/opt/mcsmanager"
-daemonPath="$mcsmPath/daemon"
-webPath="$mcsmPath/web"
+printf "\033c"
 
-# Node.js
-nodePath="$mcsmPath/node"
-nodeBin="$nodePath/bin/node"
-npmBin="$nodeBin $nodePath/bin/npm"
+error=""
+node="v14.19.1"
+arch=$(uname -m)
+mcsmanager_install_path="/opt/mcsmanager"
+zh=$(
+    [[ $(locale -a) =~ "zh" ]] && echo 1
+    export LANG=zh_CN.UTF-8 || echo 0
+)
 
-# Junk
-tmpDir="/tmp/mcsmanager"
+Red_Error() {
+    echo '================================================='
+    printf '\033[1;31;40m%b\033[0m\n' "$@"
+    echo '================================================='
+    exit 1
+}
 
-## Node info
-nodeVer="v16.13.0"
+echo_red() {
+    printf '\033[1;31m%b\033[0m\n' "$@"
+}
 
-## Install mode
-mode="install"
+echo_green() {
+    printf '\033[1;32m%b\033[0m\n' "$@"
+}
 
-## URLs
-# Node.js
-nodeBaseURL="https://npmmirror.com/mirrors/node"
+echo_cyan() {
+    printf '\033[1;36m%b\033[0m\n' "$@"
+}
 
-# MCSManager
-daemonURL="https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git"
-webURL="https://gitee.com/mcsmanager/MCSManager-Web-Production.git"
+echo_cyan_n() {
+    printf '\033[1;36m%b\033[0m' "$@"
+}
 
-## Language
-if [ "$(echo "$LANG" | grep "zh_CN")" != "" ]; then
-    zh=1
-else
-    zh=0
+echo_yellow() {
+    printf '\033[1;33m%b\033[0m\n' "$@"
+}
+
+Install_Node() {
+    if [ "$zh" == 1 ]; then
+        echo_cyan_n "[+] 安装 Node 环境... "
+    else
+        echo_cyan_n "[+] Install Node environment... "
+    fi
+
+    rm -irf "$node_install_path"
+
+    cd /opt || exit
+
+    wget -o /dev/null https://npmmirror.com/mirrors/node/"$node"/node-"$node"-linux-"$arch".tar.gz
+
+    tar -zxf node-"$node"-linux-"$arch".tar.gz
+
+    rm -rf node-"$node"-linux-"$arch".tar.gz
+
+    if [ ! -L /usr/bin/node ] && [ ! -f /usr/bin/node ]; then
+        ln -s "$node_install_path"/bin/node /usr/bin/node
+    fi
+    if [ ! -L /usr/bin/npm ] && [ ! -f /usr/bin/npm ]; then
+        ln -s "$node_install_path"/bin/npm /usr/bin/npm
+    fi
+
+    chmod +x "$node_install_path"/bin/node
+    chmod +x "$node_install_path"/bin/npm
+
+    if [ -f "$node_install_path"/bin/node ] && [ "$("$node_install_path"/bin/node -v)" == "$node" ]; then
+        if [ "$zh" == 1 ]; then
+            echo_green "成功"
+        else
+            echo_green "Success"
+        fi
+    else
+        if [ "$zh" == 1 ]; then
+            echo_red "失败"
+            Red_Error "[x] Node 安装失败！"
+        else
+            echo_red "Failed"
+            Red_Error "[x] Node installation failed!"
+        fi
+    fi
+
+    echo
+    echo_yellow "=============== Node Version ==============="
+    echo_yellow " node: $("$node_install_path"/bin/node -v)"
+    echo_yellow " npm: v$(/usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
+    echo_yellow "=============== Node Version ==============="
+    echo
+
+    sleep 3
+}
+
+Install_MCSManager() {
+    if [ "$zh" == 1 ]; then
+        echo_cyan "[+] 安装 MCSManager..."
+    else
+        echo_cyan "[+] Install MCSManager..."
+    fi
+
+    # 删除服务
+    rm -f /etc/systemd/system/mcsm-daemon.service
+    rm -f /etc/systemd/system/mcsm-web.service
+
+    # 重载
+    systemctl daemon-reload
+
+    # echo "[x] Delete the original MCSManager"
+    rm -irf ${mcsmanager_install_path}
+
+    # echo "[+] mkdir -p ${mcsmanager_install_path}"
+    mkdir -p ${mcsmanager_install_path} || exit
+
+    # echo "[→] cd ${mcsmanager_install_path}"
+    cd ${mcsmanager_install_path} || exit
+
+    if [ "$zh" == 1 ]; then
+        echo_cyan "[↓] Git 克隆 MCSManager-Daemon..."
+    else
+        echo_cyan "[↓] Git clone MCSManager-Daemon..."
+    fi
+    git clone --single-branch -b master --depth 1 https://gitee.com/mcsmanager/MCSManager-Daemon-Production.git daemon
+
+    # echo "[→] cd daemon"
+    cd daemon || exit
+
+    if [ "$zh" == 1 ]; then
+        echo_cyan "[+] 安装 MCSManager-Daemon 依赖库..."
+    else
+        echo_cyan "[+] Install MCSManager-Daemon dependencies..."
+    fi
+    /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com >error
+
+    # echo "[←] cd .."
+    cd ..
+
+    if [ "$zh" == 1 ]; then
+        echo_cyan "[↓] Git 克隆 MCSManager-Web..."
+    else
+        echo_cyan "[↓] Git clone MCSManager-Web..."
+    fi
+    git clone --single-branch -b master --depth 1 https://gitee.com/mcsmanager/MCSManager-Web-Production.git web
+
+    # echo "[→] cd web"
+    cd web || exit
+
+    if [ "$zh" == 1 ]; then
+        echo_cyan "[+] 安装 MCSManager-Web 依赖库..."
+    else
+        echo_cyan "[+] Install MCSManager-Web dependencies..."
+    fi
+    /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com >error
+
+    echo
+    echo_yellow "=============== MCSManager ==============="
+    echo_green " Daemon: ${mcsmanager_install_path}/daemon"
+    echo_green " Web: ${mcsmanager_install_path}/web"
+    echo_yellow "=============== MCSManager ==============="
+    echo
+    if [ "$zh" == 1 ]; then
+        echo_green "[+] MCSManager 安装成功！"
+    else
+        echo_green "[+] MCSManager installation success!"
+    fi
+
+    sleep 3
+}
+
+Create_Service() {
+    if [ "$zh" == 1 ]; then
+        echo_cyan "[+] 创建 MCSManager 服务..."
+    else
+        echo_cyan "[+] Create MCSManager service..."
+    fi
+
+    echo "
+[Unit]
+Description=MCSManager Daemon
+
+[Service]
+WorkingDirectory=/opt/mcsmanager/daemon
+ExecStart=${node_install_path}/bin/node app.js
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+Environment=\"PATH=${PATH}\"
+
+[Install]
+WantedBy=multi-user.target
+" >/etc/systemd/system/mcsm-daemon.service
+
+    echo "
+[Unit]
+Description=MCSManager Web
+
+[Service]
+WorkingDirectory=/opt/mcsmanager/web
+ExecStart=${node_install_path}/bin/node app.js
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+Environment=\"PATH=${PATH}\"
+
+[Install]
+WantedBy=multi-user.target
+" >/etc/systemd/system/mcsm-web.service
+
+    # 重载
+    systemctl daemon-reload
+
+    # 创建 Daemon 服务
+    systemctl enable mcsm-daemon.service --now
+
+    # 创建 Web 服务
+    systemctl enable mcsm-web.service --now
+
+    sleep 3
+
+    printf "\033c"
+    echo_yellow "=================================================================="
+    if [ "$zh" == 1 ]; then
+        echo_green "欢迎使用 MCSManager，您可以通过以下方式访问："
+        echo_yellow "=================================================================="
+        echo_cyan_n "控制面板地址：   "
+        echo_yellow "http://localhost:23333"
+        echo_red "若无法访问面板，请检查防火墙/安全组是否有放行面板 23333 和 24444 端口，控制面板需要这两个端口才能正常工作。"
+        echo_yellow "=================================================================="
+        echo_cyan "重启 systemctl restart mcsm-{daemon,web}.service"
+        echo_cyan "禁用 systemctl disable mcsm-{daemon,web}.service"
+        echo_cyan "启用 systemctl enable mcsm-{daemon,web}.service"
+        echo_cyan "启动 systemctl start mcsm-{daemon,web}.service"
+        echo_cyan "停止 systemctl stop mcsm-{daemon,web}.service"
+        echo_cyan "更多使用说明，请参考：https://docs.mcsmanager.com/"
+    else
+        echo_green "Welcome to MCSManager, you can access it by the following ways:"
+        echo_yellow "=================================================================="
+        echo_cyan_n "Web Service Address:    "
+        echo_yellow "http://localhost:23333"
+        echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+        echo_yellow "=================================================================="
+        echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+        echo_cyan "systemctl disable mcsm-{daemon,web}.service"
+        echo_cyan "systemctl enable mcsm-{daemon,web}.service"
+        echo_cyan "systemctl start mcsm-{daemon,web}.service"
+        echo_cyan "systemctl stop mcsm-{daemon,web}.service"
+        echo_cyan "More info: https://docs.mcsmanager.com/"
+    fi
+    echo_yellow "=================================================================="
+
+}
+
+# ----------------- 程序启动 -----------------
+
+# 删除 Shell 脚本自身
+rm -f "$0"
+
+# 检查执行用户权限
+if [ "$(whoami)" != "root" ]; then
+    if [ "$zh" == 1 ]; then
+        Red_Error "[x] 请使用 root 权限执行 MCSManager 安装命令！"
+    else
+        Red_Error "[x] Please execute the MCSManager installation command with root permission!"
+    fi
 fi
 
-## Other
-cn=0
-mirror=0
+echo_cyan "+----------------------------------------------------------------------
+| MCSManager Installer
++----------------------------------------------------------------------
+| Copyright © 2022 MCSManager All rights reserved.
++----------------------------------------------------------------------
+| Shell Install Script by Nuomiaa & CreeperKong
++----------------------------------------------------------------------
+"
 
-### Functions
-## Localize echo
-# $1: color
-# $2: zh
-# $3: en
-LEcho() {
-    case $1 in
-        # Red color echo
-        red)
-            [ "${zh}" == 1 ] && printf '\033[1;31m%b\033[0m\n' "$2"
-            [ "${zh}" == 0 ] && printf '\033[1;31m%b\033[0m\n' "$3"
-        ;;
-        
-        # Green color echo
-        green)
-            [ "${zh}" == 1 ] && printf '\033[1;32m%b\033[0m\n' "$2"
-            [ "${zh}" == 0 ] && printf '\033[1;32m%b\033[0m\n' "$3"
-        ;;
-        
-        # Cyan color echo
-        cyan)
-            [ "${zh}" == 1 ] && printf '\033[1;36m%b\033[0m\n' "$2"
-            [ "${zh}" == 0 ] && printf '\033[1;36m%b\033[0m\n' "$3"
-        ;;
-        
-        # Cyan color echo (No line break)
-        cyan_n)
-            [ "${zh}" == 1 ] && printf '\033[1;36m%b\033[0m' "$2"
-            [ "${zh}" == 0 ] && printf '\033[1;36m%b\033[0m' "$3"
-        ;;
-        
-        # Yellow color echo
-        yellow)
-            [ "${zh}" == 1 ] && printf '\033[1;33m%b\033[0m\n' "$2"
-            [ "${zh}" == 0 ] && printf '\033[1;33m%b\033[0m\n' "$3"
-        ;;
-        
-        # Red error echo
-        error)
-            Clean
-            echo '================================================='
-            [ "$zh" == 1 ] && printf '\033[1;31;40m%b\033[0m\n' "$2"
-            [ "$zh" == 0 ] && printf '\033[1;31;40m%b\033[0m\n' "$3"
-            echo '================================================='
-            exit 1
-        ;;
-        
-        # No color echo
-        *)
-            [ "$zh" == 1 ] && echo "$2"
-            [ "$zh" == 0 ] && echo "$3"
-        ;;
-    esac
-    return
-}
-
-# Detect old MCSManager
-[ -d $mcsmPath ] && LEcho yellow "[!] 检测到旧版 MCSManager, 切换为更新模式" "[!] Old version of MCSManager detected, switch to update mode"
-[ -d $mcsmPath ] && mode="update"
-[ ! -d $mcsmPath ] && mkdir -p $mcsmPath
-
-## Check root
-CheckRoot() {
-    if [[ $EUID -ne 0 ]]; then
-        LEcho error "[!] 请使用 root 用户运行此脚本" "[!] Please run this script as root"
-    fi
-    return
-}
-
-## Detect server geographic location
-CheckCN() {
-    LEcho cyan "[*] 正在检查服务器地理位置" "[*] Checking server location"
-    server_ip=$(curl -s ifconfig.me)
-    [ "$(curl -s --connect-timeout 10 "http://ip-api.com/json/${server_ip}?fields=countryCode" | jq -r '.countryCode')" != "CN" ] && mirror=0
-    [ "$(curl -s --connect-timeout 10 "https://ipapi.co/${server_ip}/country_code/" | grep "CN")" == "" ] && mirror=0
-    if [ "$mirror" == "0" ]; then
-        LEcho yellow "[!] 根据 API 提供的信息, 当前服务器可能在国外, 已自动切换为 GitHub 源" "[!] According to the information provided by the API, the current server may be outside China, and the GitHub source has been automatically switched"
-        daemonURL="https://github.com/mcsmanager/MCSManager-Daemon-Production.git"
-        webURL="https://github.com/mcsmanager/MCSManager-Web-Production.git"
-        nodeBaseURL="https://nodejs.org/dist"
-        cn=1
-    fi
-    return
-}
-
-## Detect system architecture
-CheckArch() {
-    LEcho cyan "[*] 正在检查系统架构" "[*] Checking system architecture"
-    arch=$(uname -m)
-    case $arch in
-        x86_64)
-            arch="x64"
-        ;;
-        aarch64)
-            arch="arm64"
-        ;;
-        arm)
-            arch="armv7l"
-        ;;
-        ppc64le)
-            arch="ppc64le"
-        ;;
-        s390x)
-            arch="s390x"
-        ;;
-        *)
-            LEcho error "[x] MCSManager 暂不支持当前系统架构" "[x] MCSManager does not currently support the current system architecture"
-        ;;
-    esac
-    return
-}
-
-## Detect system version
-CheckOS() {
-    LEcho cyan "[*] 正在检查系统版本" "[*] Checking system version"
-    if [ -f /etc/os-release ]; then
-        # shellcheck source=/dev/null
-        . /etc/os-release
-        case "$ID" in
-            debian|ubuntu)
-                os="debian"
-            ;;
-            centos|rhel|fedora)
-                os="redhat"
-            ;;
-            *)
-                LEcho error "[x] 本脚本仅支持 Ubuntu/Debian/CentOS 系统!" "[x] This script only supports Ubuntu/Debian/CentOS systems!"
-            ;;
-        esac
+# 环境检查
+if [ "$arch" == x86_64 ]; then
+    arch=x64
+    #echo "[-] x64 architecture detected"
+elif [ $arch == aarch64 ]; then
+    arch=arm64
+    #echo "[-] 64-bit ARM architecture detected"
+elif [ $arch == arm ]; then
+    arch=armv7l
+    #echo "[-] 32-bit ARM architecture detected"
+elif [ $arch == ppc64le ]; then
+    arch=ppc64le
+    #echo "[-] IBM POWER architecture detected"
+elif [ $arch == s390x ]; then
+    arch=s390x
+    #echo "[-] IBM LinuxONE architecture detected"
+else
+    if [ "$zh" == 1 ]; then
+        Red_Error "[x] 抱歉，暂不支持您的 体系架构($arch)！"
     else
-        LEcho error "[x] 未能正常检测到系统类型, 无法继续安装" "[x] Unable to detect system type, installation cannot continue"
+        Red_Error "[x] Sorry, this architecture is not supported yet!"
     fi
-    
-    # Install dependencies
-    LEcho cyan "[*] 正在安装安装所需的工具" "[*] Installing the tools required for installation"
-    if [ "$os" == "debian" ]; then
-        apt-get update
-        apt-get install -y curl git wget jq
-        elif [ "$os" == "redhat" ]; then
-        yum install -y epel-release
-        yum update
-        yum install -y curl git wget jq
-    fi
-    return
-}
+    exit
+fi
 
-## Detect nodejs version
-# CheckNode() {
-#     if command -v node > /dev/null; then
-#         if [ "$(node -v | cut -c2- | awk -F. '{print $1}')" -ge 14 ]; then
-#             return 0
-#         fi
-#     fi
-#     return 1
-# }
+# 定义变量 Node 安装目录
+node_install_path="/opt/node-$node-linux-$arch"
 
-## Install MCSManager
-Install() {
-    clear
-    LEcho cyan "[-] 开始安装 MCSManager" "[-] Start installing MCSManager"
-    # Init work environment
-    LEcho cyan "[*] 正在初始化工作环境" "[*] Initializing work environment"
-    mkdir -p $tmpDir
-    
-    # Install nodejs
-    # if ! CheckNode;then
-    LEcho cyan "[*] 正在安装 Node.js" "[*] Installing Node.js"
-    # Download nodejs files
-    nodeFileURL="$nodeBaseURL/$nodeVer/node-$nodeVer-linux-$arch.tar.gz"
-    nodeHashURL="$nodeBaseURL/$nodeVer/SHASUMS256.txt"
-    wget -q --no-check-certificate -O $tmpDir/node.tar.gz "$nodeFileURL" || LEcho error "[x] 下载 Node.js 安装包失败, 请重试" "[x] Download Node.js installation package failed, please try again"
-    wget -q --no-check-certificate -O $tmpDir/node.sha256 "$nodeHashURL" || LEcho error "[x] 下载 Node.js 安装包校验文件失败, 请重试" "[x] Download Node.js installation package verification file failed, please try again"
-    
-    # Check nodejs files
-    if [ "$(sha256sum $tmpDir/node.tar.gz | cut -d ' ' -f 1)" != "$(grep "node-$nodeVer-linux-$arch.tar.gz" $tmpDir/node.sha256 | cut -d ' ' -f 1)" ]; then
-        LEcho error "[x] Node.js 安装包校验失败, 请重试" "[x] Node.js installation package verification failed, please try again"
-    fi
-    
-    # Install nodejs
-    [ -d $nodePath ] && rm -rf $nodePath
-    mkdir -p $nodePath
-    tar -xzf "$tmpDir/node.tar.gz" -C $nodePath --strip-components=1
-    
-    if ! command -v $nodeBin ; then
-        LEcho error "[x] Node.js 安装失败, 请重试" "[x] Node.js installation failed, please try again"
-    fi
-    # else
-    #     LEcho cyan "[-] 检测到已安装 Node.js, 跳过安装" "[-] Detected installed Node.js, skip installation"
-    #     nodeBin="$(which node)"
-    #     npmBin="$(which npm)"
-    # fi
-    
-    
-    LEcho yellow "===============================================" "==============================================="
-    LEcho cyan "Node.js 版本: $($nodeBin --version)" "Node.js version: $($nodeBin --version)"
-    LEcho cyan "NPM 版本: $($npmBin -v)" "NPM version: $($npmBin -v)"
-    LEcho yellow "===============================================" "==============================================="
-    
-    # Install MCSManager
-    if [ $mode == "update" ];then
-        LEcho cyan "[*] 正在更新 MCSManager 前端管理面板" "[*] Updating MCSManager web panel"
-        
-        cd $webPath || LEcho error "[x] 无法进入 MCSManager 前端管理面板目录, 请检查权限" "[x] Unable to enter MCSManager web panel directory, please check permissions"
-        
-        # Clone MCSManager web panel
-        git remote set-url origin $webURL
-        git fetch origin
-        git checkout master
-        git reset --hard origin/master
-        git pull
-        
-        LEcho cyan "[*] 正在更新 MCSManager 守护程序" "[*] Updating MCSManager daemon"
-        
-        cd $daemonPath || LEcho error "[x] 无法进入 MCSManager 守护程序目录, 请检查权限" "[x] Unable to enter MCSManager daemon directory, please check permissions"
-        
-        # Clone MCSManager daemon
-        git remote set-url origin $daemonURL
-        git fetch origin
-        git checkout master
-        git reset --hard origin/master
-        git pull
+# 检查网络连接
+if [ "$zh" == 1 ]; then
+    echo_cyan "[-] 体系架构：$arch"
+else
+    echo_cyan "[-] Architecture: $arch"
+fi
+
+# MCSManager 已安装
+if [ -d "$mcsmanager_install_path" ]; then
+    printf "\033c"
+    if [ "$zh" == 1 ]; then
+        echo_red "----------------------------------------------------
+检查到已有 MCSManager 安装在 \"$mcsmanager_install_path\"
+继续安装会删除原有 MCSManager 面版的所有数据！
+----------------------------------------------------
+将在 10 秒后继续安装，取消请按 Ctrl + Z/C 键！"
     else
-        # Clone MCSManager web panel
-        LEcho cyan "[*] 正在安装 MCSManager 前端管理面板" "[*] Installing MCSManager web panel"
-        git clone --single-branch -b master --depth 1 $webURL $webPath
-        
-        # Clone MCSManager daemon
-        LEcho cyan "[*] 正在安装 MCSManager 守护程序" "[*] Installing MCSManager web panel"
-        git clone --single-branch -b master --depth 1 $daemonURL $daemonPath
+        echo_red "----------------------------------------------------
+MCSManager is installed at \"$mcsmanager_install_path\"
+Continuing the installation will delete the original MCSManager!
+----------------------------------------------------
+Installation will continue in 10 seconds, press Ctrl + Z/C to cancel!"
     fi
-    # Update dependencies
-    LEcho cyan "[*] 正在更新依赖" "[*] Updating dependencies"
-    cd $webPath || LEcho error "[x] 无法进入 MCSManager 前端管理目录, 请检查权限" "[x] Unable to enter MCSManager web panel directory, please check permissions"
-    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com
-    [ $cn == 0 ] && $npmBin install
-    cd $daemonPath || LEcho error "[x] 无法进入 MCSManager 守护程序目录, 请检查权限" "[x] Unable to enter MCSManager daemon directory, please check permissions"
-    [ $cn == 1 ] && $npmBin install --registry=https://registry.npmmirror.com
-    [ $cn == 0 ] && $npmBin install
-    
-    # Create systemd service
-    LEcho cyan "[*] 正在创建 systemd 服务" "[*] Creating systemd service"
-    
-    webExecStart="\"$nodeBin\" \"$webPath/app.js\""
-    daemonExecStart="\"$nodeBin\" \"$daemonPath/app.js\""
-    cat > /etc/systemd/system/mcsm-web.service << EOF
-[Unit]
-Description=MCSManager Web Panel Service
-After=network.target
+    sleep 10
+fi
 
-[Service]
-User=root
-WorkingDirectory=$webPath
-ExecStart=$webExecStart
-ExecReload=/bin/kill -s HUP $MAINPID
-ExecStop=/bin/kill -s QUIT $MAINPID
-Environment=\"PATH=${PATH}\"
-Restart=always
+# 安装相关软件
+if [ "$zh" == 1 ]; then
+    echo_cyan_n "[-] 安装相关软件(git,tar)... "
+else
+    echo_cyan_n "[+] Installing dependent software(git,tar)... "
+fi
+if [ -x "$(command -v yum)" ]; then
+    yum install -y git tar >error
+elif [ -x "$(command -v apt-get)" ]; then
+    apt-get install -y git tar >error
+elif [ -x "$(command -v pacman)" ]; then
+    pacman -Syu --noconfirm git tar >error
+elif [ -x "$(command -v zypper)" ]; then
+    zypper --non-interactive install git tar >error
+fi
 
-[Install]
-WantedBy=multi-user.target
-EOF
-    cat > /etc/systemd/system/mcsm-daemon.service << EOF
-[Unit]
-Description=MCSManager Daemon Service
-After=network.target
-
-[Service]
-User=root
-WorkingDirectory=$daemonPath
-ExecStart=$daemonExecStart
-ExecReload=/bin/kill -s HUP $MAINPID
-ExecStop=/bin/kill -s QUIT $MAINPID
-Environment=\"PATH=${PATH}\"
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-    # Enable systemd service
-    LEcho cyan "[*] 正在启动 MCSManager 服务" "[*] Starting MCSManager services"
-    systemctl daemon-reload
-    if [ $mode == "update" ];then
-        systemctl restart mcsm-web || LEcho error "[x] 无法启动 MCSManager 前端管理面板服务" "[x] Unable to start MCSManager web panel service"
-        systemctl restart mcsm-daemon || LEcho error "[x] 无法启动 MCSManager 守护程序服务" "[x] Unable to start MCSManager daemon service"
+# 判断相关软件是否安装成功
+if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]; then
+    if [ "$zh" == 1 ]; then
+        echo_green "成功"
     else
-        systemctl enable mcsm-web --now || LEcho error "[x] 无法启动 MCSManager 前端管理面板服务" "[x] Unable to start MCSManager web panel service"
-        systemctl enable mcsm-daemon --now || LEcho error "[x] 无法启动 MCSManager 守护程序服务" "[x] Unable to start MCSManager daemon service"
+        echo_green "Success"
     fi
-    
-    # Output login info
-    LEcho green "[√] MCSManager 安装完毕" "[√] MCSManager installation completed"
-    sleep 3
-    clear
-    LEcho yellow "=================================================================="                       "=================================================================="
-    LEcho green "欢迎使用 MCSManager, 您可以通过以下方式访问: "                                                  "Welcome to MCSManager, you can access it through the following ways:"
-    LEcho yellow "=================================================================="                       "=================================================================="
-    LEcho cyan_n "控制面板默认访问地址：   "                                                                    "Control panel default address:   "
-    LEcho yellow "http://localhost:23333"                                                                    "http://localhost:23333"
-    LEcho red "若无法访问面板，请检查防火墙/安全组是否有放行面板 23333 和 24444 端口，控制面板需要这两个端口才能正常工作。" "If you can't access the panel, please check if the firewall/security group has opened the panel 23333 and 24444 ports. The control panel needs these two ports to work properly."
-    LEcho yellow "=================================================================="                        "=================================================================="
-    LEcho cyan "启动 MCSM: systemctl start mcsm-{daemon,web}.service"                                         "Start MCSM: systemctl start mcsm-{daemon,web}.service"
-    LEcho cyan "重启 MCSM: systemctl restart mcsm-{daemon,web}.service"                                       "Restart MCSM: systemctl restart mcsm-{daemon,web}.service"
-    LEcho cyan "停止 MCSM: systemctl stop mcsm-{daemon,web}.service"                                          "Stop MCSM: systemctl stop mcsm-{daemon,web}.service"
-    LEcho cyan "启用自启动: systemctl enable mcsm-{daemon,web}.service"                                        "Enable: systemctl enable mcsm-{daemon,web}.service"
-    LEcho cyan "禁用自启动: systemctl disable mcsm-{daemon,web}.service"                                       "Disable: systemctl disable mcsm-{daemon,web}.service"
-    LEcho cyan "更多使用说明, 请参考: https://docs.mcsmanager.com/"                                              "More usage instructions, please refer to: https://docs.mcsmanager.com/"
-    LEcho yellow "=================================================================="                        "=================================================================="
-    
-    # Clean up
-    rm -rf $tmpDir
-    return
-}
+else
+    if [ "$zh" == 1 ]; then
+        echo_red "失败"
+    else
+        echo_red "Failed"
+    fi
+    echo "$error"
+    if [ "$zh" == 1 ]; then
+        Red_Error "[x] 相关软件安装失败，请手动安装 git 和 tar 软件包！"
+    else
+        Red_Error "[x] Related software installation failed, please install git and tar packages manually!"
+    fi
+    exit
+fi
 
-## Clean up
-Clean() {
-    LEcho cyan "[*] 正在清理残余文件" "[*] Cleaning up"
-    rm -rf $tmpDir
-    [ $mode != "update" ] && rm -rf $mcsmPath
-    return
-}
+# 安装 Node 环境
+Install_Node
 
-### Start
+# 安装 MCSManager
+Install_MCSManager
 
-LEcho cyan "[-] 正在检查基础环境, 请稍等" "[-] Checking basic environment, please wait"
-CheckRoot
-CheckArch
-CheckOS
-CheckCN
-Install
-LEcho cyan "[-] 期待与您的下次见面" "[-] Looking forward to seeing you again"
+# 创建 MCSManager 后台服务
+Create_Service
