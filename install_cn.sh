@@ -36,6 +36,7 @@ error=""
 node="v14.19.1"
 arch=$(uname -m)
 mcsmanager_install_path="/opt/mcsmanager"
+mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
 
 Red_Error() {
   echo '================================================='
@@ -95,7 +96,7 @@ Install_MCSManager() {
 
 
   # donwload MCSManager release
-  wget -o /dev/null https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/mcsmanager_linux_release.tar.gz
+  wget ${mcsmanager_donwload_addr}
   tar -zxf mcsmanager_linux_release.tar.gz -o
   rm -rf "${mcsmanager_install_path}/mcsmanager_linux_release.tar.gz"
   
