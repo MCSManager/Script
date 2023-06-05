@@ -2,6 +2,27 @@
 
 printf "\033c"
 
+# print func
+echo_cyan() {
+  printf '\033[1;36m%b\033[0m\n' "$@"
+}
+echo_red() {
+  printf '\033[1;31m%b\033[0m\n' "$@"
+}
+
+echo_green() {
+  printf '\033[1;32m%b\033[0m\n' "$@"
+}
+
+echo_cyan_n() {
+  printf '\033[1;36m%b\033[0m' "$@"
+}
+
+echo_yellow() {
+  printf '\033[1;33m%b\033[0m\n' "$@"
+}
+
+# script info
 echo_cyan "+----------------------------------------------------------------------
 | MCSManager Installer
 +----------------------------------------------------------------------
@@ -23,25 +44,6 @@ Red_Error() {
   exit 1
 }
 
-echo_red() {
-  printf '\033[1;31m%b\033[0m\n' "$@"
-}
-
-echo_green() {
-  printf '\033[1;32m%b\033[0m\n' "$@"
-}
-
-echo_cyan() {
-  printf '\033[1;36m%b\033[0m\n' "$@"
-}
-
-echo_cyan_n() {
-  printf '\033[1;36m%b\033[0m' "$@"
-}
-
-echo_yellow() {
-  printf '\033[1;33m%b\033[0m\n' "$@"
-}
 
 Install_Node() {
   echo_cyan_n "[+] Install Node.JS environment... "
