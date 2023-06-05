@@ -2,12 +2,8 @@
 
 # Config
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="https://github.com/MCSManager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
+mcsmanager_donwload_addr="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
 node="v14.19.1"
-zh=$(
-    [[ $(locale -a) =~ "zh" ]] && echo 1
-    export LANG=zh_CN.UTF-8 || echo 0
-)
 
 error=""
 arch=$(uname -m)
@@ -58,6 +54,8 @@ Install_Node() {
   rm -irf "$node_install_path"
 
   cd /opt || exit
+
+  rm -rf  node-"$node"-linux-"$arch".tar.gz
 
   wget https://nodejs.org/dist/"$node"/node-"$node"-linux-"$arch".tar.gz
 

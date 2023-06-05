@@ -2,7 +2,7 @@
 
 # Config
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
+mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/release/mcsmanager_linux_release.tar.gz"
 node="v14.19.1"
 zh=$(
     [[ $(locale -a) =~ "zh" ]] && echo 1
@@ -61,6 +61,8 @@ Install_Node() {
   rm -irf "$node_install_path"
 
   cd /opt || exit
+
+  rm -rf  node-"$node"-linux-"$arch".tar.gz
 
   wget https://npmmirror.com/mirrors/node/"$node"/node-"$node"-linux-"$arch".tar.gz
 
