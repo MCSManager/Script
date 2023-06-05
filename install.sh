@@ -32,10 +32,13 @@ echo_cyan "+--------------------------------------------------------------------
 +----------------------------------------------------------------------
 "
 
-error=""
-node="v14.19.1"
-arch=$(uname -m)
+# Config
 mcsmanager_install_path="/opt/mcsmanager"
+mcsmanager_donwload_addr="https://github.com/MCSManager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
+node="v14.19.1"
+
+error=""
+arch=$(uname -m)
 
 Red_Error() {
   echo '================================================='
@@ -67,10 +70,10 @@ Install_Node() {
   fi
 
   echo
-  echo_yellow "=============== Node Version ==============="
+  echo_yellow "=============== Node.JS Version ==============="
   echo_yellow " node: $("$node_install_path"/bin/node -v)"
   echo_yellow " npm: v$(/usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
-  echo_yellow "=============== Node Version ==============="
+  echo_yellow "=============== Node.JS Version ==============="
   echo
 
   sleep 3
@@ -80,12 +83,14 @@ Install_Node() {
 Install_MCSManager() {
   echo_cyan "[+] Install MCSManager..."
 
-  # delete service
-  rm -f /etc/systemd/system/mcsm-daemon.service
-  rm -f /etc/systemd/system/mcsm-web.service
-
   # stop service
   systemctl stop mcsm-{web,daemon}
+
+  # delete service
+  rm -rf /etc/systemd/system/mcsm-daemon.service
+  rm -rf /etc/systemd/system/mcsm-web.service
+  systemctl daemon-reload
+
   mkdir -p ${mcsmanager_install_path} || exit
 
   # cd /opt/mcsmanager
@@ -93,23 +98,21 @@ Install_MCSManager() {
 
 
   # donwload MCSManager release
-  wget -o /dev/null https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/mcsmanager_linux_release.tar.gz
+  wget ${mcsmanager_donwload_addr}
   tar -zxf mcsmanager_linux_release.tar.gz -o
+  rm -rf "${mcsmanager_install_path}/mcsmanager_linux_release.tar.gz"
   
   # echo "[→] cd daemon"
   cd daemon || exit
 
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install > error
+  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production > npm_install_log
 
   # echo "[←] cd .."
-  cd ..
-
-  # echo "[→] cd web"
-  cd web || exit
+  cd ../web || exit
 
   echo_cyan "[+] Install MCSManager-Web dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install > error
+  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production > npm_install_log
 
   echo
   echo_yellow "=============== MCSManager ==============="
@@ -164,18 +167,19 @@ WantedBy=multi-user.target
   printf "\n\n"
 
   echo_yellow "=================================================================="
-  echo_green "Welcome to MCSManager!"
+  echo_green "Welcome to use MCSManager!"
     echo_yellow "=================================================================="
-    echo_cyan_n "HTTP Service Address:    "; echo_yellow "http://localhost:23333"
-    echo_cyan_n "Daemon Address: "; echo_yellow "ws://localhost:24444"
+    echo_cyan_n "HTTP Web Service:        "; echo_yellow "http://<Your IP>:23333"
+    echo_cyan_n "Daemon Address:          "; echo_yellow "ws://<Your IP>:24444"
     echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
     echo_yellow "=================================================================="
+    echo_cyan "Usage:"
     echo_cyan "systemctl start mcsm-{daemon,web}.service"
     echo_cyan "systemctl stop mcsm-{daemon,web}.service"
     echo_cyan "systemctl restart mcsm-{daemon,web}.service"
     echo_cyan "systemctl disable mcsm-{daemon,web}.service"
     echo_cyan "systemctl enable mcsm-{daemon,web}.service"
-    echo_cyan "More info: https://docs.mcsmanager.com/"
+    echo_green "Official Document: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 }
 
