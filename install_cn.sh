@@ -32,11 +32,13 @@ echo_cyan "+--------------------------------------------------------------------
 +----------------------------------------------------------------------
 "
 
-error=""
-node="v14.19.1"
-arch=$(uname -m)
+# Config
 mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
+node="v14.19.1"
+
+error=""
+arch=$(uname -m)
 
 Red_Error() {
   echo '================================================='
@@ -53,7 +55,7 @@ Install_Node() {
 
   cd /opt || exit
 
-  wget -o /dev/null https://npmmirror.com/mirrors/node/"$node"/node-"$node"-linux-"$arch".tar.gz
+  wget https://npmmirror.com/mirrors/node/"$node"/node-"$node"-linux-"$arch".tar.gz
 
   tar -zxf node-"$node"-linux-"$arch".tar.gz
 
