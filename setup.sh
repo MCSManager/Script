@@ -2,7 +2,7 @@
 
 # Config
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
+mcsmanager_donwload_addr="https://github.com/MCSManager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
 node="v14.19.1"
 zh=$(
     [[ $(locale -a) =~ "zh" ]] && echo 1
