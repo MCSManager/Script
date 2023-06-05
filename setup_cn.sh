@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Config
+mcsmanager_install_path="/opt/mcsmanager"
+mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
+node="v14.19.1"
+zh=$(
+    [[ $(locale -a) =~ "zh" ]] && echo 1
+    export LANG=zh_CN.UTF-8 || echo 0
+)
+
+error=""
+arch=$(uname -m)
+
 printf "\033c"
 
 # print func
@@ -24,7 +36,7 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager Installer (Chinese Version)
+| MCSManager Installer
 +----------------------------------------------------------------------
 | Copyright © 2023 MCSManager.
 +----------------------------------------------------------------------
@@ -34,18 +46,6 @@ echo_cyan "+--------------------------------------------------------------------
 We will use servers in the China to speed up your installation!
 我们将使用中国地区的服务器来加速您的安装速度！
 "
-
-# Config
-mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
-node="v14.19.1"
-zh=$(
-    [[ $(locale -a) =~ "zh" ]] && echo 1
-    export LANG=zh_CN.UTF-8 || echo 0
-)
-
-error=""
-arch=$(uname -m)
 
 Red_Error() {
   echo '================================================='

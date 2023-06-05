@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# Config
+mcsmanager_install_path="/opt/mcsmanager"
+mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
+node="v14.19.1"
+zh=$(
+    [[ $(locale -a) =~ "zh" ]] && echo 1
+    export LANG=zh_CN.UTF-8 || echo 0
+)
+
+error=""
+arch=$(uname -m)
+
 printf "\033c"
 
 # print func
@@ -32,14 +44,6 @@ echo_cyan "+--------------------------------------------------------------------
 +----------------------------------------------------------------------
 "
 
-# Config
-mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="https://github.com/MCSManager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
-node="v14.19.1"
-
-error=""
-arch=$(uname -m)
-
 Red_Error() {
   echo '================================================='
   printf '\033[1;31;40m%b\033[0m\n' "$@"
@@ -55,7 +59,7 @@ Install_Node() {
 
   cd /opt || exit
 
-  wget -o /dev/null https://nodejs.org/dist/"$node"/node-"$node"-linux-"$arch".tar.gz
+  wget https://nodejs.org/dist/"$node"/node-"$node"-linux-"$arch".tar.gz
 
   tar -zxf node-"$node"-linux-"$arch".tar.gz
 
@@ -177,11 +181,9 @@ WantedBy=multi-user.target
     echo_cyan "systemctl start mcsm-{daemon,web}.service"
     echo_cyan "systemctl stop mcsm-{daemon,web}.service"
     echo_cyan "systemctl restart mcsm-{daemon,web}.service"
-    echo_cyan "systemctl disable mcsm-{daemon,web}.service"
-    echo_cyan "systemctl enable mcsm-{daemon,web}.service"
     echo_yellow " "
     echo_green "Official Document: https://docs.mcsmanager.com/"
-  echo_yellow "=================================================================="
+    echo_yellow "=================================================================="
 }
 
 
