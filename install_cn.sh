@@ -95,12 +95,13 @@ Install_MCSManager() {
   # donwload MCSManager release
   wget -o /dev/null https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/mcsmanager_linux_release.tar.gz
   tar -zxf mcsmanager_linux_release.tar.gz -o
+  rm -rf "${mcsmanager_install_path}/mcsmanager_linux_release.tar.gz"
   
   # echo "[→] cd daemon"
   cd daemon || exit
 
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install  --registry=https://registry.npmmirror.com --production> error
+  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install  --registry=https://registry.npmmirror.com --production > npm_install_log
 
   # echo "[←] cd .."
   cd ..
@@ -109,7 +110,7 @@ Install_MCSManager() {
   cd web || exit
 
   echo_cyan "[+] Install MCSManager-Web dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install  --registry=https://registry.npmmirror.com --production> error
+  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install  --registry=https://registry.npmmirror.com --production > npm_install_log
 
   echo
   echo_yellow "=============== MCSManager ==============="
@@ -166,16 +167,17 @@ WantedBy=multi-user.target
   echo_yellow "=================================================================="
   echo_green "Welcome to MCSManager!"
     echo_yellow "=================================================================="
-    echo_cyan_n "HTTP Service Address:    "; echo_yellow "http://localhost:23333"
-    echo_cyan_n "Daemon Address: "; echo_yellow "ws://localhost:24444"
+    echo_cyan_n "HTTP Web Service:        "; echo_yellow "http://localhost:23333"
+    echo_cyan_n "Daemon Address:          "; echo_yellow "ws://localhost:24444"
     echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
     echo_yellow "=================================================================="
+    echo_cyan "Command Usage:"
     echo_cyan "systemctl start mcsm-{daemon,web}.service"
     echo_cyan "systemctl stop mcsm-{daemon,web}.service"
     echo_cyan "systemctl restart mcsm-{daemon,web}.service"
     echo_cyan "systemctl disable mcsm-{daemon,web}.service"
     echo_cyan "systemctl enable mcsm-{daemon,web}.service"
-    echo_cyan "More info: https://docs.mcsmanager.com/"
+    echo_green "More info: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 }
 
