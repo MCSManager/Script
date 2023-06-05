@@ -24,18 +24,25 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager Installer
+| MCSManager Installer (Chinese Version)
 +----------------------------------------------------------------------
 | Copyright © 2023 MCSManager.
 +----------------------------------------------------------------------
-| Contributors: nuomiaa, CreeperKong, unitwk, FunnyShadow
+| Contributors: Nuomiaa, CreeperKong, Unitwk, FunnyShadow
 +----------------------------------------------------------------------
+
+We will use servers in the China to speed up your installation!
+我们将使用中国地区的服务器来加速您的安装速度！
 "
 
 # Config
 mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/v9.9.0/mcsmanager_linux_release.tar.gz"
 node="v14.19.1"
+zh=$(
+    [[ $(locale -a) =~ "zh" ]] && echo 1
+    export LANG=zh_CN.UTF-8 || echo 0
+)
 
 error=""
 arch=$(uname -m)
@@ -165,9 +172,24 @@ WantedBy=multi-user.target
   sleep 3
 
   printf "\n\n"
-
   echo_yellow "=================================================================="
-  echo_green "Welcome to use MCSManager!"
+  if [ "$zh" == 1 ]; then
+    echo_green "安装已完成！欢迎使用 MCSManager 面板！"
+    echo_yellow "=================================================================="
+    echo_cyan_n "控制面板地址：   "
+    echo_yellow "http://你的公网IP:23333"
+    echo_red "你必须开放 23333（面板） 和 24444（守护进程用） 端口，控制面板需要这两个端口才能正常工作。"
+    echo_yellow "=================================================================="
+    echo_cyan "下面是常用的几个命令："
+    echo_cyan "启动面板 systemctl start mcsm-{daemon,web}.service"
+    echo_cyan "停止面板 systemctl stop mcsm-{daemon,web}.service"
+    echo_cyan "重启面板 systemctl restart mcsm-{daemon,web}.service"
+    echo_yellow "=================================================================="
+    echo_cyan "官方文档（必读）：https://docs.mcsmanager.com/"
+    echo_yellow "=================================================================="
+  else
+    echo_yellow "=================================================================="
+    echo_green "Installation is complete! Welcome to the MCSManager panel!"
     echo_yellow "=================================================================="
     echo_cyan_n "HTTP Web Service:        "; echo_yellow "http://<Your IP>:23333"
     echo_cyan_n "Daemon Address:          "; echo_yellow "ws://<Your IP>:24444"
@@ -177,10 +199,9 @@ WantedBy=multi-user.target
     echo_cyan "systemctl start mcsm-{daemon,web}.service"
     echo_cyan "systemctl stop mcsm-{daemon,web}.service"
     echo_cyan "systemctl restart mcsm-{daemon,web}.service"
-    echo_cyan "systemctl disable mcsm-{daemon,web}.service"
-    echo_cyan "systemctl enable mcsm-{daemon,web}.service"
     echo_green "Official Document: https://docs.mcsmanager.com/"
-  echo_yellow "=================================================================="
+    echo_yellow "=================================================================="
+  fi
 }
 
 

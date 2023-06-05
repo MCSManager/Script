@@ -28,7 +28,7 @@ echo_cyan "+--------------------------------------------------------------------
 +----------------------------------------------------------------------
 | Copyright © 2023 MCSManager.
 +----------------------------------------------------------------------
-| Contributors: nuomiaa, CreeperKong, unitwk, FunnyShadow
+| Contributors: Nuomiaa, CreeperKong, Unitwk, FunnyShadow
 +----------------------------------------------------------------------
 "
 
@@ -167,7 +167,7 @@ WantedBy=multi-user.target
   printf "\n\n"
 
   echo_yellow "=================================================================="
-  echo_green "Welcome to use MCSManager!"
+  echo_green "Installation is complete! Welcome to the MCSManager panel !!!"
     echo_yellow "=================================================================="
     echo_cyan_n "HTTP Web Service:        "; echo_yellow "http://<Your IP>:23333"
     echo_cyan_n "Daemon Address:          "; echo_yellow "ws://<Your IP>:24444"
