@@ -67,10 +67,10 @@ Install_Node() {
   fi
 
   echo
-  echo_yellow "=============== Node Version ==============="
+  echo_yellow "=============== Node.JS Version ==============="
   echo_yellow " node: $("$node_install_path"/bin/node -v)"
   echo_yellow " npm: v$(/usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
-  echo_yellow "=============== Node Version ==============="
+  echo_yellow "=============== Node.JS Version ==============="
   echo
 
   sleep 3
@@ -80,12 +80,14 @@ Install_Node() {
 Install_MCSManager() {
   echo_cyan "[+] Install MCSManager..."
 
-  # delete service
-  rm -f /etc/systemd/system/mcsm-daemon.service
-  rm -f /etc/systemd/system/mcsm-web.service
-
   # stop service
   systemctl stop mcsm-{web,daemon}
+
+  # delete service
+  rm -rf /etc/systemd/system/mcsm-daemon.service
+  rm -rf /etc/systemd/system/mcsm-web.service
+  systemctl daemon-reload
+
   mkdir -p ${mcsmanager_install_path} || exit
 
   # cd /opt/mcsmanager
@@ -104,10 +106,7 @@ Install_MCSManager() {
   /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install  --registry=https://registry.npmmirror.com --production > npm_install_log
 
   # echo "[←] cd .."
-  cd ..
-
-  # echo "[→] cd web"
-  cd web || exit
+  cd ../web || exit
 
   echo_cyan "[+] Install MCSManager-Web dependencies..."
   /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install  --registry=https://registry.npmmirror.com --production > npm_install_log
