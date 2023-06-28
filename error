@@ -1,0 +1,13 @@
+正在读取软件包列表...
+正在分析软件包的依赖关系树...
+正在读取状态信息...
+git 已经是最新版 (1:2.30.2-1+deb11u2)。
+tar 已经是最新版 (1.34+dfsg-1)。
+下列软件包是自动安装的并且现在不需要了：
+  bsdmainutils geoip-database libbind9-161 libdns1104 libdns1110 libgeoip1
+  libicu63 libisc1100 libisc1105 libisccc161 libisccfg163 liblwres161
+  libmpdec2 libperl5.28 libpython2-stdlib libpython3.7-minimal
+  libpython3.7-stdlib linux-image-4.19.0-6-amd64 ncal python2 python2-minimal
+  python3.7-minimal
+使用'apt autoremove'来卸载它(它们)。
+升级了 0 个软件包，新安装了 0 个软件包，要卸载 0 个软件包，有 8 个软件包未被升级。
