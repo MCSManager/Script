@@ -1,5 +1,11 @@
 #!/bin/bash
-
+# 检查当前用户是否为 root 用户
+if [ $(id -u) -ne 0 ]; then
+    echo -e "\033[31m需要 root 权限执行此脚本，请使用 sudo 或者切换到 root 用户。\033[0m"
+    exit 1
+fi
+# 如果当前用户是 root 用户，则执行脚本的主体部分
+echo -e "\033[33m当前用户是 root 用户，开始执行 MCSManager 安装脚本。\033[0m"
 # Config
 mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_donwload_addr="https://gitee.com/mcsmanager/MCSManager/releases/download/release/mcsmanager_linux_release.tar.gz"
