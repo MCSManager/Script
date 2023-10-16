@@ -1,6 +1,6 @@
 #!/bin/bash
 # 检查当前用户是否为 root 用户
-if [ $(id -u) -ne 0 ]; then
+if [[ $(id -u) -ne 0 ]]; then
     echo -e "\033[31m需要 root 权限执行此脚本，请使用 sudo 或者切换到 root 用户。\033[0m"
     exit 1
 fi
@@ -76,7 +76,7 @@ Install_Node() {
 
   rm -rf node-"$node"-linux-"$arch".tar.gz
 
-  if [ -f "$node_install_path"/bin/node ] && [ "$("$node_install_path"/bin/node -v)" == "$node" ]
+  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]
   then
     echo_green "Success"
   else
@@ -181,7 +181,7 @@ WantedBy=multi-user.target
 
   printf "\n\n"
   echo_yellow "=================================================================="
-  if [ "$zh" == 1 ]; then
+  if [[ "$zh" == 1 ]]; then
     echo_green "安装已完成！欢迎使用 MCSManager 面板！"
     echo_yellow " "
     echo_cyan_n "控制面板地址：   "
@@ -216,19 +216,19 @@ WantedBy=multi-user.target
 
 
 # Environmental inspection
-if [ "$arch" == x86_64 ]; then
+if [[ "$arch" == x86_64 ]]; then
   arch=x64
   #echo "[-] x64 architecture detected"
-elif [ $arch == aarch64 ]; then
+elif [[ $arch == aarch64 ]]; then
   arch=arm64
   #echo "[-] 64-bit ARM architecture detected"
-elif [ $arch == arm ]; then
+elif [[ $arch == arm ]]; then
   arch=armv7l
   #echo "[-] 32-bit ARM architecture detected"
-elif [ $arch == ppc64le ]; then
+elif [[ $arch == ppc64le ]]; then
   arch=ppc64le
   #echo "[-] IBM POWER architecture detected"
-elif [ $arch == s390x ]; then
+elif [[ $arch == s390x ]]; then
   arch=s390x
   #echo "[-] IBM LinuxONE architecture detected"
 else
@@ -245,10 +245,10 @@ echo_cyan "[-] Architecture: $arch"
 
 # Install related software
 echo_cyan_n "[+] Installing dependent software(git,tar)... "
-if [ -x "$(command -v yum)" ]; then yum install -y git tar > error;
-elif [ -x "$(command -v apt-get)" ]; then apt-get install -y git tar > error;
-elif [ -x "$(command -v pacman)" ]; then pacman -Syu --noconfirm git tar > error;
-elif [ -x "$(command -v zypper)" ]; then sudo zypper --non-interactive install git tar > error;
+if [[ -x "$(command -v yum)" ]]; then yum install -y git tar > error;
+elif [[ -x "$(command -v apt-get)" ]]; then apt-get install -y git tar > error;
+elif [[ -x "$(command -v pacman)" ]]; then pacman -Syu --noconfirm git tar > error;
+elif [[ -x "$(command -v zypper)" ]]; then sudo zypper --non-interactive install git tar > error;
 fi
 
 # Determine whether the relevant software is installed successfully
