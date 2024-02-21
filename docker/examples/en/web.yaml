@@ -14,4 +14,3 @@ services:
     # port:
     #   - 23333:23333 
     network_mode: host
-    command: /entrypoint.sh
