@@ -21,9 +21,6 @@ RUN cd /tmp \
 RUN cd /opt/web \
     && /opt/node/bin/node /opt/node/bin/npm install --production
 
-USER container
-ENV USER=container HOME=/home/container
-
 WORKDIR /opt/web
 COPY ./entrypoint.sh /
 CMD ["/bin/bash", "/entrypoint.sh"]
