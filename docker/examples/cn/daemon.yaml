@@ -8,9 +8,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Daemon 日志存储目录
-      - /opt/mcsmanager/data/logs/daemon:/opt/daemon/logs
+      - ./data/logs/daemon:/opt/daemon/logs
       # MCSManager Daemon 数据存储目录
-      - /opt/mcsmanager/data/data/daemon:/opt/daemon/data
+      - ./data/data/daemon:/opt/daemon/data
     # port:
     #   - 24444:24444
     network_mode: host
