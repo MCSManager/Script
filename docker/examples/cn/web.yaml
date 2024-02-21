@@ -1,15 +1,16 @@
-version: "2.4"
+version: "3"
 
 services:
   web:
-    image: bluefunny/mcsm-web:latest
+    image: bluefunny/mcsmanager:web-9
+    container_name: mcsmanager-web
+    environment:
+      - TZ=Asia/Shanghai
     volumes:
-      # 此处为 MCSManager 控制面板日志存储目录
-      # 默认为 [/var/logs/mcsmanager/web]
-      - /var/logs/mcsmanager/web:/logs
-
-      # 此处为 MCSManager 控制面板日志存储目录
-      # 默认为当前目录下的 data/web 文件夹
-      - ./data/web:/data
+      # MCSManager Web 日志存储目录
+      - ./data/logs/web:/opt/web/logs
+      # MCSManager Web 数据存储目录
+      - ./data/data/web:/opt/web/data
+    # port:
+    #   - 23333:23333 
     network_mode: host
-    command: /start
