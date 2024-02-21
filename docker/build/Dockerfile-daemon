@@ -13,7 +13,7 @@ RUN cd /tmp \
     && mkdir -p /tmp/mcsmanager \
     && tar -xzf node.tar.gz -C /opt/node --strip-components=1 \
     && tar -xzf mcsmanager.tar.gz -C /tmp/mcsmanager  \
-    && mv -f /tmp/mcsmanager/${TYPE} /opt/daemon \
+    && mv -f /tmp/mcsmanager/daemon /opt/daemon \
     && rm -rf /tmp/mcsmanager \
     && rm -rf node.tar.gz \
     && rm -rf mcsmanager.tar.gz

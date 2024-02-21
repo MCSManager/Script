@@ -24,9 +24,8 @@ def cmd_build(args: argparse.Namespace):
 
 		cmd = [
 			'docker', 'build', os.getcwd(),
+			'-f', f'Dockerfile-{ctx.type}',
 			'-t', ctx.tag,
-			'--build-arg', f'TYPE={ctx.type}',
-			'--build-arg', f'VERSION={ctx.version}',
 		]
 
 		if args.http_proxy is not None:
