@@ -1,15 +1,17 @@
-version: "2.4"
+version: "3"
 
 services:
   daemon:
-    image: bluefunny/mcsm-daemon:latest
+    image: bluefunny/mcsmanager-daemon:latest
+    name: mcsmanager-daemon
+    environment:
+      - TZ=Asia/Shanghai
     volumes:
-      # This is the MCSManager web panel log storage directory
-      # Default is [/var/logs/mcsmanager/daemon]
-      - /var/logs/mcsmanager/daemon:/logs
-
-      # This is the MCSManager daemon data storage directory
-      # Default is the data/daemon folder in the current directory
-      - ./data/daemon:/data
+      # MCSManager Daemon log storage directory
+      - /opt/mcsmanager/data/logs/daemon:/opt/daemon/logs
+      # MCSManager Daemon data storage directory
+      - /opt/mcsmanager/data/data/daemon:/opt/daemon/data
+    # port:
+    #   - 24444:24444
     network_mode: host
-    command: /start
+    command: /entrypoint.sh

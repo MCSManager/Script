@@ -1,28 +1,32 @@
-version: "2.4"
+version: "3"
 
 services:
   web:
-    image: bluefunny/mcsm-web:latest
+    image: bluefunny/mcsmanager-web:latest
+    name: mcsmanager-web
+    environment:
+      - TZ=Asia/Shanghai
     volumes:
-      # This is the MCSManager web panel log storage directory
-      # The default is [/var/logs/mcsmanager/web]
-      - /var/logs/mcsmanager/web:/logs
-
-      # This is the MCSManager web panel data storage directory
-      # The default is the data/web folder in the current directory
-      - ./data/web:/data
+      # MCSManager Web log storage directory
+      - /opt/mcsmanager/data/logs/web:/opt/web/logs
+      # MCSManager Web data storage directory
+      - /opt/mcsmanager/data/data/web:/opt/web/data
+    # port:
+    #   - 23333:23333 
     network_mode: host
-    command: /start
+    command: /entrypoint.sh
 
   daemon:
-    image: bluefunny/mcsm-daemon:latest
+    image: bluefunny/mcsmanager-daemon:latest
+    name: mcsmanager-daemon
+    environment:
+      - TZ=Asia/Shanghai
     volumes:
-      # This is the MCSManager daemon log storage directory
-      # The default is [/var/logs/mcsmanager/daemon]
-      - /var/logs/mcsmanager/daemon:/logs
-
-      # This is the MCSManager daemon data storage directory
-      # The default is the data/daemon folder in the current directory
-      - ./data/daemon:/data
+      # MCSManager Daemon log storage directory
+      - /opt/mcsmanager/data/logs/daemon:/opt/daemon/logs
+      # MCSManager Daemon data storage directory
+      - /opt/mcsmanager/data/data/daemon:/opt/daemon/data
+    # port:
+    #   - 24444:24444
     network_mode: host
-    command: /start
+    command: /entrypoint.sh
