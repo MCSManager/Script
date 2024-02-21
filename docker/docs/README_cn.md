@@ -41,7 +41,7 @@ version: "3"
 
 services:
   web:
-    image: bluefunny/mcsmanager-web:latest
+    image: bluefunny/mcsmanager:web-9
     name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
@@ -56,7 +56,7 @@ services:
     command: /entrypoint.sh
 
   daemon:
-    image: bluefunny/mcsmanager-daemon:latest
+    image: bluefunny/mcsmanager:daemon-9
     name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
@@ -79,7 +79,7 @@ version: "3"
 
 services:
   web:
-    image: bluefunny/mcsmanager-web:latest
+    image: bluefunny/mcsmanager:web-9
     name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
@@ -102,7 +102,7 @@ version: "3"
 
 services:
   daemon:
-    image: bluefunny/mcsmanager-daemon:latest
+    image: bluefunny/mcsmanager:daemon-9
     name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
