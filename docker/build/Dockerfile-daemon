@@ -21,8 +21,8 @@ RUN cd /tmp \
 RUN cd /opt/daemon \
     && /opt/node/bin/node /opt/node/bin/npm install --production
 
-USER mcsmanager
-ENV USER=mcsmanager HOME=/home/mcsmanager
+USER container
+ENV USER=container HOME=/home/container
 
 WORKDIR /opt/daemon
 COPY ./entrypoint.sh /
