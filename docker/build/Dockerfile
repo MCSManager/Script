@@ -1,5 +1,3 @@
-ARG TYPE=daemon
-ARG VERSION=9
 FROM debian:stable-slim AS base
 
 RUN sed -i.bak 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/debian.sources \
@@ -15,17 +13,17 @@ RUN cd /tmp \
     && mkdir -p /tmp/mcsmanager \
     && tar -xzf node.tar.gz -C /opt/node --strip-components=1 \
     && tar -xzf mcsmanager.tar.gz -C /tmp/mcsmanager  \
-    && mv -f /tmp/mcsmanager/${TYPE} /opt/${TYPE} \
+    && mv -f /tmp/mcsmanager/${TYPE} /opt/daemon \
     && rm -rf /tmp/mcsmanager \
     && rm -rf node.tar.gz \
     && rm -rf mcsmanager.tar.gz
 
-RUN cd /opt/${TYPE} \
+RUN cd /opt/daemon \
     && /opt/node/bin/node /opt/node/bin/npm install --production
 
 USER mcsmanager
 ENV USER=mcsmanager HOME=/home/mcsmanager
 
-WORKDIR /opt/${TYPE}
+WORKDIR /opt/daemon
 COPY ./entrypoint.sh /
 CMD ["/bin/bash", "/entrypoint.sh"]
