@@ -1,5 +1,5 @@
-ARG TYPE
-ARG VERSION
+ARG TYPE=daemon
+ARG VERSION=9
 FROM debian:stable-slim AS base
 
 RUN sed -i.bak 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.d/debian.sources \
