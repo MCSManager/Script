@@ -22,8 +22,9 @@ sudo su
 Then, create some basic directories that will be used later.
 
 ```bash
-mkdir -p /opt/mcsmanager          # MCSManager container directory
-mkdir -p /opt/mcsmanager/data     # MCSManager data directory
+mkdir -p /opt/mcsmanager           # MCSManager container directory
+mkdir -p /opt/mcsmanager/data      # MCSManager data directory
+chown -R 1000:1000 /opt/mcsmanager # Modify directory permissions
 cd /opt/mcsmanager
 ```
 
@@ -46,9 +47,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Web logs directory
-      - /opt/mcsmanager/data/logs/web:/opt/web/logs
+      - ./data/logs/web:/opt/web/logs
       # MCSManager Web data directory
-      - /opt/mcsmanager/data/data/web:/opt/web/data
+      - ./data/data/web:/opt/web/data
     # port:
     #   - 23333:23333 
     network_mode: host
@@ -61,9 +62,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Daemon logs directory
-      - /opt/mcsmanager/data/logs/daemon:/opt/daemon/logs
+      - ./data/logs/daemon:/opt/daemon/logs
       # MCSManager Daemon data directory
-      - /opt/mcsmanager/data/data/daemon:/opt/daemon/data
+      - ./data/data/daemon:/opt/daemon/data
     # port:
     #   - 24444:24444
     network_mode: host
@@ -84,9 +85,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Web logs directory
-      - /opt/mcsmanager/data/logs/web:/opt/web/logs
+      - ./data/logs/web:/opt/web/logs
       # MCSManager Web data directory
-      - /opt/mcsmanager/data/data/web:/opt/web/data
+      - ./data/data/web:/opt/web/data
     # port:
     #   - 23333:23333 
     network_mode: host
@@ -107,9 +108,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Daemon logs directory
-      - /opt/mcsmanager/data/logs/daemon:/opt/daemon/logs
+      - ./data/logs/daemon:/opt/daemon/logs
       # MCSManager Daemon data directory
-      - /opt/mcsmanager/data/data/daemon:/opt/daemon/data
+      - ./data/data/daemon:/opt/daemon/data
     # port:
     #   - 24444:24444
     network_mode: host

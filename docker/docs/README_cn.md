@@ -22,8 +22,9 @@ sudo su
 然后使用以下命令创建一些待会儿会用到的基本目录
 
 ```bash
-mkdir -p /opt/mcsmanager          # MCSManager 容器文件目录
-mkdir -p /opt/mcsmanager/data     # MCSManager 数据文件目录
+mkdir -p /opt/mcsmanager           # MCSManager 容器文件目录
+mkdir -p /opt/mcsmanager/data      # MCSManager 数据文件目录
+chown -R 1000:1000 /opt/mcsmanager # 修改目录权限
 cd /opt/mcsmanager
 ```
 
@@ -46,9 +47,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Web 日志存储目录
-      - /opt/mcsmanager/data/logs/web:/opt/web/logs
+      - ./data/logs/web:/opt/web/logs
       # MCSManager Web 数据存储目录
-      - /opt/mcsmanager/data/data/web:/opt/web/data
+      - ./data/data/web:/opt/web/data
     # port:
     #   - 23333:23333 
     network_mode: host
@@ -61,9 +62,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Daemon 日志存储目录
-      - /opt/mcsmanager/data/logs/daemon:/opt/daemon/logs
+      - ./data/logs/daemon:/opt/daemon/logs
       # MCSManager Daemon 数据存储目录
-      - /opt/mcsmanager/data/data/daemon:/opt/daemon/data
+      - ./data/data/daemon:/opt/daemon/data
     # port:
     #   - 24444:24444
     network_mode: host
@@ -84,9 +85,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Web 日志存储目录
-      - /opt/mcsmanager/data/logs/web:/opt/web/logs
+      - ./data/logs/web:/opt/web/logs
       # MCSManager Web 数据存储目录
-      - /opt/mcsmanager/data/data/web:/opt/web/data
+      - ./data/data/web:/opt/web/data
     # port:
     #   - 23333:23333 
     network_mode: host
@@ -107,9 +108,9 @@ services:
       - TZ=Asia/Shanghai
     volumes:
       # MCSManager Daemon 日志存储目录
-      - /opt/mcsmanager/data/logs/daemon:/opt/daemon/logs
+      - ./data/logs/daemon:/opt/daemon/logs
       # MCSManager Daemon 数据存储目录
-      - /opt/mcsmanager/data/data/daemon:/opt/daemon/data
+      - ./data/data/daemon:/opt/daemon/data
     # port:
     #   - 24444:24444
     network_mode: host
