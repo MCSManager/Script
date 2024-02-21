@@ -177,4 +177,8 @@ docker push <tag> # If you need to push the images to Docker Hub, note: this req
 
 After the build is complete, you just need to replace the `image` section in the configuration files mentioned above with the name of the image you built yourself.
 
+## Acknowledgements
+
+The script was adapted from the personal repository of Fallen_breath: https://github.com/Fallen-Breath/pterodactyl-eggs
+
 ### This article was translated by ChatGPT, there may be some errors, if you find these errors, please submit an Issue to let us know

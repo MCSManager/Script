@@ -176,3 +176,7 @@ docker push <标签> # 如果你需要将镜像推送到 Docker Hub, 注意: 这
 ```
 
 在构建完成后, 你只需要将上文中配置文件中的 `image` 部分替换为你自行构建的镜像名称即可
+
+## 致谢
+
+构建脚本来源于 Fallen_breath 的个人仓库: https://github.com/Fallen-Breath/pterodactyl-eggs
