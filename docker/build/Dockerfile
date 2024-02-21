@@ -11,6 +11,7 @@ RUN sed -i.bak 's/deb.debian.org/mirrors.cernet.edu.cn/g' /etc/apt/sources.list.
 RUN cd /tmp \
     && wget https://nodejs.org/dist/latest-v20.x/node-v20.11.1-linux-x64.tar.gz -O node.tar.gz \
     && wget https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz -O mcsmanager.tar.gz \
+    && mkdir -p /opt/node \
     && tar -xzf node.tar.gz -C /opt/node --strip-components=1 \
     && tar -xzf mcsmanager.tar.gz -C /tmp/mcsmanager  \
     && mv -f /tmp/mcsmanager/${TYPE} /opt/${TYPE} \
