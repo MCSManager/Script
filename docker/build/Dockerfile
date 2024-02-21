@@ -21,7 +21,7 @@ RUN cd /tmp \
     && rm -rf mcsmanager.tar.gz
 
 RUN cd /opt/${TYPE} \
-    && /opt/node/bin/npm install --production
+    && /opt/node/bin/node /opt/node/bin/npm install --production
 
 USER mcsmanager
 ENV USER=mcsmanager HOME=/home/mcsmanager
