@@ -3,7 +3,7 @@ version: "3"
 services:
   web:
     image: bluefunny/mcsmanager-web:latest
-    name: mcsmanager-web
+    container_name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
     volumes:
@@ -18,7 +18,7 @@ services:
 
   daemon:
     image: bluefunny/mcsmanager-daemon:latest
-    name: mcsmanager-daemon
+    container_name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
     volumes:

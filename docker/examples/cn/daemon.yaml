@@ -3,7 +3,7 @@ version: "3"
 services:
   daemon:
     image: bluefunny/mcsmanager-daemon:latest
-    name: mcsmanager-daemon
+    container_name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
     volumes:

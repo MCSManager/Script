@@ -3,7 +3,7 @@ version: "3"
 services:
   web:
     image: bluefunny/mcsmanager-web:latest
-    name: mcsmanager-web
+    container_name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
     volumes:
