@@ -137,7 +137,7 @@ docker compose -f docker-compose.yaml up -d
 如果后期你不需要 MCSManager 了, 你可以进入你用于放置 `docker-compose.yml` 的文件夹, 然后输入以下命令以卸载
 
 ```bash
-docker compose down
+docker compose -f docker-compose.yaml down
 rm -rf data
 ```
 

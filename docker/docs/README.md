@@ -137,7 +137,7 @@ If everything runs smoothly, shortly after, you can access `http://127.0.0.1:233
 If you no longer need MCSManager later on, you can navigate to the folder where you placed `docker-compose.yml` and then enter the following command to uninstall.
 
 ```bash
-docker compose down
+docker compose -f docker-compose.yaml down
 rm -rf data
 ```
 
