@@ -40,7 +40,7 @@ version: "3"
 
 services:
   web:
-    image: bluefunny/mcsm-web:latest
+    image: bluefunny/mcsmanager-web:latest
     name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
@@ -55,7 +55,7 @@ services:
     command: /entrypoint.sh
 
   daemon:
-    image: bluefunny/mcsm-daemon:latest
+    image: bluefunny/mcsmanager-daemon:latest
     name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
@@ -78,7 +78,7 @@ version: "3"
 
 services:
   web:
-    image: bluefunny/mcsm-web:latest
+    image: bluefunny/mcsmanager-web:latest
     name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
@@ -101,7 +101,7 @@ version: "3"
 
 services:
   daemon:
-    image: bluefunny/mcsm-daemon:latest
+    image: bluefunny/mcsmanager-daemon:latest
     name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
@@ -171,7 +171,7 @@ python build.py build --push # 如果你需要将镜像推送到 Docker Hub, 注
 如果你不想使用 `build.py` 脚本, 你也可以使用以下命令构建镜像
 
 ```bash
-docker build . -f <构建文件> -t <标签> # 例如: docker build . -f Dockerfile -t bluefunny/mcsm-daemon:9 --build-arg TYPE=daemon --build-arg VERSION=9
+docker build . -f <构建文件> -t <标签> # 例如: docker build . -f Dockerfile -t bluefunny/mcsmanager-daemon:9 --build-arg TYPE=daemon --build-arg VERSION=9
 docker push <标签> # 如果你需要将镜像推送到 Docker Hub, 注意: 这需要你自己预先配置好 Docker Registry
 ```
 

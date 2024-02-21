@@ -40,7 +40,7 @@ version: "3"
 
 services:
   web:
-    image: bluefunny/mcsm-web:latest
+    image: bluefunny/mcsmanager-web:latest
     name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
@@ -55,7 +55,7 @@ services:
     command: /entrypoint.sh
 
   daemon:
-    image: bluefunny/mcsm-daemon:latest
+    image: bluefunny/mcsmanager-daemon:latest
     name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
@@ -78,7 +78,7 @@ version: "3"
 
 services:
   web:
-    image: bluefunny/mcsm-web:latest
+    image: bluefunny/mcsmanager-web:latest
     name: mcsmanager-web
     environment:
       - TZ=Asia/Shanghai
@@ -101,7 +101,7 @@ version: "3"
 
 services:
   daemon:
-    image: bluefunny/mcsm-daemon:latest
+    image: bluefunny/mcsmanager-daemon:latest
     name: mcsmanager-daemon
     environment:
       - TZ=Asia/Shanghai
@@ -171,7 +171,7 @@ python build.py build --push # If you need to push the images to Docker Hub, not
 If you prefer not to use the `build.py` script, you can also use the following commands to build the images.
 
 ```bash
-docker build . -f <build file> -t <tag> # For example: docker build . -f Dockerfile -t bluefunny/mcsm-daemon:9 --build-arg TYPE=daemon --build-arg VERSION=9
+docker build . -f <build file> -t <tag> # For example: docker build . -f Dockerfile -t bluefunny/mcsmanager-daemon:9 --build-arg TYPE=daemon --build-arg VERSION=9
 docker push <tag> # If you need to push the images to Docker Hub, note: this requires you to pre-configure Docker Registry yourself.
 ```
 
