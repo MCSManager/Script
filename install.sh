@@ -44,7 +44,7 @@ Red_Error() {
 
 
 Install_Node() {
-  echo_cyan_n "[+] Install Node.JS environment... "
+  echo_cyan_n "[+] Install Node.JS environment...\n"
 
   rm -irf "$node_install_path"
 
@@ -96,7 +96,7 @@ Install_MCSManager() {
 
   # donwload MCSManager release
   wget ${mcsmanager_donwload_addr}
-  tar -zxf ${package_name} -o
+  tar -zxf ${package_name} -o || exit
   rm -rf "${mcsmanager_install_path}/${package_name}"
   
   # echo "[→] cd daemon"
@@ -124,10 +124,11 @@ Install_MCSManager() {
 
 Create_Service() {
   echo_cyan "[+] Create MCSManager service..."
+  echo_cyan "[!] Try to register to the "systemctl", This comomand require \"root\" permission."
 
-  echo "
-[Unit]
-Description=MCSManager Daemon
+  sudo su
+  echo "[Unit]
+Description=MCSManager-Daemon
 
 [Service]
 WorkingDirectory=/opt/mcsmanager/daemon
@@ -140,9 +141,8 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " > /etc/systemd/system/mcsm-daemon.service
 
-  echo "
-[Unit]
-Description=MCSManager Web
+  echo "[Unit]
+Description=MCSManager-Web
 
 [Service]
 WorkingDirectory=/opt/mcsmanager/web
@@ -155,11 +155,21 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " > /etc/systemd/system/mcsm-web.service
 
-  systemctl daemon-reload
-  systemctl enable mcsm-daemon.service --now
-  systemctl enable mcsm-web.service --now
 
-  sleep 3
+  if [ -e "/etc/systemd/system/mcsm-web.service" ]; then
+    systemctl daemon-reload
+    systemctl enable mcsm-daemon.service --now
+    systemctl enable mcsm-web.service --now
+    exit
+    echo_green "Registered!"
+  else
+    echo_red "Failed to register the system service. Please use the "ROOT" account to re-run the script and ensure that the "sudo" command is available."
+    exit
+    exit
+  fi
+
+
+  sleep 2
 
   printf "\n\n\n\n"
 
