@@ -127,7 +127,6 @@ Create_Service() {
   echo_cyan "[+] Create MCSManager service..."
   echo_cyan "[!] Try to register to the "systemctl", This comomand require \"root\" permission."
 
-  
   sudo echo "[Unit]
 Description=MCSManager-Daemon
 
@@ -156,16 +155,17 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " > /etc/systemd/system/mcsm-web.service
 
-
   if [ -e "/etc/systemd/system/mcsm-web.service" ]; then
     sudo systemctl daemon-reload
     sudo systemctl enable mcsm-daemon.service --now
     sudo systemctl enable mcsm-web.service --now
     echo_green "Registered!"
   else
-    echo_red "Failed to register the system service. Please use the "ROOT" account to re-run the script and ensure that the "sudo" command is available."
+    printf "\n\n"
+    echo_red "The MCSManager was successfully installed to \"/opt/mcsmanager\"."
+    echo_red "But register to the \"systemctl\" failed!\nPlease use the \"root\" account to re-run the script!"
+    exit
   fi
-
 
   sleep 2
 
@@ -219,9 +219,9 @@ echo_cyan "[-] Architecture: $arch"
 
 # Install related software
 echo_cyan_n "[+] Installing dependent software(git,tar)... "
-if [[ -x "$(command -v yum)" ]]; then yum install -y git tar > error;
-elif [[ -x "$(command -v apt-get)" ]]; then apt-get install -y git tar > error;
-elif [[ -x "$(command -v pacman)" ]]; then pacman -Syu --noconfirm git tar > error;
+if [[ -x "$(command -v yum)" ]]; then sudo yum install -y git tar > error;
+elif [[ -x "$(command -v apt-get)" ]]; then sudo apt-get install -y git tar > error;
+elif [[ -x "$(command -v pacman)" ]]; then sudo pacman -Syu --noconfirm git tar > error;
 elif [[ -x "$(command -v zypper)" ]]; then sudo zypper --non-interactive install git tar > error;
 fi
 
