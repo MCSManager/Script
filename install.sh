@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/MCSManager-v10-linux.tar.gz"
+mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
 package_name="MCSManager-v10-linux.tar.gz"
 node="v16.20.2"
 
