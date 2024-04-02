@@ -119,7 +119,9 @@ Install_MCSManager() {
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
-
+  
+  sudo chmod -R 755 /opt/mcsmanager/
+  
   sleep 3
 }
 
