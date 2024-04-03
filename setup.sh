@@ -1,16 +1,15 @@
 #!/bin/bash
 
-# Config
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
-node="v14.19.1"
+mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
+package_name="MCSManager-v10-linux.tar.gz"
+node="v16.20.2"
 
 error=""
 arch=$(uname -m)
 
 printf "\033c"
 
-# print func
 echo_cyan() {
   printf '\033[1;36m%b\033[0m\n' "$@"
 }
@@ -34,10 +33,6 @@ echo_yellow() {
 echo_cyan "+----------------------------------------------------------------------
 | MCSManager Installer
 +----------------------------------------------------------------------
-| Copyright © 2023 MCSManager.
-+----------------------------------------------------------------------
-| Contributors: Nuomiaa, CreeperKong, Unitwk, FunnyShadow
-+----------------------------------------------------------------------
 "
 
 Red_Error() {
@@ -47,15 +42,14 @@ Red_Error() {
   exit 1
 }
 
-
 Install_Node() {
-  echo_cyan_n "[+] Install Node.JS environment... "
+  echo_cyan_n "[+] Install Node.JS environment...\n"
 
-  rm -irf "$node_install_path"
+  sudo rm -irf "$node_install_path"
 
   cd /opt || exit
 
-  rm -rf  node-"$node"-linux-"$arch".tar.gz
+  rm -rf node-"$node"-linux-"$arch".tar.gz
 
   wget https://nodejs.org/dist/"$node"/node-"$node"-linux-"$arch".tar.gz
 
@@ -63,8 +57,7 @@ Install_Node() {
 
   rm -rf node-"$node"-linux-"$arch".tar.gz
 
-  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]
-  then
+  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
     echo_green "Success"
   else
     echo_red "Failed"
@@ -81,40 +74,39 @@ Install_Node() {
   sleep 3
 }
 
-
 Install_MCSManager() {
   echo_cyan "[+] Install MCSManager..."
 
   # stop service
-  systemctl stop mcsm-{web,daemon}
+  sudo systemctl stop mcsm-{web,daemon}
+  sudo systemctl disable mcsm-{web,daemon}
 
   # delete service
-  rm -rf /etc/systemd/system/mcsm-daemon.service
-  rm -rf /etc/systemd/system/mcsm-web.service
-  systemctl daemon-reload
+  sudo rm -rf /etc/systemd/system/mcsm-daemon.service
+  sudo rm -rf /etc/systemd/system/mcsm-web.service
+  sudo systemctl daemon-reload
 
   mkdir -p ${mcsmanager_install_path} || exit
 
   # cd /opt/mcsmanager
   cd ${mcsmanager_install_path} || exit
 
-
   # donwload MCSManager release
   wget ${mcsmanager_donwload_addr}
-  tar -zxf mcsmanager_linux_release.tar.gz -o
-  rm -rf "${mcsmanager_install_path}/mcsmanager_linux_release.tar.gz"
-  
+  tar -zxf ${package_name} -o || exit
+  rm -rf "${mcsmanager_install_path}/${package_name}"
+
   # echo "[→] cd daemon"
   cd daemon || exit
 
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production > npm_install_log
+  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit >npm_install_log
 
   # echo "[←] cd .."
   cd ../web || exit
 
   echo_cyan "[+] Install MCSManager-Web dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production > npm_install_log
+  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit >npm_install_log
 
   echo
   echo_yellow "=============== MCSManager ==============="
@@ -124,15 +116,17 @@ Install_MCSManager() {
   echo
   echo_green "[+] MCSManager installation success!"
 
+  sudo chmod -R 755 /opt/mcsmanager/
+
   sleep 3
 }
 
 Create_Service() {
   echo_cyan "[+] Create MCSManager service..."
+  echo_cyan "[!] Try to register to the "systemctl", This comomand require \"root\" permission."
 
-  echo "
-[Unit]
-Description=MCSManager Daemon
+  sudo echo "[Unit]
+Description=MCSManager-Daemon
 
 [Service]
 WorkingDirectory=/opt/mcsmanager/daemon
@@ -143,11 +137,10 @@ Environment=\"PATH=${PATH}\"
 
 [Install]
 WantedBy=multi-user.target
-" > /etc/systemd/system/mcsm-daemon.service
+" >/etc/systemd/system/mcsm-daemon.service
 
-  echo "
-[Unit]
-Description=MCSManager Web
+  sudo echo "[Unit]
+Description=MCSManager-Web
 
 [Service]
 WorkingDirectory=/opt/mcsmanager/web
@@ -158,33 +151,41 @@ Environment=\"PATH=${PATH}\"
 
 [Install]
 WantedBy=multi-user.target
-" > /etc/systemd/system/mcsm-web.service
+" >/etc/systemd/system/mcsm-web.service
 
-  systemctl daemon-reload
-  systemctl enable mcsm-daemon.service --now
-  systemctl enable mcsm-web.service --now
+  if [ -e "/etc/systemd/system/mcsm-web.service" ]; then
+    sudo systemctl daemon-reload
+    sudo systemctl enable mcsm-daemon.service --now
+    sudo systemctl enable mcsm-web.service --now
+    echo_green "Registered!"
+  else
+    printf "\n\n"
+    echo_red "The MCSManager was successfully installed to \"/opt/mcsmanager\"."
+    echo_red "But register to the \"systemctl\" failed!\nPlease use the \"root\" account to re-run the script!"
+    exit
+  fi
 
-  sleep 3
+  sleep 2
 
-  printf "\n\n"
+  printf "\n\n\n\n"
 
   echo_yellow "=================================================================="
-  echo_green "Installation is complete! Welcome to the MCSManager panel !!!"
-    echo_yellow " "
-    echo_cyan_n "HTTP Web Service:        "; echo_yellow "http://<Your IP>:23333"
-    echo_cyan_n "Daemon Address:          "; echo_yellow "ws://<Your IP>:24444"
-    echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
-    echo_yellow " "
-    echo_cyan "Usage:"
-    echo_cyan "systemctl start mcsm-{daemon,web}.service"
-    echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-    echo_cyan "systemctl restart mcsm-{daemon,web}.service"
-    echo_yellow " "
-    echo_green "Official Document: https://docs.mcsmanager.com/"
-    echo_yellow "=================================================================="
+  echo_green "Installation is complete! Welcome to the MCSManager!!!"
+  echo_yellow " "
+  echo_cyan_n "HTTP Web Service:        "
+  echo_yellow "http://<Your IP>:23333  (Browser)"
+  echo_cyan_n "Daemon Address:          "
+  echo_yellow "ws://<Your IP>:24444    (Cluster)"
+  echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+  echo_yellow " "
+  echo_cyan "Usage:"
+  echo_cyan "systemctl start mcsm-{daemon,web}.service"
+  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
+  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+  echo_yellow " "
+  echo_green "Official Document: https://docs.mcsmanager.com/"
+  echo_yellow "=================================================================="
 }
-
-
 
 # Environmental inspection
 if [[ "$arch" == x86_64 ]]; then
@@ -216,23 +217,25 @@ echo_cyan "[-] Architecture: $arch"
 
 # Install related software
 echo_cyan_n "[+] Installing dependent software(git,tar)... "
-if [[ -x "$(command -v yum)" ]]; then yum install -y git tar > error;
-elif [[ -x "$(command -v apt-get)" ]]; then apt-get install -y git tar > error;
-elif [[ -x "$(command -v pacman)" ]]; then pacman -Syu --noconfirm git tar > error;
-elif [[ -x "$(command -v zypper)" ]]; then sudo zypper --non-interactive install git tar > error;
+if [[ -x "$(command -v yum)" ]]; then
+  sudo yum install -y git tar >error
+elif [[ -x "$(command -v apt-get)" ]]; then
+  sudo apt-get install -y git tar >error
+elif [[ -x "$(command -v pacman)" ]]; then
+  sudo pacman -Syu --noconfirm git tar >error
+elif [[ -x "$(command -v zypper)" ]]; then
+  sudo zypper --non-interactive install git tar >error
 fi
 
 # Determine whether the relevant software is installed successfully
-if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]
-  then
-    echo_green "Success"
-  else
-    echo_red "Failed"
-    echo "$error"
-    Red_Error "[x] Related software installation failed, please install git and tar packages manually!"
-    exit
+if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]; then
+  echo_green "Success"
+else
+  echo_red "Failed"
+  echo "$error"
+  Red_Error "[x] Related software installation failed, please install git and tar packages manually!"
+  exit
 fi
-
 
 # Install the Node environment
 Install_Node
@@ -242,4 +245,3 @@ Install_MCSManager
 
 # Create MCSManager background service
 Create_Service
-
