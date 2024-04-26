@@ -130,8 +130,10 @@ Create_Service() {
   fi
 
   useradd -r -M -s "$(command -v nologin)" -d "$mcsmanager_install_path" "$mcsmanager_user"
-
   chown $mcsmanager_user:$mcsmanager_user -R "$mcsmanager_install_path"
+
+  groupadd docker
+  usermod -aG docker mcsm
 
   echo "[Unit]
 Description=MCSManager-Daemon
