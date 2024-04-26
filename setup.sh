@@ -129,7 +129,8 @@ Create_Service() {
     userdel "$mcsmanager_user"
   fi
 
-  useradd -r -M -s "$(which nologin)" "$mcsmanager_user"
+  useradd -r -M -s "$(command -v nologin)" -d "$mcsmanager_install_path" "$mcsmanager_user"
+
   chown $mcsmanager_user:$mcsmanager_user -R "$mcsmanager_install_path"
 
   echo "[Unit]
@@ -215,24 +216,24 @@ node_install_path="/opt/node-$node-linux-$arch"
 echo_cyan "[-] Architecture: $arch"
 
 # Install related software
-echo_cyan_n "[+] Installing dependent software (git, tar)... "
+echo_cyan_n "[+] Installing dependent software (git, tar, wget)... "
 if [[ -x "$(command -v yum)" ]]; then
-  yum install -y git tar
+  yum install -y git tar wget
 elif [[ -x "$(command -v apt-get)" ]]; then
-  apt-get install -y git tar
+  apt-get install -y git tar wget
 elif [[ -x "$(command -v pacman)" ]]; then
-  pacman -S --noconfirm git tar
+  pacman -S --noconfirm git tar wget
 elif [[ -x "$(command -v zypper)" ]]; then
-  zypper --non-interactive install git tar
+  zypper --non-interactive install git tar wget
 else
-  echo_red "[!] Cannot find your package manager! You may need to install git and tar manually!"
+  echo_red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
 fi
 
 # Determine whether the relevant software is installed successfully
-if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]; then
+if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
   echo_green "Success"
 else
-  Red_Error "[x] Failed to find git and tar, please install them manually!"
+  Red_Error "[x] Failed to find git, tar and wget, please install them manually!"
 fi
 
 # Install the Node environment
