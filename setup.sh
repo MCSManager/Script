@@ -129,7 +129,7 @@ Create_Service() {
     userdel "$mcsmanager_user"
   fi
   
-  useradd -r -M -s "$(which nologin)" "$mcsmanager_user"
+  useradd -r -M -s "$(command -v nologin)" "$mcsmanager_user"
   chown $mcsmanager_user:$mcsmanager_user -R "$mcsmanager_install_path"
 
   echo "[Unit]
