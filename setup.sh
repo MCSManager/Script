@@ -55,16 +55,15 @@ Install_Node() {
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
-  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz"
+  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
 
-  tar -zxf "node-$node-linux-$arch.tar.gz"
+  tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
   if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
     echo_green "Success"
   else
-    echo_red "Failed"
     Red_Error "[x] Node installation failed!"
   fi
 
@@ -82,8 +81,7 @@ Install_MCSManager() {
   echo_cyan "[+] Install MCSManager..."
 
   # stop service
-  systemctl stop mcsm-{web,daemon}
-  systemctl disable mcsm-{web,daemon}
+  systemctl disable --now mcsm-{web,daemon}
 
   # delete service
   rm -rf /etc/systemd/system/mcsm-{daemon,web}.service
@@ -103,18 +101,18 @@ Install_MCSManager() {
   cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
 
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit >npm_install_log
+  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null
 
   # echo "[←] cd .."
   cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
 
   echo_cyan "[+] Install MCSManager-Web dependencies..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit >npm_install_log
+  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null
 
   echo
   echo_yellow "=============== MCSManager ==============="
-  echo_green " Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green " Web: ${mcsmanager_install_path}/web"
+  echo_green  "Daemon: ${mcsmanager_install_path}/daemon"
+  echo_green  "Web: ${mcsmanager_install_path}/web"
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
@@ -165,8 +163,7 @@ WantedBy=multi-user.target
 " > /etc/systemd/system/mcsm-web.service
 
   systemctl daemon-reload
-  systemctl enable mcsm-daemon.service --now
-  systemctl enable mcsm-web.service --now
+  systemctl enable --now mcsm-{daemon,web}.service
   echo_green "Registered!"
 
   sleep 2
@@ -228,7 +225,7 @@ elif [[ -x "$(command -v pacman)" ]]; then
 elif [[ -x "$(command -v zypper)" ]]; then
   zypper --non-interactive install git tar
 else
-  echo_red "[x] Don't know your package manager! You may need to install git and tar manually!"
+  echo_red "[!] Cannot find your package manager! You may need to install git and tar manually!"
 fi
 
 # Determine whether the relevant software is installed successfully
