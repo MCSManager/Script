@@ -2,11 +2,15 @@
 
 mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
+mcsmanager_user="mcsm"
 package_name="MCSManager-v10-linux.tar.gz"
 node="v16.20.2"
-
-error=""
 arch=$(uname -m)
+
+if [ "$(id -u)" -ne 0]; then
+  echo "This script must be run as root. Please use \"sudo bash\" instead."
+  exit 1
+fi
 
 printf "\033c"
 
@@ -45,29 +49,28 @@ Red_Error() {
 Install_Node() {
   echo_cyan_n "[+] Install Node.JS environment...\n"
 
-  sudo rm -irf "$node_install_path"
+  rm -irf "$node_install_path"
 
-  cd /opt || exit
+  cd /opt || Red_Error "[x] Failed to enter /opt"
 
-  rm -rf node-"$node"-linux-"$arch".tar.gz
+  rm -rf "node-$node-linux-$arch.tar.gz"
 
-  wget https://nodejs.org/dist/"$node"/node-"$node"-linux-"$arch".tar.gz
+  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
 
-  tar -zxf node-"$node"-linux-"$arch".tar.gz
+  tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
 
-  rm -rf node-"$node"-linux-"$arch".tar.gz
+  rm -rf "node-$node-linux-$arch.tar.gz"
 
   if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
     echo_green "Success"
   else
-    echo_red "Failed"
     Red_Error "[x] Node installation failed!"
   fi
 
   echo
   echo_yellow "=============== Node.JS Version ==============="
   echo_yellow " node: $("$node_install_path"/bin/node -v)"
-  echo_yellow " npm: v$(/usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
+  echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
   echo_yellow "=============== Node.JS Version ==============="
   echo
 
@@ -78,112 +81,110 @@ Install_MCSManager() {
   echo_cyan "[+] Install MCSManager..."
 
   # stop service
-  sudo systemctl stop mcsm-{web,daemon}
-  sudo systemctl disable mcsm-{web,daemon}
+  systemctl disable --now mcsm-{web,daemon}
 
   # delete service
-  sudo rm -rf /etc/systemd/system/mcsm-daemon.service
-  sudo rm -rf /etc/systemd/system/mcsm-web.service
-  sudo systemctl daemon-reload
+  rm -rf /etc/systemd/system/mcsm-{daemon,web}.service
+  systemctl daemon-reload
 
-  mkdir -p ${mcsmanager_install_path} || exit
+  mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] Failed to create ${mcsmanager_install_path}"
 
   # cd /opt/mcsmanager
-  cd ${mcsmanager_install_path} || exit
+  cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
   # donwload MCSManager release
-  wget ${mcsmanager_donwload_addr}
-  tar -zxf ${package_name} -o || exit
+  wget "${mcsmanager_donwload_addr}" || Red_Error "[x] Failed to download MCSManager"
+  tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
   # echo "[→] cd daemon"
-  cd daemon || exit
+  cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
 
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit >npm_install_log
+  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
 
   # echo "[←] cd .."
-  cd ../web || exit
+  cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
 
   echo_cyan "[+] Install MCSManager-Web dependencies..."
-  /usr/bin/env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit >npm_install_log
+  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
 
   echo
   echo_yellow "=============== MCSManager ==============="
-  echo_green " Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green " Web: ${mcsmanager_install_path}/web"
+  echo_green  "Daemon: ${mcsmanager_install_path}/daemon"
+  echo_green  "Web: ${mcsmanager_install_path}/web"
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
 
-  sudo chmod -R 755 /opt/mcsmanager/
+  chmod -R 755 "$mcsmanager_install_path"
 
   sleep 3
 }
 
 Create_Service() {
   echo_cyan "[+] Create MCSManager service..."
-  echo_cyan "[!] Try to register to the "systemctl", This comomand require \"root\" permission."
 
-  sudo echo "[Unit]
+  if id "$mcsmanager_user" &>/dev/null; then
+    userdel "$mcsmanager_user"
+  fi
+  
+  useradd -r -M -s "$(which nologin)" "$mcsmanager_user"
+  chown $mcsmanager_user:$mcsmanager_user -R "$mcsmanager_install_path"
+
+  echo "[Unit]
 Description=MCSManager-Daemon
 
 [Service]
-WorkingDirectory=/opt/mcsmanager/daemon
+User=${mcsmanager_user}
+WorkingDirectory=${mcsmanager_install_path}/daemon
 ExecStart=${node_install_path}/bin/node app.js
-ExecReload=/bin/kill -s QUIT $MAINPID
-ExecStop=/bin/kill -s QUIT $MAINPID
+ExecReload=/bin/kill -s QUIT \$MAINPID
+ExecStop=/bin/kill -s QUIT \$MAINPID
 Environment=\"PATH=${PATH}\"
 
 [Install]
 WantedBy=multi-user.target
-" >/etc/systemd/system/mcsm-daemon.service
+" > /etc/systemd/system/mcsm-daemon.service
 
-  sudo echo "[Unit]
+  echo "[Unit]
 Description=MCSManager-Web
 
 [Service]
-WorkingDirectory=/opt/mcsmanager/web
+User=${mcsmanager_user}
+WorkingDirectory=${mcsmanager_install_path}/web
 ExecStart=${node_install_path}/bin/node app.js
-ExecReload=/bin/kill -s QUIT $MAINPID
-ExecStop=/bin/kill -s QUIT $MAINPID
+ExecReload=/bin/kill -s QUIT \$MAINPID
+ExecStop=/bin/kill -s QUIT \$MAINPID
 Environment=\"PATH=${PATH}\"
 
 [Install]
 WantedBy=multi-user.target
-" >/etc/systemd/system/mcsm-web.service
+" > /etc/systemd/system/mcsm-web.service
 
-  if [ -e "/etc/systemd/system/mcsm-web.service" ]; then
-    sudo systemctl daemon-reload
-    sudo systemctl enable mcsm-daemon.service --now
-    sudo systemctl enable mcsm-web.service --now
-    echo_green "Registered!"
-  else
-    printf "\n\n"
-    echo_red "The MCSManager was successfully installed to \"/opt/mcsmanager\"."
-    echo_red "But register to the \"systemctl\" failed!\nPlease use the \"root\" account to re-run the script!"
-    exit
-  fi
+  systemctl daemon-reload
+  systemctl enable --now mcsm-{daemon,web}.service
+  echo_green "Registered!"
 
   sleep 2
 
   printf "\n\n\n\n"
 
   echo_yellow "=================================================================="
-  echo_green "Installation is complete! Welcome to the MCSManager!!!"
+  echo_green  "Installation is complete! Welcome to the MCSManager!!!"
   echo_yellow " "
   echo_cyan_n "HTTP Web Service:        "
   echo_yellow "http://<Your IP>:23333  (Browser)"
   echo_cyan_n "Daemon Address:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
-  echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+  echo_red    "You must expose ports 23333 and 24444 to use the service properly on the Internet."
   echo_yellow " "
-  echo_cyan "Usage:"
-  echo_cyan "systemctl start mcsm-{daemon,web}.service"
-  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+  echo_cyan   "Usage:"
+  echo_cyan   "systemctl start mcsm-{daemon,web}.service"
+  echo_cyan   "systemctl stop mcsm-{daemon,web}.service"
+  echo_cyan   "systemctl restart mcsm-{daemon,web}.service"
   echo_yellow " "
-  echo_green "Official Document: https://docs.mcsmanager.com/"
+  echo_green  "Official Document: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 }
 
@@ -204,9 +205,7 @@ elif [[ $arch == s390x ]]; then
   arch=s390x
   #echo "[-] IBM LinuxONE architecture detected"
 else
-  Red_Error "[x] Sorry, this architecture is not supported yet!"
-  Red_Error "[x] Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
-  exit
+  Red_Error "[x] Sorry, this architecture is not supported yet!\n[x]Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
 fi
 
 # Define the variable Node installation directory
@@ -216,25 +215,24 @@ node_install_path="/opt/node-$node-linux-$arch"
 echo_cyan "[-] Architecture: $arch"
 
 # Install related software
-echo_cyan_n "[+] Installing dependent software(git,tar)... "
+echo_cyan_n "[+] Installing dependent software (git, tar)... "
 if [[ -x "$(command -v yum)" ]]; then
-  sudo yum install -y git tar >error
+  yum install -y git tar
 elif [[ -x "$(command -v apt-get)" ]]; then
-  sudo apt-get install -y git tar >error
+  apt-get install -y git tar
 elif [[ -x "$(command -v pacman)" ]]; then
-  sudo pacman -Syu --noconfirm git tar >error
+  pacman -S --noconfirm git tar
 elif [[ -x "$(command -v zypper)" ]]; then
-  sudo zypper --non-interactive install git tar >error
+  zypper --non-interactive install git tar
+else
+  echo_red "[!] Cannot find your package manager! You may need to install git and tar manually!"
 fi
 
 # Determine whether the relevant software is installed successfully
 if [[ -x "$(command -v git)" && -x "$(command -v tar)" ]]; then
   echo_green "Success"
 else
-  echo_red "Failed"
-  echo "$error"
-  Red_Error "[x] Related software installation failed, please install git and tar packages manually!"
-  exit
+  Red_Error "[x] Failed to find git and tar, please install them manually!"
 fi
 
 # Install the Node environment
