@@ -2,7 +2,6 @@
 
 mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
-mcsmanager_user="mcsm"
 package_name="MCSManager-v10-linux.tar.gz"
 node="v16.20.2"
 arch=$(uname -m)
@@ -125,21 +124,10 @@ Install_MCSManager() {
 Create_Service() {
   echo_cyan "[+] Create MCSManager service..."
 
-  if id "$mcsmanager_user" &>/dev/null; then
-    userdel "$mcsmanager_user"
-  fi
-
-  useradd -r -M -s "$(command -v nologin)" -d "$mcsmanager_install_path" "$mcsmanager_user"
-  chown $mcsmanager_user:$mcsmanager_user -R "$mcsmanager_install_path"
-
-  groupadd docker
-  usermod -aG docker mcsm
-
   echo "[Unit]
 Description=MCSManager-Daemon
 
 [Service]
-User=${mcsmanager_user}
 WorkingDirectory=${mcsmanager_install_path}/daemon
 ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s QUIT \$MAINPID
@@ -154,7 +142,6 @@ WantedBy=multi-user.target
 Description=MCSManager-Web
 
 [Service]
-User=${mcsmanager_user}
 WorkingDirectory=${mcsmanager_install_path}/web
 ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s QUIT \$MAINPID
