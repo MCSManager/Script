@@ -4,7 +4,7 @@ mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
 mcsmanager_user="mcsm"
 package_name="MCSManager-v10-linux.tar.gz"
-node="v16.20.2"
+node="v20.12.2"
 arch=$(uname -m)
 
 if [ "$(id -u)" -ne 0]; then
@@ -111,8 +111,8 @@ Install_MCSManager() {
 
   echo
   echo_yellow "=============== MCSManager ==============="
-  echo_green  "Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green  "Web: ${mcsmanager_install_path}/web"
+  echo_green "Daemon: ${mcsmanager_install_path}/daemon"
+  echo_green "Web: ${mcsmanager_install_path}/web"
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
@@ -128,8 +128,9 @@ Create_Service() {
   if id "$mcsmanager_user" &>/dev/null; then
     userdel "$mcsmanager_user"
   fi
-  
+
   useradd -r -M -s "$(command -v nologin)" -d "$mcsmanager_install_path" "$mcsmanager_user"
+
   chown $mcsmanager_user:$mcsmanager_user -R "$mcsmanager_install_path"
 
   echo "[Unit]
@@ -145,7 +146,7 @@ Environment=\"PATH=${PATH}\"
 
 [Install]
 WantedBy=multi-user.target
-" > /etc/systemd/system/mcsm-daemon.service
+" >/etc/systemd/system/mcsm-daemon.service
 
   echo "[Unit]
 Description=MCSManager-Web
@@ -160,7 +161,7 @@ Environment=\"PATH=${PATH}\"
 
 [Install]
 WantedBy=multi-user.target
-" > /etc/systemd/system/mcsm-web.service
+" >/etc/systemd/system/mcsm-web.service
 
   systemctl daemon-reload
   systemctl enable --now mcsm-{daemon,web}.service
@@ -171,20 +172,20 @@ WantedBy=multi-user.target
   printf "\n\n\n\n"
 
   echo_yellow "=================================================================="
-  echo_green  "Installation is complete! Welcome to the MCSManager!!!"
+  echo_green "Installation is complete! Welcome to the MCSManager!!!"
   echo_yellow " "
   echo_cyan_n "HTTP Web Service:        "
   echo_yellow "http://<Your IP>:23333  (Browser)"
   echo_cyan_n "Daemon Address:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
-  echo_red    "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+  echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
   echo_yellow " "
-  echo_cyan   "Usage:"
-  echo_cyan   "systemctl start mcsm-{daemon,web}.service"
-  echo_cyan   "systemctl stop mcsm-{daemon,web}.service"
-  echo_cyan   "systemctl restart mcsm-{daemon,web}.service"
+  echo_cyan "Usage:"
+  echo_cyan "systemctl start mcsm-{daemon,web}.service"
+  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
+  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
   echo_yellow " "
-  echo_green  "Official Document: https://docs.mcsmanager.com/"
+  echo_green "Official Document: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 }
 
