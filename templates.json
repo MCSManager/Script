@@ -1,0 +1,154 @@
+{
+  "remark": "This file is only used for quick deployment.",
+  "languages": [
+    {
+      "label": "English",
+      "value": "en_us"
+    },
+    {
+      "label": "简体中文",
+      "value": "zh_cn"
+    }
+  ],
+  "packages": [
+    {
+      "language": "en_us",
+      "description": "[Paper] Recommendation for friends with multiple players, Fast setup.",
+      "title": "Minecraft 1.20.4 Java",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "140MB",
+      "remark": "Paper Software",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.20.4.zip",
+      "author": "mcsmanager.com"
+    },
+    {
+      "language": "en_us",
+      "description": "[Paper] Recommendation for friends with multiple players",
+      "title": "Minecraft 1.19.2 Java",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "140MB",
+      "remark": "Paper Software",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.19.2.zip",
+      "author": "mcsmanager.com"
+    },
+    {
+      "language": "en_us",
+      "description": "[Paper] Recommendation for friends with multiple players",
+      "title": "Minecraft 1.18.2 Java",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "140MB",
+      "remark": "Paper Software",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.18.2.zip",
+      "author": "mcsmanager.com"
+    },
+
+    {
+      "language": "zh_cn",
+      "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
+      "title": "Minecraft 1.20.4",
+      "runtime": "Java 17+",
+      "size": "140MB",
+      "remark": "支持插件，最低 8GB 内存要求",
+      "targetLink": "https://url.alww.top/mcsm/paper1.20.4",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -Xmx2048M -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "zh_cn",
+      "description": "[原版生存] 朋友联机推荐，1.19.2 版本，快速开服，享受原汁原味的极致生存与探索。",
+      "title": "Minecraft 1.19.2 Java 原版",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "140MB",
+      "remark": "支持插件，最低 8GB 内存要求",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.2.zip",
+      "author": "mcsmanager.com"
+    },
+    {
+      "language": "zh_cn",
+      "description": "[整合包] 小型服务器推荐，包含基础插件、箱子锁、操作回滚、领地和商店等插件。",
+      "title": "Minecraft 1.19.2 Java 版整合包",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "210MB",
+      "remark": "支持插件，最低 8GB 内存要求",
+      "targetLink": "https://url.alww.top/mcsm/paper1.19.2",
+      "author": "alongw.cn"
+    },
+    {
+      "language": "zh_cn",
+      "description": "[Arclight] 小型服务器推荐，1.19.2 版本，可安装mod，互通基岩版，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
+      "title": "Minecraft 1.19.2",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "100MB",
+      "remark": "支持插件，支持mod（Forge），最低 6GB 内存要求",
+      "targetLink": "https://url.alww.top/mcsm/arclight1.19.2",
+      "author": "alongw.cn"
+    },
+    {
+      "language": "zh_cn",
+      "description": "[整合包/Java&基岩版互通] 小型服务器推荐，互通基岩版，包含基础插件、箱子锁、操作回滚、领地和商店等插件。",
+      "title": "Minecraft 1.19.2 基岩互通版",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "230MB",
+      "remark": "支持插件，最低 6GB 内存要求",
+      "targetLink": "https://url.alww.top/mcsm/paper-geyser1.19.2",
+      "author": "alongw.cn"
+    },
+    {
+      "language": "zh_cn",
+      "description": "[原版生存] 朋友联机推荐，让你和你的小伙伴一起享受原汁原味的极致生存。",
+      "title": "Minecraft 1.19.1 Java 原版",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "140MB",
+      "remark": "支持插件，最低 4GB 内存要求",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.1.zip",
+      "author": "mcsmanager.com"
+    },
+    {
+      "language": "zh_cn",
+      "description": "[原版生存] 适合朋友联机，“荒野更新”（The Wild）旨在为玩家带来现有生物群系的改进和优化。",
+      "title": "Minecraft 1.19 Java 原版",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "140MB",
+      "remark": "支持插件，最低 4GB 内存要求",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.zip",
+      "author": "mcsmanager.com"
+    },
+    {
+      "language": "zh_cn",
+      "description": "[原版生存] 适合朋友联机推荐，继承上版本的功能并进行了一系列的优化，主流联机版本，插件与MOD较为丰富。",
+      "title": "Minecraft 1.18.2 Java 原版",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "140MB",
+      "remark": "支持插件，最低 4GB 内存要求",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.18.2.zip",
+      "author": "mcsmanager.com"
+    },
+    {
+      "language": "zh_cn",
+      "description": "[原版生存] 适合朋友联机，快速开服，服务器搭建，回味老版本的地穴探索。",
+      "title": "Minecraft 17.1 Java 原版",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G",
+      "size": "160MB",
+      "remark": "支持插件，最低 4GB 内存要求",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.17.1.zip",
+      "author": "mcsmanager.com"
+    }
+  ]
+}
