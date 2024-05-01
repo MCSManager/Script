@@ -1,8 +1,31 @@
 #!/bin/bash
 
+echo "请问从哪个源安装？
+1.国内源
+2.github源"
+
+read source_option
+
+case $source_option in
+    1)
+        mcsmanager_download_addr="https://pub-5d75023a0aca4f18a163e17a84b07431.r2.dev/MCSManager-v10-linux.tar.gz"
+        package_name="MCSManager-v10-linux.tar.gz"
+        ;;
+    2)
+        mcsmanager_download_addr="https://github.com/MCSManager/MCSManager/releases/download/v10.1.0/mcsmanager_linux_release.tar.gz"
+        package_name="mcsmanager_linux_release.tar.gz"
+        ;;
+    *)
+        echo "错误的选项！"
+        echo "请问从哪个源安装？
+1.国内源
+2.github源"
+        read source_option
+        ;;
+esac
+
+
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
-package_name="MCSManager-v10-linux.tar.gz"
 node="v16.20.2"
 arch=$(uname -m)
 
@@ -91,8 +114,8 @@ Install_MCSManager() {
   # cd /opt/mcsmanager
   cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
-  # donwload MCSManager release
-  wget "${mcsmanager_donwload_addr}" || Red_Error "[x] Failed to download MCSManager"
+  # download MCSManager release
+  wget "${mcsmanager_download_addr}" || Red_Error "[x] Failed to download MCSManager"
   tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
