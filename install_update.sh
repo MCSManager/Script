@@ -81,3 +81,15 @@ while getopts "u:c:" opt; do
     esac
 done
 
+# Logic for different users
+case ${USER} in
+  root)
+    ;;
+  mcsm)
+    ;;
+  *)
+    echo "Unknown user: ${USER}. Using default user mcsm..."
+    ;;
+esac
+
+
