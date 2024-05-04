@@ -93,3 +93,16 @@ case ${USER} in
 esac
 
 
+# Check if the mcsmanager_install_path exists
+if [ -d "$mcsmanager_install_path" ]; then
+    echo "The directory '$mcsmanager_install_path' exists."
+    # Logic branch when the directory exists
+    # For example, list the contents
+    echo "Listing contents of $mcsmanager_install_path:"
+    ls -l "$directory"
+else
+    echo "The directory '$mcsmanager_install_path' does not exist."
+    # Logic branch when the directory does not exist
+    # For example, create the directory
+    echo "Creating $mcsmanager_install_path..."
+fi
