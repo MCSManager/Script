@@ -52,3 +52,32 @@ check_sudo() {
 }
 check_sudo
 
+# Parse provided arguments
+while getopts "u:c:" opt; do
+    case ${opt} in
+        u )
+            if [[ "${OPTARG}" == "mcsm" || "${OPTARG}" == "root" ]]; then
+                user="${OPTARG}"
+            else
+                echo "Invalid user specified."
+                usage
+            fi
+            ;;
+        c )
+            if [[ "${OPTARG}" == "web" || "${OPTARG}" == "daemon" || "${OPTARG}" == "all" ]]; then
+                command="${OPTARG}"
+            else
+                echo "Invalid command specified."
+                usage
+            fi
+            ;;
+        \? )
+            usage
+            ;;
+        : )
+            echo "Option -$OPTARG requires an argument."
+            usage
+            ;;
+    esac
+done
+
