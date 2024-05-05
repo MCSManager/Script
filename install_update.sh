@@ -1,13 +1,13 @@
 #!/bin/bash
 
-#Global arguments
+#Global varialbles
 # System architecture
 arch=$(uname -m)
 # Install base dir
 install_base="/opt"
 # MCSM install dir
 mcsmanager_install_path="${install_base}/mcsmanager"
-# MCSM backup dir
+# MCSM backup dir during upgrade
 mcsm_backup_dir="${install_base}"
 # Download URL
 mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
@@ -150,10 +150,34 @@ Check_and_download_source() {
     # Clean up the downloaded tar.gz file
     rm "${mcsm_down_temp}/mcsmanager.tar.gz"
 
+# Detect architecture
+Detect_Architecture() {
+	if [[ "$arch" == x86_64 ]]; then
+		arch=x64
+		#echo "[-] x64 architecture detected"
+	elif [[ $arch == aarch64 ]]; then
+		arch=arm64
+		#echo "[-] 64-bit ARM architecture detected"
+	elif [[ $arch == arm ]]; then
+		arch=armv7l
+		#echo "[-] 32-bit ARM architecture detected"
+	elif [[ $arch == ppc64le ]]; then
+		arch=ppc64le
+		#echo "[-] IBM POWER architecture detected"
+	elif [[ $arch == s390x ]]; then
+		arch=s390x
+		#echo "[-] IBM LinuxONE architecture detected"
+	else
+		Red_Error "[x] Sorry, this architecture is not supported yet!\n[x]Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
+	fi
+}
 # Initialization
 Initialize() {
 	# Check sudo
 	check_sudo
+	
+	# Update architecture
+	Detect_Architecture
 	
 	# Check if install base (/opt) exist
 	mkdir -p "$install_base"
