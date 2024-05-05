@@ -238,6 +238,13 @@ Install_MCSM_Web_Base() {
 # MCSM Web Service Installation
 Install_Web_Systemd() {
 	echo_cyan "[+] Creating MCSManager Web service..."
+	# stop and disable existing service
+    systemctl disable --now mcsm-web
+
+    # delete existing service
+    rm -rf /etc/systemd/system/mcsm-web.service
+    systemctl daemon-reload
+
 	# Create the default service file
 	echo "[Unit]
 	Description=MCSManager-Web
@@ -285,13 +292,6 @@ Install_Web_Wrapper() {
 		echo "The directory '$mcsmanager_install_path' does not exist."
 	fi
     echo_cyan "[+] Install MCSManager Web..."
-
-    # stop and disable service
-    systemctl disable --now mcsm-web
-
-    # delete service
-    rm -rf /etc/systemd/system/mcsm-web.service
-    systemctl daemon-reload
 	
 	# Install MCSM Web
 	Install_MCSM_Web_Base
