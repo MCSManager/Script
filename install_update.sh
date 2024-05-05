@@ -412,6 +412,33 @@ Parse_Arguments() {
 
 # Wrapper for installation
 Install_Update() {
+	case "$COMMAND" in
+    all)
+        Install_Web_Wrapper
+		Install_Daemon_Wrapper
+        ;;
+
+    web)
+        Install_Web_Wrapper
+        ;;
+
+    daemon)
+        Install_Daemon_Wrapper
+        ;;
+
+    *)
+        echo "Unknown command: $COMMAND, this should not happen in general :( Please report this bug."
+        # Exit with an error if COMMAND is unrecognized
+        exit 1
+        ;;
+esac
+}
+# Finalize installation
+Finalize() {
+	
+
+
+
 }
 ########### Main Logic ################
 Initialize
@@ -424,11 +451,14 @@ if [ -d "$mcsmanager_install_path" ]; then
 	Backup_MCSM
 	# Install Node.js, this is to ensure the version is up to date.
 	Install_node
-	# 
 	
 else
-    echo "The directory '$mcsmanager_install_path' does not exist."
-    # Logic branch when the directory does not exist
-    # For example, create the directory
-    echo "Creating $mcsmanager_install_path..."
+    # Install Node.js, this is to ensure the version is up to date.
+	Install_node
 fi
+
+# Install Services based on command
+Install_Update
+
+# Print Information
+echo "Installation Complete!"
