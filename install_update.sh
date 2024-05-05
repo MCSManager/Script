@@ -11,8 +11,6 @@ mcsmanager_install_path="${install_base}/mcsmanager"
 mcsm_backup_dir="${install_base}"
 # Download URL
 mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
-# File name
-package_name="MCSManager-v10-linux.tar.gz"
 # Node.js version to install
 node="v20.12.2"
 # Node.js install dir
@@ -203,13 +201,23 @@ Backup_MCSM() {
 # MCSM Web Base Installation
 # Assuming a fresh install (i.e. no file(s) from previous installation) and downloaded source
 Install_MCSM_Web_Base() {
-	# Creat
-
+	# Move downloaded path
+	mv "${mcsm_down_temp}/${mcsm_web}" "$web_path"
+	# Move back the data directory
+	rm -rf "$web_data"
+	mv "${web_data_tmp}" "${web_data}"
+	# Dependencies install
+	cd "${web_path}" || Red_Error "[x] Failed to enter ${web_path}"
+	# Install dependencies
+    echo_cyan "[+] Install MCSManager-Web dependencies..."
+    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${web_path}"
+	# Return to general dir
+	cd "$mcsmanager_install_path"
 }
 
 
 # MCSM Web Update & Installation
-Install_Web_wrapper() {
+Install_Web_Wrapper() {
 	web_path="${mcsmanager_install_path}/${mcsm_web}"
 	web_data="${web_path}/data"
 	web_data_tmp="${mcsmanager_install_path}/web_data_${current_date}"
@@ -227,13 +235,18 @@ Install_Web_wrapper() {
 	fi
     echo_cyan "[+] Install MCSManager Web..."
 
-    # stop service
-    systemctl disable --now mcsm-{web}
+    # stop and disable service
+    systemctl disable --now mcsm-web
 
     # delete service
-    rm -rf /etc/systemd/system/mcsm-{daemon,web}.service
+    rm -rf /etc/systemd/system/mcsm-web.service
     systemctl daemon-reload
-
+	
+	# Install MCSM Web
+	Install_MCSM_Web_Base
+	
+	
+	
     mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] Failed to create ${mcsmanager_install_path}"
 
     # cd /opt/mcsmanager
