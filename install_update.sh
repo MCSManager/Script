@@ -131,7 +131,7 @@ Install_node() {
     echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
     echo_yellow "=============== Node.JS Version ==============="
     echo
-    sleep 3
+    sleep 1
 }
 # Check and download MCSM source
 Check_and_download_source() {
