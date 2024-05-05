@@ -495,11 +495,11 @@ Finalize() {
         # Exit with an error if COMMAND is unrecognized
         exit 1
         ;;
-
-
-
-
-
+	# Check if backup_path is not empty
+	if [[ -n "$backup_path" ]]; then
+		echo "Your MCSM has been updated and/or installed. A complete backup was created at: $backup_path"
+		echo "You can manually delete the backup using command: rm ${backup_path}"
+	fi
 }
 ########### Main Logic ################
 Initialize
@@ -521,5 +521,7 @@ fi
 # Install Services based on command
 Install_Update
 
-# Print Information
+# Print helping Information
+Finalize
+
 echo "Installation Complete!"
