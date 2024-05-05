@@ -594,7 +594,7 @@ main() {
 	# Print helping Information
 	Finalize
 
-	echo "安装或升级已完成!"
+	echo_green "安装或升级已完成!"
 }
 
 main "$@"
