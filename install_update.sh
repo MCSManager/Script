@@ -26,8 +26,8 @@ service_file_web="/etc/systemd/system/mcsm-web.service"
 # Service file for MCSM daemon
 service_file_daemon="/etc/systemd/system/mcsm-daemon.service"
 # Default systemd user is 'mcsm'
-USER=""
-COMMAND=""
+USER="mcsm"
+COMMAND="all"
 # Created backup absolute path
 backup_path=""
 # Downloaded package name
@@ -198,11 +198,11 @@ Initialize() {
 	Check_and_download_source
 	
 	# Parse input arguments
-	Parse_Arguments
+	Parse_Arguments "$@"
 	
 	echo "$USER"
 	echo "$COMMAND"
-	exit 1
+
 	# Create mcsm user if needed
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Create the user 'mcsm' if it doesn't already exist
@@ -563,7 +563,7 @@ Finalize() {
 }
 ########### Main Logic ################
 main() {
-	Initialize
+	Initialize "$@"
 	# Check if the mcsmanager_install_path exists
 	if [ -d "$mcsmanager_install_path" ]; then
 		# Backup first
@@ -585,4 +585,4 @@ main() {
 	echo "Installation Complete!"
 }
 
-main
+main "$@"
