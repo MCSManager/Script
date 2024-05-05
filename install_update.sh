@@ -455,7 +455,7 @@ Install_Update() {
         # Exit with an error if COMMAND is unrecognized
         exit 1
         ;;
-esac
+	esac
 }
 # Finalize installation
 Finalize() {
@@ -519,6 +519,7 @@ Finalize() {
         # Exit with an error if COMMAND is unrecognized
         exit 1
         ;;
+	esac
 	# Check if backup_path is not empty
 	if [[ -n "$backup_path" ]]; then
 		echo "Your MCSM has been updated and/or installed. A complete backup was created at: $backup_path"
