@@ -228,11 +228,18 @@ Install_MCSM_Web_Base() {
     env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${web_path}"
 	# Return to general dir
 	cd "$mcsmanager_install_path"
+	# Configure ownership if needed
+	if [[ "$USER" == *"mcsm"* ]]; then
+		# Change file permission to mcsm user
+		chown -R mcsm:mcsm "$web_path"
+	fi
+	chmod -R 755 "$web_path"
 }
 # MCSM Web Service Installation
 Install_Web_Systemd() {
 	echo_cyan "[+] Creating MCSManager Web service..."
-		echo "[Unit]
+	# Create the default service file
+	echo "[Unit]
 	Description=MCSManager-Web
 
 	[Service]
@@ -245,7 +252,19 @@ Install_Web_Systemd() {
 	[Install]
 	WantedBy=multi-user.target
 	" >/etc/systemd/system/mcsm-web.service
-
+	# Add user section if using mcsm user
+	if [[ "$USER" == *"mcsm"* ]]; then
+		# Check if the 'User=mcsm' line already exists in the service file
+		if grep -q "^User=mcsm$" "$service_file"; then
+			echo "The service file is configured already."
+		else
+			# Add 'User=mcsm' to the service file
+			sed -i '/^\[Service\]$/a User=mcsm' "$service_file"
+		fi
+	fi
+	# Reload Systemd Service
+	systemctl daemon-reload
+	
 }
 
 # MCSM Web Update & Installation
@@ -277,41 +296,8 @@ Install_Web_Wrapper() {
 	# Install MCSM Web
 	Install_MCSM_Web_Base
 	
-	
-	
-    mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] Failed to create ${mcsmanager_install_path}"
-
-    # cd /opt/mcsmanager
-    cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
-
-    # donwload MCSManager release
-    wget "${mcsmanager_donwload_addr}" || Red_Error "[x] Failed to download MCSManager"
-    tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
-    rm -rf "${mcsmanager_install_path}/${package_name}"
-
-    # echo "[→] cd daemon"
-    cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
-
-    echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
-
-    # echo "[←] cd .."
-    cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
-
-    echo_cyan "[+] Install MCSManager-Web dependencies..."
-    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
-
-    echo
-    echo_yellow "=============== MCSManager ==============="
-    echo_green "Daemon: ${mcsmanager_install_path}/daemon"
-    echo_green "Web: ${mcsmanager_install_path}/web"
-    echo_yellow "=============== MCSManager ==============="
-    echo
-    echo_green "[+] MCSManager installation success!"
-
-    chmod -R 755 "$mcsmanager_install_path"
-
-    sleep 3
+	# Install MCSM Web Service
+	Install_Web_Systemd
 }
 
 
