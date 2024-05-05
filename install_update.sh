@@ -502,26 +502,30 @@ Finalize() {
 	fi
 }
 ########### Main Logic ################
-Initialize
-# Parse provided arguments
+main() {
+	Initialize
+	# Parse provided arguments
 
 
-# Check if the mcsmanager_install_path exists
-if [ -d "$mcsmanager_install_path" ]; then
-    # Backup first
-	Backup_MCSM
-	# Install Node.js, this is to ensure the version is up to date.
-	Install_node
-	
-else
-    # Install Node.js, this is to ensure the version is up to date.
-	Install_node
-fi
+	# Check if the mcsmanager_install_path exists
+	if [ -d "$mcsmanager_install_path" ]; then
+		# Backup first
+		Backup_MCSM
+		# Install Node.js, this is to ensure the version is up to date.
+		Install_node
+		
+	else
+		# Install Node.js, this is to ensure the version is up to date.
+		Install_node
+	fi
 
-# Install Services based on command
-Install_Update
+	# Install Services based on command
+	Install_Update
 
-# Print helping Information
-Finalize
+	# Print helping Information
+	Finalize
 
-echo "Installation Complete!"
+	echo "Installation Complete!"
+}
+
+main
