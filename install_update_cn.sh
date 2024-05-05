@@ -77,7 +77,7 @@ check_sudo() {
 
 Install_dependencies() {
 	# Install related software
-	echo_cyan "[+] Installing dependent software (git, tar, wget)... "
+	echo_cyan "[+] 正在安装以来软件 (git, tar, wget)... "
 	if [[ -x "$(command -v yum)" ]]; then
 		yum install -y git tar wget
 	elif [[ -x "$(command -v apt-get)" ]]; then
@@ -557,7 +557,7 @@ Finalize() {
 	esac
 	# Check if backup_path is not empty
 	if [[ -n "$backup_path" ]]; then
-		echo_green "您的MCSManager是从上一个版本升级而来. "
+		echo_green "您的MCSManager是由一个已存在的版本升级而来. "
 		echo_green "我们已经为您创建了一个备份, 位于:"
 		echo_yellow "$backup_path"
 		echo_green "如果需要, 您可以使用下列命令手动删除备份: "
