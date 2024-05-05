@@ -23,6 +23,10 @@ mcsm_daemon="daemon"
 local current_date=$(date +%Y_%m_%d)
 # MCSM local temp dir for downloaded source
 mcsm_down_temp="/opt/mcsmanager_${current_date}"
+# Service file for MCSCM Web
+service_file_web="/etc/systemd/system/mcsm-web.service"
+# Service file for MCSM daemon
+service_file_daemon="/etc/systemd/system/mcsm-daemon.service"
 # Default systemd user is 'mcsm'
 USER="mcsm"
 COMMAND="all"
@@ -162,6 +166,17 @@ Initialize() {
 
 	# Check and download MCSM source
 	Check_and_download_source
+	
+	# Create mcsm user if needed
+	if [[ "$USER" == *"mcsm"* ]]; then
+		# Create the user 'mcsm' if it doesn't already exist
+		if ! id "mcsm" &>/dev/null; then
+			useradd mcsm
+			echo "User 'mcsm' created."
+		else
+			echo "User 'mcsm' already exists."
+		fi
+	fi
 }
 
 Backup_MCSM() {
@@ -214,7 +229,24 @@ Install_MCSM_Web_Base() {
 	# Return to general dir
 	cd "$mcsmanager_install_path"
 }
+# MCSM Web Service Installation
+Install_Web_Systemd() {
+	echo_cyan "[+] Creating MCSManager Web service..."
+		echo "[Unit]
+	Description=MCSManager-Web
 
+	[Service]
+	WorkingDirectory=${web_path}
+	ExecStart=${node_install_path}/bin/node app.js
+	ExecReload=/bin/kill -s QUIT \$MAINPID
+	ExecStop=/bin/kill -s QUIT \$MAINPID
+	Environment=\"PATH=${PATH}\"
+
+	[Install]
+	WantedBy=multi-user.target
+	" >/etc/systemd/system/mcsm-web.service
+
+}
 
 # MCSM Web Update & Installation
 Install_Web_Wrapper() {
