@@ -19,7 +19,7 @@ echo_cyan() {
 echo_red() {
     printf '\033[1;31m%b\033[0m\n' "$@"
 }
-
+vv
 echo_green() {
     printf '\033[1;32m%b\033[0m\n' "$@"
 }
@@ -167,7 +167,11 @@ WantedBy=multi-user.target
     echo_yellow "http://<Your IP>:23333  (Browser)"
     echo_cyan_n "Daemon Address:          "
     echo_yellow "ws://<Your IP>:24444    (Cluster)"
-    echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+    echo_red "You must expose ports "
+	echo_yellow "23333"
+	echo_red " and " 
+	echo_yellow "24444"
+	echo_red " to use the service properly on the Internet."
     echo_yellow " "
     echo_cyan "Usage:"
     echo_cyan "systemctl start mcsm-{daemon,web}.service"

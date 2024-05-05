@@ -140,7 +140,7 @@ Check_and_download_source() {
 	mkdir -p "$mcsm_down_temp"
 
     # Download the archive directly into the temporary directory
-    wget -O "${mcsm_down_temp}/${package_name}" "$mcsmanager_download_addr"
+    wget -O "${mcsm_down_temp}/${package_name}" "$mcsmanager_download_addr"  || Red_Error "[x] Failed to download MCSManager releases..."
     if [ $? -ne 0 ]; then
         Red_Error "MCSManager Download failed."
     fi
@@ -202,9 +202,9 @@ Initialize() {
 		# Create the user 'mcsm' if it doesn't already exist
 		if ! id "mcsm" &>/dev/null; then
 			/usr/sbin/useradd mcsm
-			echo "User 'mcsm' created."
+			echo_green "User 'mcsm' created."
 		else
-			echo "User 'mcsm' already exists."
+			echo_yellow "User 'mcsm' already exists."
 		fi
 	fi
 }
@@ -222,7 +222,7 @@ Backup_MCSM() {
 
     # Create backup directory (/opt) if it doesn't exist
     if [ ! -d "$mcsm_backup_dir" ]; then
-        echo "Creating backup directory."
+        echo_yellow "Creating backup directory."
         mkdir -p "$mcsm_backup_dir"
     fi
 
@@ -230,14 +230,14 @@ Backup_MCSM() {
     backup_path="${mcsm_backup_dir}/mcsm_backup_${current_date}.tar.gz"
 
     # Create the backup
-	echo "Creating backup..."
+	echo_yellow "Creating backup..."
     #tar -czf "$backup_path" -C "$mcsmanager_install_path" .
 	tar -czf "$backup_path" -C "$(dirname "$mcsmanager_install_path")" "$(basename "$mcsmanager_install_path")"
 
 
     # Check if the backup was successful
     if [ $? -eq 0 ]; then
-        echo "Backup created successfully at $backup_path"
+        echo_green "Successfully created backup at $backup_path"
     else
         Red_Error  "Error creating backup."
     fi
