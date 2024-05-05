@@ -156,6 +156,9 @@ Initialize() {
 	# Check if install base (/opt) exist
 	mkdir -p "$install_base"
 	
+	# Create mcsmanager path if not already
+	mkdir -p "$mcsmanager_install_path"
+	
 	# Check dependencies
 	Install_dependencies
 
@@ -198,9 +201,9 @@ Backup_MCSM() {
     fi
 }
 # MCSM Web Base Installation
-# Assume a fresh install (i.e. no file(s) from previous installation)
+# Assuming a fresh install (i.e. no file(s) from previous installation) and downloaded source
 Install_MCSM_Web_Base() {
-	
+	# Creat
 
 }
 
