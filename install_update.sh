@@ -129,7 +129,7 @@ Install_node() {
     echo_yellow "=============== Node.js Version ==============="
     echo_yellow " node: $("$node_install_path"/bin/node -v)"
     echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
-    echo_yellow "=============== Node.JS Version ==============="
+    echo_yellow "=============== Node.js Version ==============="
     echo
     sleep 1
 }
