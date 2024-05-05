@@ -131,7 +131,6 @@ Install_node() {
     echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
     echo_yellow "=============== Node.JS Version ==============="
     echo
-	exit 0
     sleep 3
 }
 # Check and download MCSM source
@@ -232,7 +231,9 @@ Backup_MCSM() {
 
     # Create the backup
 	echo "Creating backup..."
-    tar -czf "$backup_path" -C "$mcsmanager_install_path" .
+    #tar -czf "$backup_path" -C "$mcsmanager_install_path" .
+	tar -czf "$backup_path" -C "$(dirname "$mcsmanager_install_path")" "$(basename "$mcsmanager_install_path")"
+
 
     # Check if the backup was successful
     if [ $? -eq 0 ]; then
@@ -240,6 +241,7 @@ Backup_MCSM() {
     else
         Red_Error  "Error creating backup."
     fi
+	exit 1
 }
 # MCSM Web Base Installation
 # Assuming a fresh install (i.e. no file(s) from previous installation) and downloaded source
