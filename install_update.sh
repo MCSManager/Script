@@ -188,9 +188,6 @@ Initialize() {
 	# Check if install base (/opt) exist
 	mkdir -p "$install_base"
 	
-	# Create mcsmanager path if not already
-	mkdir -p "$mcsmanager_install_path"
-	
 	# Check dependencies
 	Install_dependencies
 
@@ -249,12 +246,14 @@ Backup_MCSM() {
 # Assuming a fresh install (i.e. no file(s) from previous installation) and downloaded source
 Install_MCSM_Web_Base() {
 	# Move downloaded path
-	mv "${mcsm_down_temp}/${mcsm_web}" "$web_path"
+	mv "${mcsm_down_temp}/${mcsm_web}" "$web_path" ||
 	# Move helper file(s)
 	mv "${mcsm_down_temp}/start-web.sh" "${mcsmanager_install_path}/start-web.sh"
-	# Move back the data directory
-	rm -rf "$web_data"
-	mv "${web_data_tmp}" "${web_data}"
+	# Move back the data directory only if existed
+	if [ -d "$web_data_tmp" ]; then
+		rm -rf "$web_data"
+		mv "${web_data_tmp}" "${web_data}"
+	fi
 	# Dependencies install
 	cd "${web_path}" || Red_Error "[x] Failed to enter ${web_path}"
 	# Install dependencies
@@ -339,13 +338,15 @@ Install_Web_Wrapper() {
 # Assuming a fresh install (i.e. no file(s) from previous installation) and downloaded source
 Install_MCSM_Daemon_Base() {
 	# Move downloaded path
-	mv "${mcsm_down_temp}/${mcsm_daemon}" "$daemon_path"
-		# Move helper file(s)
+	mv "${mcsm_down_temp}/${mcsm_daemon}" "$daemon_path" ||
+	# Move helper file(s)
 	mv "${mcsm_down_temp}/start-daemon.sh" "${mcsmanager_install_path}/start-daemon.sh"
 
-	# Move back the data directory
-	rm -rf "$daemon_data"
-	mv "${daemon_data_tmp}" "${daemon_data}"
+	# Move back the data directory only if existed
+	if [ -d "$daemon_data_tmp" ]; then
+		rm -rf "$daemon_data"
+		mv "${daemon_data_tmp}" "${daemon_data}"
+	fi
 	# Dependencies install
 	cd "${daemon_path}" || Red_Error "[x] Failed to enter ${daemon_path}"
 	# Install dependencies
@@ -560,6 +561,7 @@ Finalize() {
 }
 ########### Main Logic ################
 main() {
+	# Do not create mcsmanager path yet as it will break the logic detecting existing installation
 	Initialize "$@"
 	# Check if the mcsmanager_install_path exists
 	if [ -d "$mcsmanager_install_path" ]; then
@@ -569,6 +571,8 @@ main() {
 		Install_node
 		
 	else
+		# Create mcsmanager path if not already
+		mkdir -p "$mcsmanager_install_path"
 		# Install Node.js, this is to ensure the version is up to date.
 		Install_node
 	fi
