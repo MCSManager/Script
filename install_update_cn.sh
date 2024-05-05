@@ -12,7 +12,7 @@ mcsm_backup_dir="${install_base}"
 # Download URL
 mcsmanager_download_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
 # Node.js version to install
-node="v20.12.2"
+node="v16.20.2"
 # MCSM Web dir name
 mcsm_web="web"
 # MCSM daemon dir name
@@ -77,7 +77,7 @@ check_sudo() {
 
 Install_dependencies() {
 	# Install related software
-	echo_cyan_n "[+] Installing dependent software (git, tar, wget)... "
+	echo_cyan "[+] Installing dependent software (git, tar, wget)... "
 	if [[ -x "$(command -v yum)" ]]; then
 		yum install -y git tar wget
 	elif [[ -x "$(command -v apt-get)" ]]; then
@@ -179,6 +179,10 @@ Detect_Architecture() {
 }
 # Initialization
 Initialize() {
+	echo_cyan "+----------------------------------------------------------------------
+| MCSManager V10安装升级脚本
++----------------------------------------------------------------------
+	"
 	# Check sudo
 	check_sudo
 	
@@ -482,7 +486,7 @@ Install_Update() {
 # Finalize installation
 Finalize() {
 	#Clear screen
-	clear
+	#clear
     #printf "\n\n\n\n"
 	echo "______  _______________________  ___"
 	echo "___   |/  /_  ____/_  ___/__   |/  /_____ _____________ _______ _____________"
@@ -494,7 +498,7 @@ Finalize() {
 	case "$COMMAND" in
     all)
             echo_yellow "=================================================================="
-			echo_green "Installation is complete! Welcome to the MCSManager V10!!!"
+			echo_green "安装已完成! 欢迎使用 MCSManager V10!!!"
 			echo_yellow " "
 			echo_cyan_n "HTTP Web Service:        "
 			echo_yellow "http://<Your IP>:23333  (Browser)"

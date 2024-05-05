@@ -77,7 +77,7 @@ check_sudo() {
 
 Install_dependencies() {
 	# Install related software
-	echo_cyan_n "[+] Installing dependent software (git, tar, wget)... "
+	echo_cyan "[+] Installing dependent software (git, tar, wget)... "
 	if [[ -x "$(command -v yum)" ]]; then
 		yum install -y git tar wget
 	elif [[ -x "$(command -v apt-get)" ]]; then
@@ -179,6 +179,11 @@ Detect_Architecture() {
 }
 # Initialization
 Initialize() {
+	echo_cyan "+----------------------------------------------------------------------
+| MCSManager V10 Installation & Upgrading Script
++----------------------------------------------------------------------
+	"
+
 	# Check sudo
 	check_sudo
 	
