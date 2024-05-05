@@ -145,13 +145,13 @@ Check_and_download_source() {
     fi
 
     # Extract the archive without changing directories
-    tar -xzf "${mcsm_down_temp}/${package_name}" -C "$mcsm_down_temp" --strip-components=1
+    tar -xzf "${mcsm_down_temp}/${package_name}" -C "$mcsm_down_temp"
     if [ $? -ne 0 ]; then
         Red_Error  "Extraction failed."
     fi
 
     # Clean up the downloaded tar.gz file
-    rm "${mcsm_down_temp}/mcsmanager.tar.gz"
+    rm "${mcsm_down_temp}/${package_name}"
 }
 # Detect architecture
 Detect_Architecture() {
