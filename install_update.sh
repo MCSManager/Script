@@ -3,12 +3,12 @@
 #Global arguments
 # System architecture
 arch=$(uname -m)
+# Install base dir
+install_base="/opt"
 # MCSM install dir
-mcsmanager_install_path="/opt/mcsmanager"
+mcsmanager_install_path="${install_base}/mcsmanager"
 # MCSM backup dir
-mcsm_backup_dir="/opt/"
-# Created backup absolute path
-backup_path=""
+mcsm_backup_dir="${install_base}"
 # Download URL
 mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
 # File name
@@ -16,7 +16,7 @@ package_name="MCSManager-v10-linux.tar.gz"
 # Node.js version to install
 node="v20.12.2"
 # Node.js install dir
-node_install_path="/opt/node-$node-linux-$arch"
+node_install_path="${install_base}/node-$node-linux-$arch"
 # MCSM Web dir name
 mcsm_web="web"
 # MCSM daemon dir name
@@ -28,6 +28,8 @@ mcsm_down_temp="/opt/mcsmanager_${current_date}"
 # Default systemd user is 'mcsm'
 USER="mcsm"
 COMMAND="all"
+# Created backup absolute path
+backup_path=""
 
 # Helper Functions
 usage() {
@@ -123,11 +125,27 @@ Install_node() {
 
     sleep 3
 }
+# Check and download MCSM source
+Check_and_download_source() {
+	if [ -d "$mcsm_down_temp" ]; then
+		echo_cyan "[+] Downloading MCSManager..."
+		# Remove the downloaded source if existed, the source dir name contains current date, so its unlikely to coincide with other name(s)
+		rm -rf "$mcsm_down_temp"
+		mkdir -p "$mcsm_down_temp" || Red_Error "[x] Failed to create ${mcsm_down_temp}"
+		
+	else
+		mkdir -p "$mcsm_down_temp" || Red_Error "[x] Failed to create ${mcsm_down_temp}"
+	fi
+
+}
 # Initialization
 Initialize() {
 	# Check sudo
 	check_sudo
-
+	
+	# Check if install base (/opt) exist
+	mkdir -p "$install_base"
+	
 	# Check dependencies
 	Install_dependencies
 
