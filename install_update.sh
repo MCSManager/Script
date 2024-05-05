@@ -78,6 +78,14 @@ Install_dependencies() {
 	else
 		echo_red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
 	fi
+	
+	# Determine whether the relevant software is installed successfully
+	if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
+		echo_green "Success"
+	else
+		Red_Error "[x] Failed to find git, tar and wget, please install them manually!"
+	fi
+
 }
 
 Install_node() {
