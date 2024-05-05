@@ -342,7 +342,7 @@ Install_MCSM_Daemon_Base() {
 
 	# Move back the data directory
 	rm -rf "$daemon_data"
-	mv "${web_daemon_tmp}" "${daemon_data}"
+	mv "${daemon_data_tmp}" "${daemon_data}"
 	# Dependencies install
 	cd "${daemon_path}" || Red_Error "[x] Failed to enter ${daemon_path}"
 	# Install dependencies
@@ -370,18 +370,18 @@ Install_Daemon_Systemd() {
 
 	# Create the default service file
 	echo "[Unit]
-	Description=MCSManager-Daemon
+Description=MCSManager-Daemon
 
-	[Service]
-	WorkingDirectory=${daemon_path}
-	ExecStart=${node_install_path}/bin/node app.js
-	ExecReload=/bin/kill -s QUIT \$MAINPID
-	ExecStop=/bin/kill -s QUIT \$MAINPID
-	Environment=\"PATH=${PATH}\"
+[Service]
+WorkingDirectory=${daemon_path}
+ExecStart=${node_install_path}/bin/node app.js
+ExecReload=/bin/kill -s QUIT \$MAINPID
+ExecStop=/bin/kill -s QUIT \$MAINPID
+Environment=\"PATH=${PATH}\"
 
-	[Install]
-	WantedBy=multi-user.target
-	" >"$service_file_daemon"
+[Install]
+WantedBy=multi-user.target
+" >"$service_file_daemon"
 	
 	# Add user section if using mcsm user
 	if [[ "$USER" == *"mcsm"* ]]; then
@@ -400,13 +400,13 @@ Install_Daemon_Systemd() {
 # MCSM Web Update & Installation
 Install_Daemon_Wrapper() {
 	daemon_path="${mcsmanager_install_path}/${mcsm_daemon}"
-	daemon_data="${web_daemon}/data"
+	daemon_data="${daemon_path}/data"
 	daemon_data_tmp="${mcsmanager_install_path}/daemon_data_${current_date}"
 	if [ -d "$daemon_path" ]; then
 		echo_cyan "[+] Updating MCSManager Daemon..."
 		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/daemon_data should be fast and safe.
 		# Use daemon_data, do not use data as in rare circumstance user may run both update at the same time.
-		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir)
+		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir) 
 		mv "$daemon_data" "$daemon_data_tmp"
 		# Remove the old daemon dir
 		rm -rf "$daemon_path"
