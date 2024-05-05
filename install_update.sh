@@ -13,8 +13,6 @@ mcsm_backup_dir="${install_base}"
 mcsmanager_download_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
 # Node.js version to install
 node="v20.12.2"
-# Node.js install dir
-node_install_path="${install_base}/node-$node-linux-$arch"
 # MCSM Web dir name
 mcsm_web="web"
 # MCSM daemon dir name
@@ -34,6 +32,8 @@ COMMAND="all"
 backup_path=""
 # Downloaded package name
 package_name="${mcsmanager_download_addr##*/}"
+# Node.js install dir
+node_install_path=""
 
 # Helper Functions
 usage() {
@@ -100,28 +100,30 @@ Install_dependencies() {
 }
 
 Install_node() {
-    echo_cyan_n "[+] Install Node.js environment...\n"
-
-    rm -irf "$node_install_path"
-
-    cd /opt || Red_Error "[x] Failed to enter /opt"
-
-    rm -rf "node-$node-linux-$arch.tar.gz"
-
-    wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
-
-    tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
-
-    rm -rf "node-$node-linux-$arch.tar.gz"
-
     if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-        echo_green "Success"
-    else
-		echo "${node_install_path}/bin/node"
-		$("$node_install_path"/bin/node -v)
-		
-        Red_Error "[x] Node installation failed!"
+        echo_green "Desired Node.js is already installed at the target dir, bypassing installation..."
+    else	
+        echo_cyan_n "[+] Install Node.js environment...\n"
+
+		rm -irf "$node_install_path"
+
+		cd /opt || Red_Error "[x] Failed to enter /opt"
+
+		rm -rf "node-$node-linux-$arch.tar.gz"
+
+		wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+
+		tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
+
+		rm -rf "node-$node-linux-$arch.tar.gz"
+
+		if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
+			echo_green "Success"
+		else	
+			Red_Error "[x] Node installation failed!"
+		fi
     fi
+    
 
     echo
     echo_yellow "=============== Node.js Version ==============="
@@ -129,7 +131,7 @@ Install_node() {
     echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
     echo_yellow "=============== Node.JS Version ==============="
     echo
-
+	exit 0
     sleep 3
 }
 # Check and download MCSM source
@@ -139,7 +141,7 @@ Check_and_download_source() {
 	mkdir -p "$mcsm_down_temp"
 
     # Download the archive directly into the temporary directory
-    wget -O "${mcsm_down_temp}/mcsmanager.tar.gz" "$mcsmanager_download_addr"
+    wget -O "${mcsm_down_temp}/${package_name}" "$mcsmanager_download_addr"
     if [ $? -ne 0 ]; then
         Red_Error "MCSManager Download failed."
     fi
@@ -155,11 +157,8 @@ Check_and_download_source() {
 }
 # Detect architecture
 Detect_Architecture() {
-	echo "Detected"
-	echo "$arch"
 	if [[ $arch == x86_64 ]]; then
 		arch="x64"
-		echo "Detected x64"
 		#echo "[-] x64 architecture detected"
 	elif [[ $arch == aarch64 ]]; then
 		arch="arm64"
@@ -176,7 +175,8 @@ Detect_Architecture() {
 	else
 		Red_Error "[x] Sorry, this architecture is not supported yet!\n[x]Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
 	fi
-	echo "$arch"
+	
+	node_install_path="${install_base}/node-$node-linux-$arch"
 }
 # Initialization
 Initialize() {
@@ -196,7 +196,7 @@ Initialize() {
 	Install_dependencies
 
 	# Check and download MCSM source
-	Check_and_download_source
+	#Check_and_download_source
 	
 	# Create mcsm user if needed
 	if [[ "$USER" == *"mcsm"* ]]; then
