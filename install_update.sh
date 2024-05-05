@@ -1,9 +1,17 @@
 #!/bin/bash
 
 #Global arguments
+#MCSM install dir
 mcsmanager_install_path="/opt/mcsmanager"
+#MCSM backup dir
+mcsm_backup_dir="/opt/"
+#Created backup absolute path
+backup_path=""
+#Download URL
 mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
+#File name
 package_name="MCSManager-v10-linux.tar.gz"
+#Node.js version to install
 node="v20.12.2"
 arch=$(uname -m)
 
@@ -41,6 +49,37 @@ echo_cyan_n() {
 
 echo_yellow() {
     printf '\033[1;33m%b\033[0m\n' "$@"
+}
+
+Install_node() {
+    echo_cyan_n "[+] Install Node.js environment...\n"
+
+    rm -irf "$node_install_path"
+
+    cd /opt || Red_Error "[x] Failed to enter /opt"
+
+    rm -rf "node-$node-linux-$arch.tar.gz"
+
+    wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+
+    tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
+
+    rm -rf "node-$node-linux-$arch.tar.gz"
+
+    if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
+        echo_green "Success"
+    else
+        Red_Error "[x] Node installation failed!"
+    fi
+
+    echo
+    echo_yellow "=============== Node.JS Version ==============="
+    echo_yellow " node: $("$node_install_path"/bin/node -v)"
+    echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
+    echo_yellow "=============== Node.JS Version ==============="
+    echo
+
+    sleep 3
 }
 
 # Check root permission
