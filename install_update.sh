@@ -1,19 +1,24 @@
 #!/bin/bash
 
 #Global arguments
-#MCSM install dir
-mcsmanager_install_path="/opt/mcsmanager"
-#MCSM backup dir
-mcsm_backup_dir="/opt/"
-#Created backup absolute path
-backup_path=""
-#Download URL
-mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
-#File name
-package_name="MCSManager-v10-linux.tar.gz"
-#Node.js version to install
-node="v20.12.2"
+# System architecture
 arch=$(uname -m)
+# MCSM install dir
+mcsmanager_install_path="/opt/mcsmanager"
+# MCSM backup dir
+mcsm_backup_dir="/opt/"
+# Created backup absolute path
+backup_path=""
+# Download URL
+mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
+# File name
+package_name="MCSManager-v10-linux.tar.gz"
+# Node.js version to install
+node="v20.12.2"
+# Node.js install dir
+node_install_path="/opt/node-$node-linux-$arch"
+
+
 
 # Default systemd user is 'mcsm'
 USER="mcsm"
@@ -49,6 +54,30 @@ echo_cyan_n() {
 
 echo_yellow() {
     printf '\033[1;33m%b\033[0m\n' "$@"
+}
+
+# Check root permission
+check_sudo() {
+	if [ "$EUID" -ne 0 ]; then
+		echo "This script must be run as root. Please use \"sudo or root user\" instead."
+		exit 1
+	fi
+}
+
+Install_dependencies() {
+	# Install related software
+	echo_cyan_n "[+] Installing dependent software (git, tar, wget)... "
+	if [[ -x "$(command -v yum)" ]]; then
+		yum install -y git tar wget
+	elif [[ -x "$(command -v apt-get)" ]]; then
+		apt-get install -y git tar wget
+	elif [[ -x "$(command -v pacman)" ]]; then
+		pacman -S --noconfirm git tar wget
+	elif [[ -x "$(command -v zypper)" ]]; then
+		zypper --non-interactive install git tar wget
+	else
+		echo_red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
+	fi
 }
 
 Install_node() {
@@ -119,15 +148,10 @@ Backup_MCSM() {
         return 1  # Return with error
     fi
 }
-
-# Check root permission
-check_sudo() {
-	if [ "$EUID" -ne 0 ]; then
-		echo "This script must be run as root. Please use \"sudo or root user\" instead."
-		exit 1
-	fi
-}
+########### Main Logic ################
 check_sudo
+# Install Dependencies
+Install_dependencies
 
 # Parse provided arguments
 while getopts "u:c:" opt; do
@@ -172,11 +196,10 @@ esac
 
 # Check if the mcsmanager_install_path exists
 if [ -d "$mcsmanager_install_path" ]; then
-    echo "The directory '$mcsmanager_install_path' exists."
-    # Logic branch when the directory exists
-    # For example, list the contents
-    echo "Listing contents of $mcsmanager_install_path:"
-    ls -l "$directory"
+    # Backup first
+	Backup_MCSM
+	# Install Node.js, this is to ensure the version is up to date.
+	
 else
     echo "The directory '$mcsmanager_install_path' does not exist."
     # Logic branch when the directory does not exist
