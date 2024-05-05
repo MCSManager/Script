@@ -294,7 +294,7 @@ WantedBy=multi-user.target
 	# Add user section if using mcsm user
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Check if the 'User=mcsm' line already exists in the service file
-		if grep -q "^User=mcsm$" "$service_file"; then
+		if grep -q "^User=mcsm$" "$service_file_web"; then
 			echo "The service file is configured already."
 		else
 			# Add 'User=mcsm' to the service file
@@ -399,9 +399,9 @@ Install_Daemon_Systemd() {
 }
 # MCSM Web Update & Installation
 Install_Daemon_Wrapper() {
-	web_path="${mcsmanager_install_path}/${mcsm_daemon}"
-	web_data="${web_daemon}/data"
-	web_data_tmp="${mcsmanager_install_path}/daemon_data_${current_date}"
+	daemon_path="${mcsmanager_install_path}/${mcsm_daemon}"
+	daemon_data="${web_daemon}/data"
+	daemon_data_tmp="${mcsmanager_install_path}/daemon_data_${current_date}"
 	if [ -d "$daemon_path" ]; then
 		echo_cyan "[+] Updating MCSManager Daemon..."
 		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/daemon_data should be fast and safe.
@@ -412,10 +412,9 @@ Install_Daemon_Wrapper() {
 		rm -rf "$daemon_path"
 		
 	else
-		echo "The directory '$mcsmanager_install_path' does not exist."
+		echo_cyan "[+] Install MCSManager daemon..."
 	fi
-    echo_cyan "[+] Install MCSManager daemon..."
-	
+    	
 	# Install MCSM Web
 	Install_MCSM_Daemon_Base
 	
