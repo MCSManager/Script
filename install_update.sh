@@ -246,6 +246,8 @@ Backup_MCSM() {
 Install_MCSM_Web_Base() {
 	# Move downloaded path
 	mv "${mcsm_down_temp}/${mcsm_web}" "$web_path"
+	# Move helper file(s)
+	mv "${mcsm_down_temp}/start-web.sh" "${mcsmanager_install_path}/start-web.sh"
 	# Move back the data directory
 	rm -rf "$web_data"
 	mv "${web_data_tmp}" "${web_data}"
@@ -333,6 +335,9 @@ Install_Web_Wrapper() {
 Install_MCSM_Daemon_Base() {
 	# Move downloaded path
 	mv "${mcsm_down_temp}/${mcsm_daemon}" "$daemon_path"
+		# Move helper file(s)
+	mv "${mcsm_down_temp}/start-daemon.sh" "${mcsmanager_install_path}/start-daemon.sh"
+
 	# Move back the data directory
 	rm -rf "$daemon_data"
 	mv "${web_daemon_tmp}" "${daemon_data}"
@@ -529,6 +534,12 @@ Finalize() {
 		echo "Your MCSM has been updated and/or installed. A complete backup was created at: $backup_path"
 		echo "You can manually delete the backup using command: rm ${backup_path}"
 	fi
+	# Move quickstart.md
+	mv "${mcsm_down_temp}/quick-start.md" "${mcsmanager_install_path}/quick-start.md"
+	# Remove the temp folder
+	rm -rf "${mcsm_down_temp}"
+
+	
 }
 ########### Main Logic ################
 main() {
