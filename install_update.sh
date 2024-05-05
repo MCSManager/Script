@@ -271,7 +271,7 @@ Install_Web_Systemd() {
 	fi
 	# Reload Systemd Service
 	systemctl daemon-reload
-	
+	systemctl enable --now mcsm-web
 }
 
 # MCSM Web Update & Installation
@@ -352,7 +352,7 @@ Install_Daemon_Systemd() {
 	fi
 	# Reload Systemd Service
 	systemctl daemon-reload
-	
+	systemctl enable --now mcsm-daemon
 }
 # MCSM Web Update & Installation
 Install_Daemon_Wrapper() {
