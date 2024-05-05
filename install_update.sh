@@ -26,8 +26,8 @@ service_file_web="/etc/systemd/system/mcsm-web.service"
 # Service file for MCSM daemon
 service_file_daemon="/etc/systemd/system/mcsm-daemon.service"
 # Default systemd user is 'mcsm'
-USER="mcsm"
-COMMAND="all"
+USER=""
+COMMAND=""
 # Created backup absolute path
 backup_path=""
 # Downloaded package name
@@ -197,6 +197,12 @@ Initialize() {
 	# Check and download MCSM source
 	Check_and_download_source
 	
+	# Parse input arguments
+	Parse_Arguments
+	
+	echo "$USER"
+	echo "$COMMAND"
+	exit 1
 	# Create mcsm user if needed
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Create the user 'mcsm' if it doesn't already exist
@@ -427,7 +433,7 @@ Parse_Arguments() {
 		case ${opt} in
 			u )
 				if [[ "${OPTARG}" == "mcsm" || "${OPTARG}" == "root" ]]; then
-					user="${OPTARG}"
+					USER="${OPTARG}"
 				else
 					echo "Invalid user specified."
 					usage
@@ -435,7 +441,7 @@ Parse_Arguments() {
 				;;
 			c )
 				if [[ "${OPTARG}" == "web" || "${OPTARG}" == "daemon" || "${OPTARG}" == "all" ]]; then
-					command="${OPTARG}"
+					COMMAND="${OPTARG}"
 				else
 					echo "Invalid command specified."
 					usage
@@ -477,11 +483,13 @@ Install_Update() {
 }
 # Finalize installation
 Finalize() {
+	#Clear screen
+	#clear
     printf "\n\n\n\n"
 	case "$COMMAND" in
     all)
             echo_yellow "=================================================================="
-			echo_green "Installation is complete! Welcome to the MCSManager!!!"
+			echo_green "Installation is complete! Welcome to the MCSManager V10!!!"
 			echo_yellow " "
 			echo_cyan_n "HTTP Web Service:        "
 			echo_yellow "http://<Your IP>:23333  (Browser)"
@@ -500,7 +508,7 @@ Finalize() {
 
     web)
             echo_yellow "=================================================================="
-			echo_green "Installation is complete! Welcome to the MCSManager!!!"
+			echo_green "Installation is complete! Welcome to the MCSManager V10!!!"
 			echo_yellow " "
 			echo_cyan_n "HTTP Web Service:        "
 			echo_yellow "http://<Your IP>:23333  (Browser)"
@@ -517,7 +525,7 @@ Finalize() {
 
     daemon)
             echo_yellow "=================================================================="
-			echo_green "Installation is complete! Welcome to the MCSManager!!!"
+			echo_green "Installation is complete! Welcome to the MCSManager V10!!!"
 			echo_yellow " "
 			echo_cyan_n "Daemon Address:          "
 			echo_yellow "ws://<Your IP>:24444    (Cluster)"
@@ -540,8 +548,11 @@ Finalize() {
 	esac
 	# Check if backup_path is not empty
 	if [[ -n "$backup_path" ]]; then
-		echo "Your MCSM has been updated and/or installed. A complete backup was created at: $backup_path"
-		echo "You can manually delete the backup using command: rm ${backup_path}"
+		echo_green "Your MCSM has been updated from a previous installation. "
+		echo_green "A complete backup was created at:"
+		echo_yellow "$backup_path"
+		echo_green "You can manually delete the backup using command: "
+		echo_red "rm ${backup_path}"
 	fi
 	# Move quickstart.md
 	mv "${mcsm_down_temp}/quick-start.md" "${mcsmanager_install_path}/quick-start.md"
