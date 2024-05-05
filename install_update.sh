@@ -20,7 +20,7 @@ mcsm_web="web"
 # MCSM daemon dir name
 mcsm_daemon="daemon"
 # The date variable to be shared across functions
-local current_date=$(date +%Y_%m_%d)
+current_date=$(date +%Y_%m_%d)
 # MCSM local temp dir for downloaded source
 mcsm_down_temp="/opt/mcsmanager_${current_date}"
 # Service file for MCSCM Web
