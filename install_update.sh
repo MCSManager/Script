@@ -115,6 +115,9 @@ Install_node() {
     if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
         echo_green "Success"
     else
+		echo "${node_install_path}/bin/node"
+		$("$node_install_path"/bin/node -v)
+		
         Red_Error "[x] Node installation failed!"
     fi
 
@@ -136,15 +139,13 @@ Check_and_download_source() {
     # Download the archive directly into the temporary directory
     wget -O "${mcsm_down_temp}/mcsmanager.tar.gz" "$mcsmanager_download_addr"
     if [ $? -ne 0 ]; then
-        echo "Download failed."
-        return 1  # Exit if download fails
+        Red_Error "MCSManager Download failed."
     fi
 
     # Extract the archive without changing directories
     tar -xzf "${mcsm_down_temp}/mcsmanager.tar.gz" -C "$mcsm_down_temp" --strip-components=1
     if [ $? -ne 0 ]; then
-        echo "Extraction failed."
-        return 1  # Exit if extraction fails
+        Red_Error  "Extraction failed."
     fi
 
     # Clean up the downloaded tar.gz file
@@ -152,8 +153,10 @@ Check_and_download_source() {
 }
 # Detect architecture
 Detect_Architecture() {
-	if [[ "$arch" == x86_64 ]]; then
+	echo "Detected"
+	if [[ $arch == x86_64 ]]; then
 		arch=x64
+		echo "Detected x64"
 		#echo "[-] x64 architecture detected"
 	elif [[ $arch == aarch64 ]]; then
 		arch=arm64
@@ -206,14 +209,12 @@ Initialize() {
 Backup_MCSM() {
     # Ensure both directories are provided
     if [ -z "$mcsmanager_install_path" ] || [ -z "$mcsm_backup_dir" ]; then
-        echo "Error: Backup or source path not set."
-        return 1  # Return with error
+        Red_Error  "Error: Backup or source path not set."
     fi
 
     # Check if the source directory exists
     if [ ! -d "$mcsmanager_install_path" ]; then
-        echo "Error: Source directory does not exist."
-        return 1  # Return with error
+        Red_Error  "Error: Source directory does not exist."
     fi
 
     # Create backup directory (/opt) if it doesn't exist
@@ -233,8 +234,7 @@ Backup_MCSM() {
     if [ $? -eq 0 ]; then
         echo "Backup created successfully at $backup_path"
     else
-        echo "Error creating backup."
-        return 1  # Return with error
+        Red_Error  "Error creating backup."
     fi
 }
 # MCSM Web Base Installation
