@@ -361,6 +361,13 @@ Install_MCSM_Daemon_Base() {
 # MCSM Daemon Service Installation
 Install_Daemon_Systemd() {
 	echo_cyan "[+] Creating MCSManager Daemon service..."
+	# stop and disable existing service
+    systemctl disable --now mcsm-daemon
+
+    # delete existing service
+    rm -rf "$service_file_daemon"
+    systemctl daemon-reload
+
 	# Create the default service file
 	echo "[Unit]
 	Description=MCSManager-Daemon
