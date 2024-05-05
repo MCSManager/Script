@@ -32,6 +32,8 @@ USER="mcsm"
 COMMAND="all"
 # Created backup absolute path
 backup_path=""
+# Downloaded package name
+package_name="${mcsmanager_download_addr##*/}"
 
 # Helper Functions
 usage() {
@@ -143,7 +145,7 @@ Check_and_download_source() {
     fi
 
     # Extract the archive without changing directories
-    tar -xzf "${mcsm_down_temp}/mcsmanager.tar.gz" -C "$mcsm_down_temp" --strip-components=1
+    tar -xzf "${mcsm_down_temp}/${package_name}" -C "$mcsm_down_temp" --strip-components=1
     if [ $? -ne 0 ]; then
         Red_Error  "Extraction failed."
     fi
@@ -154,25 +156,27 @@ Check_and_download_source() {
 # Detect architecture
 Detect_Architecture() {
 	echo "Detected"
+	echo "$arch"
 	if [[ $arch == x86_64 ]]; then
-		arch=x64
+		arch="x64"
 		echo "Detected x64"
 		#echo "[-] x64 architecture detected"
 	elif [[ $arch == aarch64 ]]; then
-		arch=arm64
+		arch="arm64"
 		#echo "[-] 64-bit ARM architecture detected"
 	elif [[ $arch == arm ]]; then
-		arch=armv7l
+		arch="armv7l"
 		#echo "[-] 32-bit ARM architecture detected"
 	elif [[ $arch == ppc64le ]]; then
-		arch=ppc64le
+		arch="ppc64le"
 		#echo "[-] IBM POWER architecture detected"
 	elif [[ $arch == s390x ]]; then
-		arch=s390x
+		arch="s390x"
 		#echo "[-] IBM LinuxONE architecture detected"
 	else
 		Red_Error "[x] Sorry, this architecture is not supported yet!\n[x]Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
 	fi
+	echo "$arch"
 }
 # Initialization
 Initialize() {
