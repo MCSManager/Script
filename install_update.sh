@@ -354,49 +354,71 @@ Install_Daemon_Systemd() {
 	systemctl daemon-reload
 	
 }
+# MCSM Web Update & Installation
+Install_Daemon_Wrapper() {
+	web_path="${mcsmanager_install_path}/${mcsm_daemon}"
+	web_data="${web_daemon}/data"
+	web_data_tmp="${mcsmanager_install_path}/daemon_data_${current_date}"
+	if [ -d "$daemon_path" ]; then
+		echo_cyan "[+] Updating MCSManager Daemon..."
+		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/daemon_data should be fast and safe.
+		# Use daemon_data, do not use data as in rare circumstance user may run both update at the same time.
+		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir)
+		mv "$daemon_data" "$daemon_data_tmp"
+		# Remove the old daemon dir
+		rm -rf "$daemon_path"
+		
+	else
+		echo "The directory '$mcsmanager_install_path' does not exist."
+	fi
+    echo_cyan "[+] Install MCSManager daemon..."
+	
+	# Install MCSM Web
+	Install_MCSM_Daemon_Base
+	
+	# Install MCSM Web Service
+	Install_Daemon_Systemd
+}
+# Arguments parsing
+Parse_Arguments() {
 
 
+
+}
+
+# Wrapper for installation
+Install_Update() {
+	while getopts "u:c:" opt; do
+		case ${opt} in
+			u )
+				if [[ "${OPTARG}" == "mcsm" || "${OPTARG}" == "root" ]]; then
+					user="${OPTARG}"
+				else
+					echo "Invalid user specified."
+					usage
+				fi
+				;;
+			c )
+				if [[ "${OPTARG}" == "web" || "${OPTARG}" == "daemon" || "${OPTARG}" == "all" ]]; then
+					command="${OPTARG}"
+				else
+					echo "Invalid command specified."
+					usage
+				fi
+				;;
+			\? )
+				usage
+				;;
+			: )
+				echo "Option -$OPTARG requires an argument."
+				usage
+				;;
+		esac
+	done
+}
 ########### Main Logic ################
 Initialize
 # Parse provided arguments
-while getopts "u:c:" opt; do
-    case ${opt} in
-        u )
-            if [[ "${OPTARG}" == "mcsm" || "${OPTARG}" == "root" ]]; then
-                user="${OPTARG}"
-            else
-                echo "Invalid user specified."
-                usage
-            fi
-            ;;
-        c )
-            if [[ "${OPTARG}" == "web" || "${OPTARG}" == "daemon" || "${OPTARG}" == "all" ]]; then
-                command="${OPTARG}"
-            else
-                echo "Invalid command specified."
-                usage
-            fi
-            ;;
-        \? )
-            usage
-            ;;
-        : )
-            echo "Option -$OPTARG requires an argument."
-            usage
-            ;;
-    esac
-done
-
-# Logic for different users
-case ${USER} in
-  root)
-    ;;
-  mcsm)
-    ;;
-  *)
-    echo "Unknown user: ${USER}. Using default user mcsm..."
-    ;;
-esac
 
 
 # Check if the mcsmanager_install_path exists
