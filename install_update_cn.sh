@@ -38,8 +38,8 @@ node_install_path=""
 # Helper Functions
 usage() {
     echo "Usage: $0 [-u user] [-c command]"
-    echo "  -u  Specify the user (mcsm or root), default is 'mcsm'"
-    echo "  -c  Specify the command (web, daemon, or all), default is 'all'"
+    echo "  -u  指定用户安装 (mcsm 或 root), 默认是 'mcsm'"
+    echo "  -c  安装指定组件 (web, daemon, 或 all), 默认是 'all'"
     exit 1
 }
 Red_Error() {
@@ -92,7 +92,7 @@ Install_dependencies() {
 	
 	# Determine whether the relevant software is installed successfully
 	if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
-		echo_green "Success"
+		echo_green "成功!"
 	else
 		Red_Error "[x] Failed to find git, tar and wget, please install them manually!"
 	fi
@@ -101,9 +101,9 @@ Install_dependencies() {
 
 Install_node() {
     if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-        echo_green "Desired Node.js is already installed at the target dir, bypassing installation..."
+        echo_green "检测到已安装的Node.js版本, 已为您跳过安装."
     else	
-        echo_cyan_n "[+] Install Node.js environment...\n"
+        echo_cyan_n "[+] 安装 Node.js 环境中...\n"
 
 		rm -irf "$node_install_path"
 
@@ -206,9 +206,9 @@ Initialize() {
 		# Create the user 'mcsm' if it doesn't already exist
 		if ! id "mcsm" &>/dev/null; then
 			/usr/sbin/useradd mcsm
-			echo_green "User 'mcsm' created."
+			echo_green "用户 'mcsm' 已创建."
 		else
-			echo_yellow "User 'mcsm' already exists."
+			echo_yellow "用户 'mcsm' 已经存在."
 		fi
 	fi
 }
@@ -216,17 +216,17 @@ Initialize() {
 Backup_MCSM() {
     # Ensure both directories are provided
     if [ -z "$mcsmanager_install_path" ] || [ -z "$mcsm_backup_dir" ]; then
-        Red_Error  "Error: Backup or source path not set."
+        Red_Error  "错误: 备份或源路径为空."
     fi
 
     # Check if the source directory exists
     if [ ! -d "$mcsmanager_install_path" ]; then
-        Red_Error  "Error: Source directory does not exist."
+        Red_Error  "错误: 源目录不存在."
     fi
 
     # Create backup directory (/opt) if it doesn't exist
     if [ ! -d "$mcsm_backup_dir" ]; then
-        echo_yellow "Creating backup directory."
+        echo_yellow "正在创建备份目录..."
         mkdir -p "$mcsm_backup_dir"
     fi
 
@@ -234,16 +234,16 @@ Backup_MCSM() {
     backup_path="${mcsm_backup_dir}/mcsm_backup_${current_date}.tar.gz"
 
     # Create the backup
-	echo_yellow "Creating backup..."
+	echo_yellow "正在创建备份..."
     #tar -czf "$backup_path" -C "$mcsmanager_install_path" .
 	tar -czf "$backup_path" -C "$(dirname "$mcsmanager_install_path")" "$(basename "$mcsmanager_install_path")"
 
 
     # Check if the backup was successful
     if [ $? -eq 0 ]; then
-        echo_green "Successfully created backup at $backup_path"
+        echo_green "成功创建了备份,位于: $backup_path"
     else
-        Red_Error  "Error creating backup."
+        Red_Error  "创建备份时出错"
     fi
 }
 # MCSM Web Base Installation
@@ -261,8 +261,8 @@ Install_MCSM_Web_Base() {
 	# Dependencies install
 	cd "${web_path}" || Red_Error "[x] Failed to enter ${web_path}"
 	# Install dependencies
-    echo_cyan "[+] Install MCSManager-Web dependencies..."
-    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${web_path}"
+    echo_cyan "[+] 安装 MCSManager 网页 依赖中..."
+    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] 在 ${web_path} 安装依赖时出错."
 	# Return to general dir
 	cd "$mcsmanager_install_path"
 	# Configure ownership if needed
@@ -274,7 +274,7 @@ Install_MCSM_Web_Base() {
 }
 # MCSM Web Service Installation
 Install_Web_Systemd() {
-	echo_cyan "[+] Creating MCSManager Web service..."
+	echo_cyan "[+] 创建 MCSManager 网页服务中..."
 	# stop and disable existing service
     systemctl disable --now mcsm-web
 
@@ -318,7 +318,7 @@ Install_Web_Wrapper() {
 	web_data="${web_path}/data"
 	web_data_tmp="${mcsmanager_install_path}/web_data_${current_date}"
 	if [ -d "$web_path" ]; then
-		echo_cyan "[+] Updating MCSManager Web..."
+		echo_cyan "[+] 升级 MCSManager 网页端中..."
 		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/web_data should be fast and safe.
 		# Use web_data, do not use data as in rare circumstance user may run both update at the same time.
 		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir)
@@ -327,7 +327,7 @@ Install_Web_Wrapper() {
 		rm -rf "$web_path"
 		
 	else
-		echo_cyan "[+] Install MCSManager Web..."
+		echo_cyan "[+] 安装 MCSManager 网页端中..."
 	fi
     
 	
@@ -354,7 +354,7 @@ Install_MCSM_Daemon_Base() {
 	# Dependencies install
 	cd "${daemon_path}" || Red_Error "[x] Failed to enter ${daemon_path}"
 	# Install dependencies
-    echo_cyan "[+] Install MCSManager-Daemon dependencies..."
+    echo_cyan "[+] 安装 MCSManager 节点依赖中..."
     env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${daemon_path}"
 	# Return to general dir
 	cd "$mcsmanager_install_path"
@@ -368,7 +368,7 @@ Install_MCSM_Daemon_Base() {
 
 # MCSM Daemon Service Installation
 Install_Daemon_Systemd() {
-	echo_cyan "[+] Creating MCSManager Daemon service..."
+	echo_cyan "[+] 创建 MCSManager 节点服务中..."
 	# stop and disable existing service
     systemctl disable --now mcsm-daemon
 
@@ -411,7 +411,7 @@ Install_Daemon_Wrapper() {
 	daemon_data="${daemon_path}/data"
 	daemon_data_tmp="${mcsmanager_install_path}/daemon_data_${current_date}"
 	if [ -d "$daemon_path" ]; then
-		echo_cyan "[+] Updating MCSManager Daemon..."
+		echo_cyan "[+] 升级 MCSManager 节点中..."
 		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/daemon_data should be fast and safe.
 		# Use daemon_data, do not use data as in rare circumstance user may run both update at the same time.
 		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir) 
@@ -420,7 +420,7 @@ Install_Daemon_Wrapper() {
 		rm -rf "$daemon_path"
 		
 	else
-		echo_cyan "[+] Install MCSManager daemon..."
+		echo_cyan "[+] 安装 MCSManager 节点中..."
 	fi
     	
 	# Install MCSM Web
