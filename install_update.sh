@@ -82,6 +82,44 @@ Install_node() {
     sleep 3
 }
 
+backup_mcs_manager() {
+    # Ensure both directories are provided
+    if [ -z "$mcsmanager_install_path" ] || [ -z "$mcsm_backup_dir" ]; then
+        echo "Error: Backup or source path not set."
+        return 1  # Return with error
+    fi
+
+    # Check if the source directory exists
+    if [ ! -d "$mcsmanager_install_path" ]; then
+        echo "Error: Source directory does not exist."
+        return 1  # Return with error
+    fi
+
+    # Create backup directory (/opt) if it doesn't exist
+    if [ ! -d "$mcsm_backup_dir" ]; then
+        echo "Creating backup directory."
+        mkdir -p "$mcsm_backup_dir"
+    fi
+
+    # Format the date for the backup filename
+    local current_date=$(date +%Y_%m_%d)
+
+    # Define the backup path
+    backup_path="${mcsm_backup_dir}/mcsm_backup_${current_date}.tar.gz"
+
+    # Create the backup
+	echo "Creating backup..."
+    tar -czf "$backup_path" -C "$mcsmanager_install_path" .
+
+    # Check if the backup was successful
+    if [ $? -eq 0 ]; then
+        echo "Backup created successfully at $backup_path"
+    else
+        echo "Error creating backup."
+        return 1  # Return with error
+    fi
+}
+
 # Check root permission
 check_sudo() {
 	if [ "$EUID" -ne 0 ]; then
