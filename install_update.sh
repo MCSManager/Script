@@ -322,6 +322,40 @@ Install_MCSM_Daemon_Base() {
 	fi
 	chmod -R 755 "$daemon_path"
 }
+
+# MCSM Daemon Service Installation
+Install_Daemon_Systemd() {
+	echo_cyan "[+] Creating MCSManager Daemon service..."
+	# Create the default service file
+	echo "[Unit]
+	Description=MCSManager-Daemon
+
+	[Service]
+	WorkingDirectory=${daemon_path}
+	ExecStart=${node_install_path}/bin/node app.js
+	ExecReload=/bin/kill -s QUIT \$MAINPID
+	ExecStop=/bin/kill -s QUIT \$MAINPID
+	Environment=\"PATH=${PATH}\"
+
+	[Install]
+	WantedBy=multi-user.target
+	" >/etc/systemd/system/mcsm-daemon.service
+	# Add user section if using mcsm user
+	if [[ "$USER" == *"mcsm"* ]]; then
+		# Check if the 'User=mcsm' line already exists in the service file
+		if grep -q "^User=mcsm$" "$service_file"; then
+			echo "The service file is configured already."
+		else
+			# Add 'User=mcsm' to the service file
+			sed -i '/^\[Service\]$/a User=mcsm' "$service_file"
+		fi
+	fi
+	# Reload Systemd Service
+	systemctl daemon-reload
+	
+}
+
+
 ########### Main Logic ################
 Initialize
 # Parse provided arguments
