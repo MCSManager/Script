@@ -82,7 +82,7 @@ Install_node() {
     sleep 3
 }
 
-backup_mcs_manager() {
+Backup_MCSM() {
     # Ensure both directories are provided
     if [ -z "$mcsmanager_install_path" ] || [ -z "$mcsm_backup_dir" ]; then
         echo "Error: Backup or source path not set."
