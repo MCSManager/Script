@@ -127,17 +127,27 @@ Install_node() {
 }
 # Check and download MCSM source
 Check_and_download_source() {
-	if [ -d "$mcsm_down_temp" ]; then
-		echo_cyan "[+] Downloading MCSManager..."
-		# Remove the downloaded source if existed, the source dir name contains current date, so its unlikely to coincide with other name(s)
-		rm -rf "$mcsm_down_temp"
-		mkdir -p "$mcsm_down_temp" || Red_Error "[x] Failed to create ${mcsm_down_temp}"
-		
-	else
-		mkdir -p "$mcsm_down_temp" || Red_Error "[x] Failed to create ${mcsm_down_temp}"
-	fi
+	# Empty the temp dir if existed
+	rm -rf "$mcsm_down_temp"
+	mkdir -p "$mcsm_down_temp"
 
-}
+    # Download the archive directly into the temporary directory
+    wget -O "${mcsm_down_temp}/mcsmanager.tar.gz" "$mcsmanager_download_addr"
+    if [ $? -ne 0 ]; then
+        echo "Download failed."
+        return 1  # Exit if download fails
+    fi
+
+    # Extract the archive without changing directories
+    tar -xzf "${mcsm_down_temp}/mcsmanager.tar.gz" -C "$mcsm_down_temp" --strip-components=1
+    if [ $? -ne 0 ]; then
+        echo "Extraction failed."
+        return 1  # Exit if extraction fails
+    fi
+
+    # Clean up the downloaded tar.gz file
+    rm "${mcsm_down_temp}/mcsmanager.tar.gz"
+
 # Initialization
 Initialize() {
 	# Check sudo
@@ -150,7 +160,7 @@ Initialize() {
 	Install_dependencies
 
 	# Check and download MCSM source
-	
+	Check_and_download_source
 }
 
 Backup_MCSM() {
@@ -188,6 +198,7 @@ Backup_MCSM() {
     fi
 }
 # MCSM Web Base Installation
+# Assume a fresh install (i.e. no file(s) from previous installation)
 Install_MCSM_Web_Base() {
 	
 
