@@ -435,7 +435,68 @@ esac
 }
 # Finalize installation
 Finalize() {
-	
+    printf "\n\n\n\n"
+	case "$COMMAND" in
+    all)
+            echo_yellow "=================================================================="
+			echo_green "Installation is complete! Welcome to the MCSManager!!!"
+			echo_yellow " "
+			echo_cyan_n "HTTP Web Service:        "
+			echo_yellow "http://<Your IP>:23333  (Browser)"
+			echo_cyan_n "Daemon Address:          "
+			echo_yellow "ws://<Your IP>:24444    (Cluster)"
+			echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+			echo_yellow " "
+			echo_cyan "Usage:"
+			echo_cyan "systemctl start mcsm-{daemon,web}.service"
+			echo_cyan "systemctl stop mcsm-{daemon,web}.service"
+			echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+			echo_yellow " "
+			echo_green "Official Document: https://docs.mcsmanager.com/"
+			echo_yellow "=================================================================="
+        ;;
+
+    web)
+            echo_yellow "=================================================================="
+			echo_green "Installation is complete! Welcome to the MCSManager!!!"
+			echo_yellow " "
+			echo_cyan_n "HTTP Web Service:        "
+			echo_yellow "http://<Your IP>:23333  (Browser)"
+			echo_red "You must expose port 23333 to use the service properly on the Internet."
+			echo_yellow " "
+			echo_cyan "Usage:"
+			echo_cyan "systemctl start mcsm-web.service"
+			echo_cyan "systemctl stop mcsm-web.service"
+			echo_cyan "systemctl restart mcsm-web.service"
+			echo_yellow " "
+			echo_green "Official Document: https://docs.mcsmanager.com/"
+			echo_yellow "=================================================================="
+        ;;
+
+    daemon)
+            echo_yellow "=================================================================="
+			echo_green "Installation is complete! Welcome to the MCSManager!!!"
+			echo_yellow " "
+			echo_cyan_n "Daemon Address:          "
+			echo_yellow "ws://<Your IP>:24444    (Cluster)"
+			echo_red "You must expose port 24444 to use the service properly on the Internet."
+			echo_yellow " "
+			echo_cyan "Usage:"
+			echo_cyan "systemctl start mcsm-daemon.service"
+			echo_cyan "systemctl stop mcsm-daemon.service"
+			echo_cyan "systemctl restart mcsm-daemon.service"
+			echo_yellow " "
+			echo_green "Official Document: https://docs.mcsmanager.com/"
+			echo_yellow "=================================================================="
+        ;;
+
+    *)
+        echo "Unknown command: $COMMAND, this should not happen in general :( Please report this bug."
+        # Exit with an error if COMMAND is unrecognized
+        exit 1
+        ;;
+
+
 
 
 
