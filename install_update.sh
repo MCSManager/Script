@@ -149,7 +149,7 @@ Check_and_download_source() {
 
     # Clean up the downloaded tar.gz file
     rm "${mcsm_down_temp}/mcsmanager.tar.gz"
-
+}
 # Detect architecture
 Detect_Architecture() {
 	if [[ "$arch" == x86_64 ]]; then
@@ -529,9 +529,6 @@ Finalize() {
 ########### Main Logic ################
 main() {
 	Initialize
-	# Parse provided arguments
-
-
 	# Check if the mcsmanager_install_path exists
 	if [ -d "$mcsmanager_install_path" ]; then
 		# Backup first
