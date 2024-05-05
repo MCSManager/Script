@@ -381,13 +381,6 @@ Install_Daemon_Wrapper() {
 }
 # Arguments parsing
 Parse_Arguments() {
-
-
-
-}
-
-# Wrapper for installation
-Install_Update() {
 	while getopts "u:c:" opt; do
 		case ${opt} in
 			u )
@@ -415,6 +408,10 @@ Install_Update() {
 				;;
 		esac
 	done
+}
+
+# Wrapper for installation
+Install_Update() {
 }
 ########### Main Logic ################
 Initialize
