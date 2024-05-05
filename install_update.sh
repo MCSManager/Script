@@ -17,8 +17,12 @@ package_name="MCSManager-v10-linux.tar.gz"
 node="v20.12.2"
 # Node.js install dir
 node_install_path="/opt/node-$node-linux-$arch"
-
-
+# MCSM Web dir name
+mcsm_web="web"
+# MCSM daemon dir name
+mcsm_daemon="daemon"
+# The date variable to be shared across functions
+local current_date=$(date +%Y_%m_%d)
 
 # Default systemd user is 'mcsm'
 USER="mcsm"
@@ -110,7 +114,7 @@ Install_node() {
     fi
 
     echo
-    echo_yellow "=============== Node.JS Version ==============="
+    echo_yellow "=============== Node.js Version ==============="
     echo_yellow " node: $("$node_install_path"/bin/node -v)"
     echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
     echo_yellow "=============== Node.JS Version ==============="
@@ -138,9 +142,6 @@ Backup_MCSM() {
         mkdir -p "$mcsm_backup_dir"
     fi
 
-    # Format the date for the backup filename
-    local current_date=$(date +%Y_%m_%d)
-
     # Define the backup path
     backup_path="${mcsm_backup_dir}/mcsm_backup_${current_date}.tar.gz"
 
@@ -156,6 +157,68 @@ Backup_MCSM() {
         return 1  # Return with error
     fi
 }
+
+# MCSM Web Update & Installation
+Install_Web() {
+	web_path="$mcsmanager_install_path/$mcsm_web"
+	web_data="$mcsmanager_install_path/web_data"
+	if [ -d "$web_path" ]; then
+		echo_cyan "[+] Updating MCSManager Web..."
+		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/web_data should be fast and safe.
+		# Use web_data, do not use data as in rare circumstance user may run both update at the same time.
+		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir)
+		
+	else
+		echo "The directory '$mcsmanager_install_path' does not exist."
+		# Logic branch when the directory does not exist
+		# For example, create the directory
+		echo "Creating $mcsmanager_install_path..."
+	fi
+    echo_cyan "[+] Install MCSManager Web..."
+
+    # stop service
+    systemctl disable --now mcsm-{web}
+
+    # delete service
+    rm -rf /etc/systemd/system/mcsm-{daemon,web}.service
+    systemctl daemon-reload
+
+    mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] Failed to create ${mcsmanager_install_path}"
+
+    # cd /opt/mcsmanager
+    cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
+
+    # donwload MCSManager release
+    wget "${mcsmanager_donwload_addr}" || Red_Error "[x] Failed to download MCSManager"
+    tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
+    rm -rf "${mcsmanager_install_path}/${package_name}"
+
+    # echo "[→] cd daemon"
+    cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
+
+    echo_cyan "[+] Install MCSManager-Daemon dependencies..."
+    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
+
+    # echo "[←] cd .."
+    cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
+
+    echo_cyan "[+] Install MCSManager-Web dependencies..."
+    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
+
+    echo
+    echo_yellow "=============== MCSManager ==============="
+    echo_green "Daemon: ${mcsmanager_install_path}/daemon"
+    echo_green "Web: ${mcsmanager_install_path}/web"
+    echo_yellow "=============== MCSManager ==============="
+    echo
+    echo_green "[+] MCSManager installation success!"
+
+    chmod -R 755 "$mcsmanager_install_path"
+
+    sleep 3
+}
+
+
 ########### Main Logic ################
 check_sudo
 # Install Dependencies
@@ -207,6 +270,8 @@ if [ -d "$mcsmanager_install_path" ]; then
     # Backup first
 	Backup_MCSM
 	# Install Node.js, this is to ensure the version is up to date.
+	Install_node
+	# 
 	
 else
     echo "The directory '$mcsmanager_install_path' does not exist."
