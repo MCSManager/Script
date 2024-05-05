@@ -273,23 +273,24 @@ Install_Web_Systemd() {
     systemctl disable --now mcsm-web
 
     # delete existing service
-    rm -rf /etc/systemd/system/mcsm-web.service
+    rm -rf "$service_file_web"
     systemctl daemon-reload
 
 	# Create the default service file
 	echo "[Unit]
-	Description=MCSManager-Web
+Description=MCSManager-Web
 
-	[Service]
-	WorkingDirectory=${web_path}
-	ExecStart=${node_install_path}/bin/node app.js
-	ExecReload=/bin/kill -s QUIT \$MAINPID
-	ExecStop=/bin/kill -s QUIT \$MAINPID
-	Environment=\"PATH=${PATH}\"
+[Service]
+WorkingDirectory=${web_path}
+ExecStart=${node_install_path}/bin/node app.js
+ExecReload=/bin/kill -s QUIT \$MAINPID
+ExecStop=/bin/kill -s QUIT \$MAINPID
+Environment=\"PATH=${PATH}\"
 
-	[Install]
-	WantedBy=multi-user.target
-	" >/etc/systemd/system/mcsm-web.service
+[Install]
+WantedBy=multi-user.target
+" >"$service_file_web"
+	
 	# Add user section if using mcsm user
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Check if the 'User=mcsm' line already exists in the service file
@@ -297,7 +298,7 @@ Install_Web_Systemd() {
 			echo "The service file is configured already."
 		else
 			# Add 'User=mcsm' to the service file
-			sed -i '/^\[Service\]$/a User=mcsm' "$service_file"
+			sed -i '/^\[Service\]$/a User=mcsm' "$service_file_web"
 		fi
 	fi
 	# Reload Systemd Service
@@ -373,15 +374,16 @@ Install_Daemon_Systemd() {
 
 	[Install]
 	WantedBy=multi-user.target
-	" >/etc/systemd/system/mcsm-daemon.service
+	" >"$service_file_daemon"
+	
 	# Add user section if using mcsm user
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Check if the 'User=mcsm' line already exists in the service file
-		if grep -q "^User=mcsm$" "$service_file"; then
+		if grep -q "^User=mcsm$" "$service_file_daemon"; then
 			echo "The service file is configured already."
 		else
 			# Add 'User=mcsm' to the service file
-			sed -i '/^\[Service\]$/a User=mcsm' "$service_file"
+			sed -i '/^\[Service\]$/a User=mcsm' "$service_file_daemon"
 		fi
 	fi
 	# Reload Systemd Service
