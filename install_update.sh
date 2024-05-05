@@ -10,7 +10,7 @@ mcsmanager_install_path="${install_base}/mcsmanager"
 # MCSM backup dir during upgrade
 mcsm_backup_dir="${install_base}"
 # Download URL
-mcsmanager_download_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
+mcsmanager_download_addr="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz "
 # Node.js version to install
 node="v20.12.2"
 # MCSM Web dir name
