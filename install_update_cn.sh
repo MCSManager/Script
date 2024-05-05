@@ -486,7 +486,7 @@ Install_Update() {
 # Finalize installation
 Finalize() {
 	#Clear screen
-	#clear
+	clear
     #printf "\n\n\n\n"
 	echo "______  _______________________  ___"
 	echo "___   |/  /_  ____/_  ___/__   |/  /_____ _____________ _______ _____________"
