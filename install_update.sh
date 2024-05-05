@@ -23,7 +23,8 @@ mcsm_web="web"
 mcsm_daemon="daemon"
 # The date variable to be shared across functions
 local current_date=$(date +%Y_%m_%d)
-
+# MCSM local temp dir for downloaded source
+mcsm_down_temp="/opt/mcsmanager_${current_date}"
 # Default systemd user is 'mcsm'
 USER="mcsm"
 COMMAND="all"
@@ -122,6 +123,17 @@ Install_node() {
 
     sleep 3
 }
+# Initialization
+Initialize() {
+	# Check sudo
+	check_sudo
+
+	# Check dependencies
+	Install_dependencies
+
+	# Check and download MCSM source
+	
+}
 
 Backup_MCSM() {
     # Ensure both directories are provided
@@ -157,22 +169,29 @@ Backup_MCSM() {
         return 1  # Return with error
     fi
 }
+# MCSM Web Base Installation
+Install_MCSM_Web_Base() {
+	
+
+}
+
 
 # MCSM Web Update & Installation
-Install_Web() {
-	web_path="$mcsmanager_install_path/$mcsm_web"
-	web_data="$mcsmanager_install_path/web_data"
+Install_Web_wrapper() {
+	web_path="${mcsmanager_install_path}/${mcsm_web}"
+	web_data="${web_path}/data"
+	web_data_tmp="${mcsmanager_install_path}/web_data_${current_date}"
 	if [ -d "$web_path" ]; then
 		echo_cyan "[+] Updating MCSManager Web..."
 		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/web_data should be fast and safe.
 		# Use web_data, do not use data as in rare circumstance user may run both update at the same time.
 		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir)
+		mv "$web_data" "$web_data_tmp"
+		# Remove the old web dir
+		rm -rf "$web_path"
 		
 	else
 		echo "The directory '$mcsmanager_install_path' does not exist."
-		# Logic branch when the directory does not exist
-		# For example, create the directory
-		echo "Creating $mcsmanager_install_path..."
 	fi
     echo_cyan "[+] Install MCSManager Web..."
 
@@ -220,10 +239,7 @@ Install_Web() {
 
 
 ########### Main Logic ################
-check_sudo
-# Install Dependencies
-Install_dependencies
-
+Initialize
 # Parse provided arguments
 while getopts "u:c:" opt; do
     case ${opt} in
