@@ -195,13 +195,13 @@ Initialize() {
 	Install_dependencies
 
 	# Check and download MCSM source
-	#Check_and_download_source
+	Check_and_download_source
 	
 	# Create mcsm user if needed
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Create the user 'mcsm' if it doesn't already exist
 		if ! id "mcsm" &>/dev/null; then
-			useradd mcsm
+			/usr/sbin/useradd mcsm
 			echo "User 'mcsm' created."
 		else
 			echo "User 'mcsm' already exists."
@@ -241,7 +241,6 @@ Backup_MCSM() {
     else
         Red_Error  "Error creating backup."
     fi
-	exit 1
 }
 # MCSM Web Base Installation
 # Assuming a fresh install (i.e. no file(s) from previous installation) and downloaded source
@@ -321,9 +320,9 @@ Install_Web_Wrapper() {
 		rm -rf "$web_path"
 		
 	else
-		echo "The directory '$mcsmanager_install_path' does not exist."
+		echo_cyan "[+] Install MCSManager Web..."
 	fi
-    echo_cyan "[+] Install MCSManager Web..."
+    
 	
 	# Install MCSM Web
 	Install_MCSM_Web_Base
