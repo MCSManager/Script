@@ -300,7 +300,28 @@ Install_Web_Wrapper() {
 	Install_Web_Systemd
 }
 
-
+# MCSM Daemon Base Installation
+# Assuming a fresh install (i.e. no file(s) from previous installation) and downloaded source
+Install_MCSM_Daemon_Base() {
+	# Move downloaded path
+	mv "${mcsm_down_temp}/${mcsm_daemon}" "$daemon_path"
+	# Move back the data directory
+	rm -rf "$daemon_data"
+	mv "${web_daemon_tmp}" "${daemon_data}"
+	# Dependencies install
+	cd "${daemon_path}" || Red_Error "[x] Failed to enter ${daemon_path}"
+	# Install dependencies
+    echo_cyan "[+] Install MCSManager-Daemon dependencies..."
+    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${daemon_path}"
+	# Return to general dir
+	cd "$mcsmanager_install_path"
+	# Configure ownership if needed
+	if [[ "$USER" == *"mcsm"* ]]; then
+		# Change file permission to mcsm user
+		chown -R mcsm:mcsm "$daemon_path"
+	fi
+	chmod -R 755 "$daemon_path"
+}
 ########### Main Logic ################
 Initialize
 # Parse provided arguments
