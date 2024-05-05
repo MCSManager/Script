@@ -199,9 +199,6 @@ Initialize() {
 	
 	# Parse input arguments
 	Parse_Arguments "$@"
-	
-	echo "$USER"
-	echo "$COMMAND"
 
 	# Create mcsm user if needed
 	if [[ "$USER" == *"mcsm"* ]]; then
