@@ -77,7 +77,7 @@ check_sudo() {
 
 Install_dependencies() {
 	# Install related software
-	echo_cyan "[+] 正在安装以来软件 (git, tar, wget)... "
+	echo_cyan "[+] 正在安装依赖软件 (git, tar, wget)... "
 	if [[ -x "$(command -v yum)" ]]; then
 		yum install -y git tar wget
 	elif [[ -x "$(command -v apt-get)" ]]; then
@@ -126,10 +126,10 @@ Install_node() {
     
 
     echo
-    echo_yellow "=============== Node.js Version ==============="
+    echo_yellow "=============== Node.js 版本 ==============="
     echo_yellow " node: $("$node_install_path"/bin/node -v)"
     echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
-    echo_yellow "=============== Node.JS Version ==============="
+    echo_yellow "=============== Node.js 版本 ==============="
     echo
     sleep 1
 }
