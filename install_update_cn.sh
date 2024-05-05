@@ -500,52 +500,52 @@ Finalize() {
             echo_yellow "=================================================================="
 			echo_green "安装已完成! 欢迎使用 MCSManager V10!!!"
 			echo_yellow " "
-			echo_cyan_n "HTTP Web Service:        "
-			echo_yellow "http://<Your IP>:23333  (Browser)"
-			echo_cyan_n "Daemon Address:          "
-			echo_yellow "ws://<Your IP>:24444    (Cluster)"
-			echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+			echo_cyan_n "网页 服务:        "
+			echo_yellow "http://<您的 IP>:23333  (Browser)"
+			echo_cyan_n "节点 地址:          "
+			echo_yellow "ws://<您的 IP>:24444    (Cluster)"
+			echo_red "您必须开放 23333 与 24444 端口才可以正常从公网访问"
 			echo_yellow " "
-			echo_cyan "Usage:"
-			echo_cyan "systemctl start mcsm-{daemon,web}.service"
-			echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-			echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+			echo_cyan "使用方法:"
+			echo_cyan "启动: systemctl start mcsm-{daemon,web}.service"
+			echo_cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
+			echo_cyan "重启: systemctl restart mcsm-{daemon,web}.service"
 			echo_yellow " "
-			echo_green "Official Document: https://docs.mcsmanager.com/"
+			echo_green "官方文档: https://docs.mcsmanager.com/"
 			echo_yellow "=================================================================="
         ;;
 
     web)
             echo_yellow "=================================================================="
-			echo_green "Installation is complete! Welcome to the MCSManager V10!!!"
+			echo_green "安装已完成! 欢迎使用 MCSManager V10!!!"
 			echo_yellow " "
-			echo_cyan_n "HTTP Web Service:        "
-			echo_yellow "http://<Your IP>:23333  (Browser)"
-			echo_red "You must expose port 23333 to use the service properly on the Internet."
+			echo_cyan_n "网页 服务:        "
+			echo_yellow "http://<您的 IP>:23333  (Browser)"
+			echo_red "您必须开放 23333 端口才可以正常从公网访问"
 			echo_yellow " "
-			echo_cyan "Usage:"
-			echo_cyan "systemctl start mcsm-web.service"
-			echo_cyan "systemctl stop mcsm-web.service"
-			echo_cyan "systemctl restart mcsm-web.service"
+			echo_cyan "使用方法:"
+			echo_cyan "启动: systemctl start mcsm-{daemon,web}.service"
+			echo_cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
+			echo_cyan "重启: systemctl restart mcsm-{daemon,web}.service"
 			echo_yellow " "
-			echo_green "Official Document: https://docs.mcsmanager.com/"
+			echo_green "官方文档: https://docs.mcsmanager.com/"
 			echo_yellow "=================================================================="
         ;;
 
     daemon)
             echo_yellow "=================================================================="
-			echo_green "Installation is complete! Welcome to the MCSManager V10!!!"
+			echo_green "安装已完成! 欢迎使用 MCSManager V10!!!"
 			echo_yellow " "
-			echo_cyan_n "Daemon Address:          "
-			echo_yellow "ws://<Your IP>:24444    (Cluster)"
-			echo_red "You must expose port 24444 to use the service properly on the Internet."
+			echo_cyan_n "节点 地址:          "
+			echo_yellow "ws://<您的 IP>:24444    (Cluster)"
+			echo_red "您必须开放 24444 端口才可以正常从公网访问"
 			echo_yellow " "
-			echo_cyan "Usage:"
-			echo_cyan "systemctl start mcsm-daemon.service"
-			echo_cyan "systemctl stop mcsm-daemon.service"
-			echo_cyan "systemctl restart mcsm-daemon.service"
+			echo_cyan "使用方法:"
+			echo_cyan "启动: systemctl start mcsm-{daemon,web}.service"
+			echo_cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
+			echo_cyan "重启: systemctl restart mcsm-{daemon,web}.service"
 			echo_yellow " "
-			echo_green "Official Document: https://docs.mcsmanager.com/"
+			echo_green "官方文档: https://docs.mcsmanager.com/"
 			echo_yellow "=================================================================="
         ;;
 
@@ -557,10 +557,10 @@ Finalize() {
 	esac
 	# Check if backup_path is not empty
 	if [[ -n "$backup_path" ]]; then
-		echo_green "Your MCSM has been updated from a previous installation. "
-		echo_green "A complete backup was created at:"
+		echo_green "您的MCSManager是从上一个版本升级而来. "
+		echo_green "我们已经为您创建了一个备份, 位于:"
 		echo_yellow "$backup_path"
-		echo_green "You can manually delete the backup using command: "
+		echo_green "如果需要, 您可以使用下列命令手动删除备份: "
 		echo_red "rm ${backup_path}"
 	fi
 	# Move quickstart.md
@@ -594,7 +594,7 @@ main() {
 	# Print helping Information
 	Finalize
 
-	echo "Installation Complete!"
+	echo "安装或升级已完成!"
 }
 
 main "$@"
