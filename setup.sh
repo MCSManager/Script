@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_donwload_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
+mcsmanager_download_addr="http://oss.duzuii.com/d/MCSManager/MCSManager/MCSManager-v10-linux.tar.gz"
 package_name="MCSManager-v10-linux.tar.gz"
 node="v20.12.2"
 arch=$(uname -m)
@@ -91,8 +91,8 @@ Install_MCSManager() {
     # cd /opt/mcsmanager
     cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
-    # donwload MCSManager release
-    wget "${mcsmanager_donwload_addr}" || Red_Error "[x] Failed to download MCSManager"
+    # download MCSManager release
+    wget "${mcsmanager_download_addr}" || Red_Error "[x] Failed to download MCSManager"
     tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
     rm -rf "${mcsmanager_install_path}/${package_name}"
 
