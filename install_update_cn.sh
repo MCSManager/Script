@@ -576,8 +576,8 @@ main() {
 	Initialize "$@"
 	# Check if the mcsmanager_install_path exists
 	if [ -d "$mcsmanager_install_path" ]; then
-		# Backup first
-		Backup_MCSM
+		# Backup first, due to potential large file being archived, backup is disabled.
+		# Backup_MCSM
 		# Install Node.js, this is to ensure the version is up to date.
 		Install_node
 		
