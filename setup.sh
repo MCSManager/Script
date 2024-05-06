@@ -19,7 +19,6 @@ echo_cyan() {
 echo_red() {
     printf '\033[1;31m%b\033[0m\n' "$@"
 }
-vv
 echo_green() {
     printf '\033[1;32m%b\033[0m\n' "$@"
 }
