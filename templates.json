@@ -13,6 +13,25 @@
   "packages": [
     {
       "language": "en_us",
+      "description": "[Forge] Forge-1.19.2-43.3.13-installer.jar",
+      "title": "Forge 1.19.2-43.3.13",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.3.13/forge-1.19.2-43.3.13-installer.jar",
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.sh",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.19.2-43.3.13-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
       "description": "[Paper] Recommendation for friends with multiple players, Fast setup.",
       "title": "Minecraft 1.20.4 Java",
       "runtime": "Java 17+",
@@ -20,7 +39,14 @@
       "size": "140MB",
       "remark": "Paper Software",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.20.4.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "en_us",
@@ -31,7 +57,14 @@
       "size": "140MB",
       "remark": "Paper Software",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.19.2.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "en_us",
@@ -42,7 +75,14 @@
       "size": "140MB",
       "remark": "Paper Software",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.18.2.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
 
     {
@@ -56,7 +96,7 @@
       "author": "alongw.cn",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -Xmx2048M -jar server.jar -nogui",
+        "startCommand": "java -jar server.jar -nogui",
         "stopCommand": "stop",
         "ie": "utf-8",
         "oe": "utf-8"
@@ -71,7 +111,14 @@
       "size": "140MB",
       "remark": "支持插件，最低 8GB 内存要求",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.2.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "zh_cn",
@@ -82,7 +129,14 @@
       "size": "210MB",
       "remark": "支持插件，最低 8GB 内存要求",
       "targetLink": "https://url.alww.top/mcsm/paper1.19.2",
-      "author": "alongw.cn"
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "zh_cn",
@@ -93,7 +147,14 @@
       "size": "100MB",
       "remark": "支持插件，支持mod（Forge），最低 6GB 内存要求",
       "targetLink": "https://url.alww.top/mcsm/arclight1.19.2",
-      "author": "alongw.cn"
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "zh_cn",
@@ -104,7 +165,14 @@
       "size": "230MB",
       "remark": "支持插件，最低 6GB 内存要求",
       "targetLink": "https://url.alww.top/mcsm/paper-geyser1.19.2",
-      "author": "alongw.cn"
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "zh_cn",
@@ -115,7 +183,14 @@
       "size": "140MB",
       "remark": "支持插件，最低 4GB 内存要求",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.1.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "zh_cn",
@@ -126,7 +201,14 @@
       "size": "140MB",
       "remark": "支持插件，最低 4GB 内存要求",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "zh_cn",
@@ -137,7 +219,14 @@
       "size": "140MB",
       "remark": "支持插件，最低 4GB 内存要求",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.18.2.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     },
     {
       "language": "zh_cn",
@@ -148,7 +237,14 @@
       "size": "160MB",
       "remark": "支持插件，最低 4GB 内存要求",
       "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.17.1.zip",
-      "author": "mcsmanager.com"
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     }
   ]
 }
