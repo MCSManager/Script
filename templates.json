@@ -108,6 +108,25 @@
     },
     {
       "language": "zh_cn",
+      "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
+      "title": "Minecraft 1.20.4",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G+",
+      "size": "140MB",
+      "remark": "支持插件，最低 8GB 内存要求",
+      "targetLink": "https://url.alww.top/mcsm/paper1.20.4.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "zh_cn",
       "description": "[Forge] forge-1.20.6-50.0.8-installer.jar，来自官方网站源。",
       "title": "Forge 1.20.6 Java 版 (支持模组)",
       "runtime": "Java 21+",
