@@ -13,6 +13,25 @@
   "packages": [
     {
       "language": "en_us",
+      "description": "[Paper] Recommendation for friends with multiple players, Fast setup.",
+      "title": "Minecraft 1.20.4 Java",
+      "runtime": "Java 17+",
+      "hardware": "RAM 6G+",
+      "size": "140MB",
+      "remark": "Paper Software",
+      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.20.4.zip",
+      "author": "mcsmanager.com",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
       "description": "Forge-1.20.6-50.0.8-installer.jar",
       "title": "Forge 1.20.6 (Support Mods)",
       "runtime": "Java 21+",
@@ -45,25 +64,6 @@
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.19.2-43.3.13-installer.jar --installServer",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "en_us",
-      "description": "[Paper] Recommendation for friends with multiple players, Fast setup.",
-      "title": "Minecraft 1.20.4 Java",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "140MB",
-      "remark": "Paper Software",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.20.4.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -109,9 +109,9 @@
     {
       "language": "zh_cn",
       "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
-      "title": "Minecraft 1.20.4",
+      "title": "Minecraft 1.20.4 (低配机器推荐)",
       "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
+      "hardware": "RAM 6G+",
       "size": "140MB",
       "remark": "支持插件，最低 8GB 内存要求",
       "targetLink": "https://url.alww.top/mcsm/paper1.20.4.zip",
@@ -127,7 +127,7 @@
     },
     {
       "language": "zh_cn",
-      "description": "[Forge] forge-1.20.6-50.0.8-installer.jar，来自官方网站源。",
+      "description": "[Forge] forge-1.20.6-50.0.8-installer.jar，来自官方网站源，需要高配机器支撑。",
       "title": "Forge 1.20.6 Java 版 (支持模组)",
       "runtime": "Java 21+",
       "hardware": "RAM 8G+",
@@ -146,7 +146,7 @@
     },
     {
       "language": "zh_cn",
-      "description": "[Forge] Forge-1.19.2-43.3.13，支持安装 MOD。",
+      "description": "[Forge] Forge-1.19.2-43.3.13，支持安装 MOD，需要高配机器支撑。",
       "title": "Forge 1.19.2 Java 版 (支持模组)",
       "runtime": "Java 17+",
       "hardware": "RAM 8G+",
