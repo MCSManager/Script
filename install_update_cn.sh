@@ -179,7 +179,7 @@ Detect_Architecture() {
 # Initialization
 Initialize() {
 	Echo_Cyan "+----------------------------------------------------------------------
-| MCSManager V10安装升级脚本
+| MCSManager V10 安装升级脚本
 +----------------------------------------------------------------------
 	"
 	# Check sudo
@@ -260,7 +260,7 @@ Install_MCSM_Web_Base() {
 	# Dependencies install
 	cd "${web_path}" || Red_Error "[x] Failed to enter ${web_path}"
 	# Install dependencies
-    Echo_Cyan "[+] 安装 MCSManager 网页 依赖中..."
+    Echo_Cyan "[+] 安装 MCSManager 网页依赖中..."
     env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] 在 ${web_path} 安装依赖时出错."
 	# Return to general dir
 	cd "$mcsmanager_install_path"
