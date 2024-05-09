@@ -48,36 +48,35 @@ Red_Error() {
     echo '================================================='
     exit 1
 }
-echo_cyan() {
+Echo_Cyan() {
     printf '\033[1;36m%b\033[0m\n' "$@"
 }
-echo_red() {
+Echo_Red() {
     printf '\033[1;31m%b\033[0m\n' "$@"
 }
 
-echo_green() {
+Echo_Green() {
     printf '\033[1;32m%b\033[0m\n' "$@"
 }
 
-echo_cyan_n() {
+Echo_Cyan_N() {
     printf '\033[1;36m%b\033[0m' "$@"
 }
 
-echo_yellow() {
+Echo_Yellow() {
     printf '\033[1;33m%b\033[0m\n' "$@"
 }
-
 # Check root permission
-check_sudo() {
+Check_Sudo() {
 	if [ "$EUID" -ne 0 ]; then
 		echo "This script must be run as root. Please use \"sudo or root user\" instead."
 		exit 1
 	fi
 }
 
-Install_dependencies() {
+Install_Dependencies() {
 	# Install related software
-	echo_cyan "[+] 正在安装依赖软件 (git, tar, wget)... "
+	Echo_Cyan "[+] 正在安装依赖软件 (git, tar, wget)... "
 	if [[ -x "$(command -v yum)" ]]; then
 		yum install -y git tar wget
 	elif [[ -x "$(command -v apt-get)" ]]; then
@@ -87,23 +86,23 @@ Install_dependencies() {
 	elif [[ -x "$(command -v zypper)" ]]; then
 		zypper --non-interactive install git tar wget
 	else
-		echo_red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
+		Echo_Red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
 	fi
 	
 	# Determine whether the relevant software is installed successfully
 	if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
-		echo_green "成功!"
+		Echo_Green "成功!"
 	else
 		Red_Error "[x] Failed to find git, tar and wget, please install them manually!"
 	fi
 
 }
 
-Install_node() {
+Install_Node() {
     if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-        echo_green "检测到已安装的Node.js版本, 已为您跳过安装."
+        Echo_Green "检测到已安装的Node.js版本, 已为您跳过安装."
     else	
-        echo_cyan_n "[+] 安装 Node.js 环境中...\n"
+        Echo_Cyan_N "[+] 安装 Node.js 环境中...\n"
 
 		rm -irf "$node_install_path"
 
@@ -118,7 +117,7 @@ Install_node() {
 		rm -rf "node-$node-linux-$arch.tar.gz"
 
 		if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-			echo_green "Success"
+			Echo_Green "Success"
 		else	
 			Red_Error "[x] Node installation failed!"
 		fi
@@ -126,15 +125,15 @@ Install_node() {
     
 
     echo
-    echo_yellow "=============== Node.js 版本 ==============="
-    echo_yellow " node: $("$node_install_path"/bin/node -v)"
-    echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
-    echo_yellow "=============== Node.js 版本 ==============="
+    Echo_Yellow "=============== Node.js 版本 ==============="
+    Echo_Yellow " node: $("$node_install_path"/bin/node -v)"
+    Echo_Yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
+    Echo_Yellow "=============== Node.js 版本 ==============="
     echo
     sleep 1
 }
 # Check and download MCSM source
-Check_and_download_source() {
+Check_And_Download_Source() {
 	# Empty the temp dir if existed
 	rm -rf "$mcsm_down_temp"
 	mkdir -p "$mcsm_down_temp"
@@ -179,12 +178,12 @@ Detect_Architecture() {
 }
 # Initialization
 Initialize() {
-	echo_cyan "+----------------------------------------------------------------------
+	Echo_Cyan "+----------------------------------------------------------------------
 | MCSManager V10安装升级脚本
 +----------------------------------------------------------------------
 	"
 	# Check sudo
-	check_sudo
+	Check_Sudo
 	
 	# Update architecture
 	Detect_Architecture
@@ -193,10 +192,10 @@ Initialize() {
 	mkdir -p "$install_base"
 	
 	# Check dependencies
-	Install_dependencies
+	Install_Dependencies
 
 	# Check and download MCSM source
-	Check_and_download_source
+	Check_And_Download_Source
 	
 	# Parse input arguments
 	Parse_Arguments "$@"
@@ -206,9 +205,9 @@ Initialize() {
 		# Create the user 'mcsm' if it doesn't already exist
 		if ! id "mcsm" &>/dev/null; then
 			/usr/sbin/useradd mcsm
-			echo_green "用户 'mcsm' 已创建."
+			Echo_Green "用户 'mcsm' 已创建."
 		else
-			echo_yellow "用户 'mcsm' 已经存在."
+			Echo_Yellow "用户 'mcsm' 已经存在."
 		fi
 	fi
 }
@@ -226,7 +225,7 @@ Backup_MCSM() {
 
     # Create backup directory (/opt) if it doesn't exist
     if [ ! -d "$mcsm_backup_dir" ]; then
-        echo_yellow "正在创建备份目录..."
+        Echo_Yellow "正在创建备份目录..."
         mkdir -p "$mcsm_backup_dir"
     fi
 
@@ -234,14 +233,14 @@ Backup_MCSM() {
     backup_path="${mcsm_backup_dir}/mcsm_backup_${current_date}.tar.gz"
 
     # Create the backup
-	echo_yellow "正在创建备份..."
+	Echo_Yellow "正在创建备份..."
     #tar -czf "$backup_path" -C "$mcsmanager_install_path" .
 	tar -czf "$backup_path" -C "$(dirname "$mcsmanager_install_path")" "$(basename "$mcsmanager_install_path")"
 
 
     # Check if the backup was successful
     if [ $? -eq 0 ]; then
-        echo_green "成功创建了备份,位于: $backup_path"
+        Echo_Green "成功创建了备份,位于: $backup_path"
     else
         Red_Error  "创建备份时出错"
     fi
@@ -261,7 +260,7 @@ Install_MCSM_Web_Base() {
 	# Dependencies install
 	cd "${web_path}" || Red_Error "[x] Failed to enter ${web_path}"
 	# Install dependencies
-    echo_cyan "[+] 安装 MCSManager 网页 依赖中..."
+    Echo_Cyan "[+] 安装 MCSManager 网页 依赖中..."
     env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] 在 ${web_path} 安装依赖时出错."
 	# Return to general dir
 	cd "$mcsmanager_install_path"
@@ -274,7 +273,7 @@ Install_MCSM_Web_Base() {
 }
 # MCSM Web Service Installation
 Install_Web_Systemd() {
-	echo_cyan "[+] 创建 MCSManager 网页服务中..."
+	Echo_Cyan "[+] 创建 MCSManager 网页服务中..."
 	# stop and disable existing service
     systemctl disable --now mcsm-web
 
@@ -318,7 +317,7 @@ Install_Web_Wrapper() {
 	web_data="${web_path}/data"
 	web_data_tmp="${mcsmanager_install_path}/web_data_${current_date}"
 	if [ -d "$web_path" ]; then
-		echo_cyan "[+] 升级 MCSManager 网页端中..."
+		Echo_Cyan "[+] 升级 MCSManager 网页端中..."
 		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/web_data should be fast and safe.
 		# Use web_data, do not use data as in rare circumstance user may run both update at the same time.
 		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir)
@@ -327,7 +326,7 @@ Install_Web_Wrapper() {
 		rm -rf "$web_path"
 		
 	else
-		echo_cyan "[+] 安装 MCSManager 网页端中..."
+		Echo_Cyan "[+] 安装 MCSManager 网页端中..."
 	fi
     
 	
@@ -354,7 +353,7 @@ Install_MCSM_Daemon_Base() {
 	# Dependencies install
 	cd "${daemon_path}" || Red_Error "[x] Failed to enter ${daemon_path}"
 	# Install dependencies
-    echo_cyan "[+] 安装 MCSManager 节点依赖中..."
+    Echo_Cyan "[+] 安装 MCSManager 节点依赖中..."
     env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${daemon_path}"
 	# Return to general dir
 	cd "$mcsmanager_install_path"
@@ -368,7 +367,7 @@ Install_MCSM_Daemon_Base() {
 
 # MCSM Daemon Service Installation
 Install_Daemon_Systemd() {
-	echo_cyan "[+] 创建 MCSManager 节点服务中..."
+	Echo_Cyan "[+] 创建 MCSManager 节点服务中..."
 	# stop and disable existing service
     systemctl disable --now mcsm-daemon
 
@@ -411,7 +410,7 @@ Install_Daemon_Wrapper() {
 	daemon_data="${daemon_path}/data"
 	daemon_data_tmp="${mcsmanager_install_path}/daemon_data_${current_date}"
 	if [ -d "$daemon_path" ]; then
-		echo_cyan "[+] 升级 MCSManager 节点中..."
+		Echo_Cyan "[+] 升级 MCSManager 节点中..."
 		# The backup should be created already, moving the DATA dir to /opt/mcsmanager/daemon_data should be fast and safe.
 		# Use daemon_data, do not use data as in rare circumstance user may run both update at the same time.
 		# Use mv command, this won't create issue in case of an incomplete previous installation (e.g. empty mcsm dir) 
@@ -420,7 +419,7 @@ Install_Daemon_Wrapper() {
 		rm -rf "$daemon_path"
 		
 	else
-		echo_cyan "[+] 安装 MCSManager 节点中..."
+		Echo_Cyan "[+] 安装 MCSManager 节点中..."
 	fi
     	
 	# Install MCSM Web
@@ -497,56 +496,56 @@ Finalize() {
 	
 	case "$COMMAND" in
     all)
-            echo_yellow "=================================================================="
-			echo_green "安装已完成! 欢迎使用 MCSManager V10!!!"
-			echo_yellow " "
-			echo_cyan_n "网页 服务:        "
-			echo_yellow "http://<您的 IP>:23333  (Browser)"
-			echo_cyan_n "节点 地址:          "
-			echo_yellow "ws://<您的 IP>:24444    (Cluster)"
-			echo_red "您必须开放 23333 与 24444 端口才可以正常从公网访问"
-			echo_yellow " "
-			echo_cyan "使用方法:"
-			echo_cyan "启动: systemctl start mcsm-{daemon,web}.service"
-			echo_cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
-			echo_cyan "重启: systemctl restart mcsm-{daemon,web}.service"
-			echo_yellow " "
-			echo_green "官方文档: https://docs.mcsmanager.com/"
-			echo_yellow "=================================================================="
+            Echo_Yellow "=================================================================="
+			Echo_Green "安装已完成! 欢迎使用 MCSManager V10!!!"
+			Echo_Yellow " "
+			Echo_Cyan_N "网页 服务:        "
+			Echo_Yellow "http://<您的 IP>:23333  (Browser)"
+			Echo_Cyan_N "节点 地址:          "
+			Echo_Yellow "ws://<您的 IP>:24444    (Cluster)"
+			Echo_Red "您必须开放 23333 与 24444 端口才可以正常从公网访问"
+			Echo_Yellow " "
+			Echo_Cyan "使用方法:"
+			Echo_Cyan "启动: systemctl start mcsm-{daemon,web}.service"
+			Echo_Cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
+			Echo_Cyan "重启: systemctl restart mcsm-{daemon,web}.service"
+			Echo_Yellow " "
+			Echo_Green "官方文档: https://docs.mcsmanager.com/"
+			Echo_Yellow "=================================================================="
         ;;
 
     web)
-            echo_yellow "=================================================================="
-			echo_green "安装已完成! 欢迎使用 MCSManager V10!!!"
-			echo_yellow " "
-			echo_cyan_n "网页 服务:        "
-			echo_yellow "http://<您的 IP>:23333  (Browser)"
-			echo_red "您必须开放 23333 端口才可以正常从公网访问"
-			echo_yellow " "
-			echo_cyan "使用方法:"
-			echo_cyan "启动: systemctl start mcsm-{daemon,web}.service"
-			echo_cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
-			echo_cyan "重启: systemctl restart mcsm-{daemon,web}.service"
-			echo_yellow " "
-			echo_green "官方文档: https://docs.mcsmanager.com/"
-			echo_yellow "=================================================================="
+            Echo_Yellow "=================================================================="
+			Echo_Green "安装已完成! 欢迎使用 MCSManager V10!!!"
+			Echo_Yellow " "
+			Echo_Cyan_N "网页 服务:        "
+			Echo_Yellow "http://<您的 IP>:23333  (Browser)"
+			Echo_Red "您必须开放 23333 端口才可以正常从公网访问"
+			Echo_Yellow " "
+			Echo_Cyan "使用方法:"
+			Echo_Cyan "启动: systemctl start mcsm-{daemon,web}.service"
+			Echo_Cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
+			Echo_Cyan "重启: systemctl restart mcsm-{daemon,web}.service"
+			Echo_Yellow " "
+			Echo_Green "官方文档: https://docs.mcsmanager.com/"
+			Echo_Yellow "=================================================================="
         ;;
 
     daemon)
-            echo_yellow "=================================================================="
-			echo_green "安装已完成! 欢迎使用 MCSManager V10!!!"
-			echo_yellow " "
-			echo_cyan_n "节点 地址:          "
-			echo_yellow "ws://<您的 IP>:24444    (Cluster)"
-			echo_red "您必须开放 24444 端口才可以正常从公网访问"
-			echo_yellow " "
-			echo_cyan "使用方法:"
-			echo_cyan "启动: systemctl start mcsm-{daemon,web}.service"
-			echo_cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
-			echo_cyan "重启: systemctl restart mcsm-{daemon,web}.service"
-			echo_yellow " "
-			echo_green "官方文档: https://docs.mcsmanager.com/"
-			echo_yellow "=================================================================="
+            Echo_Yellow "=================================================================="
+			Echo_Green "安装已完成! 欢迎使用 MCSManager V10!!!"
+			Echo_Yellow " "
+			Echo_Cyan_N "节点 地址:          "
+			Echo_Yellow "ws://<您的 IP>:24444    (Cluster)"
+			Echo_Red "您必须开放 24444 端口才可以正常从公网访问"
+			Echo_Yellow " "
+			Echo_Cyan "使用方法:"
+			Echo_Cyan "启动: systemctl start mcsm-{daemon,web}.service"
+			Echo_Cyan "关闭: systemctl stop mcsm-{daemon,web}.service"
+			Echo_Cyan "重启: systemctl restart mcsm-{daemon,web}.service"
+			Echo_Yellow " "
+			Echo_Green "官方文档: https://docs.mcsmanager.com/"
+			Echo_Yellow "=================================================================="
         ;;
 
     *)
@@ -557,11 +556,11 @@ Finalize() {
 	esac
 	# Check if backup_path is not empty
 	if [[ -n "$backup_path" ]]; then
-		echo_green "您的MCSManager是由一个已存在的版本升级而来. "
-		echo_green "我们已经为您创建了一个备份, 位于:"
-		echo_yellow "$backup_path"
-		echo_green "如果需要, 您可以使用下列命令手动删除备份: "
-		echo_red "rm ${backup_path}"
+		Echo_Green "您的MCSManager是由一个已存在的版本升级而来. "
+		Echo_Green "我们已经为您创建了一个备份, 位于:"
+		Echo_Yellow "$backup_path"
+		Echo_Green "如果需要, 您可以使用下列命令手动删除备份: "
+		Echo_Red "rm ${backup_path}"
 	fi
 	# Move quickstart.md
 	mv "${mcsm_down_temp}/quick-start.md" "${mcsmanager_install_path}/quick-start.md"
@@ -571,7 +570,7 @@ Finalize() {
 	
 }
 ########### Main Logic ################
-main() {
+Main() {
 	# Do not create mcsmanager path yet as it will break the logic detecting existing installation
 	Initialize "$@"
 	# Check if the mcsmanager_install_path exists
@@ -579,13 +578,13 @@ main() {
 		# Backup first, due to potential large file being archived, backup is disabled.
 		# Backup_MCSM
 		# Install Node.js, this is to ensure the version is up to date.
-		Install_node
+		Install_Node
 		
 	else
 		# Create mcsmanager path if not already
 		mkdir -p "$mcsmanager_install_path"
 		# Install Node.js, this is to ensure the version is up to date.
-		Install_node
+		Install_Node
 	fi
 
 	# Install Services based on command
@@ -594,7 +593,7 @@ main() {
 	# Print helping Information
 	Finalize
 
-	echo_green "安装或升级已完成!"
+	Echo_Green "安装或升级已完成!"
 }
 
-main "$@"
+Main "$@"
