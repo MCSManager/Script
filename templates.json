@@ -13,7 +13,7 @@
   "packages": [
     {
       "language": "en_us",
-      "description": "[Paper] Recommendation for friends with multiple players, Fast setup.",
+      "description": "[Paper] Low hardware configuration machine use, Fast setup.",
       "title": "Minecraft 1.20.4 Java",
       "runtime": "Java 17+",
       "hardware": "RAM 6G+",
@@ -45,6 +45,25 @@
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.20.6-50.0.8-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "Forge-1.20.1-47.2.32-installer.jar",
+      "title": "Forge 1.20.1 (Support Mods)",
+      "runtime": "Java 21+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.2.32/forge-1.20.1-47.2.32-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.sh",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.20.1-47.2.32-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -121,6 +140,25 @@
         "startCommand": "java -jar server.jar -nogui",
         "stopCommand": "stop",
         "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "zh_cn",
+      "description": "[Forge] forge-1.20.1-47.2.32-installer.jar，来自官方网站源，需要高配机器支撑，支持插件和模组。",
+      "title": "Forge 1.20.1 Java 版 (支持模组)",
+      "runtime": "Java 21+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.2.32/forge-1.20.1-47.2.32-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.sh",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.20.1-47.2.32-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
