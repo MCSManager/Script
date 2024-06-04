@@ -32,7 +32,7 @@
     },
     {
       "language": "en_us",
-      "description": "Forge-1.20.6-50.0.8-installer.jar",
+      "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"start.bat\" after installation.",
       "title": "Forge 1.20.6 (Support Mods)",
       "runtime": "Java 21+",
       "hardware": "RAM 8G+",
@@ -51,7 +51,7 @@
     },
     {
       "language": "en_us",
-      "description": "Forge-1.20.1-47.2.32-installer.jar",
+      "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"start.bat\" after installation.",
       "title": "Forge 1.20.1 (Support Mods)",
       "runtime": "Java 21+",
       "hardware": "RAM 8G+",
@@ -70,7 +70,7 @@
     },
     {
       "language": "en_us",
-      "description": "Forge-1.19.2-43.3.13-installer.jar",
+      "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"start.bat\" after installation.",
       "title": "Forge 1.19.2 (Support Mods)",
       "runtime": "Java 17+",
       "hardware": "RAM 8G+",
@@ -146,7 +146,7 @@
     },
     {
       "language": "zh_cn",
-      "description": "[Forge] forge-1.20.1-47.2.32-installer.jar，来自官方网站源，需要高配机器支撑，支持插件和模组。",
+      "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "title": "Forge 1.20.1 Java 版 (支持模组)",
       "runtime": "Java 21+",
       "hardware": "RAM 8G+",
@@ -165,7 +165,7 @@
     },
     {
       "language": "zh_cn",
-      "description": "[Forge] forge-1.20.6-50.0.8-installer.jar，来自官方网站源，需要高配机器支撑。",
+      "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "title": "Forge 1.20.6 Java 版 (支持模组)",
       "runtime": "Java 21+",
       "hardware": "RAM 8G+",
@@ -184,7 +184,7 @@
     },
     {
       "language": "zh_cn",
-      "description": "[Forge] Forge-1.19.2-43.3.13，支持安装 MOD，需要高配机器支撑。",
+      "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "title": "Forge 1.19.2 Java 版 (支持模组)",
       "runtime": "Java 17+",
       "hardware": "RAM 8G+",
