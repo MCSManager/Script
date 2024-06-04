@@ -569,7 +569,7 @@ Finalize() {
 		Echo_Red "rm ${backup_path}"
 	fi
 	# Move quickstart.md
-	mv "${mcsm_down_temp}/quick-start.md" "${mcsmanager_install_path}/quick-start.md"
+	# mv "${mcsm_down_temp}/quick-start.md" "${mcsmanager_install_path}/quick-start.md"
 	# Remove the temp folder
 	rm -rf "${mcsm_down_temp}"
 
