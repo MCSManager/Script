@@ -268,6 +268,9 @@ Install_MCSM_Web_Base() {
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Change file permission to mcsm user
 		chown -R mcsm:mcsm "$web_path"
+	else
+		# Change file permission to root user
+		chown -R root:root "$web_path"
 	fi
 	chmod -R 755 "$web_path"
 }
@@ -361,6 +364,9 @@ Install_MCSM_Daemon_Base() {
 	if [[ "$USER" == *"mcsm"* ]]; then
 		# Change file permission to mcsm user
 		chown -R mcsm:mcsm "$daemon_path"
+	else
+		# Change file permission to root user
+		chown -R root:root "$daemon_path"
 	fi
 	chmod -R 755 "$daemon_path"
 }
@@ -563,7 +569,7 @@ Finalize() {
 		Echo_Red "rm ${backup_path}"
 	fi
 	# Move quickstart.md
-	mv "${mcsm_down_temp}/quick-start.md" "${mcsmanager_install_path}/quick-start.md"
+	# mv "${mcsm_down_temp}/quick-start.md" "${mcsmanager_install_path}/quick-start.md"
 	# Remove the temp folder
 	rm -rf "${mcsm_down_temp}"
 
