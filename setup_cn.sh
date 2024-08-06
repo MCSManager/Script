@@ -55,7 +55,11 @@ Install_Node() {
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
-  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+  # From https://nodejs.org/
+  # wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+
+  # From https://registry.npmmirror.com/
+  wget "https://registry.npmmirror.com/-/binary/node/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
 
   tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
 
