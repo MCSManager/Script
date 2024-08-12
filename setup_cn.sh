@@ -2,7 +2,7 @@
 
 # 中国大陆需要安装脚本额外配置镜像地址以及低版本的 NodeJS 环境
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr="https://cloud.alongw.cn/f/ZMqsl/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v16.20.2"
 arch=$(uname -m)
