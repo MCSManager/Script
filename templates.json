@@ -13,25 +13,6 @@
   "packages": [
     {
       "language": "en_us",
-      "description": "[Paper] Low hardware configuration machine use, Fast setup.",
-      "title": "Minecraft 1.20.4 Java",
-      "runtime": "Java 17+",
-      "hardware": "RAM 6G+",
-      "size": "140MB",
-      "remark": "Paper Software",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.20.4.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"start.bat\" after installation.",
       "title": "Forge 1.20.6 (Support Mods)",
       "runtime": "Java 21+",
@@ -83,44 +64,6 @@
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.19.2-43.3.13-installer.jar --installServer",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "en_us",
-      "description": "[Paper] Recommendation for friends with multiple players",
-      "title": "Minecraft 1.19.2 Java",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "140MB",
-      "remark": "Paper Software",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.19.2.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "en_us",
-      "description": "[Paper] Recommendation for friends with multiple players",
-      "title": "Minecraft 1.18.2 Java",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "140MB",
-      "remark": "Paper Software",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/Global-Paper-1.18.2.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -197,101 +140,6 @@
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.19.2-43.3.13-installer.jar --installServer",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "description": "[原版生存] 朋友联机推荐，1.19.2 版本，快速开服，享受原汁原味的极致生存与探索。",
-      "title": "Minecraft 1.19.2 Java 原版",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "140MB",
-      "remark": "支持插件，最低 8GB 内存要求",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.2.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "description": "[原版生存] 朋友联机推荐，让你和你的小伙伴一起享受原汁原味的极致生存。",
-      "title": "Minecraft 1.19.1 Java 原版",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "140MB",
-      "remark": "支持插件，最低 4GB 内存要求",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.1.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "description": "[原版生存] 适合朋友联机，“荒野更新”（The Wild）旨在为玩家带来现有生物群系的改进和优化。",
-      "title": "Minecraft 1.19 Java 原版",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "140MB",
-      "remark": "支持插件，最低 4GB 内存要求",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.19.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "description": "[原版生存] 适合朋友联机推荐，继承上版本的功能并进行了一系列的优化，主流联机版本，插件与MOD较为丰富。",
-      "title": "Minecraft 1.18.2 Java 原版",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "140MB",
-      "remark": "支持插件，最低 4GB 内存要求",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.18.2.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "description": "[原版生存] 适合朋友联机，快速开服，服务器搭建，回味老版本的地穴探索。",
-      "title": "Minecraft 17.1 Java 原版",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "160MB",
-      "remark": "支持插件，最低 4GB 内存要求",
-      "targetLink": "http://oss.duzuii.com/d/MCSManager/Minecraft-Server-Software/paper-1.17.1.zip",
-      "author": "mcsmanager.com",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar server.jar -nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
         "ie": "utf-8",
         "oe": "utf-8"
       }
