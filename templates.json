@@ -13,6 +13,44 @@
   "packages": [
     {
       "language": "en_us",
+      "description": "[Paper] Minecraft 1.20.2 Paper",
+      "title": "Minecraft 1.20.2",
+      "runtime": "Java 22",
+      "hardware": "RAM 4G+",
+      "size": "150MB",
+      "remark": "Includes some basic plugins",
+      "targetLink": "https://cloud.alongw.cn/f/5XlSW/Paper-1.21.1.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Paper] Minecraft 1.20.1 Paper",
+      "title": "Minecraft 1.20.1",
+      "runtime": "Java 22",
+      "hardware": "RAM 4G+",
+      "size": "200MB",
+      "remark": "Includes some basic plugins",
+      "targetLink": "https://cloud.alongw.cn/f/jwjsl/Paper-1.20.1-EN.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"start.bat\" after installation.",
       "title": "Forge 1.20.6 (Support Mods)",
       "runtime": "Java 21+",
@@ -64,6 +102,26 @@
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.19.2-43.3.13-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+
+    {
+      "language": "zh_cn",
+      "description": "[Paper] Minecraft 1.21.1 快速开服",
+      "title": "Minecraft 1.20.1",
+      "runtime": "Java 22",
+      "hardware": "RAM 4G+",
+      "size": "250MB",
+      "remark": "包含基础插件，萌新快速开服！低配机器专属！",
+      "targetLink": "https://cloud.alongw.cn/f/DzvHK/Paper-1.21.1-ZH.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
         "ie": "utf-8",
         "oe": "utf-8"
       }
