@@ -2,7 +2,7 @@
 
 # 中国大陆需要安装脚本额外配置镜像地址以及低版本的 NodeJS 环境
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://cloud.alongw.cn/f/ZMqsl/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr="https://awwa.cc/mcsm/linux"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v16.20.2"
 arch=$(uname -m)
@@ -35,7 +35,7 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager 安装脚本
+| MCSManager 安装脚本 (MCSManager Installer)
 +----------------------------------------------------------------------
 "
 
@@ -97,7 +97,7 @@ Install_MCSManager() {
   cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
   # download MCSManager release
-  wget "${mcsmanager_download_addr}" || Red_Error "[x] Failed to download MCSManager"
+  wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] Failed to download MCSManager"
   tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
@@ -166,20 +166,20 @@ WantedBy=multi-user.target
   printf "\n\n\n\n"
 
   echo_yellow "=================================================================="
-  echo_green "Installation is complete! Welcome to the MCSManager!!!"
+  echo_green "安装完成，欢迎使用 MCSManager ！"
   echo_yellow " "
-  echo_cyan_n "HTTP Web Service:        "
+  echo_cyan_n "主控网页访问地址:        "
   echo_yellow "http://<Your IP>:23333  (Browser)"
-  echo_cyan_n "Daemon Address:          "
+  echo_cyan_n "被控守护进程地址:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
-  echo_red "You must expose ports 23333 and 24444 to use the service properly on the Internet."
+  echo_red "默认情况下，你必须开放 23333 和 24444 端口才能确保面板工作正常！"
   echo_yellow " "
-  echo_cyan "Usage:"
+  echo_cyan "面板开关指令:"
   echo_cyan "systemctl start mcsm-{daemon,web}.service"
   echo_cyan "systemctl stop mcsm-{daemon,web}.service"
   echo_cyan "systemctl restart mcsm-{daemon,web}.service"
   echo_yellow " "
-  echo_green "Official Document: https://docs.mcsmanager.com/"
+  echo_green "官方文档: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 }
 

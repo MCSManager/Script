@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://github.com/MCSManager/MCSManager/releases/download/v10.2.1/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr="https://awwa.cc/mcsm/linux"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v20.12.2"
 arch=$(uname -m)
@@ -91,7 +91,7 @@ Install_MCSManager() {
     cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
     # download MCSManager release
-    wget "${mcsmanager_download_addr}" || Red_Error "[x] Failed to download MCSManager"
+    wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] Failed to download MCSManager"
     tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
     rm -rf "${mcsmanager_install_path}/${package_name}"
 
@@ -167,10 +167,10 @@ WantedBy=multi-user.target
     echo_cyan_n "Daemon Address:          "
     echo_yellow "ws://<Your IP>:24444    (Cluster)"
     echo_red "You must expose ports "
-	echo_yellow "23333"
-	echo_red " and " 
-	echo_yellow "24444"
-	echo_red " to use the service properly on the Internet."
+    echo_yellow "23333"
+    echo_red " and "
+    echo_yellow "24444"
+    echo_red " to use the service properly on the Internet."
     echo_yellow " "
     echo_cyan "Usage:"
     echo_cyan "systemctl start mcsm-{daemon,web}.service"
