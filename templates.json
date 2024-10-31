@@ -106,6 +106,158 @@
         "oe": "utf-8"
       }
     },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.14.4 Fabric",
+      "title": "Minecraft 1.14.4 with Fabric Loader",
+      "runtime": "Java 8+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.14.4 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.15.2 Fabric",
+      "title": "Minecraft 1.15.2 with Fabric Loader",
+      "runtime": "Java 8+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.15.2 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.16.5 Fabric",
+      "title": "Minecraft 1.16.5 with Fabric Loader",
+      "runtime": "Java 8+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.16.5 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.17.1 Fabric",
+      "title": "Minecraft 1.17.1 with Fabric Loader",
+      "runtime": "Java 16+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.17.1 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.18.2 Fabric",
+      "title": "Minecraft 1.18.2 with Fabric Loader",
+      "runtime": "Java 17+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.18.2 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.19.4 Fabric",
+      "title": "Minecraft 1.19.4 with Fabric Loader",
+      "runtime": "Java 17+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.19.4 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.20.6 Fabric",
+      "title": "Minecraft 1.20.6 with Fabric Loader",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.20.6 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Fabric] Minecraft 1.21.3 Fabric",
+      "title": "Minecraft 1.21.3 with Fabric Loader",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.1/fabric-installer-1.0.1.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -jar fabric-server-launch.jar -nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.21.3 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
 
     {
       "language": "zh_cn",
