@@ -22,7 +22,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.21.3/2358/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.21.3-2358.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -41,7 +41,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.21.1/2329/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.21.1-2329.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -60,7 +60,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.20.6/2233/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.20.6-2233.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -79,7 +79,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.20.4/2176/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.20.4-2176.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -98,7 +98,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.20.1/2062/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.20.1-2062.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -117,7 +117,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.19.2/1858/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.19.2-1858.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -136,7 +136,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.18.2/1632/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.18.2-1632.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -155,7 +155,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.17.1/1428/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.17.1-1428.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -174,7 +174,7 @@
       "targetLink": "https://api.purpurmc.org/v2/purpur/1.16.5/1171/download",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.16.5-1171.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -193,7 +193,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.3/builds/82/downloads/paper-1.21.3-82.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.21.3-82.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -212,7 +212,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/132/downloads/paper-1.21.1-132.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.21.1-132.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -231,7 +231,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.6/builds/151/downloads/paper-1.20.6-151.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.20.6-151.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -250,7 +250,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.20.4-499.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -269,7 +269,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.2/builds/318/downloads/paper-1.20.2-318.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.20.2-318.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -288,7 +288,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.1/builds/196/downloads/paper-1.20.1-196.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.20.1-196.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -307,7 +307,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/550/downloads/paper-1.19.4-550.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.19.4-550.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -326,7 +326,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.19.2/builds/307/downloads/paper-1.19.2-307.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.19.2-307.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -364,7 +364,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.17.1/builds/411/downloads/paper-1.17.1-411.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.17.1-411.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -383,7 +383,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.16.5/builds/794/downloads/paper-1.16.5-794.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.16.5-794.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -402,7 +402,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.12.2/builds/1620/downloads/paper-1.12.2-1620.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.12.2-1620.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -421,7 +421,7 @@
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.8.8/builds/445/downloads/paper-1.8.8-445.jar",
       "author": "papermc.io",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/paper",
         "startCommand": "java -jar paper-1.8.8-445.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
