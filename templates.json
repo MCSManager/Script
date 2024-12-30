@@ -943,6 +943,215 @@
       }
     },
     {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.21.4",
+      "title": "Minecraft 1.21.4",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G+",
+      "size": "55MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a11b5d548d8c001/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.21.1",
+      "title": "Minecraft 1.21.1",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G+",
+      "size": "50MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/59353fb40c36d304f2035d51e7d6e6baa98dc05c/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.20.6",
+      "title": "Minecraft 1.20.6",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G+",
+      "size": "50MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/145ff0858209bcfc164859ba735d4199aafa1eea/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.20.4",
+      "title": "Minecraft 1.20.4",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G+",
+      "size": "50MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/8dd1a28015f51b1803213892b50b7b4fc76e594d/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.20.1",
+      "title": "Minecraft 1.20.1",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G+",
+      "size": "50MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.19.4",
+      "title": "Minecraft 1.19.4",
+      "runtime": "Java 19+",
+      "hardware": "RAM 2G+",
+      "size": "50MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.18.2",
+      "title": "Minecraft 1.18.2",
+      "runtime": "Java 19+",
+      "hardware": "RAM 2G+",
+      "size": "45MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.17.1",
+      "title": "Minecraft 1.17.1",
+      "runtime": "Java 19+",
+      "hardware": "RAM 2G+",
+      "size": "45MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.16.5",
+      "title": "Minecraft 1.16.5",
+      "runtime": "Java 19+",
+      "hardware": "RAM 2G+",
+      "size": "45MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.12.2",
+      "title": "Minecraft 1.12.2",
+      "runtime": "Java 11+",
+      "hardware": "RAM 2G+",
+      "size": "30MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "description": "[Vanilla] Minecraft 1.8.9",
+      "title": "Minecraft 1.8.9",
+      "runtime": "Java 8+",
+      "hardware": "RAM 2G+",
+      "size": "10MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://launcher.mojang.com/v1/objects/b58b2ceb36e01bcd8dbf49c8fb66c55a9f0676cd/server.jar",
+      "author": "Mojang",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "language": "zh_cn",
       "description": "[Paper] Minecraft 1.21.1 快速开服",
       "title": "Minecraft 1.20.1",
