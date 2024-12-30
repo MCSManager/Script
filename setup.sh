@@ -1,7 +1,7 @@
 #!/bin/bash
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr="http://47.99.81.8/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v20.12.2"
 arch=$(uname -m)
