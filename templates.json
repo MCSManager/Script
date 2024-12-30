@@ -263,11 +263,6 @@
       "description": "[Paper] Minecraft 1.20.2 Paper",
       "title": "Minecraft 1.20.2",
       "runtime": "Java 21",
-
-      "description": "[Paper] Minecraft 1.21.1 Paper",
-      "title": "Minecraft 1.21.1",
-      "runtime": "Java 22",
-
       "hardware": "RAM 4G+",
       "size": "150MB",
       "remark": "Includes some basic plugins",
