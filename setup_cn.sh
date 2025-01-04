@@ -126,10 +126,19 @@ Install_MCSManager() {
   sleep 3
 }
 
-Create_Service() {
-  echo_cyan "[+] Create MCSManager service..."
+Create_User () {
+	useradd mcsmanager -c "Serviceuser for MCSManager"
+}
 
-  echo "[Unit]
+ChangeOwnerShipForSA () {
+	chown -R mcsmanager:mcsmanager ${mcsmanager_install_path}
+}
+
+Create_Service() {
+	Create_User
+    echo_cyan "[+] Create MCSManager service..."
+
+    echo "[Unit]
 Description=MCSManager-Daemon
 
 [Service]
@@ -138,12 +147,13 @@ ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s QUIT \$MAINPID
 ExecStop=/bin/kill -s QUIT \$MAINPID
 Environment=\"PATH=${PATH}\"
+User=mcsmanager
 
 [Install]
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-daemon.service
 
-  echo "[Unit]
+    echo "[Unit]
 Description=MCSManager-Web
 
 [Service]
@@ -152,6 +162,7 @@ ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s QUIT \$MAINPID
 ExecStop=/bin/kill -s QUIT \$MAINPID
 Environment=\"PATH=${PATH}\"
+User=mcsmanager
 
 [Install]
 WantedBy=multi-user.target
