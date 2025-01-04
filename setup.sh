@@ -119,8 +119,16 @@ Install_MCSManager() {
 
     sleep 3
 }
+Create_User () {
+	useradd mcsmanager -c "Serviceuser for MCSManager"
+}
+
+ChangeOwnerShipForSA () {
+	chown -R mcsmanager:mcsmanager ${mcsmanager_install_path}
+}
 
 Create_Service() {
+	Create_User
     echo_cyan "[+] Create MCSManager service..."
 
     echo "[Unit]
@@ -132,6 +140,7 @@ ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s QUIT \$MAINPID
 ExecStop=/bin/kill -s QUIT \$MAINPID
 Environment=\"PATH=${PATH}\"
+User=mcsmanager
 
 [Install]
 WantedBy=multi-user.target
@@ -146,6 +155,7 @@ ExecStart=${node_install_path}/bin/node app.js
 ExecReload=/bin/kill -s QUIT \$MAINPID
 ExecStop=/bin/kill -s QUIT \$MAINPID
 Environment=\"PATH=${PATH}\"
+User=mcsmanager
 
 [Install]
 WantedBy=multi-user.target
@@ -236,3 +246,6 @@ Install_MCSManager
 
 # Create MCSManager background service
 Create_Service
+
+#Change Ownership of MCSManager-Files
+ChangeOwnerShipForSA
