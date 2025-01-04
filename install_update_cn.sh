@@ -488,6 +488,19 @@ Install_Update() {
         ;;
 	esac
 }
+Fix_Docker_rootless() {
+	if [[ "$USER" == *"mcsm"* ]]; then
+		# Check if the 'User=mcsm' has a home folder
+		if test -d /home/$USER; then
+			echo "Home-Folder found, continue"
+			# https://docs.docker.com/engine/security/rootless/
+			sudo apt-get install -y docker-ce-rootless-extras
+			dockerd-rootless-setuptool.sh install
+		else
+			echo "$User has no Home folder, cannot configure Rootless Docker"
+		fi
+	fi
+}	
 # Finalize installation
 Finalize() {
 	#Clear screen
@@ -595,6 +608,9 @@ Main() {
 
 	# Install Services based on command
 	Install_Update
+
+	#Fix Docker to be able to run rootless under mcsm - user
+	Fix_Docker_rootless
 
 	# Print helping Information
 	Finalize
