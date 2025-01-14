@@ -184,6 +184,25 @@
     },
     {
       "language": "en_us",
+      "description": "[Paper] Minecraft 1.21.4 Paper",
+      "title": "Minecraft 1.21.4",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/107/downloads/paper-1.21.4-107.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -jar paper-1.21.4-107.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
       "description": "[Paper] Minecraft 1.21.3 Paper",
       "title": "Minecraft 1.21.3",
       "runtime": "Java 21+",
