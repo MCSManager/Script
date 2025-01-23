@@ -214,7 +214,7 @@ if [[ -x "$(command -v yum)" ]]; then
 elif [[ -x "$(command -v apt-get)" ]]; then
     apt-get install -y git tar wget
 elif [[ -x "$(command -v pacman)" ]]; then
-    pacman -S --noconfirm git tar wget
+    pacman -S --noconfirm --needed git tar wget
 elif [[ -x "$(command -v zypper)" ]]; then
     zypper --non-interactive install git tar wget
 else
