@@ -190,11 +190,11 @@
       "hardware": "RAM 4G+",
       "size": "50MB",
       "remark": "Only Paper included",
-      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/130/downloads/paper-1.21.4-130.jar",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/136/downloads/paper-1.21.4-136.jar",
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.21.4-130.jar nogui",
+        "startCommand": "java -jar paper-1.21.4-136.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
