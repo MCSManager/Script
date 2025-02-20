@@ -19,11 +19,11 @@
       "hardware": "RAM 4G+",
       "size": "50MB",
       "remark": "Only Purpur included",
-      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2394.jar",
+      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2398.jar",
       "author": "purpurmc.org",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.21.4-2394.jar nogui",
+        "startCommand": "java -jar purpur-1.21.4-2398.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
