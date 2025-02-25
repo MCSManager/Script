@@ -95,12 +95,11 @@ Install_MCSManager() {
   tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
+  # compatible with tar.gz packages of different formats
   if [ -d "/opt/mcsmanager/mcsmanager" ]; then
-    # 文件夹存在，执行移动操作
     mv /opt/mcsmanager/mcsmanager/* /opt/mcsmanager/
     mv /opt/mcsmanager/mcsmanager/.* /opt/mcsmanager/ 2>/dev/null
-    # 删除空的 mcsmanager 文件夹
-    rf -rf /opt/mcsmanager/mcsmanager
+    rm -rf /opt/mcsmanager/mcsmanager
   fi
 
   # echo "[→] cd daemon"

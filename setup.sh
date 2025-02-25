@@ -94,6 +94,13 @@ Install_MCSManager() {
   tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
+  # compatible with tar.gz packages of different formats
+  if [ -d "/opt/mcsmanager/mcsmanager" ]; then
+    mv /opt/mcsmanager/mcsmanager/* /opt/mcsmanager/
+    mv /opt/mcsmanager/mcsmanager/.* /opt/mcsmanager/ 2>/dev/null
+    rm -rf /opt/mcsmanager/mcsmanager
+  fi
+
   # echo "[→] cd daemon"
   cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
 
