@@ -1,8 +1,0 @@
-{
-  "name": "mcsmanager-script",
-  "version": "1.0.0",
-  "scripts": {
-    "build": "echo 1"
-  },
-  "license": "MIT"
-}

@@ -1,8 +1,8 @@
 #!/bin/bash
+# This script file is specifically designed for the Chinese region, and servers in the Chinese region are used to accelerate file downloads.
 
-# 中国大陆需要安装脚本额外配置镜像地址以及低版本的 NodeJS 环境
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="http://47.99.81.8/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr="https://cdn.imlazy.ink:233/files/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v16.20.2"
 arch=$(uname -m)
@@ -20,15 +20,12 @@ echo_cyan() {
 echo_red() {
   printf '\033[1;31m%b\033[0m\n' "$@"
 }
-
 echo_green() {
   printf '\033[1;32m%b\033[0m\n' "$@"
 }
-
 echo_cyan_n() {
   printf '\033[1;36m%b\033[0m' "$@"
 }
-
 echo_yellow() {
   printf '\033[1;33m%b\033[0m\n' "$@"
 }
@@ -55,10 +52,7 @@ Install_Node() {
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
-  # From https://nodejs.org/
   # wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
-
-  # From https://registry.npmmirror.com/
   wget "https://registry.npmmirror.com/-/binary/node/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
 
   tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
