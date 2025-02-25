@@ -22,7 +22,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2398.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.21.4-2398.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -41,7 +41,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.3-2358.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.21.3-2358.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -60,7 +60,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.1-2329.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.21.1-2329.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -79,7 +79,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.6-2233.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.20.6-2233.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -98,7 +98,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.4-2176.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.20.4-2176.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -117,7 +117,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.1-2062.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.20.1-2062.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -136,7 +136,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.19.2-1858.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.19.2-1858.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -155,7 +155,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.18.2-1632.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.18.2-1632.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -174,7 +174,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.17.1-1428.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.17.1-1428.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
@@ -193,7 +193,7 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.16.5-1171.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
+        "type": "minecraft/java/purpur",
         "startCommand": "java -jar purpur-1.16.5-1171.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
