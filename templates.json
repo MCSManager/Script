@@ -19,11 +19,11 @@
       "hardware": "RAM 4G+",
       "size": "50MB",
       "remark": "Only Purpur included",
-      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2398.jar",
+      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2399.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.21.4-2398.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.4-2399.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -41,8 +41,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.3-2358.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.21.3-2358.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.3-2358.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -60,8 +60,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.1-2329.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.21.1-2329.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.1-2329.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -79,8 +79,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.6-2233.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.20.6-2233.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.20.6-2233.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -98,8 +98,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.4-2176.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.20.4-2176.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.20.4-2176.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -117,8 +117,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.1-2062.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.20.1-2062.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.20.1-2062.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -136,8 +136,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.19.2-1858.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.19.2-1858.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.19.2-1858.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -155,8 +155,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.18.2-1632.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.18.2-1632.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.18.2-1632.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -174,8 +174,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.17.1-1428.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.17.1-1428.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.17.1-1428.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -193,8 +193,8 @@
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.16.5-1171.jar",
       "author": "purpurmc.org",
       "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -jar purpur-1.16.5-1171.jar nogui",
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.16.5-1171.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -209,11 +209,11 @@
       "hardware": "RAM 4G+",
       "size": "50MB",
       "remark": "Only Paper included",
-      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/173/downloads/paper-1.21.4-173.jar",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/178/downloads/paper-1.21.4-178.jar",
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.21.4-173.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-178.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -232,7 +232,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.21.3-82.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.3-82.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -251,7 +251,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.21.1-132.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.1-132.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -270,7 +270,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.20.6-151.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.6-151.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -289,7 +289,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.20.4-499.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.4-499.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -308,7 +308,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.20.2-318.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.2-318.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -327,7 +327,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.20.1-196.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.1-196.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -346,7 +346,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.19.4-550.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.19.4-550.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -365,7 +365,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.19.2-307.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.19.2-307.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -384,7 +384,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar paper-1.18.2-388.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.18.2-388.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -403,7 +403,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.17.1-411.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.17.1-411.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -422,7 +422,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.16.5-794.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.16.5-794.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -441,7 +441,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.12.2-1620.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.12.2-1620.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -460,7 +460,7 @@
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -jar paper-1.8.8-445.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.8.8-445.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -745,7 +745,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.21.4 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -764,7 +764,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.21.3 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -783,7 +783,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.21.1 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -802,7 +802,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.20.6 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -821,7 +821,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.20.4 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -840,7 +840,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.20.1 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -859,7 +859,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.19.4 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -878,7 +878,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.19.2 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -897,7 +897,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.18.2 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -916,7 +916,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.17.1 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -935,7 +935,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.16.5 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -954,7 +954,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.15.2 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -973,7 +973,7 @@
       "author": "fabricmc.net",
       "setupInfo": {
         "type": "minecraft/java/fabric",
-        "startCommand": "java -jar fabric-server-launch.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.1.jar server -mcversion 1.14.4 -downloadMinecraft -noprofile",
         "ie": "utf-8",
@@ -992,7 +992,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1011,7 +1011,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1030,7 +1030,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1049,7 +1049,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1068,7 +1068,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1087,7 +1087,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1106,7 +1106,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1125,7 +1125,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1144,7 +1144,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1163,7 +1163,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1182,7 +1182,7 @@
       "author": "Mojang",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1201,7 +1201,7 @@
       "author": "alongw.cn",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -1220,7 +1220,7 @@
       "author": "alongw.cn",
       "setupInfo": {
         "type": "minecraft/java",
-        "startCommand": "java -jar server.jar nogui",
+        "startCommand": "java -Xms6144M -Xmx6144M -jar server.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
