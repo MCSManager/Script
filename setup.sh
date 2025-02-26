@@ -96,8 +96,7 @@ Install_MCSManager() {
 
   # compatible with tar.gz packages of different formats
   if [ -d "/opt/mcsmanager/mcsmanager" ]; then
-    mv /opt/mcsmanager/mcsmanager/* /opt/mcsmanager/
-    mv /opt/mcsmanager/mcsmanager/.* /opt/mcsmanager/ 2>/dev/null
+    cp -rf /opt/mcsmanager/mcsmanager/*.* /opt/mcsmanager/
     rm -rf /opt/mcsmanager/mcsmanager
   fi
 
