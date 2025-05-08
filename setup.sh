@@ -74,8 +74,30 @@ required_commands=(
   tar
 )
 
+# Terminal color & style related
+# Default to false, auto check later
+SUPPORTS_COLOR=false
+SUPPORTS_STYLE=false
+# ANSI escape codes for text formatting
+RESET="\033[0m"
+BOLD="\033[1m"
+UNDERLINE="\033[4m"
+ITALIC="\033[3m"  # Not supported on all terminals
+
+# Foreground colors
+FG_RED="\033[1;31m"
+FG_GREEN="\033[1;32m"
+FG_YELLOW="\033[1;33m"
+FG_BLUE="\033[1;34m"
+FG_MAGENTA="\033[1;35m"
+FG_CYAN="\033[1;36m"
+FG_WHITE="\033[1;37m"
 ### Helper Functions
 
+## Color Functions
+
+
+## Utility Functions
 # Execution wrapper, avoid unexpected crashes.
 safe_run() {
   local func="$1"
@@ -105,6 +127,32 @@ check_root() {
   fi
 }
 
+# Function to check whether current terminal support color & style
+detect_terminal_capabilities() {
+  SUPPORTS_COLOR=false
+  SUPPORTS_STYLE=false
+
+  if [ -t 1 ] && command -v tput >/dev/null 2>&1; then
+    if [ "$(tput colors)" -ge 8 ]; then
+      SUPPORTS_COLOR=true
+    fi
+    if tput bold >/dev/null 2>&1 && tput smul >/dev/null 2>&1; then
+      SUPPORTS_STYLE=true
+    fi
+  fi
+
+  if [ "$SUPPORTS_COLOR" = true ]; then
+    echo "[OK] Terminal supports colored output."
+  else
+    echo "Note: Terminal does not support colored output. Continuing without formatting."
+  fi
+
+  if [ "$SUPPORTS_STYLE" = true ]; then
+    echo "[OK] Terminal supports bold and underline formatting."
+  else
+    echo "Note: Terminal does not support advanced text styles."
+  fi
+}
 # Parse cmd arguments.
 parse_args() {
   while [[ $# -gt 0 ]]; do
@@ -314,5 +362,6 @@ main() {
   safe_run detect_os_info "Failed to detect OS"
   safe_run check_supported_os "Unsupported OS or version"
   safe_run check_required_commands "Missing required system commands"
+  safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
 }
 main "$@"
