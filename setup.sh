@@ -70,3 +70,112 @@ check_root() {
     fi
   fi
 }
+
+# Parse cmd arguments.
+parse_args() {
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      --install-dir)
+        if [[ -n "$2" ]]; then
+          install_dir="$2"
+          shift 2
+        else
+          echo "Error: --install-dir requires a path argument."
+          exit 1
+        fi
+        ;;
+      --node-install-dir)
+        if [[ -n "$2" ]]; then
+          node_install_dir="$2"
+          shift 2
+        else
+          echo "Error: --node-install-dir requires a path argument."
+          exit 1
+        fi
+        ;;
+      --install)
+        if [[ -n "$2" ]]; then
+          case "$2" in
+            daemon)
+              install_daemon=true
+              install_web=false
+              ;;
+            web)
+              install_daemon=false
+              install_web=true
+              ;;
+            all)
+              install_daemon=true
+              install_web=true
+              ;;
+            *)
+              echo "Error: Invalid value for --install. Expected 'daemon', 'web', or 'all'."
+              echo "Usage: --install daemon|web|all"
+              exit 1
+              ;;
+          esac
+          shift 2
+        else
+          echo "Error: --install requires an argument (daemon, web, or all)."
+          exit 1
+        fi
+        ;;
+      --user)
+        if [[ -n "$2" ]]; then
+          case "$2" in
+            root)
+              install_user="root"
+              ;;
+            mcsm)
+              install_user="mcsm"
+              ;;
+            *)
+              echo "Error: Invalid user '$2'. Only 'root' and 'mcsm' are supported."
+              echo "Usage: --user root|mcsm"
+              exit 1
+              ;;
+          esac
+          shift 2
+        else
+          echo "Error: --user requires a value (root or mcsm)."
+          exit 1
+        fi
+        ;;
+      --install-source)
+        if [[ -n "$2" ]]; then
+          install_source_path="$2"
+          shift 2
+        else
+          echo "Error: --install-source requires a file path."
+          exit 1
+        fi
+        ;;
+      *)
+        echo "Error: Unknown argument: $1"
+        exit 1
+        ;;
+    esac
+  done
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+main() {
+  check_root
+  parse_args "$@"
+
+}
+main "$@"
