@@ -57,11 +57,12 @@ install_source_path=""
 
 # Execution wrapper, avoid unexpected crashes.
 safe_run() {
-  local step_func="$1"
-  local error_message="$2"
+  local func="$1"
+  local err_msg="$2"
+  shift 2
 
-  if ! "$step_func"; then
-    echo "Error: $error_message"
+  if ! "$func" "$@"; then
+    echo "Error: $err_msg"
     exit 1
   fi
 }
@@ -244,9 +245,8 @@ detect_os_info() {
 
 
 main() {
-  safe_run check_root "Script must be run as root."
-  safe_run parse_args "Failed to parse command-line arguments."
-  safe_run detect_os_info "Failed to detect operating system information."
-
+  safe_run check_root "Script must be run as root"
+  safe_run parse_args "Failed to parse arguments" "$@"
+  safe_run detect_os_info "Failed to detect OS"
 }
 main "$@"
