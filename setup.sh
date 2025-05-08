@@ -102,11 +102,6 @@ declare -A STYLES=(
 
 
 ### Helper Functions
-
-## Color Functions
-
-
-## Utility Functions
 # Execution wrapper, avoid unexpected crashes.
 safe_run() {
   local func="$1"
@@ -352,6 +347,40 @@ check_required_commands() {
   return 0
 }
 
+# Print with specified color and style, fallback to RESET if not supported.
+cprint() {
+  local color=""
+  local style=""
+  local text=""
+  
+  # Iterate through all args except last
+  while [[ $# -gt 1 ]]; do
+    case "$1" in
+      black|red|green|yellow|blue|magenta|cyan|white)
+        color="$1"
+        ;;
+      bold|underline|italic)
+        style="$1"
+        ;;
+      *)
+        echo "Unknown style or color: $1" >&2
+        ;;
+    esac
+    shift
+  done
+
+  text="$1"
+
+  local prefix=""
+  if [ "$SUPPORTS_COLOR" = true ] && [[ -n "${FG_COLORS[$color]}" ]]; then
+    prefix+="${FG_COLORS[$color]}"
+  fi
+  if [ "$SUPPORTS_STYLE" = true ] && [[ -n "${STYLES[$style]}" ]]; then
+    prefix+="${STYLES[$style]}"
+  fi
+
+  printf "%b%s%b\n" "$prefix" "$text" "$RESET"
+}
 
 
 
@@ -372,5 +401,6 @@ main() {
   safe_run check_supported_os "Unsupported OS or version"
   safe_run check_required_commands "Missing required system commands"
   safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
+  
 }
 main "$@"
