@@ -185,65 +185,67 @@ parse_args() {
 
 # Get Distribution & Architecture Info
 detect_os_info() {
-  # Default values
   distro="Unknown"
   version="Unknown"
-  arch=""
-
-  # Detect arch
   arch=$(uname -m)
 
-  # Primary detection using /etc/os-release
+  # Try primary source
   if [ -f /etc/os-release ]; then
     . /etc/os-release
     distro_id="${ID,,}"
-    distro_version="${VERSION_ID,,}"
+    version_id="${VERSION_ID,,}"
 
     case "$distro_id" in
       ubuntu)
         distro="Ubuntu"
-        version="$distro_version"
+        version="$version_id"
         ;;
       debian)
         distro="Debian"
-        if grep -q "testing" /etc/debian_version 2>/dev/null; then
-          version="testing"
-        else
-          version="$(cat /etc/debian_version)"
-        fi
+        version="$version_id"
         ;;
       centos)
         distro="CentOS"
-        version="$distro_version"
+        version="$version_id"
         ;;
       rhel*)
         distro="RHEL"
-        version="$distro_version"
+        version="$version_id"
         ;;
       arch)
         distro="Arch"
         version="rolling"
         ;;
+      *)
+        distro="${ID:-Unknown}"
+        version="$version_id"
+        ;;
     esac
+  fi
 
-  # Fallbacks for older/partial systems
-  elif [ -f /etc/lsb-release ]; then
-    . /etc/lsb-release
-    distro="${DISTRIB_ID:-Ubuntu}"
-    version="${DISTRIB_RELEASE:-Unknown}"
-  elif [ -f /etc/issue ]; then
-    if grep -qi "ubuntu" /etc/issue; then
-      distro="Ubuntu"
-      version="$(grep -oP '[0-9]{2}\.[0-9]{2}' /etc/issue | head -1)"
+  # Fallbacks for missing or invalid version
+  if [[ -z "$version" || "$version" == "unknown" || "$version" == "" ]]; then
+    if [ -f /etc/issue ]; then
+      version_guess=$(grep -oP '[0-9]+(\.[0-9]+)*' /etc/issue | head -1)
+      if [[ -n "$version_guess" ]]; then
+        version="$version_guess"
+      fi
     fi
   fi
-  
-  version_major="${version%%.*}"
-  version="$version_major"
-  echo "Detected OS: $distro $version"
+
+  # Normalize version: keep only major version
+  version_full="$version"
+  if [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+    version="${version%%.*}"
+  else
+    echo "Warning: Could not detect a clean numeric version. Defaulting to unknown."
+    version="unknown"
+  fi
+
+  echo "Detected OS: $distro $version_full"
   echo "Detected Architecture: $arch"
-  
 }
+
 
 # Check if current OS is supported
 check_supported_os() {
