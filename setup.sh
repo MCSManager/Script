@@ -54,6 +54,18 @@ install_user="root"
 install_source_path=""
 
 ### Helper Functions
+
+# Execution wrapper, avoid unexpected crashes.
+safe_run() {
+  local step_func="$1"
+  local error_message="$2"
+
+  if ! "$step_func"; then
+    echo "Error: $error_message"
+    exit 1
+  fi
+}
+
 # Function to ensure the script is run as root
 check_root() {
   # Using Bash's built-in EUID variable
@@ -158,6 +170,64 @@ parse_args() {
   done
 }
 
+# Get Distribution & Architecture Info
+detect_os_info() {
+  # Default values
+  distro="Unknown"
+  version="Unknown"
+  arch=""
+
+  # Detect arch
+  arch=$(uname -m)
+
+  # Primary detection using /etc/os-release
+  if [ -f /etc/os-release ]; then
+    . /etc/os-release
+    distro_id="${ID,,}"
+    distro_version="${VERSION_ID,,}"
+
+    case "$distro_id" in
+      ubuntu)
+        distro="Ubuntu"
+        version="$distro_version"
+        ;;
+      debian)
+        distro="Debian"
+        if grep -q "testing" /etc/debian_version 2>/dev/null; then
+          version="testing"
+        else
+          version="$(cat /etc/debian_version)"
+        fi
+        ;;
+      centos)
+        distro="CentOS"
+        version="$distro_version"
+        ;;
+      rhel*)
+        distro="RHEL"
+        version="$distro_version"
+        ;;
+      arch)
+        distro="Arch"
+        version="rolling"
+        ;;
+    esac
+
+  # Fallbacks for older/partial systems
+  elif [ -f /etc/lsb-release ]; then
+    . /etc/lsb-release
+    distro="${DISTRIB_ID:-Ubuntu}"
+    version="${DISTRIB_RELEASE:-Unknown}"
+  elif [ -f /etc/issue ]; then
+    if grep -qi "ubuntu" /etc/issue; then
+      distro="Ubuntu"
+      version="$(grep -oP '[0-9]{2}\.[0-9]{2}' /etc/issue | head -1)"
+    fi
+  fi
+
+  echo "Detected OS: $distro $version"
+  echo "Detected Architecture: $arch"
+}
 
 
 
@@ -174,8 +244,9 @@ parse_args() {
 
 
 main() {
-  check_root
-  parse_args "$@"
+  safe_run check_root "Script must be run as root."
+  safe_run parse_args "Failed to parse command-line arguments."
+  safe_run detect_os_info "Failed to detect operating system information."
 
 }
 main "$@"
