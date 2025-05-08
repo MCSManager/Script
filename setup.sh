@@ -59,7 +59,7 @@ distro=""
 # Supported OS versions (map-style structure)
 # Format: supported_os["distro_name"]="version1 version2 version3 ..."
 declare -A supported_os
-supported_os["Ubuntu"]="18.04 20.04 22.04 24.04"
+supported_os["Ubuntu"]="18 20 22 24"
 supported_os["Debian"]="10 11 12 13"
 supported_os["CentOS"]="7 8 8-stream 9-stream 10-stream"
 supported_os["RHEL"]="7 8 9 10"
