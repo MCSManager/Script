@@ -97,7 +97,9 @@ declare -A FG_COLORS=(
 declare -A STYLES=(
   [bold]="\033[1m"
   [underline]="\033[4m"
-  [italic]="\033[3m"  # Often ignored on many terminals
+  [italic]="\033[3m"  # Often ignored
+  [clear_line]="\r\033[2K"
+  [strikethrough]="\033[9m"
 )
 
 
@@ -348,30 +350,28 @@ check_required_commands() {
 }
 
 # Print with specified color and style, fallback to RESET if not supported.
-# Note: Only one style support at a time.
+# Supported colors*: black|red|green|yellow|blue|magenta|cyan|white
+# Supported styles*: bold|underline|italic|clear_line|strikethrough
+# *Note: some style may not necessarily work on all terminals.
 # Example usage:
 #  cprint green bold "Installation completed successfully."
-#  cprint yellow "" "Warning: Disk space is low."
 #  cprint red underline "Failed to detect required command: wget"
 #  cprint yellow "Warning: Disk space is low."
 #  cprint underline "Failed to detect required command: wget"
-#  cprint bold green "Installation completed successfully."
+#  cprint bold green underline"Installation completed successfully."
 
 cprint() {
   local color=""
-  local style=""
   local text=""
-
-  # Parse all arguments except the last one as options
+  local styles=""
+  
   while [[ $# -gt 1 ]]; do
     case "$1" in
       black|red|green|yellow|blue|magenta|cyan|white)
         color="$1"
         ;;
-      bold|underline|italic)
-        style="$1"
-        ;;
-      *)
+      bold|underline|italic|clear_line|strikethrough)
+        styles+="${STYLES[$1]}"
         ;;
     esac
     shift
@@ -380,16 +380,15 @@ cprint() {
   text="$1"
 
   local prefix=""
-  if [[ -n "$color" && "$SUPPORTS_COLOR" = true && -n "${FG_COLORS[$color]}" ]]; then
+  if [[ -n "$color" && "$SUPPORTS_COLOR" = true ]]; then
     prefix+="${FG_COLORS[$color]}"
   fi
-  if [[ -n "$style" && "$SUPPORTS_STYLE" = true && -n "${STYLES[$style]}" ]]; then
-    prefix+="${STYLES[$style]}"
+  if [ "$SUPPORTS_STYLE" = true ] || [[ "$styles" == *"${STYLES[clear_line]}"* ]]; then
+    prefix="$styles$prefix"
   fi
 
   printf "%b%s%b\n" "$prefix" "$text" "$RESET"
 }
-
 
 
 
@@ -409,7 +408,6 @@ main() {
   safe_run check_supported_os "Unsupported OS or version"
   safe_run check_required_commands "Missing required system commands"
   safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
-
 
 }
 main "$@"
