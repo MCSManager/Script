@@ -245,6 +245,8 @@ detect_os_info() {
 
 
 main() {
+  trap 'echo "Unexpected error occurred."; exit 99' ERR
+
   safe_run check_root "Script must be run as root"
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
