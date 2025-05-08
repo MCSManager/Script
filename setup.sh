@@ -32,8 +32,6 @@ node_install_dir="$install_dir"
 # --------------- Global Variables ---------------#
 #                  DO NOT MODIFY                  #
 
-# System architecture (detected automatically)
-arch=""
 
 # Component installation options.
 # For fresh installs, both daemon and web components are installed by default.
@@ -52,6 +50,20 @@ install_user="root"
 # "mcsmanager_linux_release.tar.gz" file instead of downloading it.
 # Only support local absolute path.
 install_source_path=""
+
+# System architecture (detected automatically)
+arch=""
+version=""
+distro=""
+
+# Supported OS versions (map-style structure)
+# Format: supported_os["distro_name"]="version1 version2 version3 ..."
+declare -A supported_os
+supported_os["Ubuntu"]="18.04 20.04 22.04 24.04"
+supported_os["Debian"]="10 11 12 13"
+supported_os["CentOS"]="7 8 8-stream 9-stream 10-stream"
+supported_os["RHEL"]="7 8 9 10"
+supported_os["Arch"]="rolling"
 
 ### Helper Functions
 
@@ -225,11 +237,32 @@ detect_os_info() {
       version="$(grep -oP '[0-9]{2}\.[0-9]{2}' /etc/issue | head -1)"
     fi
   fi
-
+  
+  version_major="${version%%.*}"
+  version="$version_major"
   echo "Detected OS: $distro $version"
   echo "Detected Architecture: $arch"
+  
 }
 
+# Check if current OS is supported
+check_supported_os() {
+  local supported_versions="${supported_os[$distro]}"
+
+  if [[ -z "$supported_versions" ]]; then
+    echo "Error: Distribution '$distro' is not supported by this installer."
+    return 1
+  fi
+
+  if [[ "$supported_versions" != *"$version"* ]]; then
+    echo "Error: Version '$version' of '$distro' is not supported."
+    echo "Supported versions are: $supported_versions"
+    return 1
+  fi
+
+  echo "OS compatibility check passed."
+  return 0
+}
 
 
 
@@ -250,5 +283,6 @@ main() {
   safe_run check_root "Script must be run as root"
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
+  safe_run check_supported_os "Unsupported OS or version"
 }
 main "$@"
