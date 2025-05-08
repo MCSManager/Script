@@ -65,6 +65,15 @@ supported_os["CentOS"]="7 8 8-stream 9-stream 10-stream"
 supported_os["RHEL"]="7 8 9 10"
 supported_os["Arch"]="rolling"
 
+# Required system commands for installation
+# These will be checked before logic process
+required_commands=(
+  chmod
+  chown
+  wget
+  tar
+)
+
 ### Helper Functions
 
 # Execution wrapper, avoid unexpected crashes.
@@ -266,7 +275,25 @@ check_supported_os() {
   return 0
 }
 
+# Check if all required commands are available
+check_required_commands() {
+  local missing=0
 
+  for cmd in "${required_commands[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "Error: Required command '$cmd' is not available in PATH."
+      missing=1
+    fi
+  done
+
+  if [ "$missing" -ne 0 ]; then
+    echo "One or more required commands are missing. Please install them and try again."
+    return 1
+  fi
+
+  echo "All required commands are available."
+  return 0
+}
 
 
 
@@ -286,5 +313,6 @@ main() {
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
   safe_run check_supported_os "Unsupported OS or version"
+  safe_run check_required_commands "Missing required system commands"
 }
 main "$@"
