@@ -95,6 +95,10 @@ install_node=true
 # Remove leading "v" from defined version
 required_node_ver="${node_version#v}"
 
+# Holds absolute path for node & npm
+node_bin_path=""
+npm_bin_path=""
+
 # Terminal color & style related
 # Default to false, auto check later
 SUPPORTS_COLOR=false
@@ -587,6 +591,12 @@ install_node() {
   rm -f "$archive_path"
 
   cprint green bold "Node.js $node_version installed successfully at $target_dir"
+  # Save resolved binary paths to global variables
+  node_bin_path="${target_dir}/bin/node"
+  npm_bin_path="${target_dir}/bin/npm"
+
+  cprint green "Node.js binary: $node_bin_path"
+  cprint green "npm binary:     $npm_bin_path"
   return 0
 }
 
