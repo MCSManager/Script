@@ -98,6 +98,10 @@ required_node_ver="${node_version#v}"
 # Holds absolute path for node & npm
 node_bin_path=""
 npm_bin_path=""
+# Hold Node.js arch name, e.g. x86_64 -> x64
+node_arch=""
+# Hold Node.js intallation path, e.g. ${node_install_dir}/node-${node_version}-linux-${arch}
+node_path=""
 
 # Terminal color & style related
 # Default to false, auto check later
@@ -415,6 +419,32 @@ cprint() {
   printf "%b%s%b\n" "$prefix" "$text" "$RESET"
 }
 
+# Map OS arch with actual Node.js Arch name
+# This function should be placed after var arch has been assigned a valid value.
+resolve_node_arch() {
+  case "$arch" in
+    x86_64)
+      node_arch="x64"
+      ;;
+    aarch64)
+      node_arch="arm64"
+      ;;
+    armv7l)
+      node_arch="armv7l"
+      ;;
+    *)
+      cprint red bold "Unsupported architecture for Node.js: $arch"
+      return 1
+      ;;
+  esac
+
+  # Assign node_path based on resolved arch and current version/install dir
+  node_path="${node_install_dir}/node-${node_version}-linux-${node_arch}"
+
+  cprint cyan "Resolved Node.js architecture: $node_arch"
+  cprint cyan "Computed Node.js install path: $node_path"
+}
+
 # Check if Node.js at PATH is valid.
 # This function check Node.js version + NPM (if Node.js valid)
 verify_node_at_path() {
@@ -460,8 +490,6 @@ verify_node_at_path() {
 # Node.js pre-check. check if we need to install Node.js before installer run.
 # Use postcheck_node_after_install() to check after install.
 check_node_installed() {
-  local node_path="${node_install_dir}/node-${node_version}-linux-${arch}"
-
   verify_node_at_path "$node_path"
   local result=$?
 
@@ -495,8 +523,6 @@ check_node_installed() {
 
 # Node.js post-check. check if Node.js is valid after install.
 postcheck_node_after_install() {
-  local node_path="${node_install_dir}/node-${node_version}-linux-${arch}"
-
   verify_node_at_path "$node_path"
   if [[ $? -ne 0 ]]; then
     cprint red bold "Node.js installation failed or is invalid at $node_path"
@@ -509,24 +535,6 @@ postcheck_node_after_install() {
 
 # Install Node.js and check
 install_node() {
-  # Map global arch to Node.js naming conventions (local only)
-  local node_arch=""
-  case "$arch" in
-    x86_64)
-      node_arch="x64"
-      ;;
-    aarch64)
-      node_arch="arm64"
-      ;;
-    armv7l)
-      node_arch="armv7l"
-      ;;
-    *)
-      cprint red bold "Unsupported architecture for Node.js: $arch"
-      return 1
-      ;;
-  esac
-
   local archive_name="node-${node_version}-linux-${node_arch}.tar.xz"
   local target_dir="${node_install_dir}/node-${node_version}-linux-${node_arch}"
   local archive_path="${node_install_dir}/${archive_name}"
@@ -611,6 +619,9 @@ main() {
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
   safe_run check_supported_os "Unsupported OS or version"
+  # To be moved to a master pre check function.
+  safe_run resolve_node_arch "Failed to resolve Node.js architecture"
+  
   safe_run check_required_commands "Missing required system commands"
   safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
   safe_run check_node_installed "Failed to detect Node.js or npm at expected path. Node.js will be installed."
