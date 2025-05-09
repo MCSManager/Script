@@ -27,6 +27,14 @@ package_name="mcsmanager_linux_release.tar.gz"
 # Keep the leading "v"
 node_version="v20.12.2"
 
+# Node download base URL - primary
+node_download_url_base="https://nodejs.org/dist/"
+
+# Node download URL - fallback.
+# This is the URL points directly to the file, not the base. This can also be a local absolute path.
+# Only supports https:// or http:// for web locations.
+node_download_fallback=""
+
 # Node.js installation path (defaults to the MCSManager installation path. Can be overridden with --node-install-dir)
 node_install_dir="$install_dir"
 
@@ -496,7 +504,78 @@ postcheck_node_after_install() {
   fi
 }
 
+# Install Node.js and check
+install_node() {
+  local archive_name="node-${node_version}-linux-${arch}.tar.gz"
+  local target_dir="${node_install_dir}/node-${node_version}-linux-${arch}"
+  local archive_path="${node_install_dir}/${archive_name}"
+  local download_url="${node_download_url_base}${node_version}/${archive_name}"
+  local fallback="$node_download_fallback"
 
+  cprint cyan bold "Installing Node.js $node_version..."
+
+  # Ensure install dir exists
+  mkdir -p "$node_install_dir" || {
+    cprint red bold "Failed to create node install directory: $node_install_dir"
+    return 1
+  }
+
+  # Try primary download
+  cprint cyan "Downloading Node.js from: $download_url"
+  if ! wget --progress=bar:force -O "$archive_path" "$download_url"; then
+    cprint yellow "Primary download failed. Attempting fallback..."
+
+    if [[ -n "$fallback" ]]; then
+      if [[ "$fallback" =~ ^https?:// ]]; then
+        cprint cyan "Downloading from fallback URL: $fallback"
+        if ! wget --progress=bar:force -O "$archive_path" "$fallback"; then
+          cprint red bold "Fallback download for Node.js failed from: $fallback"
+          return 1
+        fi
+      elif [ -f "$fallback" ]; then
+        cprint cyan "Copying from local fallback: $fallback"
+        cp "$fallback" "$archive_path" || {
+          cprint red bold "Failed to copy fallback archive from $fallback"
+          return 1
+        }
+      else
+        cprint red bold "Invalid fallback path: $fallback"
+        return 1
+      fi
+    else
+      cprint red bold "Primary download source failed, and no fallback source configured. Cannot proceed."
+      return 1
+    fi
+  fi
+
+  # Extract archive
+  cprint cyan "Extracting Node.js archive..."
+  if ! tar -xzf "$archive_path" -C "$node_install_dir"; then
+    cprint red bold "Failed to extract Node.js archive."
+    return 1
+  fi
+
+  # Set execute permissions for all users
+  chmod -R a+rx "$target_dir" || {
+    cprint red bold "Failed to set execute permissions on Node.js files."
+    return 1
+  }
+
+  # Re-verify installation
+  verify_node_at_path "$target_dir"
+  local result=$?
+  if [[ $result -ne 0 ]]; then
+    cprint red bold "Node.js installation failed verification."
+    return 1
+  fi
+
+  # Clean up
+  cprint cyan "Cleaning up archive..."
+  rm -f "$archive_path"
+
+  cprint green bold "Node.js $node_version installed successfully at $target_dir"
+  return 0
+}
 
 
 
@@ -511,6 +590,8 @@ main() {
   safe_run check_required_commands "Missing required system commands"
   safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
   safe_run check_node_installed "Failed to detect Node.js or npm at expected path. Node.js will be installed."
-
+  if [ "$install_node" = true ]; then
+    safe_run install_node "Node.js installation failed"
+  fi
 }
 main "$@"
