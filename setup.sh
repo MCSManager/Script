@@ -490,7 +490,6 @@ check_node_installed() {
 }
 
 # Node.js post-check. check if Node.js is valid after install.
- 
 postcheck_node_after_install() {
   local node_path="${node_install_dir}/node-${node_version}-linux-${arch}"
 
@@ -506,21 +505,38 @@ postcheck_node_after_install() {
 
 # Install Node.js and check
 install_node() {
-  local archive_name="node-${node_version}-linux-${arch}.tar.gz"
-  local target_dir="${node_install_dir}/node-${node_version}-linux-${arch}"
+  # Map global arch to Node.js naming conventions (local only)
+  local node_arch=""
+  case "$arch" in
+    x86_64)
+      node_arch="x64"
+      ;;
+    aarch64)
+      node_arch="arm64"
+      ;;
+    armv7l)
+      node_arch="armv7l"
+      ;;
+    *)
+      cprint red bold "Unsupported architecture for Node.js: $arch"
+      return 1
+      ;;
+  esac
+
+  local archive_name="node-${node_version}-linux-${node_arch}.tar.xz"
+  local target_dir="${node_install_dir}/node-${node_version}-linux-${node_arch}"
   local archive_path="${node_install_dir}/${archive_name}"
   local download_url="${node_download_url_base}${node_version}/${archive_name}"
   local fallback="$node_download_fallback"
 
-  cprint cyan bold "Installing Node.js $node_version..."
+  cprint cyan bold "Installing Node.js $node_version for arch: $node_arch"
 
-  # Ensure install dir exists
   mkdir -p "$node_install_dir" || {
     cprint red bold "Failed to create node install directory: $node_install_dir"
     return 1
   }
 
-  # Try primary download
+  # Download
   cprint cyan "Downloading Node.js from: $download_url"
   if ! wget --progress=bar:force -O "$archive_path" "$download_url"; then
     cprint yellow "Primary download failed. Attempting fallback..."
@@ -529,13 +545,13 @@ install_node() {
       if [[ "$fallback" =~ ^https?:// ]]; then
         cprint cyan "Downloading from fallback URL: $fallback"
         if ! wget --progress=bar:force -O "$archive_path" "$fallback"; then
-          cprint red bold "Fallback download for Node.js failed from: $fallback"
+          cprint red bold "Fallback download failed from: $fallback"
           return 1
         fi
       elif [ -f "$fallback" ]; then
         cprint cyan "Copying from local fallback: $fallback"
         cp "$fallback" "$archive_path" || {
-          cprint red bold "Failed to copy fallback archive from $fallback"
+          cprint red bold "Failed to copy fallback Node.js archive from $fallback"
           return 1
         }
       else
@@ -543,25 +559,23 @@ install_node() {
         return 1
       fi
     else
-      cprint red bold "Primary download source failed, and no fallback source configured. Cannot proceed."
+      cprint red bold "No fallback source configured. Cannot proceed."
       return 1
     fi
   fi
 
   # Extract archive
   cprint cyan "Extracting Node.js archive..."
-  if ! tar -xzf "$archive_path" -C "$node_install_dir"; then
+  if ! tar -xf "$archive_path" -C "$node_install_dir"; then
     cprint red bold "Failed to extract Node.js archive."
     return 1
   fi
 
-  # Set execute permissions for all users
   chmod -R a+rx "$target_dir" || {
     cprint red bold "Failed to set execute permissions on Node.js files."
     return 1
   }
 
-  # Re-verify installation
   verify_node_at_path "$target_dir"
   local result=$?
   if [[ $result -ne 0 ]]; then
@@ -569,13 +583,13 @@ install_node() {
     return 1
   fi
 
-  # Clean up
   cprint cyan "Cleaning up archive..."
   rm -f "$archive_path"
 
   cprint green bold "Node.js $node_version installed successfully at $target_dir"
   return 0
 }
+
 
 
 
