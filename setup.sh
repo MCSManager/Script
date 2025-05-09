@@ -12,7 +12,7 @@
 # ------------------------------------------------------------------------------
 
 # Target installation directory (can be overridden with --install-dir)
-install_dir="/opt/mcsmanager/"
+install_dir="/opt/mcsmanager"
 
 # Primary download URL bas. Full package URL = download_base_url + package_name
 download_base_url="https://github.com/MCSManager/MCSManager/releases/latest/download/"
@@ -24,6 +24,7 @@ download_fallback_url="https://github.com/MCSManager/MCSManager/releases/latest/
 package_name="mcsmanager_linux_release.tar.gz"
 
 # Node.js version to be installed
+# Keep the leading "v"
 node_version="v20.12.2"
 
 # Node.js installation path (defaults to the MCSManager installation path. Can be overridden with --node-install-dir)
@@ -73,6 +74,18 @@ required_commands=(
   wget
   tar
 )
+
+# Node.js related sections
+# Enable strict version checking (exact match)
+# enabled -> strict requriement for defined node version
+# false -> newer version allowed
+# Older version is NEVER allowed
+strict_node_version_check=false
+
+# Will be set based on actual node status
+install_node=true
+# Remove leading "v" from defined version
+required_node_ver="${node_version#v}"
 
 # Terminal color & style related
 # Default to false, auto check later
@@ -390,9 +403,98 @@ cprint() {
   printf "%b%s%b\n" "$prefix" "$text" "$RESET"
 }
 
+# Check if Node.js at PATH is valid.
+# This function check Node.js version + NPM (if Node.js valid)
+verify_node_at_path() {
+  local node_path="$1"
+  local bin_node="$node_path/bin/node"
+  local bin_npm="$node_path/bin/npm"
 
+  # Node binary missing
+  if [ ! -x "$bin_node" ]; then
+    return 1
+  fi
 
+  local installed_ver
+  installed_ver="$("$bin_node" -v 2>/dev/null | sed 's/^v//')"
 
+  # Node exists but version not returned
+  if [[ -z "$installed_ver" ]]; then
+    return 1
+  fi
+
+  # Version mismatch, even if newer
+  if [ "$strict_node_version_check" = true ]; then
+    if [[ "$installed_ver" != "$required_node_ver" ]]; then
+      return 3
+    fi
+  else
+    # Version mismatch, too old.
+    local cmp
+    cmp=$(printf "%s\n%s\n" "$required_node_ver" "$installed_ver" | sort -V | head -1)
+    if [[ "$cmp" != "$required_node_ver" ]]; then
+      return 2
+    fi
+  fi
+
+  # node cmd valid, but npm is missing or broken.
+  if [ ! -x "$bin_npm" ] || ! "$bin_npm" --version >/dev/null 2>&1; then
+    return 4
+  fi
+
+  return 0
+}
+
+# Node.js pre-check. check if we need to install Node.js before installer run.
+# Use postcheck_node_after_install() to check after install.
+check_node_installed() {
+  local node_path="${node_install_dir}/node-${node_version}-linux-${arch}"
+
+  verify_node_at_path "$node_path"
+  local result=$?
+
+  case $result in
+    0)
+      cprint green bold "Node.js and npm found at $node_path (version $required_node_ver or compatible)"
+      install_node=false
+      ;;
+    1)
+      cprint yellow bold "Node.js binary not found or unusable at $node_path"
+      install_node=true
+      ;;
+    2)
+      cprint red bold "Node.js version at $node_path is too old. Required: >= $required_node_ver"
+      install_node=true
+      ;;
+    3)
+      cprint red bold "Node.js version mismatch. Required: $required_node_ver, found something else."
+      install_node=true
+      ;;
+    4)
+      cprint red bold "Node.js is present but npm is missing or broken."
+      install_node=true
+      ;;
+    *)
+      cprint red bold "Unexpected error in node verification."
+      install_node=true
+      ;;
+  esac
+}
+
+# Node.js post-check. check if Node.js is valid after install.
+ 
+postcheck_node_after_install() {
+  local node_path="${node_install_dir}/node-${node_version}-linux-${arch}"
+
+  verify_node_at_path "$node_path"
+  if [[ $? -ne 0 ]]; then
+    cprint red bold "Node.js installation failed or is invalid at $node_path"
+    return 1
+  else
+    cprint green bold "Node.js is installed and functioning at $node_path"
+    return 0
+  fi
+}
 
 
 
@@ -408,6 +510,7 @@ main() {
   safe_run check_supported_os "Unsupported OS or version"
   safe_run check_required_commands "Missing required system commands"
   safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
+  safe_run check_node_installed "Failed to detect Node.js or npm at expected path. Node.js will be installed."
 
 }
 main "$@"
