@@ -249,8 +249,30 @@ parse_args() {
           esac
           shift 2
         else
-          echo "Error: --install requires an argument (daemon, web, or all)."
-          exit 1
+          # No argument passed with --install, detect based on installed components
+          daemon_installed=false
+          web_installed=false
+
+          if is_component_installed "daemon"; then
+            daemon_installed=true
+          fi
+          if is_component_installed "web"; then
+            web_installed=true
+          fi
+
+          if [[ "$daemon_installed" == true && "$web_installed" == false ]]; then
+            install_daemon=true
+            install_web=false
+          elif [[ "$daemon_installed" == false && "$web_installed" == true ]]; then
+            install_daemon=false
+            install_web=true
+          else
+            # None or both installed perform fresh install or update both
+            install_daemon=true
+            install_web=true
+          fi
+
+          shift 1
         fi
         ;;
       --user)
