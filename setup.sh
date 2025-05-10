@@ -188,6 +188,22 @@ detect_terminal_capabilities() {
     echo "Note: Terminal does not support advanced text styles."
   fi
 }
+
+# Check whether daemon or web is installed
+is_component_installed() {
+  local component_name="$1"
+  local component_path="${install_dir}/${component_name}"
+
+  if [[ -d "$component_path" ]]; then
+    cprint green "Component '$component_name' is already installed at $component_path"
+    return 0
+  else
+    cprint yellow "Component '$component_name' is not installed"
+    return 1
+  fi
+}
+
+
 # Parse cmd arguments.
 parse_args() {
   while [[ $# -gt 0 ]]; do
