@@ -53,6 +53,12 @@ install_web=true
 # To install as a general user (e.g., "mcsm"), use the --user option: --user mcsm
 # To ensure compatibility, only user mcsm is supported.
 install_user="root"
+# Installed user, for permission check
+web_installed=false
+daemon_installed=false
+web_installed_user=""
+daemon_installed_user=""
+
 
 # Optional: Override the default installation source file.
 # If --install-source is specified, the installer will use the provided
@@ -196,12 +202,30 @@ is_component_installed() {
 
   if [[ -d "$component_path" ]]; then
     cprint green "Component '$component_name' is already installed at $component_path"
+
+    # Set corresponding global variable
+    if [[ "$component_name" == "daemon" ]]; then
+      daemon_installed=true
+    elif [[ "$component_name" == "web" ]]; then
+      web_installed=true
+    fi
+
     return 0
   else
     cprint yellow "Component '$component_name' is not installed"
+
+    # Set corresponding global variable
+    if [[ "$component_name" == "daemon" ]]; then
+      daemon_installed=false
+    elif [[ "$component_name" == "web" ]]; then
+      web_installed=false
+    fi
+
     return 1
   fi
 }
+
+
 
 
 # Parse cmd arguments.
