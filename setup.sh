@@ -977,7 +977,7 @@ install_component() {
   local backup_data_path="${install_dir}${backup_prefix}${component}"
   local source_path="${install_tmp_dir}/mcsmanager/${component}"
 
-  cprint cyan bold "➡ Installing component: $component"
+  cprint cyan bold "Installing/Updating component: $component"
 
   # Step 1: Move new component to install_dir
   if [[ ! -d "$source_path" ]]; then
@@ -1034,7 +1034,7 @@ install_component() {
   fi
 
   popd >/dev/null
-  cprint green bold "Component '$component' installed successfully."
+  cprint green bold "Component '$component' installed/updated successfully."
 }
 
 install_mcsm() {
