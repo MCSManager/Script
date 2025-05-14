@@ -1037,13 +1037,83 @@ install_component() {
   cprint green bold "Component '$component' installed/updated successfully."
 }
 
+# Create systemd service for a given component.
+# This will overwrite the existing service file.
+create_systemd_service() {
+  local component="$1"
+  local service_path="${systemd_file}${component}.service"
+  local working_dir="${install_dir}${component}"
+  local exec="${node_bin_path} app.js"
+
+  if [[ ! -d "$working_dir" ]]; then
+    cprint red bold "Component directory not found: $working_dir"
+    return 1
+  fi
+
+  cprint cyan "Creating systemd service for '$component'..."
+
+  cat > "$service_path" <<EOF
+[Unit]
+Description=MCSManager-${component^}
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=${working_dir}
+ExecStart=${exec}
+ExecReload=/bin/kill -s HUP \$MAINPID
+ExecStop=/bin/kill -s TERM \$MAINPID
+Restart=on-failure
+User=${install_user}
+Environment="PATH=${PATH}"
+Environment="NODE_ENV=production"
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+  if [[ $? -ne 0 ]]; then
+    cprint red bold "Failed to write service file: $service_path"
+    return 1
+  fi
+
+  chmod 644 "$service_path"
+  cprint green "Created systemd unit: $service_path"
+  return 0
+}
+
 install_mcsm() {
+  local components=()
+
   if [[ "$install_web" == true ]]; then
     install_component "web"
+    create_systemd_service "web"
+    components+=("web")
   fi
 
   if [[ "$install_daemon" == true ]]; then
     install_component "daemon"
+    create_systemd_service "daemon"
+    components+=("daemon")
+  fi
+
+  # Reload systemd after any service file changes
+  if (( ${#components[@]} > 0 )); then
+    cprint cyan "Reloading systemd daemon..."
+    # systemctl daemon-reexec
+    systemctl daemon-reload
+
+    for comp in "${components[@]}"; do
+      local svc="mcsm-${comp}.service"
+
+      cprint cyan "Enabling service: $svc"
+      if systemctl enable "$svc" &>/dev/null; then
+        cprint green "Enabled service: $svc"
+      else
+        cprint red bold "Failed to enable service: $svc"
+        exit 1
+      fi
+    done
   fi
 }
 
