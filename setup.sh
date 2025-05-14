@@ -546,12 +546,20 @@ permission_barrier() {
     if [[ "${!is_installed_var}" == true ]]; then
       local installed_user="${!installed_user_var}"
 
+      # Step 0: Ensure installed user is detected
+      if [[ -z "$installed_user" ]]; then
+        cprint red bold "Detected that '$component' is installed but could not determine the user from its systemd service file."
+        cprint red "  This may indicate a custom or unsupported service file setup."
+        cprint red "  Refusing to proceed to avoid potential conflicts."
+        exit 1
+      fi
+
       # Step 1: User match check
       if [[ "$installed_user" != "$install_user" ]]; then
         cprint red bold "Permission mismatch for '$component':"
-        cprint red "Installed as user: $installed_user"
-        cprint red "Current install target user: $install_user"
-        cprint red "Unable to proceed due to ownership conflict."
+        cprint red "  Installed as user: $installed_user"
+        cprint red "  Current install target user: $install_user"
+        cprint red "  Unable to proceed due to ownership conflict."
         exit 1
       fi
     fi
@@ -562,21 +570,22 @@ permission_barrier() {
   dir_owner=$(stat -c '%U' "$install_dir" 2>/dev/null)
 
   if [[ -z "$dir_owner" ]]; then
-    cprint red bold "✖ Unable to determine owner of install_dir: $install_dir"
+    cprint red bold "Unable to determine owner of install_dir: $install_dir"
     exit 1
   fi
 
   if [[ "$dir_owner" != "$install_user" ]]; then
-    cprint red bold "✖ Install directory ownership mismatch:"
+    cprint red bold "Install directory ownership mismatch:"
     cprint red "  Directory: $install_dir"
     cprint red "  Owned by:  $dir_owner"
     cprint red "  Expected:  $install_user"
     exit 1
   fi
 
-  cprint green bold "✔ Permissions and ownership validated. Proceeding."
+  cprint green bold "Permissions and ownership validated. Proceeding."
   return 0
 }
+
 
 
 # Map OS arch with actual Node.js Arch name
