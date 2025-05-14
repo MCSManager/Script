@@ -92,6 +92,7 @@ required_commands=(
   chown
   wget
   tar
+  stat
 )
 
 # Node.js related sections
@@ -528,6 +529,53 @@ cprint() {
   printf "%b%s%b\n" "$prefix" "$text" "$RESET"
 }
 
+# Permission check before proceed with installation
+permission_barrier() {
+  if [[ "$web_installed" == false && "$daemon_installed" == false ]]; then
+    cprint cyan "No components currently installed — skipping permission check."
+    return 0
+  fi
+
+  for component in web daemon; do
+    local is_installed_var="${component}_installed"
+    local installed_user_var="${component}_installed_user"
+
+    if [[ "${!is_installed_var}" == true ]]; then
+      local installed_user="${!installed_user_var}"
+
+      # Step 1: User match check
+      if [[ "$installed_user" != "$install_user" ]]; then
+        cprint red bold "Permission mismatch for '$component':"
+        cprint red "Installed as user: $installed_user"
+        cprint red "Current install target user: $install_user"
+        cprint red "Unable to proceed due to ownership conflict."
+        exit 1
+      fi
+    fi
+  done
+
+  # Step 2: Directory ownership check
+  local dir_owner
+  dir_owner=$(stat -c '%U' "$install_dir" 2>/dev/null)
+
+  if [[ -z "$dir_owner" ]]; then
+    cprint red bold "✖ Unable to determine owner of install_dir: $install_dir"
+    exit 1
+  fi
+
+  if [[ "$dir_owner" != "$install_user" ]]; then
+    cprint red bold "✖ Install directory ownership mismatch:"
+    cprint red "  Directory: $install_dir"
+    cprint red "  Owned by:  $dir_owner"
+    cprint red "  Expected:  $install_user"
+    exit 1
+  fi
+
+  cprint green bold "✔ Permissions and ownership validated. Proceeding."
+  return 0
+}
+
+
 # Map OS arch with actual Node.js Arch name
 # This function should be placed after var arch has been assigned a valid value.
 resolve_node_arch() {
@@ -737,5 +785,7 @@ main() {
   if [ "$install_node" = true ]; then
     safe_run install_node "Node.js installation failed"
   fi
+  
+  safe_run permission_barrier "Permission validation failed — aborting install"
 }
 main "$@"
