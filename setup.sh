@@ -101,6 +101,8 @@ required_commands=(
   wget
   tar
   stat
+  useradd
+  usermod
 )
 
 # Node.js related sections
@@ -859,8 +861,55 @@ download_mcsm() {
   return 0
 }
 
+# Prepare user if needed
+prepare_user() {
+  if [[ "$install_user" == "root" ]]; then
+    cprint cyan "✔ install_user is 'root' — skipping user creation."
+    return 0
+  fi
+
+  # Check if user already exists
+  if id "$install_user" &>/dev/null; then
+    cprint green "User '$install_user' already exists."
+  else
+    cprint cyan "Creating system user: $install_user (nologin, no password)..."
+    if ! useradd --system --home "$install_dir" --shell /usr/sbin/nologin "$install_user"; then
+      cprint red bold "Failed to create user: $install_user"
+      exit 1
+    fi
+    cprint green "User '$install_user' created."
+  fi
+
+  # Docker integration
+  if command -v docker &>/dev/null; then
+    cprint cyan "Docker is installed — checking group assignment..."
+
+    if getent group docker &>/dev/null; then
+      if id -nG "$install_user" | grep -qw docker; then
+        cprint green "User '$install_user' is already in the 'docker' group."
+      else
+        cprint cyan "Adding user '$install_user' to 'docker' group..."
+        if usermod -aG docker "$install_user"; then
+          cprint green "Docker group access granted to '$install_user'."
+        else
+          cprint red "Failed to add '$install_user' to 'docker' group. Docker may not be usable by this user."
+        fi
+      fi
+    else
+      cprint red "Docker installed but 'docker' group not found. Skipping group assignment."
+    fi
+  else
+    cprint yellow "Docker not installed — skipping Docker group configuration."
+  fi
+
+  return 0
+}
+
 # Prepare file & permissions before install.
 mcsm_install_prepare() {
+  # Prepare the user first
+  prepare_user
+  
   if [[ ! -d "$install_tmp_dir" ]]; then
     cprint red bold "install_tmp_dir does not exist: $install_tmp_dir"
     exit 1
