@@ -74,6 +74,11 @@ install_source_path=""
 # temp path for extracted file(s)
 install_tmp_dir=""
 
+# dir name for data dir backup
+# e.g. /opt/mcsmanager/daemon/data -> /opt/mcsmanager/data_bak_data
+# only valid for when during an update
+backup_prefix="data_bak_"
+
 # System architecture (detected automatically)
 arch=""
 version=""
@@ -851,6 +856,68 @@ download_mcsm() {
   }
 
   cprint green bold "MCSManager source extracted and moved to: $install_tmp_dir"
+  return 0
+}
+
+# Prepare file & permissions before install.
+mcsm_install_prepare() {
+  if [[ ! -d "$install_tmp_dir" ]]; then
+    cprint red bold "install_tmp_dir does not exist: $install_tmp_dir"
+    exit 1
+  fi
+
+  cprint cyan "Changing ownership of $install_tmp_dir to user '$install_user'..."
+  chown -R "$install_user":"$install_user" "$install_tmp_dir" || {
+    cprint red bold "Failed to change ownership of $install_tmp_dir"
+    exit 1
+  }
+
+  # Normalize install_dir to ensure it ends with a slash
+  [[ "${install_dir}" != */ ]] && install_dir="${install_dir}/"
+
+  if [[ "$web_installed" == false && "$daemon_installed" == false ]]; then
+    cprint cyan "No existing components detected — skipping data backup/cleanup."
+    return 0
+  fi
+
+  for component in web daemon; do
+    local is_installed_var="${component}_installed"
+    if [[ "${!is_installed_var}" == true ]]; then
+      local component_path="${install_dir}${component}"
+      local data_dir="${component_path}/data"
+      local backup_path="${install_dir}${backup_prefix}${component}"
+
+      if [[ ! -d "$component_path" ]]; then
+        cprint yellow "Expected installed component directory not found: $component_path"
+        continue
+      fi
+
+      if [[ -d "$data_dir" ]]; then
+        if [[ -e "$backup_path" ]]; then
+          cprint red bold "Backup destination already exists: $backup_path"
+          cprint red "  Please resolve this conflict manually before continuing."
+          exit 1
+        fi
+
+        cprint cyan "Backing up data directory for $component..."
+        mv "$data_dir" "$backup_path" || {
+          cprint red bold "Failed to move $data_dir to $backup_path"
+          exit 1
+        }
+        cprint green "Moved $data_dir → $backup_path"
+      else
+        cprint yellow "No data directory found for $component — skipping backup."
+      fi
+
+      cprint cyan "Removing old component directory: $component_path"
+      rm -rf "$component_path" || {
+        cprint red bold "Failed to remove old component directory: $component_path"
+        exit 1
+      }
+    fi
+  done
+
+  cprint green bold "Existing components prepared successfully."
   return 0
 }
 
