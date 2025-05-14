@@ -59,12 +59,17 @@ daemon_installed=false
 web_installed_user=""
 daemon_installed_user=""
 
-
+# Service file locations
+# the final dir = systemd_file + {web/daemon} + ".service"
+systemd_file="/etc/systemd/system/mcsm-"
 # Optional: Override the default installation source file.
 # If --install-source is specified, the installer will use the provided
 # "mcsmanager_linux_release.tar.gz" file instead of downloading it.
 # Only support local absolute path.
 install_source_path=""
+
+# temp path for extracted file(s)
+install_tmp_dir=""
 
 # System architecture (detected automatically)
 arch=""
@@ -225,6 +230,42 @@ is_component_installed() {
   fi
 }
 
+check_component_permission() {
+  local component="$1"
+  local service_file="${systemd_file}${component}.service"
+
+  if [[ ! -f "$service_file" ]]; then
+    cprint yellow "Service file not found: $service_file"
+    return 0  # nothing changed
+  fi
+
+  # Extract the User= line if it exists
+  local user_line
+  user_line=$(grep -E '^User=' "$service_file" 2>/dev/null | head -1)
+
+  local user
+  if [[ -z "$user_line" ]]; then
+    user="root"  # default if no User= is defined
+  else
+    user="${user_line#User=}"
+  fi
+
+  # Validate user
+  if [[ "$user" != "root" && "$user" != "mcsm" ]]; then
+    cprint red bold "Unsupported user '$user' in $service_file. Expected 'root' or 'mcsm'."
+    exit 1
+  fi
+
+  # Assign to appropriate global
+  if [[ "$component" == "web" ]]; then
+    web_installed_user="$user"
+  elif [[ "$component" == "daemon" ]]; then
+    daemon_installed_user="$user"
+  fi
+
+  cprint cyan "Detected $component installed as user: $user"
+  return 0
+}
 
 
 
@@ -255,15 +296,19 @@ parse_args() {
           case "$2" in
             daemon)
               install_daemon=true
+			  check_component_permission "daemon"
               install_web=false
               ;;
             web)
               install_daemon=false
               install_web=true
+			  check_component_permission "web"
               ;;
             all)
               install_daemon=true
+			  check_component_permission "daemon"
               install_web=true
+			  check_component_permission "web"
               ;;
             *)
               echo "Error: Invalid value for --install. Expected 'daemon', 'web', or 'all'."
@@ -279,9 +324,11 @@ parse_args() {
 
           if is_component_installed "daemon"; then
             daemon_installed=true
+			check_component_permission "daemon"
           fi
           if is_component_installed "web"; then
             web_installed=true
+			check_component_permission "web"
           fi
 
           if [[ "$daemon_installed" == true && "$web_installed" == false ]]; then
