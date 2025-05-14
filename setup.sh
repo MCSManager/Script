@@ -970,6 +970,82 @@ mcsm_install_prepare() {
   return 0
 }
 
+# Install or update a component
+install_component() {
+  local component="$1"
+  local target_path="${install_dir}${component}"
+  local backup_data_path="${install_dir}${backup_prefix}${component}"
+  local source_path="${install_tmp_dir}/mcsmanager/${component}"
+
+  cprint cyan bold "➡ Installing component: $component"
+
+  # Step 1: Move new component to install_dir
+  if [[ ! -d "$source_path" ]]; then
+    cprint red bold "Source directory not found: $source_path"
+    exit 1
+  fi
+
+  if [[ -e "$target_path" ]]; then
+    cprint red bold "Target path already exists: $target_path"
+    cprint red "  This should not happen — possible permission error or unclean install."
+    exit 1
+  fi
+
+  mv "$source_path" "$target_path" || {
+    cprint red bold "Failed to move $source_path → $target_path"
+    exit 1
+  }
+
+  cprint green "Moved $component to $target_path"
+
+  # Step 2: Restore backed-up data directory if present
+  if [[ -d "$backup_data_path" ]]; then
+    local target_data_path="${target_path}/data"
+
+    cprint cyan "Restoring backed-up data directory for $component..."
+
+    rm -rf "$target_data_path"  # Ensure no conflict
+    mv "$backup_data_path" "$target_data_path" || {
+      cprint red bold "Failed to restore data directory to $target_data_path"
+      exit 1
+    }
+
+    cprint green "Data directory restored: $target_data_path"
+  else
+    cprint yellow "No backed-up data directory found for $component — fresh install assumed."
+  fi
+
+  # Step 3: Install NPM dependencies
+  if [[ ! -x "$npm_bin_path" ]]; then
+    cprint red bold "npm binary not found or not executable: $npm_bin_path"
+    exit 1
+  fi
+
+  cprint cyan "Installing dependencies for $component using npm..."
+  pushd "$target_path" >/dev/null || {
+    cprint red bold "Failed to change directory to $target_path"
+    exit 1
+  }
+
+  if ! "$npm_bin_path" install --no-audit --no-fund --loglevel=warn; then
+    cprint red bold "NPM dependency installation failed for $component"
+    popd >/dev/null
+    exit 1
+  fi
+
+  popd >/dev/null
+  cprint green bold "Component '$component' installed successfully."
+}
+
+install_mcsm() {
+  if [[ "$install_web" == true ]]; then
+    install_component "web"
+  fi
+
+  if [[ "$install_daemon" == true ]]; then
+    install_component "daemon"
+  fi
+}
 
 main() {
   trap 'echo "Unexpected error occurred."; exit 99' ERR
@@ -991,5 +1067,8 @@ main() {
   safe_run permission_barrier "Permission validation failed — aborting install"
   
   safe_run download_mcsm "Failed to acquire MCSManager source"
+  safe_run mcsm_install_prepare "Error while preparing for installation"
+  
+  
 }
 main "$@"
