@@ -38,6 +38,9 @@ node_download_fallback=""
 # Node.js installation path (defaults to the MCSManager installation path. Can be overridden with --node-install-dir)
 node_install_dir="$install_dir"
 
+# Temp dir for file extraction
+tmp_dir="/tmp"
+
 # --------------- Global Variables ---------------#
 #                  DO NOT MODIFY                  #
 
@@ -765,8 +768,82 @@ install_node() {
   return 0
 }
 
+# Function to download MCSM package. fetch from primary URL first, then fallback URL.
+# This function only put extracted file(s) into install_dir, it does not perform the actual update.
+download_mcsm() {
+  local archive_name="$package_name"
+  local archive_path="${tmp_dir}/${archive_name}"
+  local primary_url="${download_base_url}${archive_name}"
+  local fallback="$download_fallback_url"
 
+  cprint cyan bold "➡ Downloading MCSManager package..."
 
+  # Step 1: Try downloading from primary URL
+  if ! wget --progress=bar:force -O "$archive_path" "$primary_url"; then
+    cprint yellow "Primary download failed. Attempting fallback source..."
+
+    if [[ -z "$fallback" ]]; then
+      cprint red bold "No fallback URL or path specified."
+      return 1
+    fi
+
+    if [[ "$fallback" =~ ^https?:// ]]; then
+      if ! wget --progress=bar:force -O "$archive_path" "$fallback"; then
+        cprint red bold "Fallback download failed from $fallback"
+        return 1
+      fi
+    elif [[ -f "$fallback" ]]; then
+      cp "$fallback" "$archive_path" || {
+        cprint red bold "Failed to copy fallback archive from $fallback"
+        return 1
+      }
+    else
+      cprint red bold "Fallback path is invalid: $fallback"
+      return 1
+    fi
+  fi
+
+  # Step 2: Generate extract directory
+  local suffix
+  suffix=$(tr -dc 'a-z0-9' </dev/urandom | head -c 4)
+  local extracted_tmp_path="${tmp_dir}/mcsm_${suffix}"
+
+  if [[ -e "$extracted_tmp_path" ]]; then
+    cprint red bold "Temporary extract path already exists: $extracted_tmp_path"
+    return 1
+  fi
+
+  mkdir -p "$extracted_tmp_path" || {
+    cprint red bold "Failed to create temporary extract directory: $extracted_tmp_path"
+    return 1
+  }
+
+  cprint cyan "Extracting archive to $extracted_tmp_path..."
+  if ! tar -xzf "$archive_path" -C "$extracted_tmp_path"; then
+    cprint red bold "Failed to extract archive."
+    rm -rf "$extracted_tmp_path"
+    return 1
+  fi
+
+  rm -f "$archive_path"
+
+  # Step 3: Move the entire extracted directory to install_dir
+  install_tmp_dir="${install_dir}/mcsm_${suffix}"
+
+  if [[ -e "$install_tmp_dir" ]]; then
+    cprint red bold "Install target already exists at $install_tmp_dir"
+    cprint red "  Please remove or rename it before proceeding."
+    return 1
+  fi
+
+  mv "$extracted_tmp_path" "$install_tmp_dir" || {
+    cprint red bold "Failed to move extracted files to $install_tmp_dir"
+    return 1
+  }
+
+  cprint green bold "MCSManager source extracted and moved to: $install_tmp_dir"
+  return 0
+}
 
 
 main() {
@@ -787,5 +864,7 @@ main() {
   fi
   
   safe_run permission_barrier "Permission validation failed — aborting install"
+  
+  safe_run download_mcsm "Failed to acquire MCSManager source"
 }
 main "$@"
