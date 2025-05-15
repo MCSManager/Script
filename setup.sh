@@ -1282,9 +1282,17 @@ install_mcsm() {
     done
   fi
   
+  # Clear temp dir
+  if rm -rf "$install_tmp_dir"; then
+	  cprint green "Cleaned up temporary install folder: $install_tmp_dir"
+	else
+	  cprint red "Failed to remove temporary folder: $install_tmp_dir"
+	fi
+	
   # Extract installed component info
   safe_run extract_component_info "Failed to extract runtime info from installed services"
   safe_rul print_install_result "Failed to print installation result"
+  
 }
 
 main() {
