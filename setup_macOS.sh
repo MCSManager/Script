@@ -70,13 +70,14 @@ else
 fi
 echo "All dependencies checked and installed."
 
-echo "Web Panel + Node (Daemon) will be installed automatically (recommended)."
-read -p "Continue installation? (y/n): " confirm
-if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-    echo "Installation cancelled."
-    exit 0
+echo "Please select installation mode:"
+echo "1) Install Web Panel + Node (Daemon) (recommended)"
+echo "2) Install Node (Daemon) only"
+read -p "Enter your choice (1 or 2): " choice
+if [[ "$choice" != "1" && "$choice" != "2" ]]; then
+    echo "Invalid input. Please rerun the script and select 1 or 2."
+    exit 1
 fi
-choice="1"
 
 echo "Using install directory: $INSTALL_DIR"
 if [ ! -w "$INSTALL_DIR" ]; then
@@ -198,47 +199,47 @@ GLOBAL_JSON="$MCSM_DIR/daemon/data/Config/global.json"
 if [ -f "$GLOBAL_JSON" ]; then
     NODE_KEY=$(grep '"key"' "$GLOBAL_JSON" | head -n1 | sed 's/.*"key": *"\([^"]*\)".*/\1/')
     if [ -n "$NODE_KEY" ]; then
-        echo "请及时复制以下远程节点密钥，用于连接节点："
-        echo "节点 Key: $NODE_KEY"
+        echo "Please copy the following remote node key for connecting this node:"
+        echo "Node Key: $NODE_KEY"
     else
-        echo "未能自动获取节点 Key，请手动查看 $GLOBAL_JSON"
+        echo "Failed to automatically get node key, please check $GLOBAL_JSON manually."
     fi
 else
-    echo "未找到 $GLOBAL_JSON，无法获取节点 Key。"
+    echo "File $GLOBAL_JSON not found, unable to get node key."
 fi
 
 echo ""
-echo "--- PM2 控制命令参考 ---"
-echo "查看所有 MCSManager 进程状态:"
+echo "--- PM2 Command Reference ---"
+echo "Check all MCSManager process status:"
 echo "  pm2 status"
 echo ""
-echo "--- Daemon (节点) ---"
-echo "进程名: MCSManager-Daemon"
-echo "日志文件: $MCSM_DIR/daemon_output.log, $MCSM_DIR/daemon_error.log"
-echo "启动 Daemon: pm2 start MCSManager-Daemon"
-echo "停止 Daemon: pm2 stop MCSManager-Daemon"
-echo "重启 Daemon: pm2 restart MCSManager-Daemon"
-echo "删除 Daemon (从 PM2 列表移除): pm2 delete MCSManager-Daemon"
-echo "查看 Daemon 日志: pm2 logs MCSManager-Daemon"
-echo "查看 Daemon 实时日志: pm2 logs MCSManager-Daemon --follow"
+echo "--- Daemon (Node) ---"
+echo "Process name: MCSManager-Daemon"
+echo "Log files: $MCSM_DIR/daemon_output.log, $MCSM_DIR/daemon_error.log"
+echo "Start Daemon: pm2 start MCSManager-Daemon"
+echo "Stop Daemon: pm2 stop MCSManager-Daemon"
+echo "Restart Daemon: pm2 restart MCSManager-Daemon"
+echo "Delete Daemon (remove from PM2): pm2 delete MCSManager-Daemon"
+echo "View Daemon logs: pm2 logs MCSManager-Daemon"
+echo "View Daemon live logs: pm2 logs MCSManager-Daemon --follow"
 echo ""
 
 if [ "$choice" == "1" ]; then
-    echo "--- Web 面板 ---"
-    echo "进程名: MCSManager-Web"
-    echo "日志文件: $MCSM_DIR/web_output.log, $MCSM_DIR/web_error.log"
-    echo "启动 Web: pm2 start MCSManager-Web"
-    echo "停止 Web: pm2 stop MCSManager-Web"
-    echo "重启 Web: pm2 restart MCSManager-Web"
-    echo "删除 Web (从 PM2 列表移除): pm2 delete MCSManager-Web"
-    echo "查看 Web 日志: pm2 logs MCSManager-Web"
-    echo "查看 Web 实时日志: pm2 logs MCSManager-Web --follow"
+    echo "--- Web Panel ---"
+    echo "Process name: MCSManager-Web"
+    echo "Log files: $MCSM_DIR/web_output.log, $MCSM_DIR/web_error.log"
+    echo "Start Web: pm2 start MCSManager-Web"
+    echo "Stop Web: pm2 stop MCSManager-Web"
+    echo "Restart Web: pm2 restart MCSManager-Web"
+    echo "Delete Web (remove from PM2): pm2 delete MCSManager-Web"
+    echo "View Web logs: pm2 logs MCSManager-Web"
+    echo "View Web live logs: pm2 logs MCSManager-Web --follow"
     echo ""
-    echo "默认访问地址: http://localhost:23333"
+    echo "Default access: http://localhost:23333"
 fi
 
-echo "--- 重要：完成自启动设置 ---"
-echo "PM2 自启动配置已自动尝试执行。若有报错，请参考上方命令手动执行。"
+echo "--- IMPORTANT: Complete PM2 Startup Setup ---"
+echo "PM2 startup configuration has been attempted automatically. If there are errors, please refer to the command above and run it manually."
 echo "=================================================="
 
 exit 0

@@ -70,13 +70,14 @@ else
 fi
 echo "所有依赖检测并安装完成。"
 
-echo "将自动安装 Web 面板 + 节点 (Daemon) (推荐)"
-read -p "是否继续安装？(y/n): " confirm
-if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-    echo "已取消安装。"
-    exit 0
+echo "请选择安装模式："
+echo "1) 安装 Web 面板 + 节点 (Daemon) (推荐)"
+echo "2) 只安装节点 (Daemon)"
+read -p "请输入选项 (1 或 2): " choice
+if [[ "$choice" != "1" && "$choice" != "2" ]]; then
+    echo "无效的输入。请重新运行脚本并选择 1 或 2。"
+    exit 1
 fi
-choice="1"
 
 echo "使用安装目录: $INSTALL_DIR"
 if [ ! -w "$INSTALL_DIR" ]; then
