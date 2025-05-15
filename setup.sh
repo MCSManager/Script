@@ -1154,6 +1154,100 @@ extract_component_info() {
   fi
 }
 
+print_install_result() {
+  # Clear the screen
+  clear &>/dev/null || true
+
+  # Print ASCII banner
+  echo ""
+  echo "    _/      _/    _/_/_/    _/_/_/  _/      _/                                                              "
+  echo "   _/_/  _/_/  _/        _/        _/_/  _/_/    _/_/_/  _/_/_/      _/_/_/    _/_/_/    _/_/    _/  _/_/   "
+  echo "  _/  _/  _/  _/          _/_/    _/  _/  _/  _/    _/  _/    _/  _/    _/  _/    _/  _/_/_/_/  _/_/        "
+  echo " _/      _/  _/              _/  _/      _/  _/    _/  _/    _/  _/    _/  _/    _/  _/        _/           "
+  echo "_/      _/    _/_/_/  _/_/_/    _/      _/    _/_/_/  _/    _/    _/_/_/    _/_/_/    _/_/_/  _/            "
+  echo "                                                                               _/                          "
+  echo "                                                                          _/_/                             "
+  echo ""
+
+  # status summary
+  echo "Installed/Updated Components:"
+  if [[ "$install_daemon" == true && -n "$daemon_key" && -n "$daemon_port" ]]; then
+    echo "Daemon"
+  elif [[ "$install_daemon" == true ]]; then
+    echo "Daemon (partial, config not fully detected)"
+  fi
+
+  if [[ "$install_web" == true && -n "$web_port" ]]; then
+    echo "Web Interface"
+  elif [[ "$install_web" == true ]]; then
+    echo "Web Interface (partial, config not fully detected)"
+  fi
+
+  echo ""
+
+  # Local IP detection
+  local ip_address
+  ip_address=$(hostname -I 2>/dev/null | awk '{print $1}')
+  [[ -z "$ip_address" ]] && ip_address="YOUR-IP"
+
+  # Daemon info
+  if [[ "$install_daemon" == true ]]; then
+    local daemon_address="ws://$ip_address:${daemon_port:-Failed to Retrieve from Config file}"
+    local daemon_key_display="${daemon_key:-Failed to Retrieve from Config file}"
+
+    echo "Daemon Address:"
+    echo "  $daemon_address"
+    echo "Daemon Key:"
+    echo "  $daemon_key_display"
+    echo ""
+  fi
+
+  # Web info
+  if [[ "$install_web" == true ]]; then
+    local web_address="http://$ip_address:${web_port:-Failed to Retrieve from Config file}"
+    echo "HTTP Web Interface:"
+    echo "  $web_address  (open in browser)"
+    echo ""
+  fi
+
+  # Port guidance
+  echo "NOTE:"
+  echo "  Make sure to expose the above ports through your firewall."
+  echo "  If accessing from outside your network, you may need to configure port forwarding on your router."
+  echo ""
+
+  # Service management help
+  echo "Service Management Commands:"
+  if [[ "$install_daemon" == true ]]; then
+    echo "  systemctl start   mcsm-daemon.service"
+    echo "  systemctl stop    mcsm-daemon.service"
+    echo "  systemctl restart mcsm-daemon.service"
+    echo "  systemctl status  mcsm-daemon.service"
+  fi
+  if [[ "$install_web" == true ]]; then
+    echo "  systemctl start   mcsm-web.service"
+    echo "  systemctl stop    mcsm-web.service"
+    echo "  systemctl restart mcsm-web.service"
+    echo "  systemctl status  mcsm-web.service"
+  fi
+  echo ""
+
+  # Official doc
+  echo "Official Documentation:"
+  echo "  https://docs.mcsmanager.com/"
+  echo ""
+
+  # HTTPS support
+  echo "Need HTTPS?"
+  echo "  To enable secure HTTPS access, configure a reverse proxy:"
+  echo "  https://docs.mcsmanager.com/ops/proxy_https.html"
+  echo ""
+
+  # Closing message
+  echo "Installation completed. Enjoy managing your servers with MCSManager!"
+  echo ""
+}
+
 install_mcsm() {
   local components=()
 
@@ -1187,6 +1281,10 @@ install_mcsm() {
       fi
     done
   fi
+  
+  # Extract installed component info
+  safe_run extract_component_info "Failed to extract runtime info from installed services"
+  safe_rul print_install_result "Failed to print installation result"
 }
 
 main() {
@@ -1211,6 +1309,6 @@ main() {
   safe_run download_mcsm "Failed to acquire MCSManager source"
   safe_run mcsm_install_prepare "Error while preparing for installation"
   
-  
+  safe_run install_mcsm "Failed to install MCSManager"
 }
 main "$@"
