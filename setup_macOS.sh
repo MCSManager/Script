@@ -172,7 +172,7 @@ echo ""
 echo "Configuring PM2 startup (using launchd)..."
 startup_cmd=$(pm2 startup launchd | grep 'sudo' | sed 's/^.*\(sudo.*\)$/\1/')
 if [ -n "$startup_cmd" ]; then
-    echo "Executing PM2 startup command automatically..."
+    echo "Executing PM2 startup command automatically. Please enter your password below (not visible):"
     eval $startup_cmd
     if [ $? -eq 0 ]; then
         echo "PM2 startup configuration completed automatically."

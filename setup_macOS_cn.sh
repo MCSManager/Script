@@ -172,7 +172,7 @@ echo ""
 echo "配置 PM2 自启动 (使用 launchd)..."
 startup_cmd=$(pm2 startup launchd | grep 'sudo' | sed 's/^.*\(sudo.*\)$/\1/')
 if [ -n "$startup_cmd" ]; then
-    echo "自动执行 PM2 自启动命令..."
+    echo "自动执行 PM2 自启动命令 请在下方输入密码(非明文)"
     eval $startup_cmd
     if [ $? -eq 0 ]; then
         echo "PM2 自启动配置已自动完成。"
