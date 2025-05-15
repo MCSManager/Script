@@ -125,6 +125,12 @@ node_arch=""
 # Hold Node.js intallation path, e.g. ${node_install_dir}/node-${node_version}-linux-${arch}
 node_path=""
 
+# For installation result
+daemon_key=""
+web_port=""
+daemon_key_config_subpath="data/Config/global.json"
+web_port_config_subpath="data/SystemConfig/config.json"
+
 # Terminal color & style related
 # Default to false, auto check later
 SUPPORTS_COLOR=false
@@ -1081,6 +1087,64 @@ EOF
   cprint green "Created systemd unit: $service_path"
   return 0
 }
+
+# Extract daemon key and/or http port
+extract_component_info() {
+  # DAEMON SECTION
+  if [[ "$install_daemon" == true ]]; then
+    local daemon_service="mcsm-daemon.service"
+    local daemon_path="${install_dir}/daemon"
+    local daemon_config_path="${daemon_path}/${daemon_key_config_subpath}"
+
+    cprint cyan bold "Starting daemon service..."
+    if systemctl start "$daemon_service"; then
+      cprint green "Daemon service started."
+
+      sleep 1  # Let the service init and config populate
+
+      if [[ -f "$daemon_config_path" ]]; then
+        daemon_key=$(grep -oP '"key"\s*:\s*"\K[^"]+' "$daemon_config_path")
+        if [[ -n "$daemon_key" ]]; then
+          cprint green "Extracted daemon key: $daemon_key"
+        else
+          cprint red "Failed to extract daemon key from: $daemon_config_path"
+        fi
+      else
+        cprint red "Daemon config file not found: $daemon_config_path"
+      fi
+    else
+      cprint red bold "Failed to start daemon service: $daemon_service"
+    fi
+  fi
+
+  # WEB SECTION
+  if [[ "$install_web" == true ]]; then
+    local web_service="mcsm-web.service"
+    local web_path="${install_dir}/web"
+    local web_config_path="${web_path}/${web_port_config_subpath}"
+
+    cprint cyan bold "Starting web service..."
+    if systemctl start "$web_service"; then
+      cprint green "Web service started."
+
+      sleep 1
+
+      if [[ -f "$web_config_path" ]]; then
+        web_port=$(grep -oP '"httpPort"\s*:\s*"\K[^"]+' "$web_config_path")
+        if [[ -n "$web_port" ]]; then
+          cprint green "Extracted web port: $web_port"
+        else
+          cprint red "Failed to extract web port from: $web_config_path"
+        fi
+      else
+        cprint red "Web config file not found: $web_config_path"
+      fi
+    else
+      cprint red bold "Failed to start web service: $web_service"
+    fi
+  fi
+}
+
 
 install_mcsm() {
   local components=()
