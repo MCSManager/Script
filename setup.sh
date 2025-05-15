@@ -127,6 +127,7 @@ node_path=""
 
 # For installation result
 daemon_key=""
+daemon_port=""
 web_port=""
 daemon_key_config_subpath="data/Config/global.json"
 web_port_config_subpath="data/SystemConfig/config.json"
@@ -1100,14 +1101,22 @@ extract_component_info() {
     if systemctl start "$daemon_service"; then
       cprint green "Daemon service started."
 
-      sleep 1  # Let the service init and config populate
+      sleep 1  # Allow service to init and write configs
 
       if [[ -f "$daemon_config_path" ]]; then
         daemon_key=$(grep -oP '"key"\s*:\s*"\K[^"]+' "$daemon_config_path")
+        daemon_port=$(grep -oP '"port"\s*:\s*\K[0-9]+' "$daemon_config_path")
+
         if [[ -n "$daemon_key" ]]; then
           cprint green "Extracted daemon key: $daemon_key"
         else
           cprint red "Failed to extract daemon key from: $daemon_config_path"
+        fi
+
+        if [[ -n "$daemon_port" ]]; then
+          cprint green "Extracted daemon port: $daemon_port"
+        else
+          cprint red "Failed to extract daemon port from: $daemon_config_path"
         fi
       else
         cprint red "Daemon config file not found: $daemon_config_path"
@@ -1127,7 +1136,7 @@ extract_component_info() {
     if systemctl start "$web_service"; then
       cprint green "Web service started."
 
-      sleep 1
+      sleep 1  # Allow time to populate config
 
       if [[ -f "$web_config_path" ]]; then
         web_port=$(grep -oP '"httpPort"\s*:\s*"\K[^"]+' "$web_config_path")
@@ -1144,7 +1153,6 @@ extract_component_info() {
     fi
   fi
 }
-
 
 install_mcsm() {
   local components=()
