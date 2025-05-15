@@ -4,194 +4,194 @@ INSTALL_DIR="$(cd "$(dirname "$0")" || exit; pwd -P)"
 MCSM_DIR="$INSTALL_DIR/mcsmanager"
 
 echo "=================================================="
-echo "  MCSManager Installation Script (macOS)"
+echo "  MCSManager 安装脚本 (macOS)"
 echo "=================================================="
-echo "Install directory: $INSTALL_DIR"
-echo "Note: Homebrew and Node.js are required."
+echo "安装目录: $INSTALL_DIR"
+echo "注意：需要 Homebrew 和 Node.js 已安装。"
 echo "=================================================="
 
-echo "Automatically checking and installing required dependencies (brew, node, npm, curl, tar, pm2)..."
+echo "将自动检测并安装所需依赖 (brew, node, npm, curl, tar, pm2)..."
 
 if ! command -v brew &> /dev/null; then
-    echo "Homebrew not found, installing Homebrew..."
+    echo "未检测到 Homebrew，正在自动安装 Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     if ! command -v brew &> /dev/null; then
-        echo "Error: Homebrew installation failed."
+        echo "错误: Homebrew 安装失败。"
         exit 1
     fi
 fi
 
 if ! command -v node &> /dev/null; then
-    echo "Node.js not found, installing Node.js via Homebrew..."
+    echo "未检测到 Node.js，正在通过 Homebrew 安装 Node.js..."
     brew install node
     if ! command -v node &> /dev/null; then
-        echo "Error: Node.js installation failed."
+        echo "错误: Node.js 安装失败。"
         exit 1
     fi
 fi
 
 if ! command -v npm &> /dev/null; then
-    echo "npm not found, reinstalling Node.js via Homebrew..."
+    echo "未检测到 npm，正在通过 Homebrew 重新安装 Node.js..."
     brew install node
     if ! command -v npm &> /dev/null; then
-        echo "Error: npm installation failed."
+        echo "错误: npm 安装失败。"
         exit 1
     fi
 fi
 
 if ! command -v curl &> /dev/null; then
-    echo "curl not found, installing curl via Homebrew..."
+    echo "未检测到 curl，正在通过 Homebrew 安装 curl..."
     brew install curl
     if ! command -v curl &> /dev/null; then
-        echo "Error: curl installation failed."
+        echo "错误: curl 安装失败。"
         exit 1
     fi
 fi
 
 if ! command -v tar &> /dev/null; then
-    echo "tar not found, installing tar via Homebrew..."
+    echo "未检测到 tar，正在通过 Homebrew 安装 tar..."
     brew install tar
     if ! command -v tar &> /dev/null; then
-        echo "Error: tar installation failed."
+        echo "错误: tar 安装失败。"
         exit 1
     fi
 fi
 
 if ! command -v pm2 &> /dev/null; then
-    echo "PM2 not found, installing PM2 globally..."
+    echo "未检测到 PM2，正在全局安装 PM2..."
     npm install -g pm2
     if ! command -v pm2 &> /dev/null; then
-        echo "Error: PM2 installation failed. Please run 'npm install -g pm2' manually."
+        echo "错误: PM2 安装失败。请手动运行 'npm install -g pm2'。"
         exit 1
     fi
-    echo "PM2 installed successfully."
+    echo "PM2 安装成功。"
 else
-    echo "PM2 is already installed."
+    echo "PM2 已安装。"
 fi
-echo "All dependencies checked and installed."
+echo "所有依赖检测并安装完成。"
 
-echo "Web Panel + Node (Daemon) will be installed automatically (recommended)."
-read -p "Continue installation? (y/n): " confirm
+echo "将自动安装 Web 面板 + 节点 (Daemon) (推荐)"
+read -p "是否继续安装？(y/n): " confirm
 if [[ "$confirm" != "y" && "$confirm" != "Y" ]]; then
-    echo "Installation cancelled."
+    echo "已取消安装。"
     exit 0
 fi
 choice="1"
 
-echo "Using install directory: $INSTALL_DIR"
+echo "使用安装目录: $INSTALL_DIR"
 if [ ! -w "$INSTALL_DIR" ]; then
-    echo "Error: $INSTALL_DIR is not writable. Please check permissions."
+    echo "错误: 脚本所在目录 $INSTALL_DIR 不可写。请检查权限。"
     exit 1
 fi
-echo "Directory permission check passed."
+echo "目录权限检查通过。"
 
 MCSM_TAR_URL="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
 MCSM_TAR_FILE="$INSTALL_DIR/mcsmanager_linux_release.tar.gz"
 
-echo "Downloading MCSManager Release ($MCSM_TAR_URL) to $MCSM_TAR_FILE"
+echo "下载 MCSManager Release ($MCSM_TAR_URL) 到 $MCSM_TAR_FILE"
 curl -L -f "$MCSM_TAR_URL" -o "$MCSM_TAR_FILE"
 if [ $? -ne 0 ]; then
-    echo "Error: Download failed. Please check your network or the URL."
+    echo "错误: 下载失败。请检查网络连接或 URL。"
     exit 1
 fi
-echo "Download successful."
+echo "下载成功。"
 
-echo "Extracting $MCSM_TAR_FILE to $INSTALL_DIR"
+echo "解压 $MCSM_TAR_FILE 到 $INSTALL_DIR"
 tar -zxf "$MCSM_TAR_FILE" -C "$INSTALL_DIR"
 if [ $? -ne 0 ]; then
-    echo "Error: Extraction failed."
+    echo "错误: 解压失败。"
     rm -rf "$MCSM_DIR"
     exit 1
 fi
 
 if [ ! -d "$MCSM_DIR" ]; then
-    echo "Error: Extraction failed. Directory $MCSM_DIR not found."
+    echo "错误: 解压失败。未找到目录 $MCSM_DIR。"
     exit 1
 fi
-echo "Extraction successful."
+echo "解压成功。"
 
-echo "Removing downloaded archive: $MCSM_TAR_FILE"
+echo "移除下载的压缩包: $MCSM_TAR_FILE"
 rm "$MCSM_TAR_FILE"
 
-echo "Changing to directory: $MCSM_DIR"
+echo "切换到目录: $MCSM_DIR"
 cd "$MCSM_DIR"
 if [ $? -ne 0 ]; then
-    echo "Error: Failed to change directory to $MCSM_DIR."
+    echo "错误: 无法切换到目录 $MCSM_DIR。"
     exit 1
 fi
 
-echo "Running ./install.sh to install dependencies..."
+echo "运行 ./install.sh 安装依赖..."
 bash ./install.sh
 if [ $? -ne 0 ]; then
-    echo "Error: ./install.sh failed. Please check the output."
+    echo "错误: ./install.sh 运行失败。请检查输出信息。"
     exit 1
 fi
-echo "Dependency installation completed."
+echo "依赖安装步骤完成。"
 
-echo "Starting MCSManager processes with PM2..."
+echo "使用 PM2 启动 MCSManager 进程..."
 
-echo "Stopping and deleting old PM2 processes (if any)..."
+echo "停止并删除旧的 PM2 进程 (如果存在)..."
 pm2 stop MCSManager-Daemon &> /dev/null
 pm2 delete MCSManager-Daemon &> /dev/null
 pm2 stop MCSManager-Web &> /dev/null
 pm2 delete MCSManager-Web &> /dev/null
 sleep 1
 
-echo "Starting MCSManager Daemon..."
+echo "启动 MCSManager Daemon..."
 pm2 start ./start-daemon.sh --name "MCSManager-Daemon" --output "$MCSM_DIR/daemon_output.log" --error "$MCSM_DIR/daemon_error.log"
 sleep 3
 if ! pm2 status | grep -q "MCSManager-Daemon"; then
-    echo "Error: PM2 failed to start MCSManager-Daemon."
+    echo "错误: PM2 未能成功启动 MCSManager-Daemon。"
     pm2 logs MCSManager-Daemon
     exit 1
 fi
-echo "MCSManager Daemon started with PM2."
-echo "Check Daemon status: pm2 status MCSManager-Daemon"
-echo "Check Daemon logs: pm2 logs MCSManager-Daemon"
-echo "Daemon default port: 24444"
+echo "MCSManager Daemon 已通过 PM2 启动。"
+echo "查看 Daemon 状态: pm2 status MCSManager-Daemon"
+echo "查看 Daemon 日志: pm2 logs MCSManager-Daemon"
+echo "Daemon 默认监听端口: 24444"
 
 if [ "$choice" == "1" ]; then
     echo ""
-    echo "Starting MCSManager Web Panel..."
+    echo "启动 MCSManager Web 面板..."
     pm2 start ./start-web.sh --name "MCSManager-Web" --output "$MCSM_DIR/web_output.log" --error "$MCSM_DIR/web_error.log"
     sleep 3
     if ! pm2 status | grep -q "MCSManager-Web"; then
-        echo "Error: PM2 failed to start MCSManager-Web."
+        echo "错误: PM2 未能成功启动 MCSManager-Web。"
         pm2 logs MCSManager-Web
-        echo "Please check the MCSManager-Web issue manually."
+        echo "请手动检查 MCSManager-Web 的问题。"
     else
-        echo "MCSManager Web Panel started with PM2."
-        echo "Check Web status: pm2 status MCSManager-Web"
-        echo "Check Web logs: pm2 logs MCSManager-Web"
-        echo "Web default port: 23333"
+        echo "MCSManager Web 面板已通过 PM2 启动。"
+        echo "查看 Web 状态: pm2 status MCSManager-Web"
+        echo "查看 Web 日志: pm2 logs MCSManager-Web"
+        echo "Web 默认监听端口: 23333"
     fi
 fi
 
 echo ""
-echo "Configuring PM2 startup (using launchd)..."
+echo "配置 PM2 自启动 (使用 launchd)..."
 startup_cmd=$(pm2 startup launchd | grep 'sudo' | sed 's/^.*\(sudo.*\)$/\1/')
 if [ -n "$startup_cmd" ]; then
-    echo "Executing PM2 startup command automatically..."
+    echo "自动执行 PM2 自启动命令..."
     eval $startup_cmd
     if [ $? -eq 0 ]; then
-        echo "PM2 startup configuration completed automatically."
+        echo "PM2 自启动配置已自动完成。"
     else
-        echo "Failed to execute PM2 startup command automatically. Please run the following command manually:"
+        echo "自动执行 PM2 自启动命令失败，请手动执行以下命令："
         echo "  $startup_cmd"
     fi
 else
-    echo "Failed to get PM2 startup command automatically. Please run 'pm2 startup launchd' and follow the instructions."
+    echo "未能自动获取 PM2 自启动命令，请手动运行 'pm2 startup launchd' 并按提示操作。"
 fi
 
 echo ""
 echo "=================================================="
 if [ "$choice" == "1" ]; then
-    echo "       MCSManager Web Panel + Node installation completed!"
+    echo "       MCSManager Web 面板 + 节点 安装完成！"
 else
-    echo "       MCSManager Node (Daemon) installation completed!"
+    echo "       MCSManager 节点 (Daemon) 安装完成！"
 fi
 echo "=================================================="
-echo "Install directory: $INSTALL_DIR"
+echo "安装目录: $INSTALL_DIR"
 echo ""
 
 GLOBAL_JSON="$MCSM_DIR/daemon/data/Config/global.json"
