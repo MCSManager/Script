@@ -32,7 +32,7 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager Update
+| MCSManager Installer
 +----------------------------------------------------------------------
 "
 
@@ -48,15 +48,13 @@ Red_Error() {
   exit 1
 }
 
-Update_Node() {
+Install_Node() {
   if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
     echo_green "Node.js version is up-to-date, skipping installation."
     return
-  else
-    echo_red "Node not find, start to install node.js"
   fi
 
-  echo_cyan_n "[+] Install Node.JS environment...\n"
+  echo_cyan "[+] Install Node.JS environment..."
 
   rm -irf "$node_install_path"
 
@@ -86,11 +84,11 @@ Update_Node() {
   sleep 3
 }
 
-Update_MCSManager() {
-  echo_cyan "[+] Update MCSManager..."
+Install_MCSManager() {
+  echo_cyan "[+] Install MCSManager..."
 
   if [ "$web_install" = false ]; then
-    echo_yellow "[-] will not update web... (The web folder was not found)"
+    echo_yellow "[-] will not install web... (The web folder was not found)"
   fi
 
   # stop service
@@ -144,14 +142,14 @@ Update_MCSManager() {
   # echo "[→] cd daemon"
   cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
 
-  echo_cyan "[+] Update MCSManager-Daemon dependencies..."
+  echo_cyan "[+] Install MCSManager-Daemon dependencies..."
   env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
 
   if [ "$web_install" = true ]; then
     # echo "[←] cd .."
     cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
 
-    echo_cyan "[+] Update MCSManager-Web dependencies..."
+    echo_cyan "[+] Install MCSManager-Web dependencies..."
     env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
   else
     rm -rf "${mcsmanager_install_path}/web"
@@ -302,10 +300,10 @@ else
 fi
 
 # Install the Node environment
-Update_Node
+Install_Node
 
 # Install MCSManager
-Update_MCSManager
+Install_MCSManager
 
 # Create MCSManager background service
 Create_Service
