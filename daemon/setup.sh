@@ -1,8 +1,8 @@
 #!/bin/bash
-# This script file is specifically designed for the Chinese region, and servers in the Chinese region are used to accelerate file downloads.
+# Official installation script.
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://cdn.imlazy.ink:233/files/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr=$(curl -s https://api.github.com/repos/MCSManager/MCSManager/releases/latest | grep -o 'https://.*linux.*\.tar\.gz')
 package_name="mcsmanager_linux_release.tar.gz"
 node="v20.12.2"
 arch=$(uname -m)
@@ -32,7 +32,7 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager 安装脚本 (MCSManager Installer)
+| MCSManager Installer
 +----------------------------------------------------------------------
 "
 
@@ -52,8 +52,7 @@ Install_Node() {
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
-  # wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
-  wget "https://registry.npmmirror.com/-/binary/node/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
 
   tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
 
@@ -101,22 +100,17 @@ Install_MCSManager() {
     rm -rf /opt/mcsmanager/mcsmanager
   fi
 
+  rm -rf "${mcsmanager_install_path}/web"
+
   # echo "[→] cd daemon"
   cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
 
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
-
-  # echo "[←] cd .."
-  cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
-
-  echo_cyan "[+] Install MCSManager-Web dependencies..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
+  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
 
   echo
   echo_yellow "=============== MCSManager ==============="
   echo_green "Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green "Web: ${mcsmanager_install_path}/web"
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
@@ -143,22 +137,8 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-daemon.service
 
-  echo "[Unit]
-Description=MCSManager-Web
-
-[Service]
-WorkingDirectory=${mcsmanager_install_path}/web
-ExecStart=${node_install_path}/bin/node app.js
-ExecReload=/bin/kill -s QUIT \$MAINPID
-ExecStop=/bin/kill -s QUIT \$MAINPID
-Environment=\"PATH=${PATH}\"
-
-[Install]
-WantedBy=multi-user.target
-" >/etc/systemd/system/mcsm-web.service
-
   systemctl daemon-reload
-  systemctl enable --now mcsm-{daemon,web}.service
+  systemctl enable --now mcsm-daemon.service
   echo_green "Registered!"
 
   sleep 2
@@ -166,20 +146,20 @@ WantedBy=multi-user.target
   printf "\n\n\n\n"
 
   echo_yellow "=================================================================="
-  echo_green "安装完成，欢迎使用 MCSManager ！"
+  echo_green "Installation is complete! Welcome to the MCSManager!!!"
   echo_yellow " "
-  echo_cyan_n "主控网页访问地址:        "
-  echo_yellow "http://<Your IP>:23333  (Browser)"
-  echo_cyan_n "被控守护进程地址:          "
+  echo_cyan_n "Daemon Address:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
-  echo_red "默认情况下，你必须开放 23333 和 24444 端口才能确保面板工作正常！"
+  echo_red "You must expose ports "
+  echo_yellow "24444"
+  echo_red " to use the service properly on the Internet."
   echo_yellow " "
-  echo_cyan "面板开关指令:"
-  echo_cyan "systemctl start mcsm-{daemon,web}.service"
-  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+  echo_cyan "Usage:"
+  echo_cyan "systemctl start mcsm-daemon.service"
+  echo_cyan "systemctl stop mcsm-daemon.service"
+  echo_cyan "systemctl restart mcsm-daemon.service"
   echo_yellow " "
-  echo_green "官方文档: https://docs.mcsmanager.com/"
+  echo_green "Official Document: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 }
 
