@@ -32,9 +32,14 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager Installer
+| MCSManager Update
 +----------------------------------------------------------------------
 "
+
+web_install=true
+if [[ -d "${mcsmanager_install_path}" ]] && [[ ! -d "${mcsmanager_install_path}/web" ]]; then
+  web_install=false
+fi
 
 Red_Error() {
   echo '================================================='
@@ -43,7 +48,14 @@ Red_Error() {
   exit 1
 }
 
-Install_Node() {
+Update_Node() {
+  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
+    echo_green "Node.js version is up-to-date, skipping installation."
+    return
+  else
+    echo_red "Node not find, start to install node.js"
+  fi
+
   echo_cyan_n "[+] Install Node.JS environment...\n"
 
   rm -irf "$node_install_path"
@@ -74,8 +86,12 @@ Install_Node() {
   sleep 3
 }
 
-Install_MCSManager() {
-  echo_cyan "[+] Install MCSManager..."
+Update_MCSManager() {
+  echo_cyan "[+] Update MCSManager..."
+
+  if [ "$web_install" = false ]; then
+    echo_yellow "[-] will not update web... (The web folder was not found)"
+  fi
 
   # stop service
   systemctl disable --now mcsm-{web,daemon}
@@ -89,33 +105,64 @@ Install_MCSManager() {
   # cd /opt/mcsmanager
   cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
+  # backup data
+  if [ -d "${mcsmanager_install_path}/daemon/data" ]; then
+    mkdir -p "$mcsmanager_install_path/temp/daemon"
+    cp -rf $mcsmanager_install_path/daemon/data/* $mcsmanager_install_path/temp/daemon
+  fi
+
+  if [ -d "${mcsmanager_install_path}/web/data" ]; then
+    mkdir -p "$mcsmanager_install_path/temp/web"
+    cp -rf $mcsmanager_install_path/web/data/* $mcsmanager_install_path/temp/web
+  fi
+
   # download MCSManager release
   wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] Failed to download MCSManager"
   tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
   # compatible with tar.gz packages of different formats
-  if [ -d "/opt/mcsmanager/mcsmanager" ]; then
-    cp -rf /opt/mcsmanager/mcsmanager/* /opt/mcsmanager/
-    rm -rf /opt/mcsmanager/mcsmanager
+  if [ -d "$mcsmanager_install_path/mcsmanager" ]; then
+    cp -rf $mcsmanager_install_path/mcsmanager/* $mcsmanager_install_path/
+    rm -rf $mcsmanager_install_path/mcsmanager
+  fi
+
+  if [ -d "${mcsmanager_install_path}/temp/daemon" ]; then
+    cp -rf $mcsmanager_install_path/temp/daemon/* $mcsmanager_install_path/daemon/data
+    rm -rf $mcsmanager_install_path/temp/daemon
+  fi
+
+  if [ -d "${mcsmanager_install_path}/temp/web" ]; then
+    cp -rf $mcsmanager_install_path/temp/web/* $mcsmanager_install_path/web/data
+    rm -rf $mcsmanager_install_path/temp/web
+  fi
+
+  if [ -d "${mcsmanager_install_path}/temp" ]; then
+    rm -rf $mcsmanager_install_path/temp
   fi
 
   # echo "[→] cd daemon"
   cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
 
-  echo_cyan "[+] Install MCSManager-Daemon dependencies..."
+  echo_cyan "[+] Update MCSManager-Daemon dependencies..."
   env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
 
-  # echo "[←] cd .."
-  cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
+  if [ "$web_install" = true ]; then
+    # echo "[←] cd .."
+    cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
 
-  echo_cyan "[+] Install MCSManager-Web dependencies..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
+    echo_cyan "[+] Update MCSManager-Web dependencies..."
+    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
+  else
+    rm -rf "${mcsmanager_install_path}/web"
+  fi
 
   echo
   echo_yellow "=============== MCSManager ==============="
   echo_green "Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green "Web: ${mcsmanager_install_path}/web"
+  if [ "$web_install" = true ]; then
+    echo_green "Web: ${mcsmanager_install_path}/web"
+  fi
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
@@ -142,7 +189,8 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-daemon.service
 
-  echo "[Unit]
+  if [ "$web_install" = true ]; then
+    echo "[Unit]
 Description=MCSManager-Web
 
 [Service]
@@ -155,9 +203,14 @@ Environment=\"PATH=${PATH}\"
 [Install]
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-web.service
+  fi
 
   systemctl daemon-reload
-  systemctl enable --now mcsm-{daemon,web}.service
+  if [ "$web_install" = true ]; then
+    systemctl enable --now mcsm-{daemon,web}.service
+  else
+    systemctl enable --now mcsm-daemon.service
+  fi
   echo_green "Registered!"
 
   sleep 2
@@ -167,20 +220,35 @@ WantedBy=multi-user.target
   echo_yellow "=================================================================="
   echo_green "Installation is complete! Welcome to the MCSManager!!!"
   echo_yellow " "
-  echo_cyan_n "HTTP Web Service:        "
-  echo_yellow "http://<Your IP>:23333  (Browser)"
+  if [ "$web_install" = true ]; then
+    echo_cyan_n "HTTP Web Service:        "
+    echo_yellow "http://<Your IP>:23333  (Browser)"
+  fi
+
   echo_cyan_n "Daemon Address:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
   echo_red "You must expose ports "
-  echo_yellow "23333"
-  echo_red " and "
+
+  if [ "$web_install" = true ]; then
+    echo_yellow "23333"
+    echo_red " and "
+  fi
+
   echo_yellow "24444"
   echo_red " to use the service properly on the Internet."
   echo_yellow " "
   echo_cyan "Usage:"
-  echo_cyan "systemctl start mcsm-{daemon,web}.service"
-  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+
+  if [ "$web_install" = true ]; then
+    echo_cyan "systemctl start mcsm-{daemon,web}.service"
+    echo_cyan "systemctl stop mcsm-{daemon,web}.service"
+    echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+  else
+    echo_cyan "systemctl start mcsm-daemon.service"
+    echo_cyan "systemctl stop mcsm-daemon.service"
+    echo_cyan "systemctl restart mcsm-daemon.service"
+  fi
+
   echo_yellow " "
   echo_green "Official Document: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
@@ -234,10 +302,10 @@ else
 fi
 
 # Install the Node environment
-Install_Node
+Update_Node
 
 # Install MCSManager
-Install_MCSManager
+Update_MCSManager
 
 # Create MCSManager background service
 Create_Service
