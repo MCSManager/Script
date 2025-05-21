@@ -32,14 +32,9 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager 安裝脚本 (MCSManager Installer)
+| MCSManager 安装脚本 (MCSManager Installer)
 +----------------------------------------------------------------------
 "
-
-web_install=true
-if [[ -d "${mcsmanager_install_path}" ]] && [[ ! -d "${mcsmanager_install_path}/web" ]]; then
-  web_install=false
-fi
 
 Red_Error() {
   echo '================================================='
@@ -62,7 +57,7 @@ Install_Node() {
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
-#   wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+  # wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
   wget "https://registry.npmmirror.com/-/binary/node/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
 
   tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
@@ -88,10 +83,6 @@ Install_Node() {
 Install_MCSManager() {
   echo_cyan "[+] Install MCSManager..."
 
-  if [ "$web_install" = false ]; then
-    echo_yellow "[-] will not install web... (The web folder was not found)"
-  fi
-
   # stop service
   systemctl disable --now mcsm-{web,daemon}
 
@@ -104,40 +95,15 @@ Install_MCSManager() {
   # cd /opt/mcsmanager
   cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
-  # backup data
-  if [ -d "${mcsmanager_install_path}/daemon/data" ]; then
-    mkdir -p "$mcsmanager_install_path/temp/daemon"
-    cp -rf $mcsmanager_install_path/daemon/data/* $mcsmanager_install_path/temp/daemon
-  fi
-
-  if [ -d "${mcsmanager_install_path}/web/data" ]; then
-    mkdir -p "$mcsmanager_install_path/temp/web"
-    cp -rf $mcsmanager_install_path/web/data/* $mcsmanager_install_path/temp/web
-  fi
-
   # download MCSManager release
   wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] Failed to download MCSManager"
   tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
   # compatible with tar.gz packages of different formats
-  if [ -d "$mcsmanager_install_path/mcsmanager" ]; then
-    cp -rf $mcsmanager_install_path/mcsmanager/* $mcsmanager_install_path/
-    rm -rf $mcsmanager_install_path/mcsmanager
-  fi
-
-  if [ -d "${mcsmanager_install_path}/temp/daemon" ]; then
-    cp -rf $mcsmanager_install_path/temp/daemon/* $mcsmanager_install_path/daemon/data
-    rm -rf $mcsmanager_install_path/temp/daemon
-  fi
-
-  if [ -d "${mcsmanager_install_path}/temp/web" ]; then
-    cp -rf $mcsmanager_install_path/temp/web/* $mcsmanager_install_path/web/data
-    rm -rf $mcsmanager_install_path/temp/web
-  fi
-
-  if [ -d "${mcsmanager_install_path}/temp" ]; then
-    rm -rf $mcsmanager_install_path/temp
+  if [ -d "/opt/mcsmanager/mcsmanager" ]; then
+    cp -rf /opt/mcsmanager/mcsmanager/* /opt/mcsmanager/
+    rm -rf /opt/mcsmanager/mcsmanager
   fi
 
   # echo "[→] cd daemon"
@@ -146,22 +112,16 @@ Install_MCSManager() {
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
   env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
 
-  if [ "$web_install" = true ]; then
-    # echo "[←] cd .."
-    cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
+  # echo "[←] cd .."
+  cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
 
-    echo_cyan "[+] Install MCSManager-Web dependencies..."
-    env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
-  else
-    rm -rf "${mcsmanager_install_path}/web"
-  fi
+  echo_cyan "[+] Install MCSManager-Web dependencies..."
+  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
 
   echo
   echo_yellow "=============== MCSManager ==============="
   echo_green "Daemon: ${mcsmanager_install_path}/daemon"
-  if [ "$web_install" = true ]; then
-    echo_green "Web: ${mcsmanager_install_path}/web"
-  fi
+  echo_green "Web: ${mcsmanager_install_path}/web"
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
@@ -188,8 +148,7 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-daemon.service
 
-  if [ "$web_install" = true ]; then
-    echo "[Unit]
+  echo "[Unit]
 Description=MCSManager-Web
 
 [Service]
@@ -202,14 +161,9 @@ Environment=\"PATH=${PATH}\"
 [Install]
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-web.service
-  fi
 
   systemctl daemon-reload
-  if [ "$web_install" = true ]; then
-    systemctl enable --now mcsm-{daemon,web}.service
-  else
-    systemctl enable --now mcsm-daemon.service
-  fi
+  systemctl enable --now mcsm-{daemon,web}.service
   echo_green "Registered!"
 
   sleep 2
@@ -219,31 +173,16 @@ WantedBy=multi-user.target
   echo_yellow "=================================================================="
   echo_green "安装完成，欢迎使用 MCSManager ！"
   echo_yellow " "
-  if [ "$web_install" = true ]; then
-    echo_cyan_n "主控网页访问地址:        "
-    echo_yellow "http://<Your IP>:23333  (Browser)"
-  fi
-
+  echo_cyan_n "主控网页访问地址:        "
+  echo_yellow "http://<Your IP>:23333  (Browser)"
   echo_cyan_n "被控守护进程地址:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
-
-  if [ "$web_install" = true ]; then
-    echo_red "默认情况下，你必须开放\033[1;33m 23333 和 24444 \033[1;31m端口才能确保面板工作正常！"
-  else
-    echo_red "默认情况下，你必须开放\033[1;33m 24444 \033[1;31m端口才能确保面板工作正常！"
-  fi
-
+  echo_red "默认情况下，你必须开放 23333 和 24444 端口才能确保面板工作正常！"
   echo_yellow " "
   echo_cyan "面板开关指令:"
-  if [ "$web_install" = true ]; then
-    echo_cyan "systemctl start mcsm-{daemon,web}.service"
-    echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-    echo_cyan "systemctl restart mcsm-{daemon,web}.service"
-  else
-    echo_cyan "systemctl start mcsm-daemon.service"
-    echo_cyan "systemctl stop mcsm-daemon.service"
-    echo_cyan "systemctl restart mcsm-daemon.service"
-  fi
+  echo_cyan "systemctl start mcsm-{daemon,web}.service"
+  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
+  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
   echo_yellow " "
   echo_green "官方文档: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="

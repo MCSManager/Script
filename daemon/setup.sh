@@ -2,7 +2,7 @@
 # Official installation script.
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr=$(curl -s https://api.github.com/repos/MCSManager/MCSManager/releases/latest | grep -o 'https://.*linux.*\.tar\.gz')
+mcsmanager_download_addr="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v20.12.2"
 arch=$(uname -m)
