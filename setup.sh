@@ -180,13 +180,13 @@ check_root() {
   # Using Bash's built-in EUID variable
   if [ -n "$EUID" ]; then
     if [ "$EUID" -ne 0 ]; then
-      echo "Error: This script must be run as root. Please use sudo or switch to the root user."
+      cprint red "Error: This script must be run as root. Please use sudo or switch to the root user."
       exit 1
     fi
   else
     # Fallback to using id -u if EUID is unavailable (e.g., non-Bash shell or misconfigured environment)
     if [ "$(id -u)" -ne 0 ]; then
-      echo "Error: This script must be run as root. Please use sudo or switch to the root user."
+      cprint red "Error: This script must be run as root. Please use sudo or switch to the root user."
       exit 1
     fi
   fi
@@ -207,15 +207,15 @@ detect_terminal_capabilities() {
   fi
 
   if [ "$SUPPORTS_COLOR" = true ]; then
-    echo "[OK] Terminal supports colored output."
+    cprint green "[OK] Terminal supports colored output."
   else
-    echo "Note: Terminal does not support colored output. Continuing without formatting."
+    cprint yellow "Note: Terminal does not support colored output. Continuing without formatting."
   fi
 
   if [ "$SUPPORTS_STYLE" = true ]; then
-    echo "[OK] Terminal supports bold and underline formatting."
+    cprint green "[OK] Terminal supports bold and underline formatting."
   else
-    echo "Note: Terminal does not support advanced text styles."
+    cprint yellow "Note: Terminal does not support advanced text styles."
   fi
 }
 
@@ -473,8 +473,8 @@ detect_os_info() {
     version="unknown"
   fi
 
-  echo "Detected OS: $distro $version_full"
-  echo "Detected Architecture: $arch"
+  cprint cyan "Detected OS: $distro $version_full"
+  cprint cyan "Detected Architecture: $arch"
 }
 
 
@@ -493,7 +493,7 @@ check_supported_os() {
     return 1
   fi
 
-  echo "OS compatibility check passed."
+  cprint green "OS compatibility check passed."
   return 0
 }
 
@@ -513,7 +513,7 @@ check_required_commands() {
     return 1
   fi
 
-  echo "All required commands are available."
+  cprint green "All required commands are available."
   return 0
 }
 
@@ -834,7 +834,7 @@ download_mcsm() {
   local primary_url="${download_base_url}${archive_name}"
   local fallback="$download_fallback_url"
 
-  cprint cyan bold "➡ Downloading MCSManager package..."
+  cprint cyan bold "Downloading MCSManager package..."
 
   # Step 1: Try downloading from primary URL
   if ! wget --progress=bar:force -O "$archive_path" "$primary_url"; then
@@ -1217,26 +1217,26 @@ print_install_result() {
   clear &>/dev/null || true
 
   # Print ASCII banner
-  cprint green noprefix "______  _______________________  ___"
-  cprint green noprefix "___   |/  /_  ____/_  ___/__   |/  /_____ _____________ _______ _____________"
-  cprint green noprefix "__  /|_/ /_  /    _____ \__  /|_/ /_  __ \`/_  __ \  __ \`/_  __ \`/  _ \_  ___/"
-  cprint green noprefix "_  /  / / / /___  ____/ /_  /  / / / /_/ /_  / / / /_/ /_  /_/ //  __/  /"
-  cprint green noprefix "/_/  /_/  \____/  /____/ /_/  /_/  \__,_/ /_/ /_/\__,_/ _\__, / \___//_/"
+  cprint white noprefix "______  _______________________  ___"
+  cprint white noprefix "___   |/  /_  ____/_  ___/__   |/  /_____ _____________ _______ _____________"
+  cprint white noprefix "__  /|_/ /_  /    _____ \__  /|_/ /_  __ \`/_  __ \  __ \`/_  __ \`/  _ \_  ___/"
+  cprint white noprefix "_  /  / / / /___  ____/ /_  /  / / / /_/ /_  / / / /_/ /_  /_/ //  __/  /"
+  cprint white noprefix "/_/  /_/  \____/  /____/ /_/  /_/  \__,_/ /_/ /_/\__,_/ _\__, / \___//_/"
   echo ""   
   # status summary
-  cprint yellow noprefix "Installed/Updated Components:"
+  cprint green noprefix "Installed/Updated Components:"
   if [[ "$install_daemon" == true && -n "$daemon_key" && -n "$daemon_port" ]]; then
-    cprint cyan noprefix "Daemon"
+    cprint yellow noprefix "Daemon"
   elif [[ "$install_daemon" == true ]]; then
-    cprint cyan noprefix nonl "Daemon "
-	cprint yellow noprefix "(partial, config not fully detected)"
+    cprint yellow noprefix nonl "Daemon "
+	cprint red noprefix "(partial, config not fully detected)"
   fi
 
   if [[ "$install_web" == true && -n "$web_port" ]]; then
-    cprint cyan noprefix "Web"
+    cprint yellow noprefix "Web"
   elif [[ "$install_web" == true ]]; then
-    cprint cyan noprefix nonl "Web "
-	cprint yellow noprefix "(partial, config not fully detected)"
+    cprint yellow noprefix nonl "Web "
+	cprint red noprefix "(partial, config not fully detected)"
   fi
 
   echo ""
@@ -1251,60 +1251,61 @@ print_install_result() {
     local daemon_address="ws://$ip_address:${daemon_port:-Failed to Retrieve from Config file}"
     local daemon_key_display="${daemon_key:-Failed to Retrieve from Config file}"
 
-    cprint yellow noprefix "Daemon Address:"
-    cprint cyan noprefix "  $daemon_address"
-    cprint yellow noprefix "Daemon Key:"
-    cprint cyan noprefix "  $daemon_key_display"
+    cprint green noprefix "Daemon Address:"
+    cprint white noprefix "  $daemon_address"
+    cprint green noprefix "Daemon Key:"
+    cprint white noprefix "  $daemon_key_display"
     echo ""
   fi
 
   # Web info
   if [[ "$install_web" == true ]]; then
     local web_address="http://$ip_address:${web_port:-Failed to Retrieve from Config file}"
-    cprint yellow noprefix "HTTP Web Interface:"
-    cprint cyan noprefix "  $web_address  (open in browser)"
+    cprint green noprefix "HTTP Web Interface:"
+    cprint white noprefix nonl"  $web_address  "
+    cprint yellow noprefix"(open in browser)"
     echo ""
   fi
 
   # Port guidance
-  cprint yellow noprefix "NOTE:"
+  cprint green noprefix "NOTE:"
   cprint cyan noprefix "  Make sure to expose the above ports through your firewall."
   cprint cyan noprefix "  If accessing from outside your network, you may need to configure port forwarding on your router."
   echo ""
 
   # Service management help
-  cprint yellow noprefix "Service Management Commands:"
+  cprint green noprefix "Service Management Commands:"
   if [[ "$install_daemon" == true ]]; then
     cprint green noprefix nonl "  systemctl start   "
-	cprint cyan noprefix "mcsm-daemon.service"
+	cprint yellow noprefix "mcsm-daemon.service"
     cprint green noprefix nonl "  systemctl stop    "
-    cprint cyan noprefix "mcsm-daemon.service"
+    cprint yellow noprefix "mcsm-daemon.service"
     cprint green noprefix nonl "  systemctl restart "
-    cprint cyan noprefix "mcsm-daemon.service"
+    cprint yellow noprefix "mcsm-daemon.service"
     cprint green noprefix nonl "  systemctl status  "
-    cprint cyan noprefix "mcsm-daemon.service"
+    cprint yellow noprefix "mcsm-daemon.service"
   fi
   if [[ "$install_web" == true ]]; then
     cprint green noprefix nonl "  systemctl start   "
-	cprint cyan noprefix "mcsm-web.service"
+	cprint yellow noprefix "mcsm-web.service"
     cprint green noprefix nonl "  systemctl stop    "
-    cprint cyan noprefix "mcsm-web.service"
+    cprint yellow noprefix "mcsm-web.service"
     cprint green noprefix nonl "  systemctl restart "
-    cprint cyan noprefix "mcsm-web.service"
+    cprint yellow noprefix "mcsm-web.service"
     cprint green noprefix nonl "  systemctl status  "
-    cprint cyan noprefix "mcsm-web.service"
+    cprint yellow noprefix "mcsm-web.service"
   fi
   echo ""
 
   # Official doc
-  cprint yellow noprefix  "Official Documentation:"
-  cprint cyan noprefix "  https://docs.mcsmanager.com/"
+  cprint green noprefix  "Official Documentation:"
+  cprint white noprefix "  https://docs.mcsmanager.com/"
   echo ""
 
   # HTTPS support
-  cprint yellow noprefix  "Need HTTPS?"
-  cprint cyan noprefix "  To enable secure HTTPS access, configure a reverse proxy:"
-  cprint cyan noprefix "  https://docs.mcsmanager.com/ops/proxy_https.html"
+  cprint green noprefix  "Need HTTPS?"
+  cprint yellow noprefix "  To enable secure HTTPS access, configure a reverse proxy:"
+  cprint white noprefix "  https://docs.mcsmanager.com/ops/proxy_https.html"
   echo ""
 
   # Closing message
@@ -1357,7 +1358,7 @@ install_mcsm() {
 
 main() {
   trap 'echo "Unexpected error occurred."; exit 99' ERR
-
+  safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
   safe_run check_root "Script must be run as root"
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
@@ -1366,7 +1367,7 @@ main() {
   safe_run resolve_node_arch "Failed to resolve Node.js architecture"
   
   safe_run check_required_commands "Missing required system commands"
-  safe_run detect_terminal_capabilities "Failed to detect terminal capabilities"
+  
   safe_run check_node_installed "Failed to detect Node.js or npm at expected path. Node.js will be installed."
   if [ "$install_node" = true ]; then
     safe_run install_node "Node.js installation failed"
