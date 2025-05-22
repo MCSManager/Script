@@ -1164,7 +1164,7 @@ print_install_result() {
   echo "__  /|_/ /_  /    _____ \__  /|_/ /_  __ \`/_  __ \  __ \`/_  __ \`/  _ \_  ___/"
   echo "_  /  / / / /___  ____/ /_  /  / / / /_/ /_  / / / /_/ /_  /_/ //  __/  /"
   echo "/_/  /_/  \____/  /____/ /_/  /_/  \__,_/ /_/ /_/\__,_/ _\__, / \___//_/"
-  echo "   
+  echo ""   
   # status summary
   echo "Installed/Updated Components:"
   if [[ "$install_daemon" == true && -n "$daemon_key" && -n "$daemon_port" ]]; then
