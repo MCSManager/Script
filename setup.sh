@@ -287,8 +287,9 @@ check_component_permission() {
 
 
 
-# Parse cmd arguments.
 parse_args() {
+  local explicit_install_flag=false
+
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --install-dir)
@@ -310,23 +311,28 @@ parse_args() {
         fi
         ;;
       --install)
-        if [[ -n "$2" ]]; then
+        explicit_install_flag=true
+        if [[ -n "$2" && "$2" != --* ]]; then
           case "$2" in
             daemon)
               install_daemon=true
-			  check_component_permission "daemon"
+			  is_component_installed "daemon"
               install_web=false
+              check_component_permission "daemon"
               ;;
             web)
               install_daemon=false
+			  is_component_installed "web"
               install_web=true
-			  check_component_permission "web"
+              check_component_permission "web"
               ;;
             all)
               install_daemon=true
-			  check_component_permission "daemon"
               install_web=true
-			  check_component_permission "web"
+			  is_component_installed "daemon"
+			  is_component_installed "web"
+              check_component_permission "daemon"
+              check_component_permission "web"
               ;;
             *)
               echo "Error: Invalid value for --install. Expected 'daemon', 'web', or 'all'."
@@ -336,32 +342,9 @@ parse_args() {
           esac
           shift 2
         else
-          # No argument passed with --install, detect based on installed components
-          daemon_installed=false
-          web_installed=false
-
-          if is_component_installed "daemon"; then
-            daemon_installed=true
-			check_component_permission "daemon"
-          fi
-          if is_component_installed "web"; then
-            web_installed=true
-			check_component_permission "web"
-          fi
-
-          if [[ "$daemon_installed" == true && "$web_installed" == false ]]; then
-            install_daemon=true
-            install_web=false
-          elif [[ "$daemon_installed" == false && "$web_installed" == true ]]; then
-            install_daemon=false
-            install_web=true
-          else
-            # None or both installed perform fresh install or update both
-            install_daemon=true
-            install_web=true
-          fi
-
-          shift 1
+          echo "Error: --install flag provided but no value. Please specify: daemon, web, or all."
+          echo "Usage: --install daemon|web|all"
+          exit 1
         fi
         ;;
       --user)
@@ -400,7 +383,35 @@ parse_args() {
         ;;
     esac
   done
+
+  # Auto-detect branch: only run if --install was not explicitly passed
+  if [[ "$explicit_install_flag" == false ]]; then
+    daemon_installed=false
+    web_installed=false
+
+    if is_component_installed "daemon"; then
+      daemon_installed=true
+      check_component_permission "daemon"
+    fi
+    if is_component_installed "web"; then
+      web_installed=true
+      check_component_permission "web"
+    fi
+
+	# When only one component installed, we wanted to process that one only.
+    if [[ "$daemon_installed" == true && "$web_installed" == false ]]; then
+      install_daemon=true
+      install_web=false
+    elif [[ "$daemon_installed" == false && "$web_installed" == true ]]; then
+      install_daemon=false
+      install_web=true
+    else
+      install_daemon=true
+      install_web=true
+    fi
+  fi
 }
+
 
 # Get Distribution & Architecture Info
 detect_os_info() {
