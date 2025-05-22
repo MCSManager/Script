@@ -1318,7 +1318,7 @@ install_mcsm() {
   cleanup_install_tmp
   # Extract installed component info
   safe_run extract_component_info "Failed to extract runtime info from installed services"
-  safe_rul print_install_result "Failed to print installation result"
+  safe_run print_install_result "Failed to print installation result"
   
 }
 
