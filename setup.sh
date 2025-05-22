@@ -532,6 +532,7 @@ cprint() {
   local color=""
   local text=""
   local styles=""
+  local disable_prefix=false
 
   while [[ $# -gt 1 ]]; do
     case "$1" in
@@ -541,28 +542,33 @@ cprint() {
       bold|underline|italic|clear_line|strikethrough)
         styles+="${STYLES[$1]}"
         ;;
+      noprefix)
+        disable_prefix=true
+        ;;
     esac
     shift
   done
 
   text="$1"
 
-  # Build the prefix timestamp and script label in white, always
-  local timestamp="[$(date +%H:%M:%S)]"
-  local label="[MCSM Installer]"
-  local fixed_prefix="${FG_COLORS[white]}$timestamp $label${RESET} "
+  local prefix_text=""
+  if [[ "$disable_prefix" != true ]]; then
+    local timestamp="[$(date +%H:%M:%S)]"
+    local label="[MCSM Installer]"
+    prefix_text="${FG_COLORS[white]}$timestamp $label${RESET} "
+  fi
 
-  # Apply color and style to the message content only
   local prefix=""
   if [[ -n "$color" && "$SUPPORTS_COLOR" = true ]]; then
     prefix+="${FG_COLORS[$color]}"
   fi
-  if [ "$SUPPORTS_STYLE" = true ] || [[ "$styles" == *"${STYLES[clear_line]}"* ]]; then
+  if [[ "$SUPPORTS_STYLE" = true || "$styles" == *"${STYLES[clear_line]}"* ]]; then
     prefix="$styles$prefix"
   fi
 
-  printf "%b%b%s%b\n" "$fixed_prefix" "$prefix" "$text" "$RESET"
+  printf "%b%b%s%b\n" "$prefix_text" "$prefix" "$text" "$RESET"
 }
+
 
 
 # Permission check before proceed with installation
