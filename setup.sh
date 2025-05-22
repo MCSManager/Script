@@ -1217,24 +1217,26 @@ print_install_result() {
   clear &>/dev/null || true
 
   # Print ASCII banner
-  echo "______  _______________________  ___"
-  echo "___   |/  /_  ____/_  ___/__   |/  /_____ _____________ _______ _____________"
-  echo "__  /|_/ /_  /    _____ \__  /|_/ /_  __ \`/_  __ \  __ \`/_  __ \`/  _ \_  ___/"
-  echo "_  /  / / / /___  ____/ /_  /  / / / /_/ /_  / / / /_/ /_  /_/ //  __/  /"
-  echo "/_/  /_/  \____/  /____/ /_/  /_/  \__,_/ /_/ /_/\__,_/ _\__, / \___//_/"
+  cprint green noprefix "______  _______________________  ___"
+  cprint green noprefix "___   |/  /_  ____/_  ___/__   |/  /_____ _____________ _______ _____________"
+  cprint green noprefix "__  /|_/ /_  /    _____ \__  /|_/ /_  __ \`/_  __ \  __ \`/_  __ \`/  _ \_  ___/"
+  cprint green noprefix "_  /  / / / /___  ____/ /_  /  / / / /_/ /_  / / / /_/ /_  /_/ //  __/  /"
+  cprint green noprefix "/_/  /_/  \____/  /____/ /_/  /_/  \__,_/ /_/ /_/\__,_/ _\__, / \___//_/"
   echo ""   
   # status summary
-  echo "Installed/Updated Components:"
+  cprint yellow noprefix "Installed/Updated Components:"
   if [[ "$install_daemon" == true && -n "$daemon_key" && -n "$daemon_port" ]]; then
-    echo "Daemon"
+    cprint cyan noprefix "Daemon"
   elif [[ "$install_daemon" == true ]]; then
-    echo "Daemon (partial, config not fully detected)"
+    cprint cyan noprefix nonl "Daemon "
+	cprint yellow noprefix "(partial, config not fully detected)"
   fi
 
   if [[ "$install_web" == true && -n "$web_port" ]]; then
-    echo "Web Interface"
+    cprint cyan noprefix "Web"
   elif [[ "$install_web" == true ]]; then
-    echo "Web Interface (partial, config not fully detected)"
+    cprint cyan noprefix nonl "Web "
+	cprint yellow noprefix "(partial, config not fully detected)"
   fi
 
   echo ""
@@ -1249,56 +1251,64 @@ print_install_result() {
     local daemon_address="ws://$ip_address:${daemon_port:-Failed to Retrieve from Config file}"
     local daemon_key_display="${daemon_key:-Failed to Retrieve from Config file}"
 
-    echo "Daemon Address:"
-    echo "  $daemon_address"
-    echo "Daemon Key:"
-    echo "  $daemon_key_display"
+    cprint yellow noprefix "Daemon Address:"
+    cprint cyan noprefix "  $daemon_address"
+    cprint yellow noprefix "Daemon Key:"
+    cprint cyan noprefix "  $daemon_key_display"
     echo ""
   fi
 
   # Web info
   if [[ "$install_web" == true ]]; then
     local web_address="http://$ip_address:${web_port:-Failed to Retrieve from Config file}"
-    echo "HTTP Web Interface:"
-    echo "  $web_address  (open in browser)"
+    cprint yellow noprefix "HTTP Web Interface:"
+    cprint cyan noprefix "  $web_address  (open in browser)"
     echo ""
   fi
 
   # Port guidance
-  echo "NOTE:"
-  echo "  Make sure to expose the above ports through your firewall."
-  echo "  If accessing from outside your network, you may need to configure port forwarding on your router."
+  cprint yellow noprefix "NOTE:"
+  cprint cyan noprefix "  Make sure to expose the above ports through your firewall."
+  cprint cyan noprefix "  If accessing from outside your network, you may need to configure port forwarding on your router."
   echo ""
 
   # Service management help
-  echo "Service Management Commands:"
+  cprint yellow noprefix "Service Management Commands:"
   if [[ "$install_daemon" == true ]]; then
-    echo "  systemctl start   mcsm-daemon.service"
-    echo "  systemctl stop    mcsm-daemon.service"
-    echo "  systemctl restart mcsm-daemon.service"
-    echo "  systemctl status  mcsm-daemon.service"
+    cprint green noprefix nonl "  systemctl start   "
+	cprint cyan noprefix "mcsm-daemon.service"
+    cprint green noprefix nonl "  systemctl stop    "
+    cprint cyan noprefix "mcsm-daemon.service"
+    cprint green noprefix nonl "  systemctl restart "
+    cprint cyan noprefix "mcsm-daemon.service"
+    cprint green noprefix nonl "  systemctl status  "
+    cprint cyan noprefix "mcsm-daemon.service"
   fi
   if [[ "$install_web" == true ]]; then
-    echo "  systemctl start   mcsm-web.service"
-    echo "  systemctl stop    mcsm-web.service"
-    echo "  systemctl restart mcsm-web.service"
-    echo "  systemctl status  mcsm-web.service"
+    cprint green noprefix nonl "  systemctl start   "
+	cprint cyan noprefix "mcsm-web.service"
+    cprint green noprefix nonl "  systemctl stop    "
+    cprint cyan noprefix "mcsm-web.service"
+    cprint green noprefix nonl "  systemctl restart "
+    cprint cyan noprefix "mcsm-web.service"
+    cprint green noprefix nonl "  systemctl status  "
+    cprint cyan noprefix "mcsm-web.service"
   fi
   echo ""
 
   # Official doc
-  echo "Official Documentation:"
-  echo "  https://docs.mcsmanager.com/"
+  cprint yellow noprefix  "Official Documentation:"
+  cprint cyan noprefix "  https://docs.mcsmanager.com/"
   echo ""
 
   # HTTPS support
-  echo "Need HTTPS?"
-  echo "  To enable secure HTTPS access, configure a reverse proxy:"
-  echo "  https://docs.mcsmanager.com/ops/proxy_https.html"
+  cprint yellow noprefix  "Need HTTPS?"
+  cprint cyan noprefix "  To enable secure HTTPS access, configure a reverse proxy:"
+  cprint cyan noprefix "  https://docs.mcsmanager.com/ops/proxy_https.html"
   echo ""
 
   # Closing message
-  echo "Installation completed. Enjoy managing your servers with MCSManager!"
+  cprint green noprefix  "Installation completed. Enjoy managing your servers with MCSManager!"
   echo ""
 }
 
