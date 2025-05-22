@@ -574,17 +574,17 @@ permission_barrier() {
       # Step 0: Ensure installed user is detected
       if [[ -z "$installed_user" ]]; then
         cprint red bold "Detected that '$component' is installed but could not determine the user from its systemd service file."
-        cprint red "  This may indicate a custom or unsupported service file setup."
-        cprint red "  Refusing to proceed to avoid potential conflicts."
+        cprint red "This may indicate a custom or unsupported service file setup."
+        cprint red "Refusing to proceed to avoid potential conflicts."
         exit 1
       fi
 
       # Step 1: User match check
       if [[ "$installed_user" != "$install_user" ]]; then
         cprint red bold "Permission mismatch for '$component':"
-        cprint red "  Installed as user: $installed_user"
-        cprint red "  Current install target user: $install_user"
-        cprint red "  Unable to proceed due to ownership conflict."
+        cprint red "Installed as user: $installed_user"
+        cprint red "Current install target user: $install_user"
+        cprint red "Unable to proceed due to ownership conflict."
         exit 1
       fi
     fi
