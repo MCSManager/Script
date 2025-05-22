@@ -632,16 +632,17 @@ resolve_node_arch() {
 # This function check Node.js version + NPM (if Node.js valid)
 verify_node_at_path() {
   local node_path="$1"
-  local bin_node="$node_path/bin/node"
-  local bin_npm="$node_path/bin/npm"
+  # Assign value to vlobal variables when verifying
+  node_bin_path="$node_path/bin/node"
+  npm_bin_path="$node_path/bin/npm"
 
   # Node binary missing
-  if [ ! -x "$bin_node" ]; then
+  if [ ! -x "$node_bin_path" ]; then
     return 1
   fi
 
   local installed_ver
-  installed_ver="$("$bin_node" -v 2>/dev/null | sed 's/^v//')"
+  installed_ver="$("$node_bin_path" -v 2>/dev/null | sed 's/^v//')"
 
   # Node exists but version not returned
   if [[ -z "$installed_ver" ]]; then
@@ -663,7 +664,7 @@ verify_node_at_path() {
   fi
 
   # node cmd valid, but npm is missing or broken.
-  if [ ! -x "$bin_npm" ] || ! "$bin_npm" --version >/dev/null 2>&1; then
+  if [ ! -x "$npm_bin_path" ] || ! "$npm_bin_path" --version >/dev/null 2>&1; then
     return 4
   fi
 
