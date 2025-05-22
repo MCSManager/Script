@@ -1224,19 +1224,19 @@ print_install_result() {
   cprint white noprefix "/_/  /_/  \____/  /____/ /_/  /_/  \__,_/ /_/ /_/\__,_/ _\__, / \___//_/"
   echo ""   
   # status summary
-  cprint cyan noprefix "Installed/Updated Components:"
+  cprint yellow noprefix "Installed/Updated Components:"
   if [[ "$install_daemon" == true && -n "$daemon_key" && -n "$daemon_port" ]]; then
-    cprint yellow noprefix "Daemon"
+    cprint white noprefix "Daemon"
   elif [[ "$install_daemon" == true ]]; then
-    cprint yellow noprefix nonl "Daemon "
-	cprint red noprefix "(partial, config not fully detected)"
+    cprint white noprefix nonl "Daemon "
+	cprint yellow noprefix "(partial, config not fully detected)"
   fi
 
   if [[ "$install_web" == true && -n "$web_port" ]]; then
-    cprint yellow noprefix "Web"
+    cprint white noprefix "Web"
   elif [[ "$install_web" == true ]]; then
-    cprint yellow noprefix nonl "Web "
-	cprint red noprefix "(partial, config not fully detected)"
+    cprint white noprefix nonl "Web "
+	cprint yellow noprefix "(partial, config not fully detected)"
   fi
 
   echo ""
@@ -1251,9 +1251,9 @@ print_install_result() {
     local daemon_address="ws://$ip_address:${daemon_port:-Failed to Retrieve from Config file}"
     local daemon_key_display="${daemon_key:-Failed to Retrieve from Config file}"
 
-    cprint cyan noprefix "Daemon Address:"
+    cprint yellow noprefix "Daemon Address:"
     cprint white noprefix "  $daemon_address"
-    cprint cyan noprefix "Daemon Key:"
+    cprint yellow noprefix "Daemon Key:"
     cprint white noprefix "  $daemon_key_display"
     echo ""
   fi
@@ -1261,8 +1261,8 @@ print_install_result() {
   # Web info
   if [[ "$install_web" == true ]]; then
     local web_address="http://$ip_address:${web_port:-Failed to Retrieve from Config file}"
-    cprint cyan noprefix "HTTP Web Interface:"
-    cprint white noprefix nonl"  $web_address  "
+    cprint yellow noprefix "HTTP Web Interface:"
+    cprint white noprefix nonl "  $web_address  "
     cprint yellow noprefix "(open in browser)"
     echo ""
   fi
@@ -1274,36 +1274,36 @@ print_install_result() {
   echo ""
 
   # Service management help
-  cprint cyan noprefix "Service Management Commands:"
+  cprint yellow noprefix "Service Management Commands:"
   if [[ "$install_daemon" == true ]]; then
-    cprint yellow noprefix nonl "  systemctl start   "
-	cprint white noprefix "mcsm-daemon.service"
-    cprint yellow noprefix nonl "  systemctl stop    "
-    cprint white noprefix "mcsm-daemon.service"
-    cprint yellow noprefix nonl "  systemctl restart "
-    cprint white noprefix "mcsm-daemon.service"
-    cprint yellow noprefix nonl "  systemctl status  "
-    cprint white noprefix "mcsm-daemon.service"
+    cprint white noprefix nonl "  systemctl start   "
+	cprint yellow noprefix "mcsm-daemon.service"
+    cprint white noprefix nonl "  systemctl stop    "
+    cprint yellow noprefix "mcsm-daemon.service"
+    cprint white noprefix nonl "  systemctl restart "
+    cprint yellow noprefix "mcsm-daemon.service"
+    cprint white noprefix nonl "  systemctl status  "
+    cprint yellow noprefix "mcsm-daemon.service"
   fi
   if [[ "$install_web" == true ]]; then
-    cprint yellow noprefix nonl "  systemctl start   "
-	cprint white noprefix "mcsm-web.service"
-    cprint yellow noprefix nonl "  systemctl stop    "
-    cprint white noprefix "mcsm-web.service"
-    cprint yellow noprefix nonl "  systemctl restart "
-    cprint white noprefix "mcsm-web.service"
-    cprint yellow noprefix nonl "  systemctl status  "
-    cprint white noprefix "mcsm-web.service"
+    cprint white noprefix nonl "  systemctl start   "
+	cprint yellow noprefix "mcsm-web.service"
+    cprint white noprefix nonl "  systemctl stop    "
+    cprint yellow noprefix "mcsm-web.service"
+    cprint white noprefix nonl "  systemctl restart "
+    cprint yellow noprefix "mcsm-web.service"
+    cprint white noprefix nonl "  systemctl status  "
+    cprint yellow noprefix "mcsm-web.service"
   fi
   echo ""
 
   # Official doc
-  cprint cyan noprefix  "Official Documentation:"
+  cprint yellow noprefix  "Official Documentation:"
   cprint white noprefix "  https://docs.mcsmanager.com/"
   echo ""
 
   # HTTPS support
-  cprint cyan noprefix  "Need HTTPS?"
+  cprint yellow noprefix  "Need HTTPS?"
   cprint white noprefix "  To enable secure HTTPS access, configure a reverse proxy:"
   cprint white noprefix "  https://docs.mcsmanager.com/ops/proxy_https.html"
   echo ""
