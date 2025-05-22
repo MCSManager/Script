@@ -1214,7 +1214,7 @@ cleanup_install_tmp() {
 
 print_install_result() {
   # Clear the screen
-  clear &>/dev/null || true
+  clear || true
 
   # Print ASCII banner
   cprint white noprefix "______  _______________________  ___"
