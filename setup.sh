@@ -533,6 +533,7 @@ cprint() {
   local text=""
   local styles=""
   local disable_prefix=false
+  local disable_newline=false
 
   while [[ $# -gt 1 ]]; do
     case "$1" in
@@ -544,6 +545,9 @@ cprint() {
         ;;
       noprefix)
         disable_prefix=true
+        ;;
+      nonl)
+        disable_newline=true
         ;;
     esac
     shift
@@ -566,8 +570,13 @@ cprint() {
     prefix="$styles$prefix"
   fi
 
-  printf "%b%b%s%b\n" "$prefix_text" "$prefix" "$text" "$RESET"
+  if [[ "$disable_newline" == true ]]; then
+    printf "%b%b%s%b" "$prefix_text" "$prefix" "$text" "$RESET"
+  else
+    printf "%b%b%s%b\n" "$prefix_text" "$prefix" "$text" "$RESET"
+  fi
 }
+
 
 
 
@@ -897,7 +906,7 @@ download_mcsm() {
 # Prepare user if needed
 prepare_user() {
   if [[ "$install_user" == "root" ]]; then
-    cprint cyan "✔ install_user is 'root' — skipping user creation."
+    cprint cyan "install_user is 'root' — skipping user creation."
     return 0
   fi
 
