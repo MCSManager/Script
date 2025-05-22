@@ -72,7 +72,7 @@ systemd_file="/etc/systemd/system/mcsm-"
 install_source_path=""
 
 # temp path for extracted file(s)
-install_tmp_dir=""
+install_tmp_dir="/opt/mcsmanager/mcsm_abcd"
 
 # dir name for data dir backup
 # e.g. /opt/mcsmanager/daemon/data -> /opt/mcsmanager/data_bak_data
@@ -926,6 +926,7 @@ mcsm_install_prepare() {
   cprint cyan "Changing ownership of $install_tmp_dir to user '$install_user'..."
   chown -R "$install_user":"$install_user" "$install_tmp_dir" || {
     cprint red bold "Failed to change ownership of $install_tmp_dir"
+	cleanup_install_tmp
     exit 1
   }
 
@@ -952,13 +953,15 @@ mcsm_install_prepare() {
       if [[ -d "$data_dir" ]]; then
         if [[ -e "$backup_path" ]]; then
           cprint red bold "Backup destination already exists: $backup_path"
-          cprint red "  Please resolve this conflict manually before continuing."
+          cprint red "Please resolve this conflict manually before continuing."
+		  cleanup_install_tmp
           exit 1
         fi
 
         cprint cyan "Backing up data directory for $component..."
         mv "$data_dir" "$backup_path" || {
           cprint red bold "Failed to move $data_dir to $backup_path"
+		  cleanup_install_tmp
           exit 1
         }
         cprint green "Moved $data_dir → $backup_path"
@@ -969,6 +972,7 @@ mcsm_install_prepare() {
       cprint cyan "Removing old component directory: $component_path"
       rm -rf "$component_path" || {
         cprint red bold "Failed to remove old component directory: $component_path"
+		cleanup_install_tmp
         exit 1
       }
     fi
@@ -990,17 +994,20 @@ install_component() {
   # Step 1: Move new component to install_dir
   if [[ ! -d "$source_path" ]]; then
     cprint red bold "Source directory not found: $source_path"
+	cleanup_install_tmp
     exit 1
   fi
 
   if [[ -e "$target_path" ]]; then
     cprint red bold "Target path already exists: $target_path"
     cprint red "  This should not happen — possible permission error or unclean install."
+	cleanup_install_tmp
     exit 1
   fi
 
   mv "$source_path" "$target_path" || {
     cprint red bold "Failed to move $source_path → $target_path"
+	cleanup_install_tmp
     exit 1
   }
 
@@ -1015,6 +1022,7 @@ install_component() {
     rm -rf "$target_data_path"  # Ensure no conflict
     mv "$backup_data_path" "$target_data_path" || {
       cprint red bold "Failed to restore data directory to $target_data_path"
+	  cleanup_install_tmp
       exit 1
     }
 
@@ -1026,18 +1034,21 @@ install_component() {
   # Step 3: Install NPM dependencies
   if [[ ! -x "$npm_bin_path" ]]; then
     cprint red bold "npm binary not found or not executable: $npm_bin_path"
+	cleanup_install_tmp
     exit 1
   fi
 
   cprint cyan "Installing dependencies for $component using npm..."
   pushd "$target_path" >/dev/null || {
     cprint red bold "Failed to change directory to $target_path"
+	cleanup_install_tmp
     exit 1
   }
 
   if ! "$npm_bin_path" install --no-audit --no-fund --loglevel=warn; then
     cprint red bold "NPM dependency installation failed for $component"
     popd >/dev/null
+	cleanup_install_tmp
     exit 1
   fi
 
@@ -1055,6 +1066,7 @@ create_systemd_service() {
 
   if [[ ! -d "$working_dir" ]]; then
     cprint red bold "Component directory not found: $working_dir"
+	cleanup_install_tmp
     return 1
   fi
 
@@ -1082,6 +1094,7 @@ EOF
 
   if [[ $? -ne 0 ]]; then
     cprint red bold "Failed to write service file: $service_path"
+	cleanup_install_tmp
     return 1
   fi
 
@@ -1151,6 +1164,16 @@ extract_component_info() {
       fi
     else
       cprint red bold "Failed to start web service: $web_service"
+    fi
+  fi
+}
+
+cleanup_install_tmp() {
+  if [[ -n "$install_tmp_dir" && -d "$install_tmp_dir" ]]; then
+    if rm -rf "$install_tmp_dir"; then
+      cprint green "Cleaned up temporary install folder: $install_tmp_dir"
+    else
+      cprint red "Failed to remove temporary folder: $install_tmp_dir"
     fi
   fi
 }
@@ -1274,18 +1297,14 @@ install_mcsm() {
         cprint green "Enabled service: $svc"
       else
         cprint red bold "Failed to enable service: $svc"
+		cleanup_install_tmp
         exit 1
       fi
     done
   fi
   
-  # Clear temp dir
-  if rm -rf "$install_tmp_dir"; then
-	  cprint green "Cleaned up temporary install folder: $install_tmp_dir"
-	else
-	  cprint red "Failed to remove temporary folder: $install_tmp_dir"
-	fi
-	
+  # Clean tmp dir
+  cleanup_install_tmp
   # Extract installed component info
   safe_run extract_component_info "Failed to extract runtime info from installed services"
   safe_rul print_install_result "Failed to print installation result"
