@@ -1164,7 +1164,7 @@ extract_component_info() {
       sleep 1  # Allow time to populate config
 
       if [[ -f "$web_config_path" ]]; then
-        web_port=$(grep -oP '"httpPort"\s*:\s*"\K[^"]+' "$web_config_path")
+        web_port=$(grep -oP '"httpPort"\s*:\s*\K[0-9]+' "$web_config_path")
         if [[ -n "$web_port" ]]; then
           cprint green "Extracted web port: $web_port"
         else
