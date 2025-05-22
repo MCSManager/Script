@@ -103,6 +103,7 @@ required_commands=(
   stat
   useradd
   usermod
+  date
 )
 
 # Node.js related sections
@@ -531,7 +532,7 @@ cprint() {
   local color=""
   local text=""
   local styles=""
-  
+
   while [[ $# -gt 1 ]]; do
     case "$1" in
       black|red|green|yellow|blue|magenta|cyan|white)
@@ -546,6 +547,12 @@ cprint() {
 
   text="$1"
 
+  # Build the prefix timestamp and script label in white, always
+  local timestamp="[$(date +%H:%M:%S)]"
+  local label="[MCSM Installer]"
+  local fixed_prefix="${FG_COLORS[white]}$timestamp $label${RESET} "
+
+  # Apply color and style to the message content only
   local prefix=""
   if [[ -n "$color" && "$SUPPORTS_COLOR" = true ]]; then
     prefix+="${FG_COLORS[$color]}"
@@ -554,8 +561,9 @@ cprint() {
     prefix="$styles$prefix"
   fi
 
-  printf "%b%s%b\n" "$prefix" "$text" "$RESET"
+  printf "%b%b%s%b\n" "$fixed_prefix" "$prefix" "$text" "$RESET"
 }
+
 
 # Permission check before proceed with installation
 permission_barrier() {
