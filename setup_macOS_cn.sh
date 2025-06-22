@@ -15,6 +15,13 @@ echo "将自动检测并安装所需依赖 (brew, node, npm, curl, tar, pm2)..."
 if ! command -v brew &> /dev/null; then
     echo "未检测到 Homebrew，正在自动安装 Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [ -x "/opt/homebrew/bin/brew" ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        export PATH="/opt/homebrew/bin:$PATH"
+    elif [ -x "/usr/local/bin/brew" ]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+        export PATH="/usr/local/bin:$PATH"
+    fi
     if ! command -v brew &> /dev/null; then
         echo "错误: Homebrew 安装失败。"
         exit 1
@@ -24,6 +31,8 @@ fi
 if ! command -v node &> /dev/null; then
     echo "未检测到 Node.js，正在通过 Homebrew 安装 Node.js..."
     brew install node
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v node &> /dev/null; then
         echo "错误: Node.js 安装失败。"
         exit 1
@@ -33,6 +42,8 @@ fi
 if ! command -v npm &> /dev/null; then
     echo "未检测到 npm，正在通过 Homebrew 重新安装 Node.js..."
     brew install node
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v npm &> /dev/null; then
         echo "错误: npm 安装失败。"
         exit 1
@@ -42,6 +53,8 @@ fi
 if ! command -v curl &> /dev/null; then
     echo "未检测到 curl，正在通过 Homebrew 安装 curl..."
     brew install curl
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v curl &> /dev/null; then
         echo "错误: curl 安装失败。"
         exit 1
@@ -51,6 +64,8 @@ fi
 if ! command -v tar &> /dev/null; then
     echo "未检测到 tar，正在通过 Homebrew 安装 tar..."
     brew install tar
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v tar &> /dev/null; then
         echo "错误: tar 安装失败。"
         exit 1
@@ -60,6 +75,8 @@ fi
 if ! command -v pm2 &> /dev/null; then
     echo "未检测到 PM2，正在全局安装 PM2..."
     npm install -g pm2
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v pm2 &> /dev/null; then
         echo "错误: PM2 安装失败。请手动运行 'npm install -g pm2'。"
         exit 1
