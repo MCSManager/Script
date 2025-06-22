@@ -13,6 +13,25 @@
   "packages": [
     {
       "language": "en_us",
+      "description": "[Purpur] Minecraft 1.21.5 Purpur",
+      "title": "Minecraft 1.21.5",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "55MB",
+      "remark": "Only Purpur included",
+      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.5-2434.jar",
+      "author": "purpurmc.org",
+      "setupInfo": {
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.5-2434.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
       "description": "[Purpur] Minecraft 1.21.4 Purpur",
       "title": "Minecraft 1.21.4",
       "runtime": "Java 21+",
@@ -209,11 +228,11 @@
       "hardware": "RAM 4G+",
       "size": "50MB",
       "remark": "Only Paper included",
-      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/227/downloads/paper-1.21.4-227.jar",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/231/downloads/paper-1.21.4-231.jar",
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-227.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-231.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
