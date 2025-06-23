@@ -15,6 +15,13 @@ echo "Automatically checking and installing required dependencies (brew, node, n
 if ! command -v brew &> /dev/null; then
     echo "Homebrew not found, installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    if [ -x "/opt/homebrew/bin/brew" ]; then
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        export PATH="/opt/homebrew/bin:$PATH"
+    elif [ -x "/usr/local/bin/brew" ]; then
+        eval "$(/usr/local/bin/brew shellenv)"
+        export PATH="/usr/local/bin:$PATH"
+    fi
     if ! command -v brew &> /dev/null; then
         echo "Error: Homebrew installation failed."
         exit 1
@@ -24,6 +31,8 @@ fi
 if ! command -v node &> /dev/null; then
     echo "Node.js not found, installing Node.js via Homebrew..."
     brew install node
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v node &> /dev/null; then
         echo "Error: Node.js installation failed."
         exit 1
@@ -33,6 +42,8 @@ fi
 if ! command -v npm &> /dev/null; then
     echo "npm not found, reinstalling Node.js via Homebrew..."
     brew install node
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v npm &> /dev/null; then
         echo "Error: npm installation failed."
         exit 1
@@ -42,6 +53,8 @@ fi
 if ! command -v curl &> /dev/null; then
     echo "curl not found, installing curl via Homebrew..."
     brew install curl
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v curl &> /dev/null; then
         echo "Error: curl installation failed."
         exit 1
@@ -51,6 +64,8 @@ fi
 if ! command -v tar &> /dev/null; then
     echo "tar not found, installing tar via Homebrew..."
     brew install tar
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v tar &> /dev/null; then
         echo "Error: tar installation failed."
         exit 1
@@ -60,6 +75,8 @@ fi
 if ! command -v pm2 &> /dev/null; then
     echo "PM2 not found, installing PM2 globally..."
     npm install -g pm2
+    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
+    hash -r
     if ! command -v pm2 &> /dev/null; then
         echo "Error: PM2 installation failed. Please run 'npm install -g pm2' manually."
         exit 1
