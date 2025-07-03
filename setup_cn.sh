@@ -4,10 +4,10 @@
 mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_download_addr="https://cdn.imlazy.ink:233/files/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
-node="v16.20.2"
+node="v20.12.2"
 arch=$(uname -m)
 
-if [ "$(id -u)" -ne 0]; then
+if [ "$(id -u)" -ne 0 ]; then
   echo "This script must be run as root. Please use \"sudo bash\" instead."
   exit 1
 fi
@@ -44,7 +44,12 @@ Red_Error() {
 }
 
 Install_Node() {
-  echo_cyan_n "[+] Install Node.JS environment...\n"
+  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
+    echo_green "Node.js version is up-to-date, skipping installation."
+    return
+  fi
+
+  echo_cyan "[+] Install Node.JS environment..."
 
   rm -irf "$node_install_path"
 

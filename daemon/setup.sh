@@ -44,12 +44,7 @@ Red_Error() {
 }
 
 Install_Node() {
-  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-    echo_green "Node.js version is up-to-date, skipping installation."
-    return
-  fi
-
-  echo_cyan "[+] Install Node.JS environment..."
+  echo_cyan_n "[+] Install Node.JS environment...\n"
 
   rm -irf "$node_install_path"
 
@@ -86,7 +81,7 @@ Install_MCSManager() {
   systemctl disable --now mcsm-{web,daemon}
 
   # delete service
-  rm -rf /etc/systemd/system/mcsm-{daemon,web}.service
+  rm -rf /etc/systemd/system/mcsm-daemon.service
   systemctl daemon-reload
 
   mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] Failed to create ${mcsmanager_install_path}"
@@ -111,16 +106,9 @@ Install_MCSManager() {
   echo_cyan "[+] Install MCSManager-Daemon dependencies..."
   env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
 
-  # echo "[←] cd .."
-  cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
-
-  echo_cyan "[+] Install MCSManager-Web dependencies..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/web"
-
   echo
   echo_yellow "=============== MCSManager ==============="
   echo_green "Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green "Web: ${mcsmanager_install_path}/web"
   echo_yellow "=============== MCSManager ==============="
   echo
   echo_green "[+] MCSManager installation success!"
@@ -147,22 +135,8 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-daemon.service
 
-  echo "[Unit]
-Description=MCSManager-Web
-
-[Service]
-WorkingDirectory=${mcsmanager_install_path}/web
-ExecStart=${node_install_path}/bin/node app.js
-ExecReload=/bin/kill -s QUIT \$MAINPID
-ExecStop=/bin/kill -s QUIT \$MAINPID
-Environment=\"PATH=${PATH}\"
-
-[Install]
-WantedBy=multi-user.target
-" >/etc/systemd/system/mcsm-web.service
-
   systemctl daemon-reload
-  systemctl enable --now mcsm-{daemon,web}.service
+  systemctl enable --now mcsm-daemon.service
   echo_green "Registered!"
 
   sleep 2
@@ -172,20 +146,16 @@ WantedBy=multi-user.target
   echo_yellow "=================================================================="
   echo_green "Installation is complete! Welcome to the MCSManager!!!"
   echo_yellow " "
-  echo_cyan_n "HTTP Web Service:        "
-  echo_yellow "http://<Your IP>:23333  (Browser)"
   echo_cyan_n "Daemon Address:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
   echo_red "You must expose ports "
-  echo_yellow "23333"
-  echo_red " and "
   echo_yellow "24444"
   echo_red " to use the service properly on the Internet."
   echo_yellow " "
   echo_cyan "Usage:"
-  echo_cyan "systemctl start mcsm-{daemon,web}.service"
-  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+  echo_cyan "systemctl start mcsm-daemon.service"
+  echo_cyan "systemctl stop mcsm-daemon.service"
+  echo_cyan "systemctl restart mcsm-daemon.service"
   echo_yellow " "
   echo_green "Official Document: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
