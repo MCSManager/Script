@@ -10,18 +10,6 @@
       "value": "zh_cn"
     }
   ],
-  "games": [
-    {
-      "label": "Minecraft",
-      "value": "minecraft",
-      "language": ""
-    },
-    {
-      "label": "幻兽帕鲁",
-      "value": "palworld",
-      "language": "zh_cn"
-    }
-  ],
   "packages": [
     {
       "language": "en_us",
@@ -1856,7 +1844,7 @@
       "remark": "适用于 Windows 下的幻兽帕鲁安装包",
       "gameType": "other",
       "title": "Minecraft 1.21.8",
-      "category": "mc-purpur",
+      "category": "Windows",
       "runtime": "Java 21+",
       "hardware": "RAM 4G+",
       "size": "55MB",
@@ -1876,9 +1864,9 @@
       "language": "zh_cn",
       "description": "[幻兽帕鲁]（Linux Docker）",
       "remark": "适用于 Linux Docker 下的幻兽帕鲁安装包",
-      "gameType": "other",
+      "gameType": "Palworld",
       "title": "Minecraft 1.21.8",
-      "category": "mc-purpur",
+      "category": "Linux",
       "runtime": "Java 21+",
       "hardware": "RAM 4G+",
       "size": "55MB",
