@@ -1842,7 +1842,7 @@
       "language": "zh_cn",
       "description": "[幻兽帕鲁]（Windows）",
       "remark": "适用于 Windows 下的幻兽帕鲁安装包",
-      "gameType": "other",
+      "gameType": "Palworld",
       "title": "Minecraft 1.21.8",
       "category": "Windows",
       "runtime": "Java 21+",
