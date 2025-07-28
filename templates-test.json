@@ -1840,15 +1840,14 @@
     },
     {
       "language": "zh_cn",
-      "description": "[幻兽帕鲁]（Windows）",
-      "remark": "适用于 Windows 下的幻兽帕鲁安装包",
+      "title": "幻兽帕鲁官方服务器（Windows）",
+      "description": "适用于 Windows 的帕鲁们的最佳服务器！",
+      "remark": "",
       "gameType": "Palworld",
-      "title": "Minecraft 1.21.8",
       "category": "Windows",
-      "runtime": "Java 21+",
+      "runtime": "Windows 10+",
       "hardware": "RAM 4G+",
-      "size": "55MB",
-
+      "size": "",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
       "author": "purpurmc.org",
       "setupInfo": {
@@ -1862,15 +1861,14 @@
     },
     {
       "language": "zh_cn",
-      "description": "[幻兽帕鲁]（Linux Docker）",
-      "remark": "适用于 Linux Docker 下的幻兽帕鲁安装包",
+      "title": "幻兽帕鲁官方服务器（Linux + Docker）",
+      "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！",
+      "remark": "",
       "gameType": "Palworld",
-      "title": "Minecraft 1.21.8",
       "category": "Linux",
-      "runtime": "Java 21+",
+      "runtime": "Ubuntu/Centos LTS",
       "hardware": "RAM 4G+",
-      "size": "55MB",
-
+      "size": "",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
       "author": "purpurmc.org",
       "setupInfo": {
