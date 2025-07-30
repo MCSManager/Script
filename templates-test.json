@@ -13,6 +13,7 @@
   "packages": [
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.21.8 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -35,6 +36,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.21.6 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -57,6 +59,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.21.5 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -79,6 +82,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.21.4 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -101,6 +105,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.21.3 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -123,6 +128,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.21.1 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -145,6 +151,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.20.6 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -167,6 +174,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.20.4 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -189,6 +197,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.20.1 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -211,6 +220,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.19.2 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -233,6 +243,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.18.2 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -255,6 +266,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.17.1 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -277,6 +289,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Purpur] Minecraft 1.16.5 Purpur",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -299,6 +312,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.21.8 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -321,6 +335,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.21.6 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -343,6 +358,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.21.4 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -365,6 +381,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.21.3 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -387,6 +404,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.21.1 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -409,6 +427,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.20.6 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -431,6 +450,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.20.4 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -453,6 +473,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.20.2 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -475,6 +496,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.20.1 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -497,6 +519,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.19.4 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -519,6 +542,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.19.2 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -541,6 +565,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.18.2 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -563,6 +588,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.17.1 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -585,6 +611,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.16.5 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -607,6 +634,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.12.2 Paper",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -629,28 +657,7 @@
     },
     {
       "language": "en_us",
-      "description": "[Paper] Minecraft 1.8.8 Paper",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
-      "gameType": "Minecraft",
-      "title": "Minecraft 1.8.8",
-      "category": "mc-paper",
-      "runtime": "Java 7+",
-      "hardware": "RAM 4G+",
-      "size": "20MB",
-      "remark": "Only Paper included",
-      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.8.8/builds/445/downloads/paper-1.8.8-445.jar",
-      "author": "papermc.io",
-      "setupInfo": {
-        "type": "minecraft/java/paper",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.8.8-445.jar nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "en_us",
+      "platform": "Linux",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -673,6 +680,7 @@
     },
     {
       "language": "en_us",
+      "platform": "Linux",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -695,6 +703,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -717,6 +726,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -739,6 +749,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -761,6 +772,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -783,6 +795,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -805,6 +818,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -827,6 +841,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -849,6 +864,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -871,6 +887,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -893,6 +910,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -915,6 +933,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -937,6 +956,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -959,6 +979,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -981,6 +1002,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1003,6 +1025,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1025,6 +1048,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1047,6 +1071,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1069,6 +1094,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1091,6 +1117,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1113,6 +1140,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1135,6 +1163,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1157,6 +1186,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1179,6 +1209,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.21.8 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1201,6 +1232,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.21.6 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1223,6 +1255,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.21.5 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1245,6 +1278,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.21.4 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1267,6 +1301,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.21.1 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1289,6 +1324,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.20.6 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1311,6 +1347,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.20.4 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1333,6 +1370,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.20.1 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1355,6 +1393,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.19.4 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1377,6 +1416,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.19.2 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1399,6 +1439,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.18.2 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1421,6 +1462,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.17.1 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1443,6 +1485,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.16.5 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1465,6 +1508,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.15.2 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1487,6 +1531,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "Minecraft 1.14.4 with Fabric Loader",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1509,6 +1554,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.21.8",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1531,6 +1577,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.21.6",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1553,6 +1600,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.21.5",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1575,6 +1623,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.21.4",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1597,6 +1646,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.21.1",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1619,6 +1669,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.20.6",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1641,6 +1692,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.20.4",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1663,6 +1715,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.20.1",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1685,6 +1738,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.19.4",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1707,6 +1761,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.18.2",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1729,6 +1784,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.17.1",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1751,6 +1807,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.16.5",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1773,6 +1830,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.12.2",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1795,6 +1853,7 @@
     },
     {
       "language": "en_us",
+      "platform": "ALL",
       "description": "[Vanilla] Minecraft 1.8.9",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1817,6 +1876,7 @@
     },
     {
       "language": "zh_cn",
+      "platform": "ALL",
       "description": "[Paper] Minecraft 1.21.1 快速开服",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1839,6 +1899,7 @@
     },
     {
       "language": "zh_cn",
+      "platform": "ALL",
       "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1861,6 +1922,7 @@
     },
     {
       "language": "zh_cn",
+      "platform": "ALL",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1883,6 +1945,7 @@
     },
     {
       "language": "zh_cn",
+      "platform": "ALL",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1905,6 +1968,7 @@
     },
     {
       "language": "zh_cn",
+      "platform": "ALL",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -1928,6 +1992,7 @@
     {
       "language": "zh_cn",
       "title": "幻兽帕鲁官方服务器（Windows）",
+      "platform": "Windows",
       "description": "适用于 Windows 的帕鲁们的最佳服务器！",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
       "remark": "",
@@ -1949,7 +2014,8 @@
     },
     {
       "language": "zh_cn",
-      "title": "幻兽帕鲁官方服务器（Linux + Docker）",
+      "title": "幻兽帕鲁官方服务器（Docker）",
+      "platform": "Linux",
       "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
       "remark": "",
