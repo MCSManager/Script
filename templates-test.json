@@ -14,6 +14,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.21.8 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.8",
       "category": "mc-purpur",
@@ -35,6 +36,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.21.6 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.6",
       "category": "mc-purpur",
@@ -56,6 +58,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.21.5 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.5",
       "category": "mc-purpur",
@@ -77,6 +80,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.21.4 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.4",
       "category": "mc-purpur",
@@ -98,6 +102,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.21.3 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.3",
       "category": "mc-purpur",
@@ -119,6 +124,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.21.1 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.1",
       "category": "mc-purpur",
@@ -140,6 +146,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.20.6 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.6",
       "category": "mc-purpur",
@@ -161,6 +168,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.20.4 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.4",
       "category": "mc-purpur",
@@ -182,6 +190,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.20.1 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.1",
       "category": "mc-purpur",
@@ -203,6 +212,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.19.2 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.19.2",
       "category": "mc-purpur",
@@ -224,6 +234,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.18.2 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.18.2",
       "category": "mc-purpur",
@@ -245,6 +256,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.17.1 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.17.1",
       "category": "mc-purpur",
@@ -266,6 +278,7 @@
     {
       "language": "en_us",
       "description": "[Purpur] Minecraft 1.16.5 Purpur",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.16.5",
       "category": "mc-purpur",
@@ -287,6 +300,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.21.8 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.8",
       "category": "mc-paper",
@@ -308,6 +322,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.21.6 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.6",
       "category": "mc-paper",
@@ -329,6 +344,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.21.4 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.4",
       "category": "mc-paper",
@@ -350,6 +366,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.21.3 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.3",
       "category": "mc-paper",
@@ -371,6 +388,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.21.1 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.1",
       "category": "mc-paper",
@@ -392,6 +410,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.20.6 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.6",
       "category": "mc-paper",
@@ -413,6 +432,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.20.4 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.4",
       "category": "mc-paper",
@@ -434,6 +454,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.20.2 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.2",
       "category": "mc-paper",
@@ -455,6 +476,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.20.1 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.1",
       "category": "mc-paper",
@@ -476,6 +498,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.19.4 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.19.4",
       "category": "mc-paper",
@@ -497,6 +520,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.19.2 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.19.2",
       "category": "mc-paper",
@@ -518,6 +542,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.18.2 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.18.2",
       "category": "mc-paper",
@@ -539,6 +564,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.17.1 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.17.1",
       "category": "mc-paper",
@@ -560,6 +586,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.16.5 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.16.5",
       "category": "mc-paper",
@@ -581,6 +608,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.12.2 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.12.2",
       "category": "mc-paper",
@@ -602,6 +630,7 @@
     {
       "language": "en_us",
       "description": "[Paper] Minecraft 1.8.8 Paper",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.8.8",
       "category": "mc-paper",
@@ -623,6 +652,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.21.8 (Supports Mods)",
       "category": "mc-neoforge",
@@ -644,6 +674,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.21.6 (Supports Mods)",
       "category": "mc-neoforge",
@@ -665,6 +696,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.21.5 (Supports Mods)",
       "category": "mc-neoforge",
@@ -686,6 +718,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.21.4 (Supports Mods)",
       "category": "mc-neoforge",
@@ -707,6 +740,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.21.1 (Supports Mods)",
       "category": "mc-neoforge",
@@ -728,6 +762,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.20.6 (Supports Mods)",
       "category": "mc-neoforge",
@@ -749,6 +784,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.20.4 (Supports Mods)",
       "category": "mc-neoforge",
@@ -770,6 +806,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "NeoForge 1.20.2 (Supports Mods)",
       "category": "mc-neoforge",
@@ -791,6 +828,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.21.8 (Supports Mods)",
       "category": "mc-forge",
@@ -812,6 +850,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.21.6 (Supports Mods)",
       "category": "mc-forge",
@@ -833,6 +872,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.21.5 (Supports Mods)",
       "category": "mc-forge",
@@ -854,6 +894,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.21.4 (Supports Mods)",
       "category": "mc-forge",
@@ -875,6 +916,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.21.1 (Supports Mods)",
       "category": "mc-forge",
@@ -896,6 +938,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.20.6 (Supports Mods)",
       "category": "mc-forge",
@@ -917,6 +960,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.20.4 (Supports Mods)",
       "category": "mc-forge",
@@ -938,6 +982,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.20.1 (Supports Mods)",
       "category": "mc-forge",
@@ -959,6 +1004,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.19.4 (Supports Mods)",
       "category": "mc-forge",
@@ -980,6 +1026,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.19.2 (Supports Mods)",
       "category": "mc-forge",
@@ -1001,6 +1048,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.18.2 (Supports Mods)",
       "category": "mc-forge",
@@ -1022,6 +1070,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.17.1 (Supports Mods)",
       "category": "mc-forge",
@@ -1043,6 +1092,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.16.5 (Supports Mods)",
       "category": "mc-forge",
@@ -1064,6 +1114,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.12.2 (Supports Mods)",
       "category": "mc-forge",
@@ -1085,6 +1136,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.8.9 (Supports Mods)",
       "category": "mc-forge",
@@ -1106,6 +1158,7 @@
     {
       "language": "en_us",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.7.10 (Supports Mods)",
       "category": "mc-forge",
@@ -1127,6 +1180,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.21.8 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.21.8 (Supports Mods)",
       "category": "mc-fabric",
@@ -1148,6 +1202,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.21.6 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.21.6 (Supports Mods)",
       "category": "mc-fabric",
@@ -1169,6 +1224,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.21.5 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.21.5 (Supports Mods)",
       "category": "mc-fabric",
@@ -1190,6 +1246,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.21.4 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.21.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1211,6 +1268,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.21.1 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.21.1 (Supports Mods)",
       "category": "mc-fabric",
@@ -1232,6 +1290,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.20.6 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.20.6 (Supports Mods)",
       "category": "mc-fabric",
@@ -1253,6 +1312,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.20.4 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.20.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1274,6 +1334,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.20.1 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.20.1 (Supports Mods)",
       "category": "mc-fabric",
@@ -1295,6 +1356,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.19.4 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.19.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1316,6 +1378,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.19.2 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.19.2 (Supports Mods)",
       "category": "mc-fabric",
@@ -1337,6 +1400,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.18.2 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.18.2 (Supports Mods)",
       "category": "mc-fabric",
@@ -1358,6 +1422,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.17.1 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.17.1 (Supports Mods)",
       "category": "mc-fabric",
@@ -1379,6 +1444,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.16.5 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.16.5 (Supports Mods)",
       "category": "mc-fabric",
@@ -1400,6 +1466,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.15.2 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.15.2 (Supports Mods)",
       "category": "mc-fabric",
@@ -1421,6 +1488,7 @@
     {
       "language": "en_us",
       "description": "Minecraft 1.14.4 with Fabric Loader",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Fabric 1.14.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1442,6 +1510,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.21.8",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.8",
       "category": "mc-vanilla",
@@ -1463,6 +1532,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.21.6",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.6",
       "category": "mc-vanilla",
@@ -1484,6 +1554,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.21.5",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.5",
       "category": "mc-vanilla",
@@ -1505,6 +1576,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.21.4",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.4",
       "category": "mc-vanilla",
@@ -1526,6 +1598,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.21.1",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.1",
       "category": "mc-vanilla",
@@ -1547,6 +1620,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.20.6",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.6",
       "category": "mc-vanilla",
@@ -1568,6 +1642,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.20.4",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.4",
       "category": "mc-vanilla",
@@ -1589,6 +1664,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.20.1",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.1",
       "category": "mc-vanilla",
@@ -1610,6 +1686,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.19.4",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.19.4",
       "category": "mc-vanilla",
@@ -1631,6 +1708,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.18.2",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.18.2",
       "category": "mc-vanilla",
@@ -1652,6 +1730,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.17.1",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.17.1",
       "category": "mc-vanilla",
@@ -1673,6 +1752,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.16.5",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.16.5",
       "category": "mc-vanilla",
@@ -1694,6 +1774,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.12.2",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.12.2",
       "category": "mc-vanilla",
@@ -1715,6 +1796,7 @@
     {
       "language": "en_us",
       "description": "[Vanilla] Minecraft 1.8.9",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.8.9",
       "category": "mc-vanilla",
@@ -1736,6 +1818,7 @@
     {
       "language": "zh_cn",
       "description": "[Paper] Minecraft 1.21.1 快速开服",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.1 快速开服",
       "category": "mc-paper",
@@ -1757,6 +1840,7 @@
     {
       "language": "zh_cn",
       "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.20.4",
       "category": "mc-paper",
@@ -1778,6 +1862,7 @@
     {
       "language": "zh_cn",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.20.1 Java 版 (支持模组)",
       "category": "mc-forge",
@@ -1799,6 +1884,7 @@
     {
       "language": "zh_cn",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.20.6 Java 版 (支持模组)",
       "category": "mc-forge",
@@ -1820,6 +1906,7 @@
     {
       "language": "zh_cn",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.19.2 Java 版 (支持模组)",
       "category": "mc-forge",
@@ -1842,6 +1929,7 @@
       "language": "zh_cn",
       "title": "幻兽帕鲁官方服务器（Windows）",
       "description": "适用于 Windows 的帕鲁们的最佳服务器！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
       "remark": "",
       "gameType": "Palworld",
       "category": "Windows",
@@ -1863,6 +1951,7 @@
       "language": "zh_cn",
       "title": "幻兽帕鲁官方服务器（Linux + Docker）",
       "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
       "remark": "",
       "gameType": "Palworld",
       "category": "Linux",
