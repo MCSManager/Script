@@ -29,7 +29,7 @@
         "type": "steam/universal",
         "startCommand": "PalServer.exe",
         "stopCommand": "exit",
-        "updateCommand": "{mcsm_steamcmd} steamcmd +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
