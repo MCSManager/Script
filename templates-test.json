@@ -12,6 +12,52 @@
   ],
   "packages": [
     {
+      "language": "zh_cn",
+      "title": "幻兽帕鲁官方服务器（Windows）",
+      "platform": "Windows",
+      "description": "适用于 Windows 的帕鲁们的最佳服务器！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
+      "remark": "",
+      "gameType": "Palworld",
+      "category": "最新版本",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "setupInfo": {
+        "type": "steam/universal",
+        "startCommand": "PalServer.exe",
+        "stopCommand": "exit",
+        "updateCommand": "{mcsm_steamcmd} steamcmd +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "zh_cn",
+      "title": "幻兽帕鲁官方服务器（Docker）",
+      "platform": "Linux",
+      "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
+      "remark": "",
+      "gameType": "Palworld",
+      "category": "最新版本",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
+      "author": "purpurmc.org",
+      "setupInfo": {
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2481.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "{mcsm_steamcmd} steamcmd +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "language": "en_us",
       "platform": "ALL",
       "description": "[Purpur] Minecraft 1.21.8 Purpur",
@@ -1985,52 +2031,6 @@
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.19.2-43.4.20-installer.jar --installServer",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "title": "幻兽帕鲁官方服务器（Windows）",
-      "platform": "Windows",
-      "description": "适用于 Windows 的帕鲁们的最佳服务器！",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
-      "remark": "",
-      "gameType": "Palworld",
-      "category": "最新版本",
-      "runtime": "Windows 10+",
-      "hardware": "RAM 4G+",
-      "size": "",
-      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
-      "author": "purpurmc.org",
-      "setupInfo": {
-        "type": "minecraft/java/purpur",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2481.jar nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "title": "幻兽帕鲁官方服务器（Docker）",
-      "platform": "Linux",
-      "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
-      "remark": "",
-      "gameType": "Palworld",
-      "category": "最新版本",
-      "runtime": "Ubuntu/Centos LTS",
-      "hardware": "RAM 4G+",
-      "size": "",
-      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
-      "author": "purpurmc.org",
-      "setupInfo": {
-        "type": "minecraft/java/purpur",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2481.jar nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
         "ie": "utf-8",
         "oe": "utf-8"
       }
