@@ -13,6 +13,7 @@
   "packages": [
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.8 Purpur",
       "title": "Minecraft 1.21.8",
       "category": "mc-purpur",
@@ -33,6 +34,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.6 Purpur",
       "title": "Minecraft 1.21.6",
       "category": "mc-purpur",
@@ -53,6 +55,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.5 Purpur",
       "title": "Minecraft 1.21.5",
       "category": "mc-purpur",
@@ -73,6 +76,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.4 Purpur",
       "title": "Minecraft 1.21.4",
       "category": "mc-purpur",
@@ -93,6 +97,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.3 Purpur",
       "title": "Minecraft 1.21.3",
       "category": "mc-purpur",
@@ -113,6 +118,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.1 Purpur",
       "title": "Minecraft 1.21.1",
       "category": "mc-purpur",
@@ -133,6 +139,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.20.6 Purpur",
       "title": "Minecraft 1.20.6",
       "category": "mc-purpur",
@@ -153,6 +160,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.20.4 Purpur",
       "title": "Minecraft 1.20.4",
       "category": "mc-purpur",
@@ -173,6 +181,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.20.1 Purpur",
       "title": "Minecraft 1.20.1",
       "category": "mc-purpur",
@@ -193,6 +202,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.19.2 Purpur",
       "title": "Minecraft 1.19.2",
       "category": "mc-purpur",
@@ -213,6 +223,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.18.2 Purpur",
       "title": "Minecraft 1.18.2",
       "category": "mc-purpur",
@@ -233,6 +244,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.17.1 Purpur",
       "title": "Minecraft 1.17.1",
       "category": "mc-purpur",
@@ -253,6 +265,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.16.5 Purpur",
       "title": "Minecraft 1.16.5",
       "category": "mc-purpur",
@@ -273,6 +286,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.21.8 Paper",
       "title": "Minecraft 1.21.8",
       "category": "mc-paper",
@@ -293,6 +307,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.21.6 Paper",
       "title": "Minecraft 1.21.6",
       "category": "mc-paper",
@@ -313,6 +328,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.21.4 Paper",
       "title": "Minecraft 1.21.4",
       "category": "mc-paper",
@@ -333,6 +349,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.21.3 Paper",
       "title": "Minecraft 1.21.3",
       "category": "mc-paper",
@@ -353,6 +370,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.21.1 Paper",
       "title": "Minecraft 1.21.1",
       "category": "mc-paper",
@@ -373,6 +391,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.20.6 Paper",
       "title": "Minecraft 1.20.6",
       "category": "mc-paper",
@@ -393,6 +412,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.20.4 Paper",
       "title": "Minecraft 1.20.4",
       "category": "mc-paper",
@@ -413,6 +433,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.20.2 Paper",
       "title": "Minecraft 1.20.2",
       "category": "mc-paper",
@@ -433,6 +454,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.20.1 Paper",
       "title": "Minecraft 1.20.1",
       "category": "mc-paper",
@@ -453,6 +475,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.19.4 Paper",
       "title": "Minecraft 1.19.4",
       "category": "mc-paper",
@@ -473,6 +496,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.19.2 Paper",
       "title": "Minecraft 1.19.2",
       "category": "mc-paper",
@@ -493,6 +517,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.18.2 Paper",
       "title": "Minecraft 1.18.2",
       "category": "mc-paper",
@@ -513,6 +538,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.17.1 Paper",
       "title": "Minecraft 1.17.1",
       "category": "mc-paper",
@@ -533,6 +559,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.16.5 Paper",
       "title": "Minecraft 1.16.5",
       "category": "mc-paper",
@@ -553,6 +580,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.12.2 Paper",
       "title": "Minecraft 1.12.2",
       "category": "mc-paper",
@@ -573,6 +601,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.8.8 Paper",
       "title": "Minecraft 1.8.8",
       "category": "mc-paper",
@@ -593,6 +622,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.21.8 (Supports Mods)",
       "category": "mc-neoforge",
@@ -613,6 +643,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.21.6 (Supports Mods)",
       "category": "mc-neoforge",
@@ -633,6 +664,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.21.5 (Supports Mods)",
       "category": "mc-neoforge",
@@ -653,6 +685,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.21.4 (Supports Mods)",
       "category": "mc-neoforge",
@@ -673,6 +706,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.21.1 (Supports Mods)",
       "category": "mc-neoforge",
@@ -693,6 +727,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.20.6 (Supports Mods)",
       "category": "mc-neoforge",
@@ -713,6 +748,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.20.4 (Supports Mods)",
       "category": "mc-neoforge",
@@ -733,6 +769,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "NeoForge 1.20.2 (Supports Mods)",
       "category": "mc-neoforge",
@@ -753,6 +790,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.21.8 (Supports Mods)",
       "category": "mc-forge",
@@ -773,6 +811,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.21.6 (Supports Mods)",
       "category": "mc-forge",
@@ -793,6 +832,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.21.5 (Supports Mods)",
       "category": "mc-forge",
@@ -813,6 +853,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.21.4 (Supports Mods)",
       "category": "mc-forge",
@@ -833,6 +874,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.21.1 (Supports Mods)",
       "category": "mc-forge",
@@ -853,6 +895,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.20.6 (Supports Mods)",
       "category": "mc-forge",
@@ -873,6 +916,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.20.4 (Supports Mods)",
       "category": "mc-forge",
@@ -893,6 +937,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.20.1 (Supports Mods)",
       "category": "mc-forge",
@@ -913,6 +958,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.19.4 (Supports Mods)",
       "category": "mc-forge",
@@ -933,6 +979,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.19.2 (Supports Mods)",
       "category": "mc-forge",
@@ -953,6 +1000,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.18.2 (Supports Mods)",
       "category": "mc-forge",
@@ -973,6 +1021,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.17.1 (Supports Mods)",
       "category": "mc-forge",
@@ -993,6 +1042,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.16.5 (Supports Mods)",
       "category": "mc-forge",
@@ -1013,6 +1063,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.12.2 (Supports Mods)",
       "category": "mc-forge",
@@ -1033,6 +1084,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.8.9 (Supports Mods)",
       "category": "mc-forge",
@@ -1053,6 +1105,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Tip: The default startup command is \"sh ./run.sh\". If you need to run it on Windows, please change start command to \"run.bat\" after installation.",
       "title": "Forge 1.7.10 (Supports Mods)",
       "category": "mc-forge",
@@ -1073,6 +1126,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.21.8 with Fabric Loader",
       "title": "Fabric 1.21.8 (Supports Mods)",
       "category": "mc-fabric",
@@ -1093,6 +1147,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.21.6 with Fabric Loader",
       "title": "Fabric 1.21.6 (Supports Mods)",
       "category": "mc-fabric",
@@ -1113,6 +1168,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.21.5 with Fabric Loader",
       "title": "Fabric 1.21.5 (Supports Mods)",
       "category": "mc-fabric",
@@ -1133,6 +1189,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.21.4 with Fabric Loader",
       "title": "Fabric 1.21.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1153,6 +1210,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.21.1 with Fabric Loader",
       "title": "Fabric 1.21.1 (Supports Mods)",
       "category": "mc-fabric",
@@ -1173,6 +1231,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.20.6 with Fabric Loader",
       "title": "Fabric 1.20.6 (Supports Mods)",
       "category": "mc-fabric",
@@ -1193,6 +1252,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.20.4 with Fabric Loader",
       "title": "Fabric 1.20.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1213,6 +1273,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.20.1 with Fabric Loader",
       "title": "Fabric 1.20.1 (Supports Mods)",
       "category": "mc-fabric",
@@ -1233,6 +1294,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.19.4 with Fabric Loader",
       "title": "Fabric 1.19.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1253,6 +1315,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.19.2 with Fabric Loader",
       "title": "Fabric 1.19.2 (Supports Mods)",
       "category": "mc-fabric",
@@ -1273,6 +1336,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.18.2 with Fabric Loader",
       "title": "Fabric 1.18.2 (Supports Mods)",
       "category": "mc-fabric",
@@ -1293,6 +1357,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.17.1 with Fabric Loader",
       "title": "Fabric 1.17.1 (Supports Mods)",
       "category": "mc-fabric",
@@ -1313,6 +1378,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.16.5 with Fabric Loader",
       "title": "Fabric 1.16.5 (Supports Mods)",
       "category": "mc-fabric",
@@ -1333,6 +1399,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.15.2 with Fabric Loader",
       "title": "Fabric 1.15.2 (Supports Mods)",
       "category": "mc-fabric",
@@ -1353,6 +1420,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "Minecraft 1.14.4 with Fabric Loader",
       "title": "Fabric 1.14.4 (Supports Mods)",
       "category": "mc-fabric",
@@ -1373,6 +1441,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.21.8",
       "title": "Minecraft 1.21.8",
       "category": "mc-vanilla",
@@ -1393,6 +1462,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.21.6",
       "title": "Minecraft 1.21.6",
       "category": "mc-vanilla",
@@ -1413,6 +1483,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.21.5",
       "title": "Minecraft 1.21.5",
       "category": "mc-vanilla",
@@ -1433,6 +1504,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.21.4",
       "title": "Minecraft 1.21.4",
       "category": "mc-vanilla",
@@ -1453,6 +1525,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.21.1",
       "title": "Minecraft 1.21.1",
       "category": "mc-vanilla",
@@ -1473,6 +1546,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.20.6",
       "title": "Minecraft 1.20.6",
       "category": "mc-vanilla",
@@ -1493,6 +1567,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.20.4",
       "title": "Minecraft 1.20.4",
       "category": "mc-vanilla",
@@ -1513,6 +1588,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.20.1",
       "title": "Minecraft 1.20.1",
       "category": "mc-vanilla",
@@ -1533,6 +1609,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.19.4",
       "title": "Minecraft 1.19.4",
       "category": "mc-vanilla",
@@ -1553,6 +1630,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.18.2",
       "title": "Minecraft 1.18.2",
       "category": "mc-vanilla",
@@ -1573,6 +1651,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.17.1",
       "title": "Minecraft 1.17.1",
       "category": "mc-vanilla",
@@ -1593,6 +1672,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.16.5",
       "title": "Minecraft 1.16.5",
       "category": "mc-vanilla",
@@ -1613,6 +1693,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.12.2",
       "title": "Minecraft 1.12.2",
       "category": "mc-vanilla",
@@ -1633,6 +1714,7 @@
     },
     {
       "language": "en_us",
+      "gameType": "Minecraft",
       "description": "[Vanilla] Minecraft 1.8.9",
       "title": "Minecraft 1.8.9",
       "category": "mc-vanilla",
@@ -1653,6 +1735,7 @@
     },
     {
       "language": "zh_cn",
+      "gameType": "Minecraft",
       "description": "[Paper] Minecraft 1.21.1 快速开服",
       "title": "Minecraft 1.20.1",
       "category": "mc-paper",
@@ -1673,6 +1756,7 @@
     },
     {
       "language": "zh_cn",
+      "gameType": "Minecraft",
       "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
       "title": "Minecraft 1.20.4 (低配机器推荐)",
       "category": "mc-paper",
@@ -1693,6 +1777,7 @@
     },
     {
       "language": "zh_cn",
+      "gameType": "Minecraft",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "title": "Forge 1.20.1 Java 版 (支持模组)",
       "category": "mc-forge",
@@ -1713,6 +1798,7 @@
     },
     {
       "language": "zh_cn",
+      "gameType": "Minecraft",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "title": "Forge 1.20.6 Java 版 (支持模组)",
       "category": "mc-forge",
@@ -1733,6 +1819,7 @@
     },
     {
       "language": "zh_cn",
+      "gameType": "Minecraft",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "title": "Forge 1.19.2 Java 版 (支持模组)",
       "category": "mc-forge",
