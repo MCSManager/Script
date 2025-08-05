@@ -38,7 +38,7 @@
       "language": "zh_cn",
       "title": "幻兽帕鲁官方服务器（Docker）",
       "platform": "Linux",
-      "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！安装后默认的密码是 123456",
+      "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！安装后默认的密码是 123456，修改请前往环境变量处修改。",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
       "gameType": "Palworld",
       "category": "最新版本",
@@ -47,6 +47,7 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
+      "tags": ["适用于商业出租", "Docker 版"],
       "setupInfo": {
         "stopCommand": "stop",
         "ie": "utf8",
