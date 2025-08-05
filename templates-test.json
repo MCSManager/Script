@@ -38,23 +38,40 @@
       "language": "zh_cn",
       "title": "幻兽帕鲁官方服务器（Docker）",
       "platform": "Linux",
-      "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！",
+      "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！安装后默认的密码是 123456",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
-      "remark": "",
       "gameType": "Palworld",
       "category": "最新版本",
       "runtime": "Ubuntu/Centos LTS",
       "hardware": "RAM 4G+",
       "size": "",
-      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
-      "author": "purpurmc.org",
+      "targetLink": "",
+      "author": "MCSManager",
       "setupInfo": {
-        "type": "minecraft/java/purpur",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2481.jar nogui",
         "stopCommand": "stop",
-        "updateCommand": "{mcsm_steamcmd} steamcmd +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
-        "ie": "utf-8",
-        "oe": "utf-8"
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/game",
+        "tag": ["palworld"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "kagurazakanyaa/palworld:latest",
+          "containerName": "palworld-server",
+          "ports": ["{mcsm_port1}:8211/tcp", "{mcsm_port2}:25575/tcp"],
+          "extraVolumes": [],
+          "memory": 8192,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "/opt/palworld/Pal/Saved",
+          "env": [
+            "SERVER_NAME=Private PalWorld Server",
+            "SERVER_DESC=Private PalWorld Server",
+            "ADMIN_PASSWORD=123456"
+          ],
+          "changeWorkdir": false
+        }
       }
     },
     {
