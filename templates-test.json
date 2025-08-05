@@ -51,7 +51,7 @@
         "stopCommand": "stop",
         "ie": "utf8",
         "oe": "utf8",
-        "type": "steam/game",
+        "type": "steam/universal",
         "tag": ["palworld"],
         "fileCode": "utf8",
         "processType": "docker",
