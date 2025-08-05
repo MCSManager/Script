@@ -13,7 +13,7 @@
   "packages": [
     {
       "language": "zh_cn",
-      "title": "幻兽帕鲁官方服务器（Windows）",
+      "title": "幻兽帕鲁官方服务器",
       "platform": "Windows",
       "description": "适用于 Windows 的帕鲁们的最佳服务器！",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
@@ -25,6 +25,7 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
+      "tags": ["仅适合个人使用", "Windows 版"],
       "setupInfo": {
         "type": "steam/universal",
         "startCommand": "PalServer.exe",
@@ -36,7 +37,7 @@
     },
     {
       "language": "zh_cn",
-      "title": "幻兽帕鲁官方服务器（Docker）",
+      "title": "幻兽帕鲁官方服务器",
       "platform": "Linux",
       "description": "适用于 Windows 的帕鲁们的最佳服务器！本模板使用 Docker 安装，Linux 服务器必须安装 Docker！安装后默认的密码是 123456，修改请前往环境变量处修改。",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
@@ -47,7 +48,7 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
-      "tags": ["适用于商业出租", "Docker 版"],
+      "tags": ["可以商业出租", "Docker 版"],
       "setupInfo": {
         "stopCommand": "stop",
         "ie": "utf8",
@@ -59,19 +60,16 @@
         "updateCommand": "",
         "docker": {
           "image": "kagurazakanyaa/palworld:latest",
-          "containerName": "palworld-server",
-          "ports": ["{mcsm_port1}:8211/tcp", "{mcsm_port2}:25575/tcp"],
-          "extraVolumes": [],
-          "memory": 8192,
+          "changeWorkdir": false,
           "networkMode": "bridge",
-          "cpuUsage": 100,
+          "containerName": "palworld-server",
           "workingDir": "/opt/palworld/Pal/Saved",
+          "ports": ["{mcsm_port1}:8211/tcp", "{mcsm_port2}:25575/tcp"],
           "env": [
             "SERVER_NAME=Private PalWorld Server",
             "SERVER_DESC=Private PalWorld Server",
             "ADMIN_PASSWORD=123456"
-          ],
-          "changeWorkdir": false
+          ]
         }
       }
     },
