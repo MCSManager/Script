@@ -273,6 +273,7 @@
     },
     {
       "language": "en_us",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-forge.webp",
       "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.8 Purpur",
       "title": "Minecraft 1.21.8",
@@ -288,6 +289,52 @@
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2481.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-forge.webp",
+      "gameType": "Minecraft",
+      "platform": "Linux",
+      "description": "Forge 1.21.1 Server for Linux",
+      "title": "Forge 1.21.1 (Supports Mods)",
+      "category": "mc-forge",
+      "runtime": "Java 21+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.1-52.1.1/forge-1.21.1-52.1.1-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.sh",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.21.1-52.1.1-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-forge.webp",
+      "gameType": "Minecraft",
+      "platform": "Windows",
+      "description": "Forge 1.21.1 Server for Windows",
+      "title": "Forge 1.21.1 (Supports Mods)",
+      "category": "mc-forge",
+      "runtime": "Java 21+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.1-52.1.1/forge-1.21.1-52.1.1-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.bat",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.21.1-52.1.1-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
