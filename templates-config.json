@@ -1,0 +1,287 @@
+{
+  "languages": [
+    {
+      "label": "English",
+      "value": "en_us",
+      "path": "templates-en.json"
+    },
+    {
+      "label": "中文",
+      "value": "zh_cn",
+      "path": "templates-zh.json"
+    }
+  ],
+  "packages": [
+    {
+      "title": "幻兽帕鲁官方服务器",
+      "platform": "Windows",
+      "description": "适用于 Windows 的帕鲁们的最佳服务器！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
+      "remark": "",
+      "gameType": "Palworld",
+      "category": "最新版本",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["仅适合个人使用", "Windows 版"],
+      "setupInfo": {
+        "tag": ["Palworld"],
+        "type": "steam/universal",
+        "startCommand": "PalServer.exe",
+        "stopCommand": "exit",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "幻兽帕鲁官方服务器",
+      "platform": "Linux",
+      "description": "本模板使用 Docker 安装，Linux 服务器必须安装 Docker！安装后默认的密码是 123456，修改请前往环境变量处修改。",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
+      "gameType": "Palworld",
+      "category": "最新版本",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["可以商业出租", "Docker 版"],
+      "setupInfo": {
+        "stopCommand": "stop",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Palworld"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "kagurazakanyaa/palworld:latest",
+          "changeWorkdir": false,
+          "networkMode": "bridge",
+          "containerName": "palworld-server",
+          "workingDir": "/opt/palworld/Pal/Saved",
+          "ports": ["{mcsm_port1}:8211/tcp", "{mcsm_port2}:25575/tcp"],
+          "env": [
+            "SERVER_NAME=Private PalWorld Server",
+            "SERVER_DESC=Private PalWorld Server",
+            "ADMIN_PASSWORD=123456"
+          ]
+        }
+      }
+    },
+    {
+      "title": "僵尸毁灭工程",
+      "platform": "Linux",
+      "description": "适用于 Linux 系统，使用《僵尸毁灭工程》第三方 Docker 镜像，快速开服！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/pzomboid.webp",
+      "gameType": "Zombie Survival",
+      "category": "最新版本",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["可以商业出租", "Docker 版"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "stop",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Project Zomboid"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "renegademaster/zomboid-dedicated-server:latest",
+          "containerName": "zomboid-dedicated-server",
+          "ports": ["{mcsm_port2}:16262/udp", "{mcsm_port1}:16261/udp"],
+          "extraVolumes": [
+            "{mcsm_workspace}/ZomboidConfig|/home/steam/Zomboid",
+            "{mcsm_workspace}/ZomboidDedicatedServer|/home/steam/ZomboidDedicatedServer"
+          ],
+          "memory": 4096,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+
+    {
+      "title": "Terraria 服务器",
+      "platform": "Linux",
+      "description": "适用于 Linux 系统，使用《Terraria》第三方 Docker 镜像，快速开服！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/terraria.webp",
+      "gameType": "Terraria",
+      "category": "最新版本",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["可以商业出租", "Docker 版"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "exit",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/terraria",
+        "tag": ["terraria"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "ryshe/terraria:latest",
+          "containerName": "terraria-server",
+          "ports": ["{mcsm_port1}:7777/tcp"],
+          "extraVolumes": [],
+          "memory": 4096,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "/root/.local/share/Terraria/Worlds",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+
+    {
+      "platform": "ALL",
+      "description": "[Paper] Minecraft 1.21.1 快速开服",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "title": "Minecraft 1.21.1 快速开服",
+      "category": "mc-paper",
+      "runtime": "Java 17+",
+      "hardware": "RAM 4G+",
+      "size": "250MB",
+      "remark": "包含基础插件，萌新快速开服！低配机器专属！",
+      "targetLink": "https://cloud.alongw.cn/f/DzvHK/Paper-1.21.1-ZH.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "title": "Minecraft 1.20.4",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 6G+",
+      "size": "140MB",
+      "remark": "支持插件，最低 8GB 内存要求",
+      "targetLink": "https://url.alww.top/mcsm/paper1.20.4.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -Xms6144M -Xmx6144M -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "title": "Forge 1.20.1 Java 版 (支持模组)",
+      "category": "mc-forge",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.3.33/forge-1.20.1-47.3.33-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.sh",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.20.1-47.3.33-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "title": "Forge 1.20.6 Java 版 (支持模组)",
+      "category": "mc-forge",
+      "runtime": "Java 21+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.6-50.1.48/forge-1.20.6-50.1.48-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.sh",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.20.6-50.1.48-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "title": "Forge 1.19.2 Java 版 (支持模组)",
+      "category": "mc-forge",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.4.20/forge-1.19.2-43.4.20-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "sh ./run.sh",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.19.2-43.4.20-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Purpur] Minecraft 1.21.8 Purpur",
+      "title": "Minecraft 1.21.8",
+      "category": "mc-purpur",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "55MB",
+      "remark": "Only Purpur included",
+      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
+      "author": "purpurmc.org",
+      "setupInfo": {
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2481.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    }
+  ]
+}
