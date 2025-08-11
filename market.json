@@ -157,12 +157,12 @@
     },
 
     {
+      "language": "zh_cn",
       "platform": "ALL",
       "description": "[Paper] Minecraft 1.21.1 快速开服",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Minecraft 1.21.1 快速开服",
-      "language": "zh_cn",
       "category": "mc-paper",
       "runtime": "Java 17+",
       "hardware": "RAM 4G+",
@@ -204,8 +204,8 @@
     },
     {
       "language": "zh_cn",
-      "platform": "ALL",
-      "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
+      "platform": "Linux",
+      "description": "Minecraft Forge 1.20.1 服务器，支持 Forge 模组！",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
       "title": "Forge 1.20.1 Java 版 (支持模组)",
@@ -227,7 +227,30 @@
     },
     {
       "language": "zh_cn",
-      "platform": "ALL",
+      "platform": "Windows",
+      "description": "Minecraft Forge 1.20.1 服务器，支持 Forge 模组！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "title": "Forge 1.20.1 Java 版 (支持模组)",
+      "category": "mc-forge",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G+",
+      "size": "7MB",
+      "remark": "Minecraft Forge",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.3.33/forge-1.20.1-47.3.33-installer.jar",
+      "author": "minecraftforge.net",
+      "setupInfo": {
+        "type": "minecraft/java/forge",
+        "startCommand": "start.bat",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar forge-1.20.1-47.3.33-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "zh_cn",
+      "platform": "Windows",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -241,7 +264,7 @@
       "author": "minecraftforge.net",
       "setupInfo": {
         "type": "minecraft/java/forge",
-        "startCommand": "sh ./run.sh",
+        "startCommand": "start.bat",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.20.6-50.1.48-installer.jar --installServer",
         "ie": "utf-8",
@@ -250,7 +273,7 @@
     },
     {
       "language": "zh_cn",
-      "platform": "ALL",
+      "platform": "Windows",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "gameType": "Minecraft",
@@ -264,14 +287,159 @@
       "author": "minecraftforge.net",
       "setupInfo": {
         "type": "minecraft/java/forge",
-        "startCommand": "sh ./run.sh",
+        "startCommand": "start.bat",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.19.2-43.4.20-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
     },
+
     {
+      "title": "Palworld Official Server",
+      "language": "en_us",
+      "platform": "Windows",
+      "description": "The best Palworld server for Windows!",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
+      "remark": "",
+      "gameType": "Palworld",
+      "category": "Latest Version",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["Windows version"],
+      "setupInfo": {
+        "tag": ["Palworld"],
+        "type": "steam/universal",
+        "startCommand": "PalServer.exe",
+        "stopCommand": "exit",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "Palworld Official Server",
+      "language": "en_us",
+      "platform": "Linux",
+      "description": "This template uses Docker for installation. Docker must be installed on your Linux server! The default password after installation is 123456. To change it, please go to the environment variables.",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
+      "gameType": "Palworld",
+      "category": "Latest Version",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["Docker version"],
+      "setupInfo": {
+        "stopCommand": "stop",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Palworld"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "kagurazakanyaa/palworld:latest",
+          "changeWorkdir": false,
+          "networkMode": "bridge",
+          "containerName": "palworld-server",
+          "workingDir": "/opt/palworld/Pal/Saved",
+          "ports": ["{mcsm_port1}:8211/tcp", "{mcsm_port2}:25575/tcp"],
+          "env": [
+            "SERVER_NAME=Private PalWorld Server",
+            "SERVER_DESC=Private PalWorld Server",
+            "ADMIN_PASSWORD=123456"
+          ]
+        }
+      }
+    },
+    {
+      "title": "Project Zomboid",
+      "language": "en_us",
+      "platform": "Linux",
+      "description": "For Linux systems, using a third-party Docker image of Project Zomboid for quick server deployment!",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/pzomboid.webp",
+      "gameType": "Zombie Survival",
+      "category": "Latest Version",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["Docker version"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "stop",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Project Zomboid"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "renegademaster/zomboid-dedicated-server:latest",
+          "containerName": "zomboid-dedicated-server",
+          "ports": ["{mcsm_port2}:16262/udp", "{mcsm_port1}:16261/udp"],
+          "extraVolumes": [
+            "{mcsm_workspace}/ZomboidConfig|/home/steam/Zomboid",
+            "{mcsm_workspace}/ZomboidDedicatedServer|/home/steam/ZomboidDedicatedServer"
+          ],
+          "memory": 4096,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+
+    {
+      "title": "Terraria Server",
+      "language": "en_us",
+      "platform": "Linux",
+      "description": "For Linux systems, using a third-party Docker image of Terraria for quick server deployment!",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/terraria.webp",
+      "gameType": "Terraria",
+      "category": "Latest Version",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["Docker version"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "exit",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/terraria",
+        "tag": ["terraria"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "ryshe/terraria:latest",
+          "containerName": "terraria-server",
+          "ports": ["{mcsm_port1}:7777/tcp"],
+          "extraVolumes": [],
+          "memory": 4096,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "/root/.local/share/Terraria/Worlds",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+    {
+      "platform": "ALL",
       "language": "en_us",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-forge.webp",
       "gameType": "Minecraft",
@@ -294,10 +462,10 @@
       }
     },
     {
+      "platform": "Linux",
       "language": "en_us",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-forge.webp",
       "gameType": "Minecraft",
-      "platform": "Linux",
       "description": "Forge 1.21.1 Server for Linux",
       "title": "Forge 1.21.1 (Supports Mods)",
       "category": "mc-forge",
@@ -317,10 +485,10 @@
       }
     },
     {
+      "platform": "Windows",
       "language": "en_us",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-forge.webp",
       "gameType": "Minecraft",
-      "platform": "Windows",
       "description": "Forge 1.21.1 Server for Windows",
       "title": "Forge 1.21.1 (Supports Mods)",
       "category": "mc-forge",
@@ -332,9 +500,147 @@
       "author": "minecraftforge.net",
       "setupInfo": {
         "type": "minecraft/java/forge",
-        "startCommand": "sh ./run.bat",
+        "startCommand": "start.bat",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.21.1-52.1.1-installer.jar --installServer",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-purpur.webp",
+      "description": "[Purpur] Minecraft 1.21.4 Purpur",
+      "title": "Minecraft 1.21.4",
+      "category": "mc-purpur",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Purpur included",
+      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2416.jar",
+      "author": "purpurmc.org",
+      "setupInfo": {
+        "type": "minecraft/java/purpur",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.4-2416.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "description": "[Paper] Minecraft 1.21.4 Paper",
+      "title": "Minecraft 1.21.4",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/232/downloads/paper-1.21.4-232.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-232.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "description": "[Vanilla] Minecraft 1.21.8",
+      "title": "Minecraft 1.21.8",
+      "category": "mc-vanilla",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G+",
+      "size": "55MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/6bce4ef400e4efaa63a13d5e6f6b500be969ef81/server.jar",
+      "author": "Mojang Studios",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "description": "[Vanilla] Minecraft 1.21.4",
+      "title": "Minecraft 1.21.4",
+      "category": "mc-vanilla",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G+",
+      "size": "55MB",
+      "remark": "Minecraft Java",
+      "targetLink": "https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a11b5d548d8c001/server.jar",
+      "author": "Mojang Studios",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-fabric.webp",
+      "description": "Minecraft 1.21.4 with Fabric Loader",
+      "title": "Fabric 1.21.4 (Supports Mods)",
+      "category": "mc-fabric",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.3.jar server -mcversion 1.21.4 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-fabric.webp",
+      "gameType": "Minecraft",
+      "description": "Minecraft 1.21.8 with Fabric Loader",
+      "title": "Fabric 1.21.8 (Supports Mods)",
+      "category": "mc-fabric",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "5MB",
+      "remark": "Minecraft Fabric",
+      "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
+      "author": "fabricmc.net",
+      "setupInfo": {
+        "type": "minecraft/java/fabric",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "java -jar fabric-installer-1.0.3.jar server -mcversion 1.21.8 -downloadMinecraft -noprofile",
         "ie": "utf-8",
         "oe": "utf-8"
       }
