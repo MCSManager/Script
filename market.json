@@ -486,6 +486,52 @@
     {
       "platform": "ALL",
       "language": "en_us",
+      "gameType": "Minecraft",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "description": "[Paper] Minecraft 1.21.8 Paper Quick Server Setup",
+      "title": "Paper Minecraft 1.21.8 Quick Server Setup, High Performance, Low Resource Usage, Plugin Support, No Mod Support",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 8G+",
+      "size": "100MB",
+      "remark": "Paper version only",
+      "targetLink": "https://fill-data.papermc.io/v1/objects/d310c61899acc608b683515c5c7ef929774bfd1b90262dac965e76c7e9ea8d22/paper-1.21.8-30.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.8-30.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "description": "[Paper] Minecraft 1.20.1 Paper Quick Server Setup",
+      "title": "Paper Minecraft 1.20.1 Quick Server Setup, High Performance, Low Resource Usage, Plugin Support, No Mod Support",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 8G+",
+      "size": "100MB",
+      "remark": "Paper version only",
+      "targetLink": "https://fill-data.papermc.io/v1/objects/234a9b32098100c6fc116664d64e36ccdb58b5b649af0f80bcccb08b0255eaea/paper-1.20.1-196.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.1-196.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-forge.webp",
       "gameType": "Minecraft",
       "description": "[Purpur] Minecraft 1.21.8 Purpur",
