@@ -15,31 +15,6 @@
     {
       "title": "幻兽帕鲁官方服务器",
       "language": "zh_cn",
-      "platform": "Windows",
-      "description": "适用于 Windows 的帕鲁们的最佳服务器！",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
-      "remark": "",
-      "gameType": "Palworld",
-      "category": "最新版本",
-      "runtime": "Windows 10+",
-      "hardware": "RAM 8G+",
-      "size": "",
-      "targetLink": "",
-      "author": "MCSManager",
-      "tags": ["仅适合个人使用", "Windows 版"],
-      "setupInfo": {
-        "tag": ["Palworld"],
-        "type": "steam/universal",
-        "startCommand": "PalServer.exe",
-        "stopCommand": "exit",
-        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "title": "幻兽帕鲁官方服务器",
-      "language": "zh_cn",
       "platform": "Linux",
       "description": "本模板使用 Docker 安装，Linux 服务器必须安装 Docker！安装后默认的密码是 123456，修改请前往环境变量处修改。",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
@@ -116,7 +91,6 @@
         }
       }
     },
-
     {
       "title": "Terraria 服务器",
       "language": "zh_cn",
@@ -335,32 +309,6 @@
         "startCommand": "start.bat",
         "stopCommand": "stop",
         "updateCommand": "java -jar forge-1.19.2-43.4.20-installer.jar --installServer",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-
-    {
-      "title": "Palworld Official Server",
-      "language": "en_us",
-      "platform": "Windows",
-      "description": "The best Palworld server for Windows!",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
-      "remark": "",
-      "gameType": "Palworld",
-      "category": "Latest Version",
-      "runtime": "Windows 10+",
-      "hardware": "RAM 8G+",
-      "size": "",
-      "targetLink": "",
-      "author": "MCSManager",
-      "tags": ["Windows version"],
-      "setupInfo": {
-        "tag": ["Palworld"],
-        "type": "steam/universal",
-        "startCommand": "PalServer.exe",
-        "stopCommand": "exit",
-        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2394010 +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
