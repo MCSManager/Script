@@ -699,7 +699,7 @@
       "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
       "setupInfo": {
         "type": "steam/universal",
-        "startCommand": ""\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
         "stopCommand": "^C",
         "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
         "ie": "utf-8",
@@ -722,7 +722,7 @@
       "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
       "setupInfo": {
         "type": "steam/universal",
-        "startCommand": ""\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
         "stopCommand": "^C",
         "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
         "ie": "utf-8",
