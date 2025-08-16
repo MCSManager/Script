@@ -760,6 +760,31 @@
         "ie": "utf-8",
         "oe": "utf-8"
       }
+    },
+    {
+      "title": "SCP秘密实验室 服务器",
+      "language": "zh_cn",
+      "platform": "Windows",
+      "description": "SCP秘密实验室服务器，适用于 Windows 系统",
+      "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/700330/dad38399643cda1a4084b1faff60452427bef8c0/header.jpg?t=1747606719",
+      "remark": "第一次启动需要配置",
+      "gameType": "SCP秘密实验室",
+      "category": "最新版本",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 8G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["仅适合个人使用", "Windows 版"],
+      "setupInfo": {
+        "tag": ["SCP秘密实验室"],
+        "type": "steam/universal",
+        "startCommand": "LocalAdmin.exe",
+        "stopCommand": "stop",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 996560 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     }
   ]
 }
