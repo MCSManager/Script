@@ -392,7 +392,6 @@
         }
       }
     },
-
     {
       "title": "Terraria Server",
       "language": "en_us",
@@ -680,6 +679,52 @@
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "java -jar fabric-installer-1.0.3.jar server -mcversion 1.21.8 -downloadMinecraft -noprofile",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "Squad 服务器",
+      "language": "zh_cn",
+      "platform": "Windows",
+      "description": "适用于 Windows 系统，快速开服",
+      "image": "https://squadovo.cn/img/header.jpg",
+      "gameType": "Squad",
+      "category": "最新版本",
+      "runtime": "Windows Server",
+      "hardware": "Intel Core 平台、RAM 8G+",
+      "size": "20GB",
+      "author": "南赛",
+      "remark": "需安装 Visual C++ 才可以运行",
+      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "setupInfo": {
+        "type": "steam/universal",
+        "startCommand": ""steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "stopCommand": "^C",
+        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "Squad Server",
+      "language": "en_us",
+      "platform": "Windows",
+      "description": "Suitable for Windows system, quick server setup",
+      "image": "https://squadovo.cn/img/header.jpg",
+      "gameType": "Squad",
+      "category": "Latest Version",
+      "runtime": "Windows Server",
+      "hardware": "Intel Core platform、RAM 8G+",
+      "size": "20GB",
+      "author": "南赛",
+      "remark": "Need to install Visual C++",
+      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "setupInfo": {
+        "type": "steam/universal",
+        "startCommand": ""steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "stopCommand": "^C",
+        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
