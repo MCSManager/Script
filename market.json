@@ -764,10 +764,10 @@
     },
 
     {
-      "title": "战术小队服务器",
+      "title": "战术小队 服务器",
       "language": "zh_cn",
       "platform": "Windows",
-      "description": "适用于 Windows 系统的战术新队服务器，快速开服",
+      "description": "适用于 Windows 系统的战术小队服务器，快速开服",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
       "category": "最新版本",
@@ -790,7 +790,7 @@
       "title": "Squad Server",
       "language": "en_us",
       "platform": "Windows",
-      "description": "Suitable for Windows system, quick server setup",
+      "description": "Squad Server suitable for Windows system, fast server setup",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
       "category": "Latest Version",
@@ -805,6 +805,52 @@
         "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
         "stopCommand": "^C",
         "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 403240 validate +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "人渣 服务器",
+      "language": "zh_cn",
+      "platform": "Windows",
+      "description": "适用于 Windows 系统的人渣服务器，快速开服",
+      "image": "https://api.nansai.cc/img/scum/header_chinese.jpg",
+      "gameType": "SCUM",
+      "category": "最新版本",
+      "runtime": "Windows Server",
+      "hardware": "Intel Core 平台、RAM 8G+",
+      "size": "20GB",
+      "author": "南赛",
+      "remark": "需安装 Visual C++ 才可以运行",
+      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "setupInfo": {
+        "type": "steam/universal",
+        "startCommand": "\"steamapps/common/SCUM Server/SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
+        "stopCommand": "^C",
+        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 3792580 validate +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "SCUM Server",
+      "language": "zh_cn",
+      "platform": "Windows",
+      "description": "SCUM Server suitable for Windows system, fast server setup",
+      "image": "https://api.nansai.cc/img/scum/header_English.jpg",
+      "gameType": "SCUM",
+      "category": "最新版本",
+      "runtime": "Windows Server",
+      "hardware": "Intel Core platform、RAM 8G+",
+      "size": "20GB",
+      "author": "南赛",
+      "remark": "need install Visual C++",
+      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "setupInfo": {
+        "type": "steam/universal",
+        "startCommand": "\"steamapps/common/SCUM Server/SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
+        "stopCommand": "^C",
+        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 3792580 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
