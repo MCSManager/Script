@@ -821,6 +821,7 @@
       "hardware": "Intel Core 平台、RAM 8G+",
       "size": "20GB",
       "author": "南赛",
+      "tags": ["不完全兼容面板"],
       "remark": "需安装 Visual C++ 才可以运行",
       "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
       "setupInfo": {
@@ -839,11 +840,12 @@
       "description": "SCUM Server suitable for Windows system, fast server setup",
       "image": "https://api.nansai.cc/img/scum/header_English.jpg",
       "gameType": "SCUM",
-      "category": "最新版本",
+      "category": "Latest Version",
       "runtime": "Windows Server",
       "hardware": "Intel Core platform、RAM 8G+",
       "size": "20GB",
-      "author": "南赛",
+      "author": "LanSai",
+      "tags": ["Incompatible with panel"],
       "remark": "need install Visual C++",
       "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
       "setupInfo": {
