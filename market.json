@@ -779,7 +779,7 @@
       "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
         "type": "steam/universal",
-        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "startCommand": "\"SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 -log",
         "stopCommand": "^C",
         "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 403240 validate +quit",
         "ie": "utf-8",
@@ -802,7 +802,7 @@
       "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
         "type": "steam/universal",
-        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "startCommand": "\"SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 -log",
         "stopCommand": "^C",
         "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 403240 validate +quit",
         "ie": "utf-8",
@@ -822,12 +822,12 @@
       "size": "20GB",
       "author": "南赛",
       "remark": "需安装 Visual C++ 才可以运行",
-      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
         "type": "steam/universal",
-        "startCommand": "\"steamapps/common/SCUM Server/SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
+        "startCommand": "\"SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
         "stopCommand": "^C",
-        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 3792580 validate +quit",
+        "updateCommand": "Steamcmd.exe +login anonymous +force_install_dir "{mcsm_workspace}" +app_update 3792580 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -845,12 +845,12 @@
       "size": "20GB",
       "author": "南赛",
       "remark": "need install Visual C++",
-      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
         "type": "steam/universal",
-        "startCommand": "\"steamapps/common/SCUM Server/SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
+        "startCommand": "\"SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
         "stopCommand": "^C",
-        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 3792580 validate +quit",
+        "updateCommand": "Steamcmd.exe +login anonymous +force_install_dir "{mcsm_workspace}" +app_update 3792580 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
