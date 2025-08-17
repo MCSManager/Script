@@ -193,7 +193,7 @@
         "type": "steam/universal",
         "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
         "stopCommand": "^C",
-        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
+        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 403240 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -216,7 +216,7 @@
         "type": "steam/universal",
         "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
         "stopCommand": "^C",
-        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
+        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 403240 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
