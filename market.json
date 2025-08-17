@@ -138,7 +138,7 @@
       }
     },
     {
-      "title": "Terraria 服务器",
+      "title": "泰拉瑞亚服务器",
       "language": "zh_cn",
       "platform": "Linux",
       "description": "适用于 Linux 系统，使用《Terraria》第三方 Docker 镜像，快速开服！",
@@ -176,7 +176,7 @@
       }
     },
     {
-      "title": "Squad 服务器",
+      "title": "战术小队服务器",
       "language": "zh_cn",
       "platform": "Windows",
       "description": "适用于 Windows 系统的战术新队服务器，快速开服",
