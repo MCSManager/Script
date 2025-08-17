@@ -683,6 +683,44 @@
         "ie": "utf-8",
         "oe": "utf-8"
       }
+    },
+    {
+      "title": "EndstoneMC官方服务器",
+      "language": "zh_cn",
+      "platform": "Linux",
+      "description": "适用于 Linux 系统，使用Endstone官方Docker镜像，一键快速开服！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "category": "最新版本",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 2G+",
+      "size": "",
+      "targetLink": "",
+      "author": "EndstoneMC",
+      "tags": ["可以商业出租","Docker版","官方镜像"],
+      "setupInfo": {
+        "startCommand": "endstone -y -s .",
+        "stopCommand": "stop",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "minecraft/bedrock",
+        "tag": ["bedrock"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "endstone/endstone:latest",
+          "containerName": "endstone-server",
+          "ports": ["{mcsm_port1}:19132/udp"],
+          "extraVolumes": [],
+          "memory": 2048,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": true
+        }
+      }
     }
   ]
 }
