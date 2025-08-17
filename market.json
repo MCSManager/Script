@@ -827,14 +827,14 @@
         "type": "steam/universal",
         "startCommand": "\"steamapps/common/SCUM Server/SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
         "stopCommand": "^C",
-        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 3792580 validate +quit",
+        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 3792580 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
     },
     {
       "title": "SCUM Server",
-      "language": "zh_cn",
+      "language": "en_us",
       "platform": "Windows",
       "description": "SCUM Server suitable for Windows system, fast server setup",
       "image": "https://api.nansai.cc/img/scum/header_English.jpg",
@@ -850,7 +850,7 @@
         "type": "steam/universal",
         "startCommand": "\"steamapps/common/SCUM Server/SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
         "stopCommand": "^C",
-        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"%CD%\" +app_update 3792580 validate +quit",
+        "updateCommand": "SteamCMD.exe +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 3792580 validate +quit",
         "ie": "utf-8",
         "oe": "utf-8"
       }
