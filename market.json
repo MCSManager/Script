@@ -13,6 +13,52 @@
   ],
   "packages": [
     {
+      "language": "zh_cn",
+      "platform": "ALL",
+      "description": "[Paper] Minecraft 1.21.1 快速开服",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/wallpaper.webp",
+      "gameType": "Minecraft",
+      "title": "Minecraft 1.21.1 快速开服",
+      "category": "mc-paper",
+      "runtime": "Java 17+",
+      "hardware": "RAM 8G+",
+      "size": "250MB",
+      "remark": "包含基础插件，萌新快速开服！低配机器专属！",
+      "targetLink": "https://cloud.alongw.cn/f/DzvHK/Paper-1.21.1-ZH.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "zh_cn",
+      "platform": "ALL",
+      "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/wallpaper.webp",
+      "gameType": "Minecraft",
+      "title": "Minecraft 1.20.4",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 6G+",
+      "size": "140MB",
+      "remark": "支持插件，最低 8GB 内存要求",
+      "targetLink": "https://url.alww.top/mcsm/paper1.20.4.zip",
+      "author": "alongw.cn",
+      "setupInfo": {
+        "type": "minecraft/java",
+        "startCommand": "java -Xms6144M -Xmx6144M -jar server.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "title": "幻兽帕鲁官方服务器",
       "language": "zh_cn",
       "platform": "Linux",
@@ -130,6 +176,52 @@
       }
     },
     {
+      "title": "Squad 服务器",
+      "language": "zh_cn",
+      "platform": "Windows",
+      "description": "适用于 Windows 系统的战术新队服务器，快速开服",
+      "image": "https://squadovo.cn/img/header.jpg",
+      "gameType": "Squad",
+      "category": "最新版本",
+      "runtime": "Windows",
+      "hardware": "Intel Core 平台、RAM 8G+",
+      "size": "20GB",
+      "author": "南赛",
+      "remark": "需安装 Visual C++ 才可以运行",
+      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
+      "setupInfo": {
+        "type": "steam/universal",
+        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "stopCommand": "^C",
+        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "Squad Server",
+      "language": "en_us",
+      "platform": "Windows",
+      "description": "Suitable for Windows system, quick server setup",
+      "image": "https://squadovo.cn/img/header.jpg",
+      "gameType": "Squad",
+      "category": "Latest Version",
+      "runtime": "Windows Server",
+      "hardware": "Intel Core platform、RAM 8G+",
+      "size": "20GB",
+      "author": "南赛",
+      "remark": "Need to install Visual C++",
+      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
+      "setupInfo": {
+        "type": "steam/universal",
+        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
+        "stopCommand": "^C",
+        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "platform": "ALL",
       "language": "zh_cn",
       "gameType": "Minecraft",
@@ -175,52 +267,7 @@
         "oe": "utf-8"
       }
     },
-    {
-      "language": "zh_cn",
-      "platform": "ALL",
-      "description": "[Paper] Minecraft 1.21.1 快速开服",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
-      "gameType": "Minecraft",
-      "title": "Minecraft 1.21.1 快速开服",
-      "category": "mc-paper",
-      "runtime": "Java 17+",
-      "hardware": "RAM 8G+",
-      "size": "250MB",
-      "remark": "包含基础插件，萌新快速开服！低配机器专属！",
-      "targetLink": "https://cloud.alongw.cn/f/DzvHK/Paper-1.21.1-ZH.zip",
-      "author": "alongw.cn",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar server.jar nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "language": "zh_cn",
-      "platform": "ALL",
-      "description": "[Paper] 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS、锁箱子、操作回滚、领地商店等基础插件。",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
-      "gameType": "Minecraft",
-      "title": "Minecraft 1.20.4",
-      "category": "mc-paper",
-      "runtime": "Java 21+",
-      "hardware": "RAM 6G+",
-      "size": "140MB",
-      "remark": "支持插件，最低 8GB 内存要求",
-      "targetLink": "https://url.alww.top/mcsm/paper1.20.4.zip",
-      "author": "alongw.cn",
-      "setupInfo": {
-        "type": "minecraft/java",
-        "startCommand": "java -Xms6144M -Xmx6144M -jar server.jar nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
+
     {
       "language": "zh_cn",
       "platform": "Linux",
@@ -683,52 +730,7 @@
         "oe": "utf-8"
       }
     },
-    {
-      "title": "Squad 服务器",
-      "language": "zh_cn",
-      "platform": "Windows",
-      "description": "适用于 Windows 系统的战术新队服务器，快速开服",
-      "image": "https://squadovo.cn/img/header.jpg",
-      "gameType": "Squad",
-      "category": "最新版本",
-      "runtime": "Windows",
-      "hardware": "Intel Core 平台、RAM 8G+",
-      "size": "20GB",
-      "author": "南赛",
-      "remark": "需安装 Visual C++ 才可以运行",
-      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
-      "setupInfo": {
-        "type": "steam/universal",
-        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
-        "stopCommand": "^C",
-        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "title": "Squad Server",
-      "language": "en_us",
-      "platform": "Windows",
-      "description": "Suitable for Windows system, quick server setup",
-      "image": "https://squadovo.cn/img/header.jpg",
-      "gameType": "Squad",
-      "category": "Latest Version",
-      "runtime": "Windows Server",
-      "hardware": "Intel Core platform、RAM 8G+",
-      "size": "20GB",
-      "author": "南赛",
-      "remark": "Need to install Visual C++",
-      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
-      "setupInfo": {
-        "type": "steam/universal",
-        "startCommand": "\"steamapps/common/Squad Dedicated Server/SquadGame/Binaries/Win64/SquadGameServer.exe\" Port=7787 QueryPort=15000 FIXEDMAXTICKRATE=30 -log",
-        "stopCommand": "^C",
-        "updateCommand": "steamcmd.exe +login anonymous +force_install_dir \"%CD%\" +app_update 403240 validate +quit",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
+
     {
       "title": "EndStone MC 服务端",
       "language": "zh_cn",
