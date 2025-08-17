@@ -1776,6 +1776,195 @@
       }
     },
     {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.21.8 Paper",
+      "title": "Minecraft 1.21.8",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.8/builds/10/downloads/paper-1.21.8-10.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.8-10.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.21.6 Paper",
+      "title": "Minecraft 1.21.6",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.6/builds/48/downloads/paper-1.21.4-48.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.6-48.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.21.4 Paper",
+      "title": "Minecraft 1.21.4",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/232/downloads/paper-1.21.4-232.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-232.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.21.3 Paper",
+      "title": "Minecraft 1.21.3",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.3/builds/82/downloads/paper-1.21.3-82.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.3-82.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.21.1 Paper",
+      "title": "Minecraft 1.21.1",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/132/downloads/paper-1.21.1-132.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.1-132.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.20.6 Paper",
+      "title": "Minecraft 1.20.6",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.6/builds/151/downloads/paper-1.20.6-151.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.6-151.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.20.4 Paper",
+      "title": "Minecraft 1.20.4",
+      "category": "mc-paper",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Only Paper included",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.4-499.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.20.2 Paper",
+      "title": "Minecraft 1.20.2",
+      "category": "mc-paper",
+      "runtime": "Java 17+",
+      "hardware": "RAM 4G+",
+      "size": "150MB",
+      "remark": "Includes some basic plugins",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.2/builds/318/downloads/paper-1.20.2-318.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.2-318.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "language": "en_us",
+      "gameType": "Minecraft",
+      "description": "[Paper] Minecraft 1.20.1 Paper",
+      "title": "Minecraft 1.20.1",
+      "category": "mc-paper",
+      "runtime": "Java 17+",
+      "hardware": "RAM 4G+",
+      "size": "200MB",
+      "remark": "Includes some basic plugins",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.1/builds/196/downloads/paper-1.20.1-196.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.1-196.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "language": "zh_cn",
       "gameType": "Minecraft",
       "description": "注意：默认的启动命令是 \"sh ./run.sh\"，如果需要在 Windows 上运行，请在安装后将命令修改为 \"start.bat\"",
