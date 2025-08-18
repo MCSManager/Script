@@ -858,6 +858,82 @@
         "ie": "utf-8",
         "oe": "utf-8"
       }
+    },
+    {
+      "title": "战术小队 官方服务器",
+      "language": "zh_cn",
+      "platform": "Linux",
+      "description": "适用于 Linux 系统，使用《战术小队》官方 Docker 镜像，快速开服！",
+      "image": "https://squadovo.cn/img/header.jpg",
+      "gameType": "Squad",
+      "category": "最新版本",
+      "runtime": "Centos/Ubuntu/Debian",
+      "hardware": "Intel Core platform、RAM 8G+",
+      "size": "",
+      "targetLink": "",
+      "author": "南赛",
+      "tags": ["可以商业出租", "Docker 版"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "docker stop squad-dedicated",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Squad"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "docker restart squad-dedicated",
+        "docker": {
+          "image": "cm2network/squad",
+          "containerName": "squad-dedicated",
+          "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
+          "extraVolumes": ["{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"],
+          "memory": 8192,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+    {
+      "title": "Squad Docker Server",
+      "language": "en_us",
+      "platform": "Linux",
+      "description": "Suitable for Linux systems, use the official Docker image of Squad Server to quickly get started!",
+      "image": "https://squadovo.cn/img/header.jpg",
+      "gameType": "Squad",
+      "category": "Latest Version",
+      "runtime": "Centos/Ubuntu/Debian",
+      "hardware": "Intel Core platform、RAM 8G+",
+      "size": "",
+      "targetLink": "",
+      "author": "Nansai",
+      "tags": ["Commercial Use Allowed", "Docker version"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "docker stop squad-dedicated",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Squad"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "docker restart squad-dedicated",
+        "docker": {
+          "image": "cm2network/squad",
+          "containerName": "squad-dedicated",
+          "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
+          "extraVolumes": ["{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"],
+          "memory": 8192,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
     }
   ]
 }
