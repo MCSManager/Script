@@ -825,7 +825,7 @@
       "author": "南赛",
       "tags": ["不完全兼容面板"],
       "remark": "需安装 Visual C++ 才可以运行",
-      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
         "type": "steam/universal",
         "startCommand": "\"SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
@@ -849,7 +849,7 @@
       "author": "NanSai",
       "tags": ["Incompatible with panel"],
       "remark": "need install Visual C++",
-      "targetLink": "https://download.nansai.cc/steam/SteamCMD.exe",
+      "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
         "type": "steam/universal",
         "startCommand": "\"SCUM/Binaries/Win64/SCUMServer.exe\" -port=7779 -log",
