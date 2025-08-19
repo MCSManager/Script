@@ -729,7 +729,7 @@
       "platform": "Windows",
       "description": "森林之子服务器，适用于 Windows 系统",
       "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/1326470/header.jpg?t=1708624856",
-      "remark": "请在防火墙放行8766(UDP) 27016(UDP) 9700(UDP)端口",
+      "remark": "请在防火墙放行8766(UDP) 27016(UDP) 9700(UDP)端口,如遇到卡死问题，请在userdata/dedicatedserver.cfg下将SkipNetworkAccessibilityTest设置为true",
       "gameType": "Son Of The Forest",
       "category": "最新版本",
       "runtime": "Windows 10+",
@@ -741,7 +741,7 @@
       "setupInfo": {
         "tag": ["SonsOfTheForest"],
         "type": "steam/universal",
-        "startCommand": "set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
+        "startCommand": "echo|set /p="1326470" > steam_appid.txt & set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath "{mcsm_workspace}/userdata" | consoleparser -colorize",
         "stopCommand": "^C",
         "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2465200 +quit",
         "ie": "utf-8",
