@@ -723,7 +723,106 @@
         "oe": "utf-8"
       }
     },
-
+    {
+      "title": "森林之子 服务器",
+      "language": "zh_cn",
+      "platform": "Windows",
+      "description": "森林之子服务器，适用于 Windows 系统",
+      "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/1326470/header.jpg?t=1708624856",
+      "remark": "请在防火墙放行8766(UDP) 27016(UDP) 9700(UDP)端口",
+      "gameType": "Son Of The Forest",
+      "category": "最新版本",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 8G+",
+      "size": "3.5GB",
+      "targetLink": "",
+      "author": "mmyddd",
+      "tags": ["仅适合个人使用", "Windows 版"],
+      "setupInfo": {
+        "tag": ["SonsOfTheForest"],
+        "type": "steam/universal",
+        "startCommand": "set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
+        "stopCommand": "^C",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2465200 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "SCP秘密实验室 服务器",
+      "language": "zh_cn",
+      "platform": "Windows",
+      "description": "SCP秘密实验室服务器，适用于 Windows 系统",
+      "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/700330/dad38399643cda1a4084b1faff60452427bef8c0/header.jpg?t=1747606719",
+      "remark": "第一次启动需要在控制台配置。服务器设置路径:%APPDATA%/SCP Secret Laboratory/config/{启动时控制台设置的端口}",
+      "gameType": "SCP秘密实验室",
+      "category": "最新版本",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 8G+",
+      "size": "1GB",
+      "targetLink": "",
+      "author": "mmyddd",
+      "tags": ["仅适合个人使用", "Windows 版"],
+      "setupInfo": {
+        "tag": ["SCP秘密实验室"],
+        "type": "steam/universal",
+        "startCommand": "LocalAdmin.exe",
+        "stopCommand": "stop",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 996560 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "Son Of The Forest Offical Server",
+      "language": "en_us",
+      "platform": "Windows",
+      "description": "Son Of The Forest Server for Windows system.",
+      "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/1326470/header.jpg?t=1708624856",
+      "remark": "Please allow port 8766 (UDP) 27016 (UDP) 9700 (UDP) to pass through the firewall.",
+      "gameType": "Son Of The Forest",
+      "category": "latest",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 8G+",
+      "size": "3.5GB",
+      "targetLink": "",
+      "author": "mmyddd",
+      "tags": ["Windows version"],
+      "setupInfo": {
+        "tag": ["SonsOfTheForest"],
+        "type": "steam/universal",
+        "startCommand": "set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
+        "stopCommand": "^C",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2465200 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "title": "SCP:SL Offical Server",
+      "language": "en_us",
+      "platform": "Windows",
+      "description": "SCP:SL Offical Server for Windows systen",
+      "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/700330/dad38399643cda1a4084b1faff60452427bef8c0/header.jpg?t=1747606719",
+      "remark": "The first startup requires configuration in the console.Server Config Path:%APPDATA%/SCP Secret Laboratory/config/{port}",
+      "gameType": "SCP:SL",
+      "category": "latest",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 8G+",
+      "size": "1GB",
+      "targetLink": "",
+      "author": "mmyddd",
+      "tags": ["Windows version"],
+      "setupInfo": {
+        "tag": ["SCP:SL"],
+        "type": "steam/universal",
+        "startCommand": "LocalAdmin.exe",
+        "stopCommand": "stop",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 996560 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
     {
       "title": "EndStone MC 服务端",
       "language": "zh_cn",
@@ -887,7 +986,9 @@
           "image": "cm2network/squad",
           "containerName": "squad-dedicated",
           "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
-          "extraVolumes": ["{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"],
+          "extraVolumes": [
+            "{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"
+          ],
           "memory": 8192,
           "networkMode": "bridge",
           "cpuUsage": 100,
@@ -925,7 +1026,9 @@
           "image": "cm2network/squad",
           "containerName": "squad-dedicated",
           "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
-          "extraVolumes": ["{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"],
+          "extraVolumes": [
+            "{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"
+          ],
           "memory": 8192,
           "networkMode": "bridge",
           "cpuUsage": 100,
