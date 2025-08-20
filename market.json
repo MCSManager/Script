@@ -13,44 +13,6 @@
   ],
   "packages": [
     {
-      "title": "泰拉瑞亚服务器",
-      "language": "zh_cn",
-      "platform": "Linux",
-      "description": "适用于 Linux 系统，使用《Terraria》第三方 Docker 镜像，快速开服！",
-      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/terraria.webp",
-      "gameType": "Terraria",
-      "category": "最新版本",
-      "runtime": "Ubuntu/Centos LTS",
-      "hardware": "RAM 8G+",
-      "size": "",
-      "targetLink": "",
-      "author": "MCSManager",
-      "tags": ["可以商业出租", "Docker 版"],
-      "setupInfo": {
-        "startCommand": "",
-        "stopCommand": "exit",
-        "ie": "utf8",
-        "oe": "utf8",
-        "type": "steam/terraria",
-        "tag": ["terraria"],
-        "fileCode": "utf8",
-        "processType": "docker",
-        "updateCommand": "",
-        "docker": {
-          "image": "ryshe/terraria:latest",
-          "containerName": "terraria-server",
-          "ports": ["{mcsm_port1}:7777/tcp"],
-          "extraVolumes": [],
-          "memory": 4096,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
-          "workingDir": "/root/.local/share/Terraria/Worlds",
-          "env": [],
-          "changeWorkdir": false
-        }
-      }
-    },
-    {
       "language": "zh_cn",
       "platform": "ALL",
       "description": " Minecraft 1.21.1 快速开服",
@@ -94,6 +56,44 @@
         "updateCommand": "",
         "ie": "utf-8",
         "oe": "utf-8"
+      }
+    },
+    {
+      "title": "泰拉瑞亚服务器",
+      "language": "zh_cn",
+      "platform": "Linux",
+      "description": "适用于 Linux 系统，使用《Terraria》第三方 Docker 镜像，快速开服！",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/terraria.webp",
+      "gameType": "Terraria",
+      "category": "最新版本",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": "RAM 8G+",
+      "size": "",
+      "targetLink": "",
+      "author": "MCSManager",
+      "tags": ["可以商业出租", "Docker 版"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "exit",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/terraria",
+        "tag": ["terraria"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "ryshe/terraria:latest",
+          "containerName": "terraria-server",
+          "ports": ["{mcsm_port1}:7777/tcp"],
+          "extraVolumes": [],
+          "memory": 4096,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "/root/.local/share/Terraria/Worlds",
+          "env": [],
+          "changeWorkdir": false
+        }
       }
     },
     {
