@@ -774,7 +774,7 @@
       }
     },
     {
-      "title": "Son Of The Forest Offical Server",
+      "title": "Son Of The Forest Official Server",
       "language": "en_us",
       "platform": "Windows",
       "description": "Son Of The Forest Server for Windows system.",
@@ -799,10 +799,10 @@
       }
     },
     {
-      "title": "SCP:SL Offical Server",
+      "title": "SCP:SL Official Server",
       "language": "en_us",
       "platform": "Windows",
-      "description": "SCP:SL Offical Server for Windows systen",
+      "description": "SCP:SL Official Server for Windows",
       "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/700330/dad38399643cda1a4084b1faff60452427bef8c0/header.jpg?t=1747606719",
       "remark": "The first startup requires configuration in the console.Server Config Path:%APPDATA%/SCP Secret Laboratory/config/{port}",
       "gameType": "SCP:SL",
