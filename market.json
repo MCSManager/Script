@@ -987,7 +987,7 @@
           "containerName": "squad-dedicated",
           "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
           "extraVolumes": [
-            "{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"
+            "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
           ],
           "memory": 8192,
           "networkMode": "bridge",
@@ -1027,7 +1027,7 @@
           "containerName": "squad-dedicated",
           "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
           "extraVolumes": [
-            "{mcsm_workspace}/SquadConfig:/home/steam/squad-dedicated/SquadGame/ServerConfig/"
+            "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
           ],
           "memory": 8192,
           "networkMode": "bridge",
