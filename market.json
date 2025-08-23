@@ -741,7 +741,7 @@
       "setupInfo": {
         "tag": ["SonsOfTheForest"],
         "type": "steam/universal",
-        "startCommand": "echo|set /p="1326470" > steam_appid.txt & set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
+        "startCommand": "echo|set /p=\"1326470\" > steam_appid.txt & set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
         "stopCommand": "^C",
         "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2465200 +quit",
         "ie": "utf-8",
@@ -791,7 +791,7 @@
       "setupInfo": {
         "tag": ["SonsOfTheForest"],
         "type": "steam/universal",
-        "startCommand": "echo|set /p="1326470" > steam_appid.txt & set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
+        "startCommand": "echo|set /p=\"1326470\" > steam_appid.txt & set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
         "stopCommand": "^C",
         "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 2465200 +quit",
         "ie": "utf-8",
