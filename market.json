@@ -1037,6 +1037,96 @@
           "changeWorkdir": false
         }
       }
+    },
+    {
+      "title": "Rust 官方服务器",
+      "language": "zh_cn",
+      "platform": "ALL",
+      "description": "使用 Rust 官方 Docker 镜像，快速开服！",
+      "image": "https://api.nansai.cc/img/rust/header.jpg",
+      "gameType": "Rust",
+      "category": "最新版本",
+      "runtime": "Windows/Linux",
+      "hardware": "Intel Core 平台、RAM 16G+",
+      "size": "",
+      "targetLink": "",
+      "author": "南赛",
+      "tags": ["可以商业出租", "Docker 版"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "docker stop rust-server",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Rust"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "docker restart rust-server",
+        "docker": {
+          "image": "facepunch/rust-server",
+          "containerName": "rust-server",
+          "ports": [
+            "{mcsm_port1}:28015/udp",
+            "{mcsm_port2}:28016/udp"
+          ],
+          "extraVolumes": [
+            "{mcsm_workspace}/server:/server",
+            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data:/data"
+          ],
+          "memory": 16384,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+    {
+      "title": "Rust Docker Server",
+      "language": "en_us",
+      "platform": "ALL",
+      "description": "Use Rust's official Docker image to quickly get started!",
+      "image": "https://api.nansai.cc/img/rust/header.jpg",
+      "gameType": "Rust",
+      "category": "Latest Version",
+      "runtime": "Windows/Linux",
+      "hardware": "Intel Core platform、RAM 16G+",
+      "size": "",
+      "targetLink": "",
+      "author": "南赛",
+      "tags": ["Commercial Use Allowed", "Docker version"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "docker stop rust-server",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Rust"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "docker restart rust-server",
+        "docker": {
+          "image": "facepunch/rust-server",
+          "containerName": "rust-server",
+          "ports": [
+            "{mcsm_port1}:28015/udp",
+            "{mcsm_port2}:28016/udp"
+          ],
+          "extraVolumes": [
+            "{mcsm_workspace}/server:/server",
+            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data:/data"
+          ],
+          "memory": 16384,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
     }
   ]
 }
