@@ -961,7 +961,7 @@
     {
       "title": "战术小队 官方服务器",
       "language": "zh_cn",
-      "platform": "Linux",
+      "platform": "ALL",
       "description": "适用于 Linux 系统，使用《战术小队》官方 Docker 镜像，快速开服！",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
@@ -1001,7 +1001,7 @@
     {
       "title": "Squad Docker Server",
       "language": "en_us",
-      "platform": "Linux",
+      "platform": "ALL",
       "description": "Suitable for Linux systems, use the official Docker image of Squad Server to quickly get started!",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
