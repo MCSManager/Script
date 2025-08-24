@@ -59,6 +59,29 @@
       }
     },
     {
+      "language": "zh_cn",
+      "platform": "Linux",
+      "description": "我的世界基岩版服务器,如果想换版本,请更换更新命令中的版本号",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/mc-mod.webp",
+      "gameType": "Minecraft",
+      "title": "Minecraft基岩版 专属服务端软件",
+      "category": "bedrock_server",
+      "runtime": "Ubuntu/Centos LTS",
+      "hardware": " RAM 2G+",
+      "size": "207MB",
+      "remark": "bedrock_server",
+      "targetLink": "https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.102.1.zip",
+      "author": "minecraft",
+      "setupInfo": {
+        "type": "minecraft/bedrock_server",
+        "startCommand": "./bedrock_server",
+        "stopCommand": "stop",
+        "updateCommand": "wget https://www.minecraft.net/bedrockdedicatedserver/bin-linux/bedrock-server-1.21.102.1.zip",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "title": "泰拉瑞亚服务器",
       "language": "zh_cn",
       "platform": "Linux",
