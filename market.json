@@ -961,12 +961,12 @@
     {
       "title": "战术小队 官方服务器",
       "language": "zh_cn",
-      "platform": "ALL",
+      "platform": "Linux",
       "description": "使用《战术小队》官方 Docker 镜像，快速开服！",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
       "category": "最新版本",
-      "runtime": "Windows/Linux",
+      "runtime": "Linux",
       "hardware": "Intel Core 平台、RAM 8G+",
       "size": "",
       "targetLink": "",
@@ -1001,12 +1001,12 @@
     {
       "title": "Squad Docker Server",
       "language": "en_us",
-      "platform": "ALL",
+      "platform": "Linux",
       "description": "use the official Docker image of Squad Server to quickly get started!",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
       "category": "Latest Version",
-      "runtime": "Windows/Linux",
+      "runtime": "Linux",
       "hardware": "Intel Core platform、RAM 8G+",
       "size": "",
       "targetLink": "",
@@ -1065,10 +1065,7 @@
         "docker": {
           "image": "facepunch/rust-server",
           "containerName": "rust-server",
-          "ports": [
-            "{mcsm_port1}:28015/udp",
-            "{mcsm_port2}:28016/udp"
-          ],
+          "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
           "extraVolumes": [
             "{mcsm_workspace}/server:/server",
             "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
@@ -1110,10 +1107,7 @@
         "docker": {
           "image": "facepunch/rust-server",
           "containerName": "rust-server",
-          "ports": [
-            "{mcsm_port1}:28015/udp",
-            "{mcsm_port2}:28016/udp"
-          ],
+          "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
           "extraVolumes": [
             "{mcsm_workspace}/server:/server",
             "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
