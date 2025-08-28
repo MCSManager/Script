@@ -961,12 +961,12 @@
     {
       "title": "战术小队 官方服务器",
       "language": "zh_cn",
-      "platform": "Linux",
-      "description": "适用于 Linux 系统，使用《战术小队》官方 Docker 镜像，快速开服！",
+      "platform": "ALL",
+      "description": "使用《战术小队》官方 Docker 镜像，快速开服！",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
       "category": "最新版本",
-      "runtime": "Centos/Ubuntu/Debian",
+      "runtime": "Windows/Linux",
       "hardware": "Intel Core 平台、RAM 8G+",
       "size": "",
       "targetLink": "",
@@ -1001,12 +1001,12 @@
     {
       "title": "Squad Docker Server",
       "language": "en_us",
-      "platform": "Linux",
-      "description": "Suitable for Linux systems, use the official Docker image of Squad Server to quickly get started!",
+      "platform": "ALL",
+      "description": "use the official Docker image of Squad Server to quickly get started!",
       "image": "https://squadovo.cn/img/header.jpg",
       "gameType": "Squad",
       "category": "Latest Version",
-      "runtime": "Centos/Ubuntu/Debian",
+      "runtime": "Windows/Linux",
       "hardware": "Intel Core platform、RAM 8G+",
       "size": "",
       "targetLink": "",
@@ -1030,6 +1030,96 @@
             "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
           ],
           "memory": 8192,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+    {
+      "title": "Rust 官方服务器",
+      "language": "zh_cn",
+      "platform": "ALL",
+      "description": "使用 Rust 官方 Docker 镜像，快速开服！",
+      "image": "https://api.nansai.cc/img/rust/header.jpg",
+      "gameType": "Rust",
+      "category": "最新版本",
+      "runtime": "Windows/Linux",
+      "hardware": "Intel Core 平台、RAM 16G+",
+      "size": "",
+      "targetLink": "",
+      "author": "南赛",
+      "tags": ["可以商业出租", "Docker 版"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "docker stop rust-server",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Rust"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "docker restart rust-server",
+        "docker": {
+          "image": "facepunch/rust-server",
+          "containerName": "rust-server",
+          "ports": [
+            "{mcsm_port1}:28015/udp",
+            "{mcsm_port2}:28016/udp"
+          ],
+          "extraVolumes": [
+            "{mcsm_workspace}/server:/server",
+            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data:/data"
+          ],
+          "memory": 16384,
+          "networkMode": "bridge",
+          "cpuUsage": 100,
+          "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+    {
+      "title": "Rust Docker Server",
+      "language": "en_us",
+      "platform": "ALL",
+      "description": "Use Rust's official Docker image to quickly get started!",
+      "image": "https://api.nansai.cc/img/rust/header.jpg",
+      "gameType": "Rust",
+      "category": "Latest Version",
+      "runtime": "Windows/Linux",
+      "hardware": "Intel Core platform、RAM 16G+",
+      "size": "",
+      "targetLink": "",
+      "author": "南赛",
+      "tags": ["Commercial Use Allowed", "Docker version"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "docker stop rust-server",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Rust"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "docker restart rust-server",
+        "docker": {
+          "image": "facepunch/rust-server",
+          "containerName": "rust-server",
+          "ports": [
+            "{mcsm_port1}:28015/udp",
+            "{mcsm_port2}:28016/udp"
+          ],
+          "extraVolumes": [
+            "{mcsm_workspace}/server:/server",
+            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data:/data"
+          ],
+          "memory": 16384,
           "networkMode": "bridge",
           "cpuUsage": 100,
           "workingDir": "",
