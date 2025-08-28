@@ -2,7 +2,7 @@
 # This script file is specifically designed for the Chinese region, and servers in the Chinese region are used to accelerate file downloads.
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://cdn.imlazy.ink:233/files/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr="https://download.mcsmanager.com/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v20.12.2"
 arch=$(uname -m)
