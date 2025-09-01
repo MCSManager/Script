@@ -8,7 +8,7 @@ node="v20.12.2"
 arch=$(uname -m)
 
 if [ "$(id -u)" -ne 0 ]; then
-  echo "这个脚本必须使用root权限运行! 请使用 \"sudo bash\" instead."
+  echo "此脚本必须以 root 身份运行,请使用“sudo bash”代替"
   exit 1
 fi
 
@@ -49,11 +49,11 @@ Install_Node() {
     return
   fi
 
-  echo_cyan "[+] 正在安装l Node.JS..."
+  echo_cyan "[+] 正在安装 Node.JS..."
 
   rm -irf "$node_install_path"
 
-  cd /opt || Red_Error "[x] 未能进入 /opt目录"
+  cd /opt || Red_Error "[x] 未能进入 /opt 目录"
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
@@ -67,7 +67,7 @@ Install_Node() {
   if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
     echo_green "Success"
   else
-    Red_Error "[x] Node.JS 安装失败!"
+    Red_Error "[x] Node.js 安装失败!"
   fi
 
   echo
