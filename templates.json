@@ -23,6 +23,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2481.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2481.jar nogui",
@@ -44,6 +45,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.6-2465.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.6-2465.jar nogui",
@@ -65,6 +67,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.5-2450.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.5-2450.jar nogui",
@@ -86,6 +89,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2416.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.4-2416.jar nogui",
@@ -107,6 +111,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.3-2358.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.3-2358.jar nogui",
@@ -128,6 +133,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.1-2329.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.1-2329.jar nogui",
@@ -149,6 +155,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.6-2233.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.20.6-2233.jar nogui",
@@ -170,6 +177,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.4-2176.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.20.4-2176.jar nogui",
@@ -191,6 +199,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.20.1-2062.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.20.1-2062.jar nogui",
@@ -212,6 +221,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.19.2-1858.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.19.2-1858.jar nogui",
@@ -233,6 +243,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.18.2-1632.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.18.2-1632.jar nogui",
@@ -254,6 +265,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.17.1-1428.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.17.1-1428.jar nogui",
@@ -275,6 +287,7 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.16.5-1171.jar",
       "author": "purpurmc.org",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.16.5-1171.jar nogui",
@@ -296,6 +309,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.8/builds/10/downloads/paper-1.21.8-10.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.8-10.jar nogui",
@@ -317,6 +331,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.6/builds/48/downloads/paper-1.21.4-48.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.6-48.jar nogui",
@@ -338,6 +353,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/232/downloads/paper-1.21.4-232.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-232.jar nogui",
@@ -359,6 +375,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.3/builds/82/downloads/paper-1.21.3-82.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.3-82.jar nogui",
@@ -380,6 +397,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/132/downloads/paper-1.21.1-132.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.1-132.jar nogui",
@@ -401,6 +419,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.6/builds/151/downloads/paper-1.20.6-151.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.6-151.jar nogui",
@@ -422,6 +441,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.4-499.jar nogui",
@@ -443,6 +463,7 @@
       "remark": "Includes some basic plugins",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.2/builds/318/downloads/paper-1.20.2-318.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.2-318.jar nogui",
@@ -464,6 +485,7 @@
       "remark": "Includes some basic plugins",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.1/builds/196/downloads/paper-1.20.1-196.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.1-196.jar nogui",
@@ -485,6 +507,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.19.4/builds/550/downloads/paper-1.19.4-550.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.19.4-550.jar nogui",
@@ -506,6 +529,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.19.2/builds/307/downloads/paper-1.19.2-307.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.19.2-307.jar nogui",
@@ -527,6 +551,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.18.2/builds/388/downloads/paper-1.18.2-388.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.18.2-388.jar nogui",
@@ -548,6 +573,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.17.1/builds/411/downloads/paper-1.17.1-411.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.17.1-411.jar nogui",
@@ -569,6 +595,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.16.5/builds/794/downloads/paper-1.16.5-794.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.16.5-794.jar nogui",
@@ -590,6 +617,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.12.2/builds/1620/downloads/paper-1.12.2-1620.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.12.2-1620.jar nogui",
@@ -611,6 +639,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.8.8/builds/445/downloads/paper-1.8.8-445.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.8.8-445.jar nogui",
@@ -632,6 +661,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.4-beta/neoforge-21.8.4-beta-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -653,6 +683,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.6.20-beta/neoforge-21.6.20-beta-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -674,6 +705,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.5.87/neoforge-21.5.87-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -695,6 +727,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.4.147/neoforge-21.4.147-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -716,6 +749,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.193/neoforge-21.1.193-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -737,6 +771,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/20.6.137/neoforge-20.6.137-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -758,6 +793,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/20.4.248/neoforge-20.4.248-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -779,6 +815,7 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/20.2.93/neoforge-20.2.93-installer.jar",
       "author": "neoforged.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "sh ./run.sh",
@@ -800,6 +837,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.8-58.0.0/forge-1.21.8-58.0.0-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -821,6 +859,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.6-56.0.9/forge-1.21.6-56.0.9-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -842,6 +881,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.5-55.0.23/forge-1.21.5-55.0.23-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -863,6 +903,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.4-54.1.3/forge-1.21.4-54.1.3-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -884,6 +925,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.1-52.1.1/forge-1.21.1-52.1.1-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -905,6 +947,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.6-50.2.0/forge-1.20.6-50.2.0-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -926,6 +969,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.4-49.2.0/forge-1.20.4-49.2.0-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -947,6 +991,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.4.4/forge-1.20.1-47.4.4-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -968,6 +1013,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.4-45.4.0/forge-1.19.4-45.4.0-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -989,6 +1035,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.5.0/forge-1.19.2-43.5.0-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1010,6 +1057,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.18.2-40.3.9/forge-1.18.2-40.3.9-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1031,6 +1079,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.17.1-37.1.1/forge-1.17.1-37.1.1-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1052,6 +1101,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.16.5-36.2.42/forge-1.16.5-36.2.42-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1073,6 +1123,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.12.2-14.23.5.2860/forge-1.12.2-14.23.5.2860-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1094,6 +1145,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.8.9-11.15.1.2318-1.8.9/forge-1.8.9-11.15.1.2318-1.8.9-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1115,6 +1167,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.7.10-10.13.4.1614-1.7.10/forge-1.7.10-10.13.4.1614-1.7.10-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1136,6 +1189,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1157,6 +1211,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1178,6 +1233,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1199,6 +1255,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1220,6 +1277,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1241,6 +1299,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1262,6 +1321,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1283,6 +1343,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1304,6 +1365,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1325,6 +1387,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1346,6 +1409,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1367,6 +1431,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1388,6 +1453,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1409,6 +1475,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1430,6 +1497,7 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.0.3/fabric-installer-1.0.3.jar",
       "author": "fabricmc.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1451,6 +1519,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/6bce4ef400e4efaa63a13d5e6f6b500be969ef81/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1472,6 +1541,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/6e64dcabba3c01a7271b4fa6bd898483b794c59b/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1493,6 +1563,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/e6ec2f64e6080b9b5d9b471b291c33cc7f509733/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1514,6 +1585,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a11b5d548d8c001/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1535,6 +1607,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/59353fb40c36d304f2035d51e7d6e6baa98dc05c/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1556,6 +1629,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/145ff0858209bcfc164859ba735d4199aafa1eea/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1577,6 +1651,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/8dd1a28015f51b1803213892b50b7b4fc76e594d/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1598,6 +1673,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/84194a2f286ef7c14ed7ce0090dba59902951553/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1619,6 +1695,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/8f3112a1049751cc472ec13e397eade5336ca7ae/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1640,6 +1717,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1661,6 +1739,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/a16d67e5807f57fc4e550299cf20226194497dc2/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1682,6 +1761,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/1b557e7b033b583cd9f66746b7a9ab1ec1673ced/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1703,6 +1783,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/886945bfb2b978778c3a0288fd7fab09d315b25f/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1724,6 +1805,7 @@
       "remark": "Minecraft Java",
       "targetLink": "https://launcher.mojang.com/v1/objects/b58b2ceb36e01bcd8dbf49c8fb66c55a9f0676cd/server.jar",
       "author": "Mojang Studios",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1745,6 +1827,7 @@
       "remark": "包含基础插件，萌新快速开服！低配机器专属！",
       "targetLink": "https://cloud.alongw.cn/f/DzvHK/Paper-1.21.1-ZH.zip",
       "author": "alongw.cn",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms4096M -Xmx4096M -jar server.jar nogui",
@@ -1766,6 +1849,7 @@
       "remark": "支持插件，最低 8GB 内存要求",
       "targetLink": "https://url.alww.top/mcsm/paper1.20.4.zip",
       "author": "alongw.cn",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms6144M -Xmx6144M -jar server.jar nogui",
@@ -1787,6 +1871,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.8/builds/10/downloads/paper-1.21.8-10.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.8-10.jar nogui",
@@ -1808,6 +1893,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.6/builds/48/downloads/paper-1.21.4-48.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.6-48.jar nogui",
@@ -1829,6 +1915,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/232/downloads/paper-1.21.4-232.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-232.jar nogui",
@@ -1850,6 +1937,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.3/builds/82/downloads/paper-1.21.3-82.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.3-82.jar nogui",
@@ -1871,6 +1959,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/132/downloads/paper-1.21.1-132.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.1-132.jar nogui",
@@ -1892,6 +1981,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.6/builds/151/downloads/paper-1.20.6-151.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.6-151.jar nogui",
@@ -1913,6 +2003,7 @@
       "remark": "Only Paper included",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.4/builds/499/downloads/paper-1.20.4-499.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.4-499.jar nogui",
@@ -1934,6 +2025,7 @@
       "remark": "Includes some basic plugins",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.2/builds/318/downloads/paper-1.20.2-318.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.2-318.jar nogui",
@@ -1955,6 +2047,7 @@
       "remark": "Includes some basic plugins",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.20.1/builds/196/downloads/paper-1.20.1-196.jar",
       "author": "papermc.io",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.20.1-196.jar nogui",
@@ -1976,6 +2069,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.3.33/forge-1.20.1-47.3.33-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -1997,6 +2091,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.6-50.1.48/forge-1.20.6-50.1.48-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -2018,6 +2113,7 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.4.20/forge-1.19.2-43.4.20-installer.jar",
       "author": "minecraftforge.net",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
