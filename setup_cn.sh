@@ -81,7 +81,7 @@ Install_Node() {
 }
 
 Install_MCSManager() {
-  echo_cyan "[+] Install MCSManager..."
+  echo_cyan "[+] 安装 MCSManager..."
 
   # stop service
   systemctl disable --now mcsm-{web,daemon}
@@ -96,7 +96,7 @@ Install_MCSManager() {
   cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
   # download MCSManager release
-  wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] Failed to download MCSManager"
+  wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] 未能成功下载 MCSManager"
   tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
@@ -132,7 +132,7 @@ Install_MCSManager() {
 }
 
 Create_Service() {
-  echo_cyan "[+] Create MCSManager service..."
+  echo_cyan "[+] 创建 MCSManager 面板服务..."
 
   echo "[Unit]
 Description=MCSManager-Daemon
@@ -177,7 +177,7 @@ WantedBy=multi-user.target
   echo_yellow "http://<Your IP>:23333  (Browser)"
   echo_cyan_n "被控守护进程地址:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
-  echo_red "默认情况下，你必须开放 23333 和 24444 端口才能确保面板工作正常！"
+  echo_red "默认情况下，你必须在防火墙放行 23333 和 24444 端口才能确保面板工作正常！"
   echo_yellow " "
   echo_cyan "面板开关指令:"
   echo_cyan "systemctl start mcsm-{daemon,web}.service"
@@ -215,7 +215,7 @@ node_install_path="/opt/node-$node-linux-$arch"
 echo_cyan "[-] Architecture: $arch"
 
 # Install related software
-echo_cyan_n "[+] Installing dependent software (git, tar, wget)... "
+echo_cyan_n "[+] 正在安装依赖软件 (git, tar, wget)... "
 if [[ -x "$(command -v yum)" ]]; then
   yum install -y git tar wget
 elif [[ -x "$(command -v apt-get)" ]]; then
@@ -225,14 +225,14 @@ elif [[ -x "$(command -v pacman)" ]]; then
 elif [[ -x "$(command -v zypper)" ]]; then
   zypper --non-interactive install git tar wget
 else
-  echo_red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
+  echo_red "[!] 找不到你的软件包管理器! 你需要先去安装 git, tar 和 wget!"
 fi
 
 # Determine whether the relevant software is installed successfully
 if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
   echo_green "Success"
 else
-  Red_Error "[x] Failed to find git, tar and wget, please install them manually!"
+  Red_Error "[x] 没有安装 git, tar 和 wget, 请先在安装MCSManager前安装它们!"
 fi
 
 # Install the Node environment
