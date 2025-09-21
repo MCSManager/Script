@@ -166,9 +166,6 @@
             "{mcsm_workspace}/ZomboidConfig|/home/steam/Zomboid",
             "{mcsm_workspace}/ZomboidDedicatedServer|/home/steam/ZomboidDedicatedServer"
           ],
-          "memory": 4096,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": false
@@ -204,9 +201,6 @@
           "containerName": "endstone-server",
           "ports": ["{mcsm_port1}:19132/udp"],
           "extraVolumes": [],
-          "memory": 2048,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": true
@@ -381,9 +375,6 @@
           "containerName": "terraria-server",
           "ports": ["{mcsm_port1}:7777/tcp"],
           "extraVolumes": [],
-          "memory": 4096,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "/root/.local/share/Terraria/Worlds",
           "env": [],
           "changeWorkdir": false
@@ -460,9 +451,6 @@
             "{mcsm_workspace}/ZomboidConfig|/home/steam/Zomboid",
             "{mcsm_workspace}/ZomboidDedicatedServer|/home/steam/ZomboidDedicatedServer"
           ],
-          "memory": 4096,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": false
@@ -852,9 +840,6 @@
           "containerName": "endstone-server",
           "ports": ["{mcsm_port1}:19132/udp"],
           "extraVolumes": [],
-          "memory": 2048,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": true
@@ -989,9 +974,6 @@
           "extraVolumes": [
             "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
           ],
-          "memory": 8192,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": false
@@ -1029,9 +1011,6 @@
           "extraVolumes": [
             "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
           ],
-          "memory": 8192,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": false
@@ -1071,9 +1050,6 @@
             "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
             "{mcsm_workspace}/data:/data"
           ],
-          "memory": 16384,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": false
@@ -1113,9 +1089,6 @@
             "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
             "{mcsm_workspace}/data:/data"
           ],
-          "memory": 16384,
-          "networkMode": "bridge",
-          "cpuUsage": 100,
           "workingDir": "",
           "env": [],
           "changeWorkdir": false
