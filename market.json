@@ -87,7 +87,6 @@
           "containerName": "terraria-server",
           "ports": ["{mcsm_port1}:7777/tcp"],
           "extraVolumes": [],
-          "memory": 4096,
           "networkMode": "bridge",
           "cpuUsage": 100,
           "workingDir": "/root/.local/share/Terraria/Worlds",
@@ -457,7 +456,6 @@
         }
       }
     },
-
 
     {
       "platform": "ALL",
