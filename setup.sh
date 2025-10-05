@@ -432,14 +432,6 @@ check_supported_os() {
   return 0
 }
 
-Install_Node() {
-  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-    echo_green "Node.js version is up-to-date, skipping installation."
-    return
-  fi
-
-  echo_cyan "[+] Install Node.JS environment..."
-
 # Print with specified color and style, fallback to RESET if not supported.
 # Supported colors*: black|red|green|yellow|blue|magenta|cyan|white
 # Supported styles*: bold|underline|italic|clear_line|strikethrough
@@ -506,7 +498,7 @@ cprint() {
 # Permission check before proceed with installation
 permission_barrier() {
   if [[ "$web_installed" == false && "$daemon_installed" == false ]]; then
-    cprint cyan "No components currently installed — skipping permission check."
+    cprint cyan "No components currently installed - skipping permission check."
     return 0
   fi
 
@@ -829,7 +821,7 @@ download_mcsm() {
 # Prepare user if needed
 prepare_user() {
   if [[ "$install_user" == "root" ]]; then
-    cprint cyan "install_user is 'root' — skipping user creation."
+    cprint cyan "install_user is 'root' - skipping user creation."
     return 0
   fi
 
@@ -847,7 +839,7 @@ prepare_user() {
 
   # Docker integration
   if command -v docker &>/dev/null; then
-    cprint cyan "Docker is installed — checking group assignment..."
+    cprint cyan "Docker is installed - checking group assignment..."
 
     if getent group docker &>/dev/null; then
       if id -nG "$install_user" | grep -qw docker; then
@@ -864,7 +856,7 @@ prepare_user() {
       cprint red "Docker installed but 'docker' group not found. Skipping group assignment."
     fi
   else
-    cprint yellow "Docker not installed — skipping Docker group configuration."
+    cprint yellow "Docker not installed - skipping Docker group configuration."
   fi
 
   return 0
@@ -891,7 +883,7 @@ mcsm_install_prepare() {
   [[ "${install_dir}" != */ ]] && install_dir="${install_dir}/"
 
   if [[ "$web_installed" == false && "$daemon_installed" == false ]]; then
-    cprint cyan "No existing components detected — skipping data backup/cleanup."
+    cprint cyan "No existing components detected - skipping data backup/cleanup."
     return 0
   fi
 
@@ -923,7 +915,7 @@ mcsm_install_prepare() {
         }
         cprint green "Moved $data_dir → $backup_path"
       else
-        cprint yellow "No data directory found for $component — skipping backup."
+        cprint yellow "No data directory found for $component - skipping backup."
       fi
 
       cprint cyan "Removing old component directory: $component_path"
@@ -957,7 +949,7 @@ install_component() {
 
   if [[ -e "$target_path" ]]; then
     cprint red bold "Target path already exists: $target_path"
-    cprint red "  This should not happen — possible permission error or unclean install."
+    cprint red "  This should not happen - possible permission error or unclean install."
 	cleanup_install_tmp
     exit 1
   fi
@@ -985,7 +977,7 @@ install_component() {
 
     cprint green "Data directory restored: $target_data_path"
   else
-    cprint yellow "No backed-up data directory found for $component — fresh install assumed."
+    cprint yellow "No backed-up data directory found for $component - fresh install assumed."
   fi
 
   # Step 3: Install NPM dependencies
@@ -1296,7 +1288,7 @@ main() {
     safe_run install_node "Node.js installation failed"
   fi
   
-  safe_run permission_barrier "Permission validation failed — aborting install"
+  safe_run permission_barrier "Permission validation failed - aborting install"
   
   safe_run download_mcsm "Failed to acquire MCSManager source"
   safe_run mcsm_install_prepare "Error while preparing for installation"
