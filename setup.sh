@@ -1303,4 +1303,6 @@ main() {
   
   safe_run install_mcsm "Failed to install MCSManager"
 }
+
 main "$@"
+# End of file
