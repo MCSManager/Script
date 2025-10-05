@@ -23,10 +23,75 @@ download_fallback_url="https://github.com/MCSManager/MCSManager/releases/latest/
 # Name of the release package to download/detect
 package_name="mcsmanager_linux_release.tar.gz"
 
-if [ "$(id -u)" -ne 0 ]; then
-  echo "This script must be run as root. Please use \"sudo bash\" instead."
-  exit 1
-fi
+# Node.js version to be installed
+# Keep the leading "v"
+node_version="v20.12.2"
+
+# Node download base URL - primary
+node_download_url_base="https://nodejs.org/dist/"
+
+# Node download URL - fallback.
+# This is the URL points directly to the file, not the base. This can also be a local absolute path.
+# Only supports https:// or http:// for web locations.
+node_download_fallback=""
+
+# Node.js installation path (defaults to the MCSManager installation path. Can be overridden with --node-install-dir)
+node_install_dir="$install_dir"
+
+# Temp dir for file extraction
+tmp_dir="/tmp"
+
+# --------------- Global Variables ---------------#
+#                  DO NOT MODIFY                  #
+
+
+# Component installation options.
+# For fresh installs, both daemon and web components are installed by default.
+# For updates, behavior depends on detected existing components.
+# Can be overridden with --install daemon/web/all
+install_daemon=true
+install_web=true
+
+# Install MCSM as (default: root).
+# To install as a general user (e.g., "mcsm"), use the --user option: --user mcsm
+# To ensure compatibility, only user mcsm is supported.
+install_user="root"
+# Installed user, for permission check
+web_installed=false
+daemon_installed=false
+web_installed_user=""
+daemon_installed_user=""
+
+# Service file locations
+# the final dir = systemd_file + {web/daemon} + ".service"
+systemd_file="/etc/systemd/system/mcsm-"
+# Optional: Override the default installation source file.
+# If --install-source is specified, the installer will use the provided
+# "mcsmanager_linux_release.tar.gz" file instead of downloading it.
+# Only support local absolute path.
+install_source_path=""
+
+# temp path for extracted file(s)
+install_tmp_dir="/opt/mcsmanager/mcsm_abcd"
+
+# dir name for data dir backup
+# e.g. /opt/mcsmanager/daemon/data -> /opt/mcsmanager/data_bak_data
+# only valid for when during an update
+backup_prefix="data_bak_"
+
+# System architecture (detected automatically)
+arch=""
+version=""
+distro=""
+
+# Supported OS versions (map-style structure)
+# Format: supported_os["distro_name"]="version1 version2 version3 ..."
+declare -A supported_os
+supported_os["Ubuntu"]="18 20 22 24"
+supported_os["Debian"]="10 11 12 13"
+supported_os["CentOS"]="7 8 8-stream 9-stream 10-stream"
+supported_os["RHEL"]="7 8 9 10"
+supported_os["Arch"]="rolling"
 
 # Required system commands for installation
 # These will be checked before logic process
@@ -432,6 +497,26 @@ check_supported_os() {
   return 0
 }
 
+# Check if all required commands are available
+check_required_commands() {
+  local missing=0
+
+  for cmd in "${required_commands[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "Error: Required command '$cmd' is not available in PATH."
+      missing=1
+    fi
+  done
+
+  if [ "$missing" -ne 0 ]; then
+    echo "One or more required commands are missing. Please install them and try again."
+    return 1
+  fi
+
+  cprint green "All required commands are available."
+  return 0
+}
+
 # Print with specified color and style, fallback to RESET if not supported.
 # Supported colors*: black|red|green|yellow|blue|magenta|cyan|white
 # Supported styles*: bold|underline|italic|clear_line|strikethrough
@@ -498,7 +583,7 @@ cprint() {
 # Permission check before proceed with installation
 permission_barrier() {
   if [[ "$web_installed" == false && "$daemon_installed" == false ]]; then
-    cprint cyan "No components currently installed - skipping permission check."
+    cprint cyan "No components currently installed — skipping permission check."
     return 0
   fi
 
@@ -821,7 +906,7 @@ download_mcsm() {
 # Prepare user if needed
 prepare_user() {
   if [[ "$install_user" == "root" ]]; then
-    cprint cyan "install_user is 'root' - skipping user creation."
+    cprint cyan "install_user is 'root' — skipping user creation."
     return 0
   fi
 
@@ -839,7 +924,7 @@ prepare_user() {
 
   # Docker integration
   if command -v docker &>/dev/null; then
-    cprint cyan "Docker is installed - checking group assignment..."
+    cprint cyan "Docker is installed — checking group assignment..."
 
     if getent group docker &>/dev/null; then
       if id -nG "$install_user" | grep -qw docker; then
@@ -856,7 +941,7 @@ prepare_user() {
       cprint red "Docker installed but 'docker' group not found. Skipping group assignment."
     fi
   else
-    cprint yellow "Docker not installed - skipping Docker group configuration."
+    cprint yellow "Docker not installed — skipping Docker group configuration."
   fi
 
   return 0
@@ -883,7 +968,7 @@ mcsm_install_prepare() {
   [[ "${install_dir}" != */ ]] && install_dir="${install_dir}/"
 
   if [[ "$web_installed" == false && "$daemon_installed" == false ]]; then
-    cprint cyan "No existing components detected - skipping data backup/cleanup."
+    cprint cyan "No existing components detected — skipping data backup/cleanup."
     return 0
   fi
 
@@ -915,7 +1000,7 @@ mcsm_install_prepare() {
         }
         cprint green "Moved $data_dir → $backup_path"
       else
-        cprint yellow "No data directory found for $component - skipping backup."
+        cprint yellow "No data directory found for $component — skipping backup."
       fi
 
       cprint cyan "Removing old component directory: $component_path"
@@ -949,7 +1034,7 @@ install_component() {
 
   if [[ -e "$target_path" ]]; then
     cprint red bold "Target path already exists: $target_path"
-    cprint red "  This should not happen - possible permission error or unclean install."
+    cprint red "  This should not happen — possible permission error or unclean install."
 	cleanup_install_tmp
     exit 1
   fi
@@ -977,7 +1062,7 @@ install_component() {
 
     cprint green "Data directory restored: $target_data_path"
   else
-    cprint yellow "No backed-up data directory found for $component - fresh install assumed."
+    cprint yellow "No backed-up data directory found for $component — fresh install assumed."
   fi
 
   # Step 3: Install NPM dependencies
@@ -1288,13 +1373,11 @@ main() {
     safe_run install_node "Node.js installation failed"
   fi
   
-  safe_run permission_barrier "Permission validation failed - aborting install"
+  safe_run permission_barrier "Permission validation failed — aborting install"
   
   safe_run download_mcsm "Failed to acquire MCSManager source"
   safe_run mcsm_install_prepare "Error while preparing for installation"
   
   safe_run install_mcsm "Failed to install MCSManager"
 }
-
 main "$@"
-# End of file
