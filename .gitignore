@@ -20,6 +20,4 @@ bin-release/
 # Remove old cli sh
 cli_old.sh
 
-#
-setup_old.sh
-design.txt
+.idea
