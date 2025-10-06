@@ -666,7 +666,6 @@ resolve_node_arch() {
 # This function check Node.js version + NPM (if Node.js valid)
 verify_node_at_path() {
   local node_path="$1"
-  # Assign value to vlobal variables when verifying
   node_bin_path="$node_path/bin/node"
   npm_bin_path="$node_path/bin/npm"
 
@@ -678,18 +677,15 @@ verify_node_at_path() {
   local installed_ver
   installed_ver="$("$node_bin_path" -v 2>/dev/null | sed 's/^v//')"
 
-  # Node exists but version not returned
   if [[ -z "$installed_ver" ]]; then
     return 1
   fi
 
-  # Version mismatch, even if newer
   if [ "$strict_node_version_check" = true ]; then
     if [[ "$installed_ver" != "$required_node_ver" ]]; then
       return 3
     fi
   else
-    # Version mismatch, too old.
     local cmp
     cmp=$(printf "%s\n%s\n" "$required_node_ver" "$installed_ver" | sort -V | head -1)
     if [[ "$cmp" != "$required_node_ver" ]]; then
@@ -697,13 +693,21 @@ verify_node_at_path() {
     fi
   fi
 
-  # node cmd valid, but npm is missing or broken.
-  if [ ! -x "$npm_bin_path" ] || ! "$npm_bin_path" --version >/dev/null 2>&1; then
+  # Check if npm exists and works using node (not $PATH/npm)
+  if [ ! -x "$npm_bin_path" ]; then
+    return 4
+  fi
+
+  # Use node to run npm.js directly, in case env is broken
+  local npm_version
+  npm_version="$("$node_bin_path" "$npm_bin_path" --version 2>/dev/null)"
+  if [[ -z "$npm_version" ]]; then
     return 4
   fi
 
   return 0
 }
+
 
 # Node.js pre-check. check if we need to install Node.js before installer run.
 # Use postcheck_node_after_install() to check after install.
@@ -1224,7 +1228,7 @@ print_install_result() {
   cprint white noprefix "/_/  /_/  \____/  /____/ /_/  /_/  \__,_/ /_/ /_/\__,_/ _\__, / \___//_/"
   echo ""   
   # status summary
-  cprint yellow noprefix "Installed/Updated Components:"
+  cprint yellow noprefix "Installed/Updated Component(s):"
   if [[ "$install_daemon" == true && -n "$daemon_key" && -n "$daemon_port" ]]; then
     cprint white noprefix "Daemon"
   elif [[ "$install_daemon" == true ]]; then
