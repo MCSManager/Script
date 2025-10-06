@@ -1083,10 +1083,10 @@ install_component() {
     exit 1
   }
 
-  if ! "$npm_bin_path" install --no-audit --no-fund --loglevel=warn; then
+  if ! "$node_bin_path" "$npm_bin_path" install --no-audit --no-fund --loglevel=warn; then
     cprint red bold "NPM dependency installation failed for $component"
     popd >/dev/null
-	cleanup_install_tmp
+    cleanup_install_tmp
     exit 1
   fi
 
