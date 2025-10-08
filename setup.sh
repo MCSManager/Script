@@ -950,11 +950,41 @@ prepare_user() {
 
   return 0
 }
+# Function to stop MCSM services if they exist
+stop_mcsm_services() {
+  cprint yellow bold "Attempting to stop mcsm-web and mcsm-daemon services..."
+
+  # Stop mcsm-web if the service exists
+  if systemctl list-units --full --all | grep -q '^mcsm-web\.service'; then
+    cprint blue "Stopping mcsm-web..."
+    if systemctl stop mcsm-web; then
+      cprint green "mcsm-web stopped successfully."
+    else
+      cprint red bold "Warning: Failed to stop mcsm-web."
+    fi
+  else
+    cprint cyan "mcsm-web service not found. Skipping."
+  fi
+
+  # Stop mcsm-daemon if the service exists
+  if systemctl list-units --full --all | grep -q '^mcsm-daemon\.service'; then
+    cprint blue "Stopping mcsm-daemon..."
+    if systemctl stop mcsm-daemon; then
+      cprint green "mcsm-daemon stopped successfully."
+    else
+      cprint red bold "Warning: Failed to stop mcsm-daemon."
+    fi
+  else
+    cprint cyan "mcsm-daemon service not found. Skipping."
+  fi
+}
 
 # Prepare file & permissions before install.
 mcsm_install_prepare() {
   # Prepare the user first
   prepare_user
+  # Stop service if existed
+  stop_mcsm_services
   
   if [[ ! -d "$install_tmp_dir" ]]; then
     cprint red bold "install_tmp_dir does not exist: $install_tmp_dir"
