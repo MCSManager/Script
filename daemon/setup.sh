@@ -1,14 +1,14 @@
 #!/bin/bash
-# This script file is specifically designed for the Chinese region, and servers in the Chinese region are used to accelerate file downloads.
+# Official installation script.
 
 mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://download.mcsmanager.com/mcsmanager_linux_release.tar.gz"
+mcsmanager_download_addr="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
 node="v20.12.2"
 arch=$(uname -m)
 
 if [ "$(id -u)" -ne 0 ]; then
-  echo "此脚本必须以 root 身份运行,请使用“sudo bash”代替"
+  echo "This script must be run as root. Please use \"sudo bash\" instead."
   exit 1
 fi
 
@@ -32,7 +32,7 @@ echo_yellow() {
 
 # script info
 echo_cyan "+----------------------------------------------------------------------
-| MCSManager 安装脚本 (MCSManager Installer)
+| MCSManager Installer
 +----------------------------------------------------------------------
 "
 
@@ -44,21 +44,15 @@ Red_Error() {
 }
 
 Install_Node() {
-  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-    echo_green "Node.js version is up-to-date, skipping installation."
-    return
-  fi
-
-  echo_cyan "[+] 正在安装 Node.JS..."
+  echo_cyan_n "[+] Install Node.JS environment...\n"
 
   rm -irf "$node_install_path"
 
-  cd /opt || Red_Error "[x] 未能进入 /opt 目录"
+  cd /opt || Red_Error "[x] Failed to enter /opt"
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
-  # wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
-  wget "https://registry.npmmirror.com/-/binary/node/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
 
   tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
 
@@ -67,7 +61,7 @@ Install_Node() {
   if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
     echo_green "Success"
   else
-    Red_Error "[x] Node.js 安装失败!"
+    Red_Error "[x] Node installation failed!"
   fi
 
   echo
@@ -81,23 +75,23 @@ Install_Node() {
 }
 
 Install_MCSManager() {
-  echo_cyan "[+] 安装 MCSManager..."
+  echo_cyan "[+] Install MCSManager..."
 
   # stop service
   systemctl disable --now mcsm-{web,daemon}
 
   # delete service
-  rm -rf /etc/systemd/system/mcsm-{daemon,web}.service
+  rm -rf /etc/systemd/system/mcsm-daemon.service
   systemctl daemon-reload
 
-  mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] 未能创建 ${mcsmanager_install_path}"
+  mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] Failed to create ${mcsmanager_install_path}"
 
   # cd /opt/mcsmanager
-  cd "${mcsmanager_install_path}" || Red_Error "[x] 未能进入 ${mcsmanager_install_path}"
+  cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
 
   # download MCSManager release
-  wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] 未能成功下载 MCSManager"
-  tar -zxf ${package_name} -o || Red_Error "[x] 未能成功解压 ${package_name}"
+  wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] Failed to download MCSManager"
+  tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
   rm -rf "${mcsmanager_install_path}/${package_name}"
 
   # compatible with tar.gz packages of different formats
@@ -107,24 +101,17 @@ Install_MCSManager() {
   fi
 
   # echo "[→] cd daemon"
-  cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] 未能进入 ${mcsmanager_install_path}/daemon"
+  cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
 
-  echo_cyan "[+] 正在安装 MCSManager-Daemon 依赖库..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
-
-  # echo "[←] cd .."
-  cd "${mcsmanager_install_path}/web" || Red_Error "[x] 未能进入 ${mcsmanager_install_path}/web"
-
-  echo_cyan "[+] 正在安装 MCSManager-Web 依赖库..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --registry=https://registry.npmmirror.com --production --no-fund --no-audit &>/dev/null || Red_Error "[x] 未能在以下目录使用npm install编译依赖库: ${mcsmanager_install_path}/web"
+  echo_cyan "[+] Install MCSManager-Daemon dependencies..."
+  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
 
   echo
   echo_yellow "=============== MCSManager ==============="
   echo_green "Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green "Web: ${mcsmanager_install_path}/web"
   echo_yellow "=============== MCSManager ==============="
   echo
-  echo_green "[+] MCSManager 安装完成!"
+  echo_green "[+] MCSManager installation success!"
 
   chmod -R 755 "$mcsmanager_install_path"
 
@@ -132,7 +119,7 @@ Install_MCSManager() {
 }
 
 Create_Service() {
-  echo_cyan "[+] 创建 MCSManager 面板服务..."
+  echo_cyan "[+] Create MCSManager service..."
 
   echo "[Unit]
 Description=MCSManager-Daemon
@@ -148,43 +135,29 @@ Environment=\"PATH=${PATH}\"
 WantedBy=multi-user.target
 " >/etc/systemd/system/mcsm-daemon.service
 
-  echo "[Unit]
-Description=MCSManager-Web
-
-[Service]
-WorkingDirectory=${mcsmanager_install_path}/web
-ExecStart=${node_install_path}/bin/node app.js
-ExecReload=/bin/kill -s QUIT \$MAINPID
-ExecStop=/bin/kill -s QUIT \$MAINPID
-Environment=\"PATH=${PATH}\"
-
-[Install]
-WantedBy=multi-user.target
-" >/etc/systemd/system/mcsm-web.service
-
   systemctl daemon-reload
-  systemctl enable --now mcsm-{daemon,web}.service
-  echo_green "已注册MCSManager到系统服务!"
+  systemctl enable --now mcsm-daemon.service
+  echo_green "Registered!"
 
   sleep 2
 
   printf "\n\n\n\n"
 
   echo_yellow "=================================================================="
-  echo_green "安装完成，欢迎使用 MCSManager ！"
+  echo_green "Installation is complete! Welcome to the MCSManager!!!"
   echo_yellow " "
-  echo_cyan_n "主控网页访问地址:        "
-  echo_yellow "http://<Your IP>:23333  (Browser)"
-  echo_cyan_n "被控守护进程地址:          "
+  echo_cyan_n "Daemon Address:          "
   echo_yellow "ws://<Your IP>:24444    (Cluster)"
-  echo_red "默认情况下，你必须在防火墙放行 23333 和 24444 端口才能确保面板工作正常！"
+  echo_red "You must expose ports "
+  echo_yellow "24444"
+  echo_red " to use the service properly on the Internet."
   echo_yellow " "
-  echo_cyan "面板开关指令:"
-  echo_cyan "systemctl start mcsm-{daemon,web}.service"
-  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
+  echo_cyan "Usage:"
+  echo_cyan "systemctl start mcsm-daemon.service"
+  echo_cyan "systemctl stop mcsm-daemon.service"
+  echo_cyan "systemctl restart mcsm-daemon.service"
   echo_yellow " "
-  echo_green "官方文档: https://docs.mcsmanager.com/zh_cn/"
+  echo_green "Official Document: https://docs.mcsmanager.com/"
   echo_yellow "=================================================================="
 }
 
@@ -205,7 +178,7 @@ elif [[ $arch == s390x ]]; then
   arch=s390x
   #echo "[-] IBM LinuxONE architecture detected"
 else
-  Red_Error "[x] 对不起,这个架构还不支持安装MCSManager!\n[x]请尝试手动安装: https://github.com/MCSManager/MCSManager#linux"
+  Red_Error "[x] Sorry, this architecture is not supported yet!\n[x]Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
 fi
 
 # Define the variable Node installation directory
@@ -215,7 +188,7 @@ node_install_path="/opt/node-$node-linux-$arch"
 echo_cyan "[-] Architecture: $arch"
 
 # Install related software
-echo_cyan_n "[+] 正在安装依赖软件 (git, tar, wget)... "
+echo_cyan_n "[+] Installing dependent software (git, tar, wget)... "
 if [[ -x "$(command -v yum)" ]]; then
   yum install -y git tar wget
 elif [[ -x "$(command -v apt-get)" ]]; then
@@ -225,14 +198,14 @@ elif [[ -x "$(command -v pacman)" ]]; then
 elif [[ -x "$(command -v zypper)" ]]; then
   zypper --non-interactive install git tar wget
 else
-  echo_red "[!] 找不到你的软件包管理器! 你需要先去安装 git, tar 和 wget!"
+  echo_red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
 fi
 
 # Determine whether the relevant software is installed successfully
 if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
-  echo_green "完成"
+  echo_green "Success"
 else
-  Red_Error "[x] 没有安装 git, tar 和 wget, 请先在安装MCSManager前安装它们!"
+  Red_Error "[x] Failed to find git, tar and wget, please install them manually!"
 fi
 
 # Install the Node environment
