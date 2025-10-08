@@ -23,10 +23,75 @@ download_fallback_url="https://github.com/MCSManager/MCSManager/releases/latest/
 # Name of the release package to download/detect
 package_name="mcsmanager_linux_release.tar.gz"
 
-if [ "$(id -u)" -ne 0 ]; then
-  echo "This script must be run as root. Please use \"sudo bash\" instead."
-  exit 1
-fi
+# Node.js version to be installed
+# Keep the leading "v"
+node_version="v20.12.2"
+
+# Node download base URL - primary
+node_download_url_base="https://nodejs.org/dist/"
+
+# Node download URL - fallback.
+# This is the URL points directly to the file, not the base. This can also be a local absolute path.
+# Only supports https:// or http:// for web locations.
+node_download_fallback=""
+
+# Node.js installation path (defaults to the MCSManager installation path. Can be overridden with --node-install-dir)
+node_install_dir="$install_dir"
+
+# Temp dir for file extraction
+tmp_dir="/tmp"
+
+# --------------- Global Variables ---------------#
+#                  DO NOT MODIFY                  #
+
+
+# Component installation options.
+# For fresh installs, both daemon and web components are installed by default.
+# For updates, behavior depends on detected existing components.
+# Can be overridden with --install daemon/web/all
+install_daemon=true
+install_web=true
+
+# Install MCSM as (default: root).
+# To install as a general user (e.g., "mcsm"), use the --user option: --user mcsm
+# To ensure compatibility, only user mcsm is supported.
+install_user="root"
+# Installed user, for permission check
+web_installed=false
+daemon_installed=false
+web_installed_user=""
+daemon_installed_user=""
+
+# Service file locations
+# the final dir = systemd_file + {web/daemon} + ".service"
+systemd_file="/etc/systemd/system/mcsm-"
+# Optional: Override the default installation source file.
+# If --install-source is specified, the installer will use the provided
+# "mcsmanager_linux_release.tar.gz" file instead of downloading it.
+# Only support local absolute path.
+install_source_path=""
+
+# temp path for extracted file(s)
+install_tmp_dir="/opt/mcsmanager/mcsm_abcd"
+
+# dir name for data dir backup
+# e.g. /opt/mcsmanager/daemon/data -> /opt/mcsmanager/data_bak_data
+# only valid for when during an update
+backup_prefix="data_bak_"
+
+# System architecture (detected automatically)
+arch=""
+version=""
+distro=""
+
+# Supported OS versions (map-style structure)
+# Format: supported_os["distro_name"]="version1 version2 version3 ..."
+declare -A supported_os
+supported_os["Ubuntu"]="18 20 22 24"
+supported_os["Debian"]="10 11 12 13"
+supported_os["CentOS"]="7 8 8-stream 9-stream 10-stream"
+supported_os["RHEL"]="7 8 9 10"
+supported_os["Arch"]="rolling"
 
 # Required system commands for installation
 # These will be checked before logic process
@@ -432,13 +497,25 @@ check_supported_os() {
   return 0
 }
 
-Install_Node() {
-  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-    echo_green "Node.js version is up-to-date, skipping installation."
-    return
+# Check if all required commands are available
+check_required_commands() {
+  local missing=0
+
+  for cmd in "${required_commands[@]}"; do
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+      echo "Error: Required command '$cmd' is not available in PATH."
+      missing=1
+    fi
+  done
+
+  if [ "$missing" -ne 0 ]; then
+    echo "One or more required commands are missing. Please install them and try again."
+    return 1
   fi
 
-  echo_cyan "[+] Install Node.JS environment..."
+  cprint green "All required commands are available."
+  return 0
+}
 
 # Print with specified color and style, fallback to RESET if not supported.
 # Supported colors*: black|red|green|yellow|blue|magenta|cyan|white
@@ -919,13 +996,14 @@ install_component() {
     exit 1
   fi
 
-
   mv -f "$source_path" "$target_path" || {
-    cprint red bold "Failed to move $source_path → $target_path"
-    cleanup_install_tmp
+    cprint red bold "Failed to move $source_path -> $target_path"
+	cleanup_install_tmp
     exit 1
   }
+
   cprint green "Moved $component to $target_path"
+
 
   # Step 3: Install NPM dependencies
   if [[ ! -x "$npm_bin_path" ]]; then
