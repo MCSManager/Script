@@ -899,46 +899,6 @@ mcsm_install_prepare() {
     return 0
   fi
 
-  for component in web daemon; do
-    local is_installed_var="${component}_installed"
-    if [[ "${!is_installed_var}" == true ]]; then
-      local component_path="${install_dir}${component}"
-      local data_dir="${component_path}/data"
-      local backup_path="${install_dir}${backup_prefix}${component}"
-
-      if [[ ! -d "$component_path" ]]; then
-        cprint yellow "Expected installed component directory not found: $component_path"
-        continue
-      fi
-
-      if [[ -d "$data_dir" ]]; then
-        if [[ -e "$backup_path" ]]; then
-          cprint red bold "Backup destination already exists: $backup_path"
-          cprint red "Please resolve this conflict manually before continuing."
-		  cleanup_install_tmp
-          exit 1
-        fi
-
-        cprint cyan "Backing up data directory for $component..."
-        mv "$data_dir" "$backup_path" || {
-          cprint red bold "Failed to move $data_dir to $backup_path"
-		  cleanup_install_tmp
-          exit 1
-        }
-        cprint green "Moved $data_dir → $backup_path"
-      else
-        cprint yellow "No data directory found for $component — skipping backup."
-      fi
-
-      cprint cyan "Removing old component directory: $component_path"
-      rm -rf "$component_path" || {
-        cprint red bold "Failed to remove old component directory: $component_path"
-		cleanup_install_tmp
-        exit 1
-      }
-    fi
-  done
-
   cprint green bold "Existing components prepared successfully."
   return 0
 }
@@ -959,38 +919,13 @@ install_component() {
     exit 1
   fi
 
-  if [[ -e "$target_path" ]]; then
-    cprint red bold "Target path already exists: $target_path"
-    cprint red "  This should not happen — possible permission error or unclean install."
-	cleanup_install_tmp
-    exit 1
-  fi
 
-  mv "$source_path" "$target_path" || {
+  mv -f "$source_path" "$target_path" || {
     cprint red bold "Failed to move $source_path → $target_path"
-	cleanup_install_tmp
+    cleanup_install_tmp
     exit 1
   }
-
   cprint green "Moved $component to $target_path"
-
-  # Step 2: Restore backed-up data directory if present
-  if [[ -d "$backup_data_path" ]]; then
-    local target_data_path="${target_path}/data"
-
-    cprint cyan "Restoring backed-up data directory for $component..."
-
-    rm -rf "$target_data_path"  # Ensure no conflict
-    mv "$backup_data_path" "$target_data_path" || {
-      cprint red bold "Failed to restore data directory to $target_data_path"
-	  cleanup_install_tmp
-      exit 1
-    }
-
-    cprint green "Data directory restored: $target_data_path"
-  else
-    cprint yellow "No backed-up data directory found for $component — fresh install assumed."
-  fi
 
   # Step 3: Install NPM dependencies
   if [[ ! -x "$npm_bin_path" ]]; then
