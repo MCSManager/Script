@@ -954,31 +954,22 @@ prepare_user() {
 stop_mcsm_services() {
   cprint yellow bold "Attempting to stop mcsm-web and mcsm-daemon services..."
 
-  # Stop mcsm-web if the service exists
-  if systemctl list-units --full --all | grep -q '^mcsm-web\.service'; then
-    cprint blue "Stopping mcsm-web..."
-    if systemctl stop mcsm-web; then
-      cprint green "mcsm-web stopped successfully."
-    else
-      cprint red bold "Warning: Failed to stop mcsm-web."
-    fi
+  # Attempt to stop mcsm-web
+  cprint blue "Stopping mcsm-web..."
+  if systemctl stop mcsm-web; then
+    cprint green "mcsm-web stopped successfully."
   else
-    cprint cyan "mcsm-web service not found. Skipping."
+    cprint red bold "Warning: Failed to stop mcsm-web (may not exist or already stopped)."
   fi
 
-  # Stop mcsm-daemon if the service exists
-  if systemctl list-units --full --all | grep -q '^mcsm-daemon\.service'; then
-    cprint blue "Stopping mcsm-daemon..."
-    if systemctl stop mcsm-daemon; then
-      cprint green "mcsm-daemon stopped successfully."
-    else
-      cprint red bold "Warning: Failed to stop mcsm-daemon."
-    fi
+  # Attempt to stop mcsm-daemon
+  cprint blue "Stopping mcsm-daemon..."
+  if systemctl stop mcsm-daemon; then
+    cprint green "mcsm-daemon stopped successfully."
   else
-    cprint cyan "mcsm-daemon service not found. Skipping."
+    cprint red bold "Warning: Failed to stop mcsm-daemon (may not exist or already stopped)."
   fi
 }
-
 # Prepare file & permissions before install.
 mcsm_install_prepare() {
   # Prepare the user first
@@ -1026,12 +1017,14 @@ install_component() {
     exit 1
   fi
 
-  mv -f "$source_path" "$target_path" || {
-    cprint red bold "Failed to move $source_path -> $target_path"
-	cleanup_install_tmp
+  if cp -a "$source_path"/. "$target_path"; then
+    cprint green "Updated files from $source_path → $target_path"
+    rm -rf "$source_path"
+  else
+    cprint red bold "Failed to update files from $source_path → $target_path"
+    cleanup_install_tmp
     exit 1
-  }
-
+  fi
   cprint green "Moved $component to $target_path"
 
 
