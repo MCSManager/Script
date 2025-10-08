@@ -111,7 +111,7 @@ required_commands=(
 # enabled -> strict requriement for defined node version
 # false -> newer version allowed
 # Older version is NEVER allowed
-strict_node_version_check=false
+strict_node_version_check=true
 
 # Will be set based on actual node status
 install_node=true
