@@ -925,6 +925,14 @@ prepare_user() {
     fi
     cprint green "User '$install_user' created."
   fi
+  
+  cprint cyan "Changing ownership of $install_dir to user '$install_user'..."
+  chown -R "$install_user":"$install_user" "$install_dir" || {
+    cprint red bold "Failed to change ownership of $install_dir"
+	cleanup_install_tmp
+    exit 1
+  }
+
 
   # Docker integration
   if command -v docker &>/dev/null; then
