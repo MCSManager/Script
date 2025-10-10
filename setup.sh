@@ -980,8 +980,7 @@ stop_mcsm_services() {
 }
 # Prepare file & permissions before install.
 mcsm_install_prepare() {
-  # Prepare the user first
-  prepare_user
+
   # Stop service if existed
   stop_mcsm_services
   
@@ -1343,7 +1342,7 @@ main() {
   if [ "$install_node" = true ]; then
     safe_run install_node "Node.js installation failed"
   fi
-  
+  safe_run prepare_user "Failed to prepare user permission."
   safe_run permission_barrier "Permission validation failed — aborting install"
   
   safe_run download_mcsm "Failed to acquire MCSManager source"
