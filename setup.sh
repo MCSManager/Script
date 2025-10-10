@@ -619,6 +619,7 @@ permission_barrier() {
           cprint yellow "Installed as user: $installed_user"
           cprint yellow "Target install user: $install_user"
           cprint yellow "User mismatch, but --force-permission is set. Continuing and updating permissions..."
+		  sleep 3
 		else
           cprint red bold "Permission mismatch for '$component':"
           cprint red "Installed as user: $installed_user"
@@ -643,11 +644,22 @@ permission_barrier() {
   fi
 
   if [[ "$dir_owner" != "$install_user" ]]; then
-    cprint red bold "Install directory ownership mismatch:"
-    cprint red "  Directory: $install_dir"
-    cprint red "  Owned by:  $dir_owner"
-    cprint red "  Expected:  $install_user"
+    if [[ "$force_permission" == true ]]; then
+      cprint yellow bold "Install directory ownership mismatch:"
+      cprint yellow "  Directory: $install_dir"
+      cprint yellow "  Owned by:  $dir_owner"
+      cprint yellow "  Expected:  $install_user"
+      cprint yellow "  --force-permission is set. Continuing despite mismatch."
+	  sleep 3
+    else
+      cprint red bold "Install directory ownership mismatch:"
+      cprint red "  Directory: $install_dir"
+      cprint red "  Owned by:  $dir_owner"
+      cprint red "  Expected:  $install_user"
     exit 1
+    fi
+  else
+    cprint green bold "Install directory ownership check passed: '$install_dir' is owned by '$install_user'."
   fi
 
   cprint green bold "Permissions and ownership validated. Proceeding."
