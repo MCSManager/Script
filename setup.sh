@@ -679,7 +679,7 @@ resolve_node_arch() {
   node_path="${node_install_dir}/node-${node_version}-linux-${node_arch}"
 
   cprint cyan "Resolved Node.js architecture: $node_arch"
-  cprint cyan "Computed Node.js install path: $node_path"
+  cprint cyan "Node.js install path: $node_path"
 }
 
 # Check if Node.js at PATH is valid.
@@ -1290,6 +1290,11 @@ print_install_result() {
   cprint white noprefix "  To enable secure HTTPS access, configure a reverse proxy:"
   cprint white noprefix "  https://docs.mcsmanager.com/ops/proxy_https.html"
   echo ""
+  
+  if [[ "$force_permission" == true ]]; then
+    cprint red noprefix "[Important] You chose to override permission during install."
+    cprint red noprefix "            You may need to run: chown -R $install_user <path> to update permission manually."
+  fi
 
   # Closing message
   cprint green noprefix  "Installation completed. Enjoy managing your servers with MCSManager!"
