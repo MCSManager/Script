@@ -41,6 +41,10 @@ node_install_dir="$install_dir"
 # Temp dir for file extraction
 tmp_dir="/tmp"
 
+# Bypass installed user permission check, override by --force-permission
+force_permission=false
+
+
 # --------------- Global Variables ---------------#
 #                  DO NOT MODIFY                  #
 
@@ -83,6 +87,8 @@ backup_prefix="data_bak_"
 arch=""
 version=""
 distro=""
+
+
 
 # Supported OS versions (map-style structure)
 # Format: supported_os["distro_name"]="version1 version2 version3 ..."
@@ -378,6 +384,10 @@ parse_args() {
           exit 1
         fi
         ;;
+      --force-permission)
+        force_permission=true
+        shift
+        ;;
       *)
         echo "Error: Unknown argument: $1"
         exit 1
@@ -602,14 +612,24 @@ permission_barrier() {
         exit 1
       fi
 
-      # Step 1: User match check
+      # Step 1: User match check with optional force override
       if [[ "$installed_user" != "$install_user" ]]; then
-        cprint red bold "Permission mismatch for '$component':"
-        cprint red "Installed as user: $installed_user"
-        cprint red "Current install target user: $install_user"
-        cprint red "Unable to proceed due to ownership conflict."
-        exit 1
+        if [[ "$force_permission" == true ]]; then
+          cprint yellow bold "Permission mismatch for '$component':"
+          cprint yellow "Installed as user: $installed_user"
+          cprint yellow "Target install user: $install_user"
+          cprint yellow "User mismatch, but --force-permission is set. Continuing and updating permissions..."
+		else
+          cprint red bold "Permission mismatch for '$component':"
+          cprint red "Installed as user: $installed_user"
+          cprint red "Current install target user: $install_user"
+          cprint red "Unable to proceed due to ownership conflict. Use --force-permission to override and update file permission."
+          exit 1
+		fi
+      else
+        cprint green bold "Permission check passed: '$installed_user' matches target user."
       fi
+
     fi
   done
 
