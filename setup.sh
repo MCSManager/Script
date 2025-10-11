@@ -1372,8 +1372,10 @@ main() {
   if [ "$install_node" = true ]; then
     safe_run install_node "Node.js installation failed"
   fi
-  safe_run prepare_user "Failed to prepare user permission."
+
   safe_run permission_barrier "Permission validation failed — aborting install"
+
+  safe_run prepare_user "Failed to prepare user permission."
   
   safe_run download_mcsm "Failed to acquire MCSManager source"
   safe_run mcsm_install_prepare "Error while preparing for installation"
