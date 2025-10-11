@@ -44,6 +44,11 @@ Red_Error() {
 }
 
 Install_Node() {
+  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
+    echo_green "Node.js version is up-to-date, skipping installation."
+    return
+  fi
+
   echo_cyan_n "[+] 安装 Node.JS...\n"
 
   rm -irf "$node_install_path"
