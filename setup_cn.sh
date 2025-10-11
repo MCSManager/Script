@@ -212,7 +212,7 @@ fi
 node_install_path="/opt/node-$node-linux-$arch"
 
 # Check network connection
-echo_cyan "[-] Architecture: $arch"
+echo_cyan "[-] 当前系统架构: $arch"
 
 # Install related software
 echo_cyan_n "[+] 正在安装依赖软件 (git, tar, wget)... "
@@ -230,7 +230,7 @@ fi
 
 # Determine whether the relevant software is installed successfully
 if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
-  echo_green "完成"
+  echo_green "完成!"
 else
   Red_Error "[x] 没有安装 git, tar 和 wget, 请先在安装MCSManager前安装它们!"
 fi
