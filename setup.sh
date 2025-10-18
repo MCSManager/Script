@@ -1141,7 +1141,7 @@ extract_component_info() {
     local daemon_config_path="${daemon_path}/${daemon_key_config_subpath}"
 
     cprint cyan bold "Starting daemon service..."
-    if systemctl start "$daemon_service"; then
+    if systemctl restart "$daemon_service"; then
       cprint green "Daemon service started."
 
       sleep 1  # Allow service to init and write configs
@@ -1176,7 +1176,7 @@ extract_component_info() {
     local web_config_path="${web_path}/${web_port_config_subpath}"
 
     cprint cyan bold "Starting web service..."
-    if systemctl start "$web_service"; then
+    if systemctl restart "$web_service"; then
       cprint green "Web service started."
 
       sleep 1  # Allow time to populate config
