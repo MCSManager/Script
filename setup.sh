@@ -1,11 +1,27 @@
 #!/bin/bash
-# Official installation script.
+# Official MCSManager installation script.
+# This script installs or updates the MCSManager Web and/or Daemon to the latest version.
+# ------------------------------------------------------------------------------
+# Supported Linux distributions:
+# This script supports the following mainstream Linux distributions:
+# - Ubuntu: 18.04, 20.04, 22.04, 24.04
+# - Debian: 10, 11, 12, 13
+# - CentOS: 7, 8 Stream, 9 Stream, 10 Stream
+# - RHEL:   7, 8, 9, 10
+# - Arch Linux: Support planned (TBD)
+# ------------------------------------------------------------------------------
 
-mcsmanager_install_path="/opt/mcsmanager"
-mcsmanager_download_addr="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
+# Target installation directory (can be overridden with --install-dir)
+install_dir="/opt/mcsmanager"
+
+# Primary download URL bas. Full package URL = download_base_url + package_name
+download_base_url="https://github.com/MCSManager/MCSManager/releases/latest/download/"
+
+# Fallback download URL (can also be a local directory or mirror)
+download_fallback_url="https://github.com/MCSManager/MCSManager/releases/latest/download/"
+
+# Name of the release package to download/detect
 package_name="mcsmanager_linux_release.tar.gz"
-node="v20.12.2"
-arch=$(uname -m)
 
 # Node.js version to be installed
 # Keep the leading "v"
@@ -83,7 +99,18 @@ supported_os["CentOS"]="7 8 8-stream 9-stream 10-stream"
 supported_os["RHEL"]="7 8 9 10"
 supported_os["Arch"]="rolling"
 
-printf "\033c"
+# Required system commands for installation
+# These will be checked before logic process
+required_commands=(
+  chmod
+  chown
+  wget
+  tar
+  stat
+  useradd
+  usermod
+  date
+)
 
 # Node.js related sections
 # Enable strict version checking (exact match)
@@ -154,11 +181,22 @@ safe_run() {
   fi
 }
 
-# script info
-echo_cyan "+----------------------------------------------------------------------
-| MCSManager Installer
-+----------------------------------------------------------------------
-"
+# Function to ensure the script is run as root
+check_root() {
+  # Using Bash's built-in EUID variable
+  if [ -n "$EUID" ]; then
+    if [ "$EUID" -ne 0 ]; then
+      cprint red "Error: This script must be run as root. Please use sudo or switch to the root user."
+      exit 1
+    fi
+  else
+    # Fallback to using id -u if EUID is unavailable (e.g., non-Bash shell or misconfigured environment)
+    if [ "$(id -u)" -ne 0 ]; then
+      cprint red "Error: This script must be run as root. Please use sudo or switch to the root user."
+      exit 1
+    fi
+  fi
+}
 
 # Function to check whether current terminal support color & style
 detect_terminal_capabilities() {
@@ -489,68 +527,90 @@ check_required_commands() {
   return 0
 }
 
-  rm -irf "$node_install_path"
+# Print with specified color and style, fallback to RESET if not supported.
+# Supported colors*: black|red|green|yellow|blue|magenta|cyan|white
+# Supported styles*: bold|underline|italic|clear_line|strikethrough
+# *Note: some style may not necessarily work on all terminals.
+# Example usage:
+#  cprint green bold "Installation completed successfully."
+#  cprint red underline "Failed to detect required command: wget"
+#  cprint yellow "Warning: Disk space is low."
+#  cprint underline "Failed to detect required command: wget"
+#  cprint bold green underline"Installation completed successfully."
 
-  cd /opt || Red_Error "[x] Failed to enter /opt"
+cprint() {
+  local color=""
+  local text=""
+  local styles=""
+  local disable_prefix=false
+  local disable_newline=false
 
-  rm -rf "node-$node-linux-$arch.tar.gz"
+  while [[ $# -gt 1 ]]; do
+    case "$1" in
+      black|red|green|yellow|blue|magenta|cyan|white)
+        color="$1"
+        ;;
+      bold|underline|italic|clear_line|strikethrough)
+        styles+="${STYLES[$1]}"
+        ;;
+      noprefix)
+        disable_prefix=true
+        ;;
+      nonl)
+        disable_newline=true
+        ;;
+    esac
+    shift
+  done
 
-  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+  text="$1"
 
-  tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
-
-  rm -rf "node-$node-linux-$arch.tar.gz"
-
-  if [[ -f "$node_install_path"/bin/node ]] && [[ "$("$node_install_path"/bin/node -v)" == "$node" ]]; then
-    echo_green "Success"
-  else
-    Red_Error "[x] Node installation failed!"
+  local prefix_text=""
+  if [[ "$disable_prefix" != true ]]; then
+    local timestamp="[$(date +%H:%M:%S)]"
+    local label="[MCSM Installer]"
+    prefix_text="${FG_COLORS[white]}$timestamp $label${RESET} "
   fi
 
-  echo
-  echo_yellow "=============== Node.JS Version ==============="
-  echo_yellow " node: $("$node_install_path"/bin/node -v)"
-  echo_yellow " npm: v$(env "$node_install_path"/bin/node "$node_install_path"/bin/npm -v)"
-  echo_yellow "=============== Node.JS Version ==============="
-  echo
+  local prefix=""
+  if [[ -n "$color" && "$SUPPORTS_COLOR" = true ]]; then
+    prefix+="${FG_COLORS[$color]}"
+  fi
+  if [[ "$SUPPORTS_STYLE" = true || "$styles" == *"${STYLES[clear_line]}"* ]]; then
+    prefix="$styles$prefix"
+  fi
 
-  sleep 3
+  if [[ "$disable_newline" == true ]]; then
+    printf "%b%b%s%b" "$prefix_text" "$prefix" "$text" "$RESET"
+  else
+    printf "%b%b%s%b\n" "$prefix_text" "$prefix" "$text" "$RESET"
+  fi
 }
 
-Install_MCSManager() {
-  echo_cyan "[+] Install MCSManager..."
 
-  # stop service
-  systemctl disable --now mcsm-{web,daemon}
 
-  # delete service
-  rm -rf /etc/systemd/system/mcsm-{daemon,web}.service
-  systemctl daemon-reload
 
-  mkdir -p "${mcsmanager_install_path}" || Red_Error "[x] Failed to create ${mcsmanager_install_path}"
-
-  # cd /opt/mcsmanager
-  cd "${mcsmanager_install_path}" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}"
-
-  # download MCSManager release
-  wget "${mcsmanager_download_addr}" -O "${package_name}" || Red_Error "[x] Failed to download MCSManager"
-  tar -zxf ${package_name} -o || Red_Error "[x] Failed to untar ${package_name}"
-  rm -rf "${mcsmanager_install_path}/${package_name}"
-
-  # compatible with tar.gz packages of different formats
-  if [ -d "/opt/mcsmanager/mcsmanager" ]; then
-    cp -rf /opt/mcsmanager/mcsmanager/* /opt/mcsmanager/
-    rm -rf /opt/mcsmanager/mcsmanager
+# Permission check before proceed with installation
+permission_barrier() {
+  if [[ "$web_installed" == false && "$daemon_installed" == false ]]; then
+    cprint cyan "No components currently installed — skipping permission check."
+    return 0
   fi
 
-  # echo "[→] cd daemon"
-  cd "${mcsmanager_install_path}/daemon" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/daemon"
+  for component in web daemon; do
+    local is_installed_var="${component}_installed"
+    local installed_user_var="${component}_installed_user"
 
-  echo_cyan "[+] Install MCSManager-Daemon dependencies..."
-  env "$node_install_path"/bin/node "$node_install_path"/bin/npm install --production --no-fund --no-audit &>/dev/null || Red_Error "[x] Failed to npm install in ${mcsmanager_install_path}/daemon"
+    if [[ "${!is_installed_var}" == true ]]; then
+      local installed_user="${!installed_user_var}"
 
-  # echo "[←] cd .."
-  cd "${mcsmanager_install_path}/web" || Red_Error "[x] Failed to enter ${mcsmanager_install_path}/web"
+      # Step 0: Ensure installed user is detected
+      if [[ -z "$installed_user" ]]; then
+        cprint red bold "Detected that '$component' is installed but could not determine the user from its systemd service file."
+        cprint red "This may indicate a custom or unsupported service file setup."
+        cprint red "Refusing to proceed to avoid potential conflicts."
+        exit 1
+      fi
 
       # Step 1: User match check with optional force override
       if [[ "$installed_user" != "$install_user" ]]; then
@@ -574,15 +634,14 @@ Install_MCSManager() {
     fi
   done
 
-  echo
-  echo_yellow "=============== MCSManager ==============="
-  echo_green "Daemon: ${mcsmanager_install_path}/daemon"
-  echo_green "Web: ${mcsmanager_install_path}/web"
-  echo_yellow "=============== MCSManager ==============="
-  echo
-  echo_green "[+] MCSManager installation success!"
+  # Step 2: Directory ownership check
+  local dir_owner
+  dir_owner=$(stat -c '%U' "$install_dir" 2>/dev/null)
 
-  chmod -R 755 "$mcsmanager_install_path"
+  if [[ -z "$dir_owner" ]]; then
+    cprint red bold "Unable to determine owner of install_dir: $install_dir"
+    exit 1
+  fi
 
   if [[ "$dir_owner" != "$install_user" ]]; then
     if [[ "$force_permission" == true ]]; then
@@ -607,8 +666,6 @@ Install_MCSManager() {
   return 0
 }
 
-Create_Service() {
-  echo_cyan "[+] Create MCSManager service..."
 
 
 # Map OS arch with actual Node.js Arch name
@@ -1050,113 +1107,73 @@ Description=MCSManager-${component^}
 After=network.target
 
 [Service]
-WorkingDirectory=${mcsmanager_install_path}/daemon
-ExecStart=${node_install_path}/bin/node app.js
-ExecReload=/bin/kill -s QUIT \$MAINPID
-ExecStop=/bin/kill -s QUIT \$MAINPID
-Environment=\"PATH=${PATH}\"
+Type=simple
+WorkingDirectory=${working_dir}
+ExecStart=${exec}
+ExecReload=/bin/kill -s HUP \$MAINPID
+ExecStop=/bin/kill -s TERM \$MAINPID
+Restart=on-failure
+User=${install_user}
+Environment="PATH=${PATH}"
+Environment="NODE_ENV=production"
 
 [Install]
 WantedBy=multi-user.target
-" >/etc/systemd/system/mcsm-daemon.service
+EOF
 
-  echo "[Unit]
-Description=MCSManager-Web
+  if [[ $? -ne 0 ]]; then
+    cprint red bold "Failed to write service file: $service_path"
+	cleanup_install_tmp
+    return 1
+  fi
 
-[Service]
-WorkingDirectory=${mcsmanager_install_path}/web
-ExecStart=${node_install_path}/bin/node app.js
-ExecReload=/bin/kill -s QUIT \$MAINPID
-ExecStop=/bin/kill -s QUIT \$MAINPID
-Environment=\"PATH=${PATH}\"
-
-[Install]
-WantedBy=multi-user.target
-" >/etc/systemd/system/mcsm-web.service
-
-  systemctl daemon-reload
-  systemctl enable --now mcsm-{daemon,web}.service
-  echo_green "Registered!"
-
-  sleep 2
-
-  printf "\n\n\n\n"
-
-  echo_yellow "=================================================================="
-  echo_green "Installation is complete! Welcome to the MCSManager!!!"
-  echo_yellow " "
-  echo_cyan_n "HTTP Web Service:        "
-  echo_yellow "http://<Your IP>:23333  (Browser)"
-  echo_cyan_n "Daemon Address:          "
-  echo_yellow "ws://<Your IP>:24444    (Cluster)"
-  echo_red "You must expose ports "
-  echo_yellow "23333"
-  echo_red " and "
-  echo_yellow "24444"
-  echo_red " to use the service properly on the Internet."
-  echo_yellow " "
-  echo_cyan "Usage:"
-  echo_cyan "systemctl start mcsm-{daemon,web}.service"
-  echo_cyan "systemctl stop mcsm-{daemon,web}.service"
-  echo_cyan "systemctl restart mcsm-{daemon,web}.service"
-  echo_yellow " "
-  echo_green "Official Document: https://docs.mcsmanager.com/"
-  echo_yellow "=================================================================="
+  chmod 644 "$service_path"
+  cprint green "Created systemd unit: $service_path"
+  return 0
 }
 
-# Environmental inspection
-if [[ "$arch" == x86_64 ]]; then
-  arch=x64
-  #echo "[-] x64 architecture detected"
-elif [[ $arch == aarch64 ]]; then
-  arch=arm64
-  #echo "[-] 64-bit ARM architecture detected"
-elif [[ $arch == arm ]]; then
-  arch=armv7l
-  #echo "[-] 32-bit ARM architecture detected"
-elif [[ $arch == ppc64le ]]; then
-  arch=ppc64le
-  #echo "[-] IBM POWER architecture detected"
-elif [[ $arch == s390x ]]; then
-  arch=s390x
-  #echo "[-] IBM LinuxONE architecture detected"
-else
-  Red_Error "[x] Sorry, this architecture is not supported yet!\n[x]Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
-fi
+# Extract daemon key and/or http port
+extract_component_info() {
+  # DAEMON SECTION
+  if [[ "$install_daemon" == true ]]; then
+    local daemon_service="mcsm-daemon.service"
+    local daemon_path="${install_dir}/daemon"
+    local daemon_config_path="${daemon_path}/${daemon_key_config_subpath}"
 
     cprint cyan bold "Starting daemon service..."
     if systemctl restart "$daemon_service"; then
       cprint green "Daemon service started."
 
-# Check network connection
-echo_cyan "[-] Architecture: $arch"
+      sleep 1  # Allow service to init and write configs
 
-# Install related software
-echo_cyan_n "[+] Installing dependent software (git, tar, wget)... "
-if [[ -x "$(command -v yum)" ]]; then
-  yum install -y git tar wget
-elif [[ -x "$(command -v apt-get)" ]]; then
-  apt-get install -y git tar wget
-elif [[ -x "$(command -v pacman)" ]]; then
-  pacman -S --noconfirm --needed git tar wget
-elif [[ -x "$(command -v zypper)" ]]; then
-  zypper --non-interactive install git tar wget
-else
-  echo_red "[!] Cannot find your package manager! You may need to install git, tar and wget manually!"
-fi
+      if [[ -f "$daemon_config_path" ]]; then
+        daemon_key=$(grep -oP '"key"\s*:\s*"\K[^"]+' "$daemon_config_path")
+        daemon_port=$(grep -oP '"port"\s*:\s*\K[0-9]+' "$daemon_config_path")
 
-# Determine whether the relevant software is installed successfully
-if [[ -x "$(command -v git)" && -x "$(command -v tar)" && -x "$(command -v wget)" ]]; then
-  echo_green "Success"
-else
-  Red_Error "[x] Failed to find git, tar and wget, please install them manually!"
-fi
+        if [[ -n "$daemon_key" ]]; then
+          cprint green "Extracted daemon key: $daemon_key"
+        else
+          cprint red "Failed to extract daemon key from: $daemon_config_path"
+        fi
 
-# Install the Node environment
-Install_Node
+        if [[ -n "$daemon_port" ]]; then
+          cprint green "Extracted daemon port: $daemon_port"
+        else
+          cprint red "Failed to extract daemon port from: $daemon_config_path"
+        fi
+      else
+        cprint red "Daemon config file not found: $daemon_config_path"
+      fi
+    else
+      cprint red bold "Failed to start daemon service: $daemon_service"
+    fi
+  fi
 
-# Install MCSManager
-Install_MCSManager
+  # WEB SECTION
+  if [[ "$install_web" == true ]]; then
+    local web_service="mcsm-web.service"
+    local web_path="${install_dir}/web"
+    local web_config_path="${web_path}/${web_port_config_subpath}"
 
     cprint cyan bold "Starting web service..."
     if systemctl restart "$web_service"; then
