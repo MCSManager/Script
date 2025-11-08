@@ -476,7 +476,10 @@ detect_os_info() {
 
   # Normalize version: keep only major version
   version_full="$version"
-  if [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+  if [[ "$version" == "rolling" ]]; then
+  # Arch Linux, no change
+  :
+  elif [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
     version="${version%%.*}"
   else
     echo "Warning: Could not detect a clean numeric version. Defaulting to unknown."
