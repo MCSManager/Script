@@ -18,7 +18,7 @@ install_dir="/opt/mcsmanager"
 download_base_url="https://github.com/MCSManager/MCSManager/releases/latest/download/"
 
 # Fallback download URL (can also be a local directory or mirror)
-download_fallback_url="https://download.mcsmanager.com/"
+download_fallback_url="https://download.mcsmanager.com/mcsmanager_linux_release.tar.gz"
 
 # Name of the release package to download/detect
 package_name="mcsmanager_linux_release.tar.gz"
