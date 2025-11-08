@@ -1144,7 +1144,7 @@ extract_component_info() {
     if systemctl restart "$daemon_service"; then
       cprint green "Daemon service started."
 
-      sleep 1  # Allow service to init and write configs
+      sleep 3  # Allow service to init and write configs
 
       if [[ -f "$daemon_config_path" ]]; then
         daemon_key=$(grep -oP '"key"\s*:\s*"\K[^"]+' "$daemon_config_path")
@@ -1179,7 +1179,7 @@ extract_component_info() {
     if systemctl restart "$web_service"; then
       cprint green "Web service started."
 
-      sleep 1  # Allow time to populate config
+      sleep 3  # Allow time to populate config
 
       if [[ -f "$web_config_path" ]]; then
         web_port=$(grep -oP '"httpPort"\s*:\s*\K[0-9]+' "$web_config_path")
