@@ -474,17 +474,52 @@ detect_os_info() {
     fi
   fi
 
-  # Normalize version: keep only major version
+  # Normalize version: if purely numeric/dotted keep only major; otherwise leave as-is
   version_full="$version"
-  if [[ "$version" == "rolling" ]]; then
-  # Arch Linux, no change
-  :
-  elif [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+  if [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
     version="${version%%.*}"
-  else
-    echo "Warning: Could not detect a clean numeric version. Defaulting to unknown."
-    version="unknown"
   fi
+
+  # Resolve the supported_os key from $distro:
+  # 1) exact key match, 2) case-insensitive match over existing keys
+  distro_key=""
+  if [[ -n "$distro" ]]; then
+    if [[ -n "${supported_os[$distro]+_}" ]]; then
+      distro_key="$distro"
+    else
+      for k in "${!supported_os[@]}"; do
+        if [[ "${k,,}" == "${distro,,}" ]]; then
+          distro_key="$k"
+          break
+        fi
+      done
+    fi
+  fi
+
+  # Validate the (possibly normalized) version against supported_os for this distro
+  if [[ -z "$distro_key" ]]; then
+    cprint red "Warning: OS '$distro' not recognized. Defaulting version to unknown."
+    version="unknown"
+  elif [[ -z "$version" ]]; then
+    cprint red "Warning: Version is empty. Defaulting to unknown."
+    version="unknown"
+  else
+    match_ok=0
+    for v in ${supported_os[$distro_key]}; do
+      if [[ "$v" == "$version" ]]; then
+        match_ok=1
+        break
+      fi
+    done
+    if (( match_ok )); then
+      :
+    else
+      cprint red "Warning: Version '${version}' (from '${version_full}') not supported for ${distro_key}."
+      #version="unknown"
+    fi
+  fi
+
+
 
   cprint cyan "Detected OS: $distro $version_full"
   cprint cyan "Detected Architecture: $arch"
@@ -496,13 +531,13 @@ check_supported_os() {
   local supported_versions="${supported_os[$distro]}"
 
   if [[ -z "$supported_versions" ]]; then
-    echo "Error: Distribution '$distro' is not supported by this installer."
+    cprint red "Error: Distribution '$distro' is not supported by this installer."
     return 1
   fi
 
   if [[ "$supported_versions" != *"$version"* ]]; then
-    echo "Error: Version '$version' of '$distro' is not supported."
-    echo "Supported versions are: $supported_versions"
+    cprint red "Error: Version '$version' of '$distro' is not supported."
+    cprint red "Supported versions are: $supported_versions"
     return 1
   fi
 
