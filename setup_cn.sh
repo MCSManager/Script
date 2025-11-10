@@ -18,7 +18,7 @@ install_dir="/opt/mcsmanager"
 download_base_url="https://download.mcsmanager.com/"
 
 # Fallback download URL (can also be a local directory or mirror)
-download_fallback_url="https://github.com/MCSManager/MCSManager/releases/latest/download/"
+download_fallback_url="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
 
 # Name of the release package to download/detect
 package_name="mcsmanager_linux_release.tar.gz"
@@ -476,7 +476,10 @@ detect_os_info() {
 
   # Normalize version: keep only major version
   version_full="$version"
-  if [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+  if [[ "$version" == "rolling" ]]; then
+  # Arch Linux, no change
+  :
+  elif [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
     version="${version%%.*}"
   else
     echo "Warning: Could not detect a clean numeric version. Defaulting to unknown."
@@ -1144,7 +1147,7 @@ extract_component_info() {
     if systemctl restart "$daemon_service"; then
       cprint green "Daemon service started."
 
-      sleep 1  # Allow service to init and write configs
+      sleep 3  # Allow service to init and write configs
 
       if [[ -f "$daemon_config_path" ]]; then
         daemon_key=$(grep -oP '"key"\s*:\s*"\K[^"]+' "$daemon_config_path")
@@ -1179,7 +1182,7 @@ extract_component_info() {
     if systemctl restart "$web_service"; then
       cprint green "Web service started."
 
-      sleep 1  # Allow time to populate config
+      sleep 3  # Allow time to populate config
 
       if [[ -f "$web_config_path" ]]; then
         web_port=$(grep -oP '"httpPort"\s*:\s*\K[0-9]+' "$web_config_path")
