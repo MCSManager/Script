@@ -474,40 +474,13 @@ detect_os_info() {
     fi
   fi
 
-  # Normalize version: keep only major version
+  # Normalize version: if purely numeric/dotted keep only major; otherwise leave as-is
   version_full="$version"
-  if [[ "$version" == "rolling" ]]; then
-  # Arch Linux, no change
-  :
-  elif [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
-    version="${version%%.*}"
-  else
-    echo "Warning: Could not detect a clean numeric version. Defaulting to unknown."
-    version="unknown"
-  fi
-
+  #if [[ "$version" =~ ^[0-9]+(\.[0-9]+)*$ ]]; then
+  #  version="${version%%.*}"
+  #fi
   cprint cyan "Detected OS: $distro $version_full"
   cprint cyan "Detected Architecture: $arch"
-}
-
-
-# Check if current OS is supported
-check_supported_os() {
-  local supported_versions="${supported_os[$distro]}"
-
-  if [[ -z "$supported_versions" ]]; then
-    echo "Error: Distribution '$distro' is not supported by this installer."
-    return 1
-  fi
-
-  if [[ "$supported_versions" != *"$version"* ]]; then
-    echo "Error: Version '$version' of '$distro' is not supported."
-    echo "Supported versions are: $supported_versions"
-    return 1
-  fi
-
-  cprint green "OS compatibility check passed."
-  return 0
 }
 
 # Check if all required commands are available
@@ -1365,7 +1338,6 @@ main() {
   safe_run check_root "Script must be run as root"
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
-  safe_run check_supported_os "Unsupported OS or version"
   # To be moved to a master pre check function.
   safe_run resolve_node_arch "Failed to resolve Node.js architecture"
   
