@@ -525,26 +525,6 @@ detect_os_info() {
   cprint cyan "Detected Architecture: $arch"
 }
 
-
-# Check if current OS is supported
-check_supported_os() {
-  local supported_versions="${supported_os[$distro]}"
-
-  if [[ -z "$supported_versions" ]]; then
-    cprint red "Error: Distribution '$distro' is not supported by this installer."
-    return 1
-  fi
-
-  if [[ "$supported_versions" != *"$version"* ]]; then
-    cprint red "Error: Version '$version' of '$distro' is not supported."
-    cprint red "Supported versions are: $supported_versions"
-    return 1
-  fi
-
-  cprint green "OS compatibility check passed."
-  return 0
-}
-
 # Check if all required commands are available
 check_required_commands() {
   local missing=0
@@ -1400,7 +1380,6 @@ main() {
   safe_run check_root "Script must be run as root"
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
-  # safe_run check_supported_os "Unsupported OS or version"
   # To be moved to a master pre check function.
   safe_run resolve_node_arch "Failed to resolve Node.js architecture"
   
