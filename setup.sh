@@ -1400,7 +1400,7 @@ main() {
   safe_run check_root "Script must be run as root"
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
-  safe_run check_supported_os "Unsupported OS or version"
+  # safe_run check_supported_os "Unsupported OS or version"
   # To be moved to a master pre check function.
   safe_run resolve_node_arch "Failed to resolve Node.js architecture"
   
