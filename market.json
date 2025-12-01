@@ -492,11 +492,11 @@
       "hardware": "RAM 8G+",
       "size": "100MB",
       "remark": "Minecraft Paper",
-      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.10/builds/84/downloads/paper-1.21.10-84.jar",
+      "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.10/builds/117/downloads/paper-1.21.10-117.jar",
       "author": "papermc.io",
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.10-84.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.10-117.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -585,11 +585,11 @@
       "hardware": "RAM 8G+",
       "size": "55MB",
       "remark": "Minecraft Purpur",
-      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.10-2511-experimental.jar",
+      "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.10-2531.jar",
       "author": "purpurmc.org",
       "setupInfo": {
         "type": "minecraft/java/purpur",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.10-2511-experimental.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.10-2531.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
@@ -655,13 +655,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft Forge",
-      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.10-60.0.11/forge-1.21.10-60.0.11-installer.jar",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.10-60.1.0/forge-1.21.10-60.1.0-installer.jar",
       "author": "minecraftforge.net",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
-        "updateCommand": "java -jar forge-1.21.10-60.0.11-installer.jar --installServer",
+        "updateCommand": "java -jar forge-1.21.10-60.1.0-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -678,13 +678,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft Forge",
-      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.10-60.0.11/forge-1.21.10-60.0.11-installer.jar",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.10-60.1.0/forge-1.21.10-60.1.0-installer.jar",
       "author": "minecraftforge.net",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
         "stopCommand": "stop",
-        "updateCommand": "java -jar forge-1.21.10-60.0.11-installer.jar --installServer",
+        "updateCommand": "java -jar forge-1.21.10-60.1.0-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -701,13 +701,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft Forge",
-      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.8-58.1.7/forge-1.21.8-58.1.7-installer.jar",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.8-58.1.9/forge-1.21.8-58.1.9-installer.jar",
       "author": "minecraftforge.net",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
-        "updateCommand": "java -jar forge-1.21.8-58.1.7-installer.jar --installServer",
+        "updateCommand": "java -jar forge-1.21.8-58.1.9-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -724,13 +724,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft Forge",
-      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.8-58.1.7/forge-1.21.8-58.1.7-installer.jar",
+      "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.8-58.1.9/forge-1.21.8-58.1.9-installer.jar",
       "author": "minecraftforge.net",
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
         "stopCommand": "stop",
-        "updateCommand": "java -jar forge-1.21.8-58.1.7-installer.jar --installServer",
+        "updateCommand": "java -jar forge-1.21.8-58.1.9-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -840,13 +840,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft NeoForge",
-      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.10.32-beta/neoforge-21.10.32-beta-installer.jar",
+      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.10.63/neoforge-21.10.63-installer.jar",
       "author": "neoforged.net",
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
-        "updateCommand": "java -jar neoforge-21.10.32-beta-installer.jar --installServer",
+        "updateCommand": "java -jar neoforge-21.10.63-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -863,13 +863,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft NeoForge",
-      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.10.32-beta/neoforge-21.10.32-beta-installer.jar",
+      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.10.63/neoforge-21.10.63-installer.jar",
       "author": "neoforged.net",
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": ".\\run.bat",
         "stopCommand": "stop",
-        "updateCommand": "java -jar neoforge-21.10.32-beta-installer.jar --installServer",
+        "updateCommand": "java -jar neoforge-21.10.63-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -886,13 +886,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft NeoForge",
-      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.48/neoforge-21.8.48-installer.jar",
+      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.52/neoforge-21.8.52-installer.jar",
       "author": "neoforged.net",
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": "sh ./run.sh",
         "stopCommand": "stop",
-        "updateCommand": "java -jar neoforge-21.8.48-installer.jar --installServer",
+        "updateCommand": "java -jar neoforge-21.8.52-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
@@ -909,13 +909,13 @@
       "hardware": "RAM 8G+",
       "size": "7MB",
       "remark": "Minecraft NeoForge",
-      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.48/neoforge-21.8.48-installer.jar",
+      "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.52/neoforge-21.8.52-installer.jar",
       "author": "neoforged.net",
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": ".\\run.bat",
         "stopCommand": "stop",
-        "updateCommand": "java -jar neoforge-21.8.48-installer.jar --installServer",
+        "updateCommand": "java -jar neoforge-21.8.52-installer.jar --installServer",
         "ie": "utf-8",
         "oe": "utf-8"
       }
