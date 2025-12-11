@@ -1511,9 +1511,9 @@
           "containerName": "rust-server",
           "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
           "extraVolumes": [
-            "{mcsm_workspace}/server:/server",
-            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
-            "{mcsm_workspace}/data:/data"
+            "{mcsm_workspace}/server|/server",
+            "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data|/data"
           ],
           "workingDir": "",
           "env": [],
@@ -1550,11 +1550,81 @@
           "containerName": "rust-server",
           "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
           "extraVolumes": [
-            "{mcsm_workspace}/server:/server",
-            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
-            "{mcsm_workspace}/data:/data"
+            "{mcsm_workspace}/server|/server",
+            "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data|/data"
           ],
           "workingDir": "",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+    {
+      "title": "Factorio 服务器",
+      "language": "zh_cn",
+      "platform": "Linux",
+      "description": "使用 Factorio 第三方 Docker 镜像，快速开服！",
+      "image": "https://cdn.factorio.com/assets/img/web/factorio-logo2.png",
+      "gameType": "Factorio",
+      "category": "最新版本",
+      "runtime": "Windows/Linux",
+      "hardware": "X86_64、RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "TPing",
+      "tags": ["Docker 版"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "^C",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Factorio"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "factoriotools/factorio:latest",
+          "containerName": "",
+          "ports": ["{mcsm_port1}:34197/udp"],
+          "extraVolumes": [],
+          "workingDir": "/factorio",
+          "env": [],
+          "changeWorkdir": false
+        }
+      }
+    },
+    {
+      "title": "Factorio Docker Server",
+      "language": "en_us",
+      "platform": "Linux",
+      "description": "Use Factorio third-party Docker images to quickly get started!",
+      "image": "https://cdn.factorio.com/assets/img/web/factorio-logo2.png",
+      "gameType": "Factorio",
+      "category": "Latest Version",
+      "runtime": "Windows/Linux",
+      "hardware": "X86_64、RAM 4G+",
+      "size": "",
+      "targetLink": "",
+      "author": "TPing",
+      "tags": ["Docker version"],
+      "setupInfo": {
+        "startCommand": "",
+        "stopCommand": "^C",
+        "ie": "utf8",
+        "oe": "utf8",
+        "type": "steam/universal",
+        "tag": ["Factorio"],
+        "fileCode": "utf8",
+        "processType": "docker",
+        "updateCommand": "",
+        "docker": {
+          "image": "factoriotools/factorio:latest",
+          "containerName": "",
+          "ports": ["{mcsm_port1}:34197/udp"],
+          "extraVolumes": [],
+          "workingDir": "/factorio",
           "env": [],
           "changeWorkdir": false
         }
