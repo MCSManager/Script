@@ -1586,7 +1586,7 @@
         "updateCommand": "",
         "docker": {
           "image": "factoriotools/factorio:latest",
-          "containerName": "factorio-server",
+          "containerName": "",
           "ports": ["{mcsm_port1}:34197/udp"],
           "extraVolumes": [],
           "workingDir": "/factorio",
@@ -1621,7 +1621,7 @@
         "updateCommand": "",
         "docker": {
           "image": "factoriotools/factorio:latest",
-          "containerName": "factorio-server",
+          "containerName": "",
           "ports": ["{mcsm_port1}:34197/udp"],
           "extraVolumes": [],
           "workingDir": "/factorio",
