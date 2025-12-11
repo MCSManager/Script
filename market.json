@@ -1511,9 +1511,9 @@
           "containerName": "rust-server",
           "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
           "extraVolumes": [
-            "{mcsm_workspace}/server:/server",
-            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
-            "{mcsm_workspace}/data:/data"
+            "{mcsm_workspace}/server|/server",
+            "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data|/data"
           ],
           "workingDir": "",
           "env": [],
@@ -1550,9 +1550,9 @@
           "containerName": "rust-server",
           "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
           "extraVolumes": [
-            "{mcsm_workspace}/server:/server",
-            "{mcsm_workspace}/config:/app/.config/unity3d/Facepunch/Rust",
-            "{mcsm_workspace}/data:/data"
+            "{mcsm_workspace}/server|/server",
+            "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
+            "{mcsm_workspace}/data|/data"
           ],
           "workingDir": "",
           "env": [],
