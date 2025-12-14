@@ -1629,6 +1629,61 @@
           "changeWorkdir": false
         }
       }
+    },
+    {
+      "language": "zh_cn",
+      "description": "可在所有平台上安装的1.20.1Bukkit+Spigot+Forge+NeoForge服务端",
+      "title": "[MohistMC]1.20.1Bukkit+Spigot+Forge+NeoForge服务端",
+      "category": "mc-mohist",
+      "runtime": "Java 21+",
+      "hardware": "RAM 2G",
+      "author": "shmhxh",
+      "setupInfo": {
+        "ie": "UTF-8",
+        "oe": "UTF-8",
+        "createDatetime": 1765693451169,
+        "lastDatetime": 0,
+        "type": "minecraft/java/mohist",
+        "tag": [],
+        "endTime": 0,
+        "fileCode": "UTF-8",
+        "processType": "general",
+        "actionCommandList": [],
+        "crlf": 1,
+        "category": 0,
+        "enableRcon": false,
+        "terminalOption": {
+          "haveColor": true,
+          "pty": false,
+          "ptyWindowCol": 164,
+          "ptyWindowRow": 40
+        },
+        "eventTask": {
+          "autoStart": false,
+          "autoRestart": false,
+          "autoRestartMaxTimes": 3,
+          "ignore": false
+        },
+        "docker": {
+          "ports": [],
+          "extraVolumes": [],
+          "networkMode": "bridge",
+          "networkAliases": [],
+          "workingDir": "/data",
+          "env": [],
+          "changeWorkdir": true
+        },
+        "pingConfig": {
+          "type": 1
+        },
+        "extraServiceConfig": {},
+        "startCommand": "java -jar mohist-1.20.1-4a9c3360.jar -nogui"
+      },
+      "gameType": "Minecraft",
+      "image": "/upload_files/ab5aa910-38d0-43c5-aabe-e0064680dd73.png",
+      "platform": "全平台",
+      "tags": [],
+      "isSummary": false
     }
   ]
 }
