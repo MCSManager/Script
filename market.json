@@ -1411,6 +1411,31 @@
       }
     },
     {
+      "title": "SCP秘密实验室 服务器",
+      "language": "zh_cn",
+      "platform": "Liunx",
+      "description": "SCP秘密实验室服务器，适用于 Liunx 系统",
+      "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/700330/dad38399643cda1a4084b1faff60452427bef8c0/header.jpg?t=1747606719",
+      "remark": "第一次启动需要在控制台配置。服务器设置路径:/home/{你的用户名}/.config/SCP Secret Laboratory/config/{启动时控制台设置的端口}",
+      "gameType": "SCP秘密实验室",
+      "category": "最新版本",
+      "runtime": "Windows 10+",
+      "hardware": "RAM 8G+",
+      "size": "1GB",
+      "targetLink": "",
+      "author": "mmyddd",
+      "tags": ["仅适合个人使用", "Liunx 版"],
+      "setupInfo": {
+        "tag": ["SCP秘密实验室"],
+        "type": "steam/universal",
+        "startCommand": "LocalAdmin",
+        "stopCommand": "stop",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 996560 +quit",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "title": "Sons Of The Forest Official Server",
       "language": "en_us",
       "platform": "Windows",
