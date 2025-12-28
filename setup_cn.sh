@@ -1047,7 +1047,8 @@ install_component() {
     exit 1
   }
 
-  if ! "$node_bin_path" "$npm_bin_path" install --no-audit --no-fund --loglevel=warn; then
+
+  if ! "$node_bin_path" "$npm_bin_path" install --registry=https://registry.npmmirror.com --no-audit --no-fund --loglevel=warn; then
     cprint red bold "NPM依赖项安装失败 $component"
     popd >/dev/null
     cleanup_install_tmp
