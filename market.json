@@ -71,21 +71,28 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
-      "tags": ["可以商业出租", "Docker 版"],
+      "tags": [
+        "可以商业出租",
+        "Docker 版"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "exit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/terraria",
-        "tag": ["terraria"],
+        "tag": [
+          "terraria"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "ryshe/terraria:latest",
           "containerName": "terraria-server",
-          "ports": ["{mcsm_port1}:7777/tcp"],
+          "ports": [
+            "{mcsm_port1}:7777/tcp"
+          ],
           "extraVolumes": [],
           "networkMode": "bridge",
           "cpuUsage": 100,
@@ -108,13 +115,18 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
-      "tags": ["可以商业出租", "Docker 版"],
+      "tags": [
+        "可以商业出租",
+        "Docker 版"
+      ],
       "setupInfo": {
         "stopCommand": "stop",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Palworld"],
+        "tag": [
+          "Palworld"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
@@ -124,7 +136,10 @@
           "networkMode": "bridge",
           "containerName": "palworld-server",
           "workingDir": "/opt/palworld/Pal/Saved",
-          "ports": ["{mcsm_port1}:8211/tcp", "{mcsm_port2}:25575/tcp"],
+          "ports": [
+            "{mcsm_port1}:8211/tcp",
+            "{mcsm_port2}:25575/tcp"
+          ],
           "env": [
             "SERVER_NAME=Private PalWorld Server",
             "SERVER_DESC=Private PalWorld Server",
@@ -146,21 +161,29 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
-      "tags": ["可以商业出租", "Docker 版"],
+      "tags": [
+        "可以商业出租",
+        "Docker 版"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "stop",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Project Zomboid"],
+        "tag": [
+          "Project Zomboid"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "renegademaster/zomboid-dedicated-server:latest",
           "containerName": "zomboid-dedicated-server",
-          "ports": ["{mcsm_port2}:16262/udp", "{mcsm_port1}:16261/udp"],
+          "ports": [
+            "{mcsm_port2}:16262/udp",
+            "{mcsm_port1}:16261/udp"
+          ],
           "extraVolumes": [
             "{mcsm_workspace}/ZomboidConfig|/home/steam/Zomboid",
             "{mcsm_workspace}/ZomboidDedicatedServer|/home/steam/ZomboidDedicatedServer"
@@ -184,21 +207,27 @@
       "size": "",
       "targetLink": "",
       "author": "EndStone",
-      "tags": ["Docker version"],
+      "tags": [
+        "Docker version"
+      ],
       "setupInfo": {
         "startCommand": "endstone -y -s .",
         "stopCommand": "stop",
         "ie": "utf8",
         "oe": "utf8",
         "type": "minecraft/bedrock",
-        "tag": ["bedrock"],
+        "tag": [
+          "bedrock"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "endstone/endstone:latest",
           "containerName": "endstone-server",
-          "ports": ["{mcsm_port1}:19132/udp"],
+          "ports": [
+            "{mcsm_port1}:19132/udp"
+          ],
           "extraVolumes": [],
           "workingDir": "",
           "env": [],
@@ -275,7 +304,6 @@
         "oe": "utf-8"
       }
     },
-
     {
       "language": "zh_cn",
       "platform": "Linux",
@@ -381,21 +409,27 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
-      "tags": ["Docker version"],
+      "tags": [
+        "Docker version"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "exit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/terraria",
-        "tag": ["terraria"],
+        "tag": [
+          "terraria"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "ryshe/terraria:latest",
           "containerName": "terraria-server",
-          "ports": ["{mcsm_port1}:7777/tcp"],
+          "ports": [
+            "{mcsm_port1}:7777/tcp"
+          ],
           "extraVolumes": [],
           "workingDir": "/root/.local/share/Terraria/Worlds",
           "env": [],
@@ -416,13 +450,17 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
-      "tags": ["Docker version"],
+      "tags": [
+        "Docker version"
+      ],
       "setupInfo": {
         "stopCommand": "stop",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Palworld"],
+        "tag": [
+          "Palworld"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
@@ -432,7 +470,10 @@
           "networkMode": "bridge",
           "containerName": "palworld-server",
           "workingDir": "/opt/palworld/Pal/Saved",
-          "ports": ["{mcsm_port1}:8211/tcp", "{mcsm_port2}:25575/tcp"],
+          "ports": [
+            "{mcsm_port1}:8211/tcp",
+            "{mcsm_port2}:25575/tcp"
+          ],
           "env": [
             "SERVER_NAME=Private PalWorld Server",
             "SERVER_DESC=Private PalWorld Server",
@@ -454,21 +495,28 @@
       "size": "",
       "targetLink": "",
       "author": "MCSManager",
-      "tags": ["Docker version"],
+      "tags": [
+        "Docker version"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "stop",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Project Zomboid"],
+        "tag": [
+          "Project Zomboid"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "renegademaster/zomboid-dedicated-server:latest",
           "containerName": "zomboid-dedicated-server",
-          "ports": ["{mcsm_port2}:16262/udp", "{mcsm_port1}:16261/udp"],
+          "ports": [
+            "{mcsm_port2}:16262/udp",
+            "{mcsm_port1}:16261/udp"
+          ],
           "extraVolumes": [
             "{mcsm_workspace}/ZomboidConfig|/home/steam/Zomboid",
             "{mcsm_workspace}/ZomboidDedicatedServer|/home/steam/ZomboidDedicatedServer"
@@ -479,7 +527,6 @@
         }
       }
     },
-
     {
       "platform": "ALL",
       "language": "en_us",
@@ -595,7 +642,6 @@
         "oe": "utf-8"
       }
     },
-
     {
       "platform": "ALL",
       "language": "en_us",
@@ -688,7 +734,6 @@
         "oe": "utf-8"
       }
     },
-
     {
       "platform": "Linux",
       "language": "en_us",
@@ -919,7 +964,6 @@
         "oe": "utf-8"
       }
     },
-
     {
       "platform": "Linux",
       "language": "en_us",
@@ -1150,7 +1194,6 @@
         "oe": "utf-8"
       }
     },
-
     {
       "platform": "ALL",
       "language": "en_us",
@@ -1266,7 +1309,6 @@
         "oe": "utf-8"
       }
     },
-
     {
       "platform": "ALL",
       "language": "en_us",
@@ -1359,7 +1401,6 @@
         "oe": "utf-8"
       }
     },
-
     {
       "title": "森林之子 服务器",
       "language": "zh_cn",
@@ -1374,9 +1415,14 @@
       "size": "3.5GB",
       "targetLink": "",
       "author": "mmyddd",
-      "tags": ["仅适合个人使用", "Windows 版"],
+      "tags": [
+        "仅适合个人使用",
+        "Windows 版"
+      ],
       "setupInfo": {
-        "tag": ["SonsOfTheForest"],
+        "tag": [
+          "SonsOfTheForest"
+        ],
         "type": "steam/universal",
         "startCommand": "echo|set /p=\"1326470\" > steam_appid.txt & set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
         "stopCommand": "^C",
@@ -1399,9 +1445,14 @@
       "size": "1GB",
       "targetLink": "",
       "author": "mmyddd",
-      "tags": ["仅适合个人使用", "Windows 版"],
+      "tags": [
+        "仅适合个人使用",
+        "Windows 版"
+      ],
       "setupInfo": {
-        "tag": ["SCP秘密实验室"],
+        "tag": [
+          "SCP秘密实验室"
+        ],
         "type": "steam/universal",
         "startCommand": "LocalAdmin.exe",
         "stopCommand": "stop",
@@ -1424,9 +1475,14 @@
       "size": "1GB",
       "targetLink": "",
       "author": "mmyddd",
-      "tags": ["仅适合个人使用", "Liunx 版"],
+      "tags": [
+        "仅适合个人使用",
+        "Liunx 版"
+      ],
       "setupInfo": {
-        "tag": ["SCP秘密实验室"],
+        "tag": [
+          "SCP秘密实验室"
+        ],
         "type": "steam/universal",
         "startCommand": "LocalAdmin",
         "stopCommand": "stop",
@@ -1449,9 +1505,13 @@
       "size": "3.5GB",
       "targetLink": "",
       "author": "mmyddd",
-      "tags": ["Windows version"],
+      "tags": [
+        "Windows version"
+      ],
       "setupInfo": {
-        "tag": ["SonsOfTheForest"],
+        "tag": [
+          "SonsOfTheForest"
+        ],
         "type": "steam/universal",
         "startCommand": "echo|set /p=\"1326470\" > steam_appid.txt & set SteamAppId=1326470 && set SteamGameId=1326470 && SonsOfTheForestDS.exe -userdatapath \"{mcsm_workspace}/userdata\" | consoleparser -colorize",
         "stopCommand": "^C",
@@ -1474,9 +1534,13 @@
       "size": "1GB",
       "targetLink": "",
       "author": "mmyddd",
-      "tags": ["Windows version"],
+      "tags": [
+        "Windows version"
+      ],
       "setupInfo": {
-        "tag": ["SCP:SL"],
+        "tag": [
+          "SCP:SL"
+        ],
         "type": "steam/universal",
         "startCommand": "LocalAdmin.exe",
         "stopCommand": "stop",
@@ -1498,21 +1562,28 @@
       "size": "",
       "targetLink": "",
       "author": "EndStone",
-      "tags": ["可以商业出租", "Docker版"],
+      "tags": [
+        "可以商业出租",
+        "Docker版"
+      ],
       "setupInfo": {
         "startCommand": "endstone -y -s .",
         "stopCommand": "stop",
         "ie": "utf8",
         "oe": "utf8",
         "type": "minecraft/bedrock",
-        "tag": ["bedrock"],
+        "tag": [
+          "bedrock"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "endstone/endstone:latest",
           "containerName": "endstone-server",
-          "ports": ["{mcsm_port1}:19132/udp"],
+          "ports": [
+            "{mcsm_port1}:19132/udp"
+          ],
           "extraVolumes": [],
           "workingDir": "",
           "env": [],
@@ -1520,7 +1591,6 @@
         }
       }
     },
-
     {
       "title": "战术小队 服务器",
       "language": "zh_cn",
@@ -1533,7 +1603,9 @@
       "hardware": "Intel Core 平台、RAM 8G+",
       "size": "20GB",
       "author": "南赛",
-      "tags": ["不完全兼容面板"],
+      "tags": [
+        "不完全兼容面板"
+      ],
       "remark": "需安装 Visual C++ 才可以运行",
       "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
@@ -1557,7 +1629,9 @@
       "hardware": "Intel Core platform、RAM 8G+",
       "size": "20GB",
       "author": "NanSai",
-      "tags": ["不完全兼容面板"],
+      "tags": [
+        "不完全兼容面板"
+      ],
       "remark": "Need to install Visual C++",
       "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
@@ -1581,7 +1655,9 @@
       "hardware": "Intel Core 平台、RAM 8G+",
       "size": "20GB",
       "author": "南赛",
-      "tags": ["不完全兼容面板"],
+      "tags": [
+        "不完全兼容面板"
+      ],
       "remark": "需安装 Visual C++ 才可以运行",
       "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
@@ -1605,7 +1681,9 @@
       "hardware": "Intel Core platform、RAM 8G+",
       "size": "20GB",
       "author": "NanSai",
-      "tags": ["Incompatible with panel"],
+      "tags": [
+        "Incompatible with panel"
+      ],
       "remark": "need install Visual C++",
       "targetLink": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/steamcmd.exe",
       "setupInfo": {
@@ -1630,21 +1708,29 @@
       "size": "",
       "targetLink": "",
       "author": "南赛",
-      "tags": ["可以商业出租", "Docker 版"],
+      "tags": [
+        "可以商业出租",
+        "Docker 版"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "docker stop squad-dedicated",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Squad"],
+        "tag": [
+          "Squad"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "docker restart squad-dedicated",
         "docker": {
           "image": "cm2network/squad",
           "containerName": "squad-dedicated",
-          "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
+          "ports": [
+            "{mcsm_port1}:7787/udp",
+            "{mcsm_port2}:15000/udp"
+          ],
           "extraVolumes": [
             "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
           ],
@@ -1667,21 +1753,29 @@
       "size": "",
       "targetLink": "",
       "author": "Nansai",
-      "tags": ["Commercial Use Allowed", "Docker version"],
+      "tags": [
+        "Commercial Use Allowed",
+        "Docker version"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "docker stop squad-dedicated",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Squad"],
+        "tag": [
+          "Squad"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "docker restart squad-dedicated",
         "docker": {
           "image": "cm2network/squad",
           "containerName": "squad-dedicated",
-          "ports": ["{mcsm_port1}:7787/udp", "{mcsm_port2}:15000/udp"],
+          "ports": [
+            "{mcsm_port1}:7787/udp",
+            "{mcsm_port2}:15000/udp"
+          ],
           "extraVolumes": [
             "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
           ],
@@ -1704,21 +1798,29 @@
       "size": "",
       "targetLink": "",
       "author": "南赛",
-      "tags": ["可以商业出租", "Docker 版"],
+      "tags": [
+        "可以商业出租",
+        "Docker 版"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "docker stop rust-server",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Rust"],
+        "tag": [
+          "Rust"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "docker restart rust-server",
         "docker": {
           "image": "didstopia/rust-server",
           "containerName": "rust-server",
-          "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
+          "ports": [
+            "{mcsm_port1}:28015/udp",
+            "{mcsm_port2}:28016/udp"
+          ],
           "extraVolumes": [
             "{mcsm_workspace}/server|/server",
             "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
@@ -1743,21 +1845,29 @@
       "size": "",
       "targetLink": "",
       "author": "南赛",
-      "tags": ["Commercial Use Allowed", "Docker version"],
+      "tags": [
+        "Commercial Use Allowed",
+        "Docker version"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "docker stop rust-server",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Rust"],
+        "tag": [
+          "Rust"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "docker restart rust-server",
         "docker": {
           "image": "didstopia/rust-server",
           "containerName": "rust-server",
-          "ports": ["{mcsm_port1}:28015/udp", "{mcsm_port2}:28016/udp"],
+          "ports": [
+            "{mcsm_port1}:28015/udp",
+            "{mcsm_port2}:28016/udp"
+          ],
           "extraVolumes": [
             "{mcsm_workspace}/server|/server",
             "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
@@ -1782,21 +1892,27 @@
       "size": "",
       "targetLink": "",
       "author": "TPing",
-      "tags": ["Docker 版"],
+      "tags": [
+        "Docker 版"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "^C",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Factorio"],
+        "tag": [
+          "Factorio"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "factoriotools/factorio:latest",
           "containerName": "",
-          "ports": ["{mcsm_port1}:34197/udp"],
+          "ports": [
+            "{mcsm_port1}:34197/udp"
+          ],
           "extraVolumes": [],
           "workingDir": "/factorio",
           "env": [],
@@ -1817,27 +1933,94 @@
       "size": "",
       "targetLink": "",
       "author": "TPing",
-      "tags": ["Docker version"],
+      "tags": [
+        "Docker version"
+      ],
       "setupInfo": {
         "startCommand": "",
         "stopCommand": "^C",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
-        "tag": ["Factorio"],
+        "tag": [
+          "Factorio"
+        ],
         "fileCode": "utf8",
         "processType": "docker",
         "updateCommand": "",
         "docker": {
           "image": "factoriotools/factorio:latest",
           "containerName": "",
-          "ports": ["{mcsm_port1}:34197/udp"],
+          "ports": [
+            "{mcsm_port1}:34197/udp"
+          ],
           "extraVolumes": [],
           "workingDir": "/factorio",
           "env": [],
           "changeWorkdir": false
         }
       }
+    },
+    {
+      "language": "zh_cn",
+      "description": "使用TShock插件的泰拉瑞亚服务器",
+      "title": "Terraria_windows_x86",
+      "category": "最新版本",
+      "runtime": ".NET 6+",
+      "hardware": "RAM 1G",
+      "targetLink": "https://github.com/Pryaxis/TShock/releases/download/v5.2.4/TShock-5.2.4-for-Terraria-1.4.4.9-win-amd64-Release.zip",
+      "author": "Dawn3901",
+      "setupInfo": {
+        "startCommand": "TShock.Server.exe",
+        "stopCommand": "stop",
+        "ie": "UTF-8",
+        "oe": "UTF-8",
+        "createDatetime": 1767005798835,
+        "lastDatetime": 0,
+        "type": "universal",
+        "tag": [],
+        "endTime": 0,
+        "fileCode": "UTF-8",
+        "processType": "general",
+        "updateCommand": "{mcsm_steamcmd} +login anonymous +force_install_dir \"{mcsm_workspace}\" +app_update 380870 +quit",
+        "actionCommandList": [],
+        "crlf": 1,
+        "category": 0,
+        "enableRcon": false,
+        "terminalOption": {
+          "haveColor": true,
+          "pty": false,
+          "ptyWindowCol": 164,
+          "ptyWindowRow": 40
+        },
+        "eventTask": {
+          "autoStart": false,
+          "autoRestart": false,
+          "autoRestartMaxTimes": 3,
+          "ignore": false
+        },
+        "docker": {
+          "ports": [],
+          "extraVolumes": [],
+          "networkMode": "bridge",
+          "networkAliases": [],
+          "workingDir": "/data",
+          "env": [],
+          "changeWorkdir": true
+        },
+        "pingConfig": {
+          "type": 1
+        },
+        "extraServiceConfig": {}
+      },
+      "gameType": "Terraria",
+      "image": "https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg?t=1666290860",
+      "platform": "Windows",
+      "tags": [
+        "TShock",
+        "Terraria"
+      ],
+      "isSummary": false
     }
   ]
 }
