@@ -13,7 +13,29 @@
   ],
   "packages": [
     {
-      "language": "zh_cn",
+          "language": "zh_cn",
+    "title": "[PaperMC] Minecraft 1.21.11",
+     "platform": "ALL",
+     "description": "[PaperMC] 1.21.11 需拥有开服经验,自行配置开启指令",
+     "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+     "gameType": "Minecraft",
+     "category": "mc-paper",
+     "runtime": "Java 21+",
+     "hardware": "RAM 6G+",
+     "size": "52.3MB",
+     "targetLink": "https://fill-data.papermc.io/v1/objects/65af6fc34f2bcb09bcd28f6eead1f402e9be2636a0312ed3e170e67c82179025/paper-1.21.11-91.jar",
+     "author": "PaperMC",
+     "tags": ["需拥有开服经验"],
+     "setupInfo": {
+       "stopCommand": "stop",
+       "ie": "utf8",
+       "oe": "utf8",
+       "type": "minecraft/java",
+       "fileCode": "utf8"
+      }
+    },
+    {
+          "language": "zh_cn",
       "platform": "ALL",
       "description": " Minecraft 1.21.1 快速开服 ",
       "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/wallpaper.webp",
