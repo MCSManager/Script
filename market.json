@@ -2021,6 +2021,69 @@
         "Terraria"
       ],
       "isSummary": false
+    },
+    {
+      "language": "zh_cn",
+      "description": "TeamSpeak之所以成为职业电竞的首选软件是有原因的",
+      "title": "TeamSpeak",
+      "category": "最新版本",
+      "runtime": "N/A",
+      "hardware": "N/A",
+      "author": "y1jiong",
+      "setupInfo": {
+        "stopCommand": "^c",
+        "ie": "UTF-8",
+        "oe": "UTF-8",
+        "createDatetime": 1768798141069,
+        "lastDatetime": 0,
+        "type": "universal",
+        "tag": [],
+        "endTime": 0,
+        "fileCode": "UTF-8",
+        "processType": "docker",
+        "actionCommandList": [],
+        "crlf": 1,
+        "category": 0,
+        "enableRcon": false,
+        "java": {},
+        "terminalOption": {
+          "haveColor": true,
+          "pty": false,
+          "ptyWindowCol": 164,
+          "ptyWindowRow": 40
+        },
+        "eventTask": {
+          "autoStart": false,
+          "autoRestart": false,
+          "autoRestartMaxTimes": 3,
+          "ignore": false
+        },
+        "docker": {
+          "image": "teamspeak:3.13.7",
+          "memory": "1024",
+          "ports": [
+            "{mcsm_port1}:9987/udp"
+          ],
+          "extraVolumes": [],
+          "networkMode": "bridge",
+          "networkAliases": [],
+          "workingDir": "/var/ts3server",
+          "env": [
+            "TS3SERVER_LICENSE=accept"
+          ],
+          "changeWorkdir": true,
+          "labels": []
+        },
+        "pingConfig": {
+          "type": 1
+        },
+        "extraServiceConfig": {}
+      },
+      "gameType": "TeamSpeak",
+      "image": "https://www.teamspeak.com/user/themes/teamspeak/images/logo_inverse.svg",
+      "platform": "Linux",
+      "tags": [],
+      "isSummary": false
     }
   ]
 }
