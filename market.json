@@ -2021,6 +2021,94 @@
         "Terraria"
       ],
       "isSummary": false
+    },
+    {
+      "platform": "Windows",
+      "language": "en_us",
+      "image": "https://hytale.com/static/images/logo.png",
+      "gameType": "Hytale",
+      "description": "Hytale Quick Server Setup, Mod Support",
+      "title": "Hytale Server",
+      "category": "hytale",
+      "runtime": "Java 25+",
+      "hardware": "RAM 4G+",
+      "targetLink": "https://github.com/SkyKingPX/Hytale-Server-Installer/releases/download/1.0.0/hytale-server-installer-win-mcsm.zip",
+      "author": "SkyKing_PX",
+      "setupInfo": {
+        "type": "hytale",
+        "startCommand": "java -Xms2G -Xmx4G -XX:AOTCache=HytaleServer.aot -jar HytaleServer.jar --assets Assets.zip",
+        "stopCommand": "stop",
+        "updateCommand": ".\\hytale-server-installer-win.exe",
+        "ie": "UTF-8",
+        "oe": "UTF-8"
+      }
+    },
+    {
+      "platform": "Linux",
+      "language": "en_us",
+      "image": "https://hytale.com/static/images/logo.png",
+      "gameType": "Hytale",
+      "description": "Hytale Quick Server Setup, Mod Support",
+      "title": "Hytale Server",
+      "category": "hytale",
+      "runtime": "Java 25+",
+      "hardware": "RAM 4G+",
+      "targetLink": "https://github.com/SkyKingPX/Hytale-Server-Installer/releases/download/1.0.0/hytale-server-installer-linux-mcsm.zip",
+      "author": "SkyKing_PX",
+      "setupInfo": {
+        "type": "hytale",
+        "startCommand": "java -Xms2G -Xmx4G -XX:AOTCache=HytaleServer.aot -jar HytaleServer.jar --assets Assets.zip",
+        "stopCommand": "stop",
+        "updateCommand": "sudo ./hytale-server-installer-linux",
+        "ie": "UTF-8",
+        "oe": "UTF-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "description": "Minecraft 1.21.11 Folia Quick Server Setup, Plugin Support",
+      "title": "[Folia] Minecraft 1.21.11",
+      "category": "mc-folia",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Minecraft Folia",
+      "targetLink": "https://fill-data.papermc.io/v1/objects/f4e9c5c374a53d17b6173cac35242c05c12217b656b6cc5dc07354cc37ec4066/folia-1.21.11-11.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/folia",
+        "startCommand": "java -Xms4096M -Xmx4096M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -jar folia-1.21.11-11.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
+      "platform": "ALL",
+      "language": "en_us",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "gameType": "Minecraft",
+      "description": "Minecraft 1.21.8 Folia Quick Server Setup, Plugin Support",
+      "title": "[Folia] Minecraft 1.21.8",
+      "category": "mc-folia",
+      "runtime": "Java 21+",
+      "hardware": "RAM 4G+",
+      "size": "50MB",
+      "remark": "Minecraft Folia",
+      "targetLink": "https://fill-data.papermc.io/v1/objects/233843cfd5001b6f658fcab549178d694cc37f0277d004ea295de0a94c57278f/folia-1.21.8-6.jar",
+      "author": "papermc.io",
+      "setupInfo": {
+        "type": "minecraft/java/folia",
+        "startCommand": "java -Xms4096M -Xmx4096M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -jar folia-1.21.8-6.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
     }
   ]
 }
