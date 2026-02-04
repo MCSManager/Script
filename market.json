@@ -2109,6 +2109,72 @@
         "ie": "utf-8",
         "oe": "utf-8"
       }
+    },
+    {
+      "language": "zh_cn",
+      "description": "easybot-dorker",
+      "title": "easybot-mcsm",
+      "category": "2.0.0-dev.14",
+      "runtime": "linux dorker",
+      "size": "2G",
+      "hardware": "RAM 3G",
+      "author": "xkmxz2503",
+      "setupInfo": {
+        "nickname": "NapCat",
+        "stopCommand": "^c",
+        "cwd": ".",
+        "ie": "UTF-8",
+        "oe": "UTF-8",
+        "createDatetime": 1770171001401,
+        "lastDatetime": 0,
+        "type": "universal",
+        "tag": [],
+        "endTime": 0,
+        "fileCode": "UTF-8",
+        "processType": "docker",
+        "actionCommandList": [],
+        "crlf": 1,
+        "category": 0,
+        "enableRcon": false,
+        "java": {},
+        "terminalOption": {
+          "haveColor": true,
+          "pty": false,
+          "ptyWindowCol": 164,
+          "ptyWindowRow": 40
+        },
+        "eventTask": {
+          "autoStart": false,
+          "autoRestart": false,
+          "autoRestartMaxTimes": 3,
+          "ignore": false
+        },
+        "docker": {
+          "image": "xkmxz2503/easybot-mcsm-base:base",
+          "ports": [
+            "{mcsm_port1}:5000/tcp",
+            "{mcsm_port2}:26990/tcp"
+          ],
+          "extraVolumes": [],
+          "networkMode": "bridge",
+          "networkAliases": [],
+          "workingDir": "/data",
+          "env": [],
+          "changeWorkdir": true,
+          "labels": []
+        },
+        "pingConfig": {
+          "type": 1
+        },
+        "extraServiceConfig": {},
+        "startCommand": "./EasyBot"
+      },
+      "gameType": "bot",
+      "image": "https://docs.inectar.cn/icon/easybot.png",
+      "platform": "Linux",
+      "tags": [],
+      "isSummary": false,
+      "targetLink": "https://files.inectar.cn/d/ftp/easybot/dev/2.0.0-dev.14/linux-x64/easybot-dev-linux-x64-2.0.0-dev.14.zip"
     }
   ]
 }
