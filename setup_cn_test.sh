@@ -1028,6 +1028,7 @@ install_component() {
   cprint cyan "删除依赖库文件 $target_path/node_modules/"
   if [[ -d "$target_path/node_modules/" ]]; then
     rm -rf "$target_path/node_modules/"
+  fi
 
   if cp -a "$source_path"/. "$target_path"; then
     cprint green "更新的文件 $source_path → $target_path"
