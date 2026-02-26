@@ -1021,6 +1021,11 @@ install_component() {
 	cleanup_install_tmp
     exit 1
   fi
+  
+  cprint cyan "删除依赖库文件 $target_path/node_modules/"
+  if [[ -d "$target_path/node_modules/" ]]; then
+    rm -rf "$target_path/node_modules/"
+  fi
 
   if cp -a "$source_path"/. "$target_path"; then
     cprint green "更新的文件 $source_path → $target_path"
@@ -1054,7 +1059,7 @@ install_component() {
     cleanup_install_tmp
     exit 1
   fi
-
+   
   popd >/dev/null
   cprint green bold "组件 '$component' 安装/更新成功."
 }

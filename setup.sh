@@ -1025,6 +1025,11 @@ install_component() {
     exit 1
   fi
 
+  cprint cyan "Removing node_modules folder: $target_path/node_modules/"
+  if [[ -d "$target_path/node_modules/" ]]; then
+    rm -rf "$target_path/node_modules/"
+  fi
+
   if cp -a "$source_path"/. "$target_path"; then
     cprint green "Updated files from $source_path → $target_path"
     rm -rf "$source_path"
