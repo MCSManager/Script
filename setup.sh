@@ -26,6 +26,7 @@ package_name="mcsmanager_linux_release.tar.gz"
 # Node.js version to be installed
 # Keep the leading "v"
 node_version="v20.12.2"
+node_version_centos7="v16.20.2"
 
 # Node download base URL - primary
 node_download_url_base="https://nodejs.org/dist/"
@@ -481,6 +482,16 @@ detect_os_info() {
   #fi
   cprint cyan "Detected OS: $distro $version_full"
   cprint cyan "Detected Architecture: $arch"
+}
+
+version_specific_rules() {
+    # Default: do nothing unless a rule matches
+
+    if [[ "$distro" == "CentOS" && "$version" == "7" ]]; then
+        cprint yellow "Detected CentOS 7 — overriding Node.js version."
+        node_version="$node_version_centos7"
+        required_node_ver="${node_version#v}"
+    fi
 }
 
 # Check if all required commands are available
@@ -1338,6 +1349,8 @@ main() {
   safe_run check_root "Script must be run as root"
   safe_run parse_args "Failed to parse arguments" "$@"
   safe_run detect_os_info "Failed to detect OS"
+  safe_run version_specific_rules "Failed to apply distro/version specific rules"
+
   # To be moved to a master pre check function.
   safe_run resolve_node_arch "Failed to resolve Node.js architecture"
   
