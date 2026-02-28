@@ -1713,8 +1713,9 @@
         "Docker 版"
       ],
       "setupInfo": {
-        "startCommand": "",
-        "stopCommand": "docker stop squad-dedicated",
+        "startCommand": "./SquadGameServer.sh",
+        "stopCommand": "^C",
+        "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 403240 validate\" +quit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
@@ -1723,20 +1724,18 @@
         ],
         "fileCode": "utf8",
         "processType": "docker",
-        "updateCommand": "docker restart squad-dedicated",
+        "runAs": "steam",
         "docker": {
-          "image": "cm2network/squad",
-          "containerName": "squad-dedicated",
+          "image": "githubyumao/steam-game-runtime:latest",
+          "updateCommandImage": "githubyumao/steam-game-runtime:latest",
           "ports": [
             "{mcsm_port1}:7787/udp",
             "{mcsm_port2}:15000/udp"
           ],
-          "extraVolumes": [
-            "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
-          ],
-          "workingDir": "",
+          "changeWorkdir": true,
+          "workingDir": "/data",
           "env": [],
-          "changeWorkdir": false
+          "extraVolumes": []
         }
       }
     },
@@ -1758,8 +1757,9 @@
         "Docker version"
       ],
       "setupInfo": {
-        "startCommand": "",
-        "stopCommand": "docker stop squad-dedicated",
+        "startCommand": "./SquadGameServer.sh",
+        "stopCommand": "^C",
+        "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 403240 validate\" +quit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
@@ -1768,20 +1768,18 @@
         ],
         "fileCode": "utf8",
         "processType": "docker",
-        "updateCommand": "docker restart squad-dedicated",
+        "runAs": "steam",
         "docker": {
-          "image": "cm2network/squad",
-          "containerName": "squad-dedicated",
+          "image": "githubyumao/steam-game-runtime:latest",
+          "updateCommandImage": "githubyumao/steam-game-runtime:latest",
           "ports": [
             "{mcsm_port1}:7787/udp",
             "{mcsm_port2}:15000/udp"
           ],
-          "extraVolumes": [
-            "{mcsm_workspace}/SquadConfig|/home/steam/squad-dedicated/SquadGame/ServerConfig/"
-          ],
-          "workingDir": "",
+          "changeWorkdir": true,
+          "workingDir": "/data",
           "env": [],
-          "changeWorkdir": false
+          "extraVolumes": []
         }
       }
     },
@@ -1803,8 +1801,9 @@
         "Docker 版"
       ],
       "setupInfo": {
-        "startCommand": "",
-        "stopCommand": "docker stop rust-server",
+        "startCommand": "./RustDedicated -batchmode -nographics +server.port 28015 +rcon.port 28016",
+        "stopCommand": "^C",
+        "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 258550 validate\" +quit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
@@ -1813,22 +1812,18 @@
         ],
         "fileCode": "utf8",
         "processType": "docker",
-        "updateCommand": "docker restart rust-server",
+        "runAs": "steam",
         "docker": {
-          "image": "didstopia/rust-server",
-          "containerName": "rust-server",
+          "image": "githubyumao/steam-game-runtime:latest",
+          "updateCommandImage": "githubyumao/steam-game-runtime:latest",
           "ports": [
             "{mcsm_port1}:28015/udp",
             "{mcsm_port2}:28016/udp"
           ],
-          "extraVolumes": [
-            "{mcsm_workspace}/server|/server",
-            "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
-            "{mcsm_workspace}/data|/data"
-          ],
-          "workingDir": "",
+          "changeWorkdir": true,
+          "workingDir": "/data",
           "env": [],
-          "changeWorkdir": false
+          "extraVolumes": []
         }
       }
     },
@@ -1850,8 +1845,9 @@
         "Docker version"
       ],
       "setupInfo": {
-        "startCommand": "",
-        "stopCommand": "docker stop rust-server",
+        "startCommand": "./RustDedicated -batchmode -nographics +server.port 28015 +rcon.port 28016",
+        "stopCommand": "^C",
+        "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 258550 validate\" +quit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
@@ -1860,22 +1856,18 @@
         ],
         "fileCode": "utf8",
         "processType": "docker",
-        "updateCommand": "docker restart rust-server",
+        "runAs": "steam",
         "docker": {
-          "image": "didstopia/rust-server",
-          "containerName": "rust-server",
+          "image": "githubyumao/steam-game-runtime:latest",
+          "updateCommandImage": "githubyumao/steam-game-runtime:latest",
           "ports": [
             "{mcsm_port1}:28015/udp",
             "{mcsm_port2}:28016/udp"
           ],
-          "extraVolumes": [
-            "{mcsm_workspace}/server|/server",
-            "{mcsm_workspace}/config|/app/.config/unity3d/Facepunch/Rust",
-            "{mcsm_workspace}/data|/data"
-          ],
-          "workingDir": "",
+          "changeWorkdir": true,
+          "workingDir": "/data",
           "env": [],
-          "changeWorkdir": false
+          "extraVolumes": []
         }
       }
     },
@@ -1896,8 +1888,9 @@
         "Docker 版"
       ],
       "setupInfo": {
-        "startCommand": "",
+        "startCommand": "./bin/x64/factorio --start-server-load-latest",
         "stopCommand": "^C",
+        "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 427520 validate\" +quit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
@@ -1906,17 +1899,17 @@
         ],
         "fileCode": "utf8",
         "processType": "docker",
-        "updateCommand": "",
+        "runAs": "steam",
         "docker": {
-          "image": "factoriotools/factorio:latest",
-          "containerName": "",
+          "image": "githubyumao/steam-game-runtime:latest",
+          "updateCommandImage": "githubyumao/steam-game-runtime:latest",
           "ports": [
             "{mcsm_port1}:34197/udp"
           ],
-          "extraVolumes": [],
-          "workingDir": "/factorio",
+          "changeWorkdir": true,
+          "workingDir": "/data",
           "env": [],
-          "changeWorkdir": false
+          "extraVolumes": []
         }
       }
     },
@@ -1937,8 +1930,9 @@
         "Docker version"
       ],
       "setupInfo": {
-        "startCommand": "",
+        "startCommand": "./bin/x64/factorio --start-server-load-latest",
         "stopCommand": "^C",
+        "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 427520 validate\" +quit",
         "ie": "utf8",
         "oe": "utf8",
         "type": "steam/universal",
@@ -1947,17 +1941,17 @@
         ],
         "fileCode": "utf8",
         "processType": "docker",
-        "updateCommand": "",
+        "runAs": "steam",
         "docker": {
-          "image": "factoriotools/factorio:latest",
-          "containerName": "",
+          "image": "githubyumao/steam-game-runtime:latest",
+          "updateCommandImage": "githubyumao/steam-game-runtime:latest",
           "ports": [
             "{mcsm_port1}:34197/udp"
           ],
-          "extraVolumes": [],
-          "workingDir": "/factorio",
+          "changeWorkdir": true,
+          "workingDir": "/data",
           "env": [],
-          "changeWorkdir": false
+          "extraVolumes": []
         }
       }
     },
