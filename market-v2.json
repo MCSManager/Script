@@ -1,479 +1,493 @@
-[
-    {
-        "title": "Squad Docker Server",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "use the official Docker image of Squad Server to quickly get started!",
-        "image": "https://squadovo.cn/img/header.jpg",
-        "gameType": "Squad",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "Intel Core platform、RAM 8G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./SquadGameServer.sh",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 403240 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "Squad"
+{
+    "languages": [
+        {
+            "label": "English",
+            "value": "en_us",
+            "path": "templates-en.json"
+        },
+        {
+            "label": "中文",
+            "value": "zh_cn",
+            "path": "templates-zh.json"
+        }
+    ],
+    "packages": [
+        {
+            "title": "Squad Docker Server",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "use the official Docker image of Squad Server to quickly get started!",
+            "image": "https://squadovo.cn/img/header.jpg",
+            "gameType": "Squad",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "Intel Core platform、RAM 8G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:7787/udp",
-                    "{mcsm_port2}:15000/udp"
+            "setupInfo": {
+                "startCommand": "./SquadGameServer.sh",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 403240 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "Squad"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:7787/udp",
+                        "{mcsm_port2}:15000/udp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "Rust Docker Server",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run Rust Dedicated Server.",
-        "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/rust.jpg",
-        "gameType": "Rust",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Commercial Use Allowed",
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./RustDedicated -batchmode -nographics +server.port 28015 +rcon.port 28016",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 258550 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "Rust"
+        },
+        {
+            "title": "Rust Docker Server",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Rust Dedicated Server.",
+            "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/rust.jpg",
+            "gameType": "Rust",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Commercial Use Allowed",
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:28015/udp",
-                    "{mcsm_port2}:28016/udp"
+            "setupInfo": {
+                "startCommand": "./RustDedicated -batchmode -nographics +server.port 28015 +rcon.port 28016",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 258550 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "Rust"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:28015/udp",
+                        "{mcsm_port2}:28016/udp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "Factorio Docker Server",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run Factorio Dedicated Server.",
-        "image": "https://cdn.factorio.com/assets/img/web/factorio-logo2.png",
-        "gameType": "Factorio",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "X86_64、RAM 4G+",
-        "size": "",
-        "targetLink": "",
-        "author": "TPing",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./bin/x64/factorio --start-server-load-latest",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 427520 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "Factorio"
+        },
+        {
+            "title": "Factorio Docker Server",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Factorio Dedicated Server.",
+            "image": "https://cdn.factorio.com/assets/img/web/factorio-logo2.png",
+            "gameType": "Factorio",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "X86_64、RAM 4G+",
+            "size": "",
+            "targetLink": "",
+            "author": "TPing",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:34197/udp"
+            "setupInfo": {
+                "startCommand": "./bin/x64/factorio --start-server-load-latest",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 427520 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "Factorio"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:34197/udp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "platform": "Linux",
-        "language": "en_us",
-        "image": "https://hytale.com/static/images/logo.png",
-        "gameType": "Hytale",
-        "description": "Use Eclipse Temurin Java Docker image to run Hytale Dedicated Server.",
-        "title": "Hytale Docker Server",
-        "category": "hytale",
-        "runtime": "Linux",
-        "hardware": "RAM 4G+",
-        "targetLink": "https://github.com/SkyKingPX/Hytale-Server-Installer/releases/download/1.0.0/hytale-server-installer-linux-mcsm.zip",
-        "author": "SkyKing_PX",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "type": "hytale",
-            "startCommand": "java -Xms2G -Xmx4G -XX:AOTCache=HytaleServer.aot -jar HytaleServer.jar --assets Assets.zip",
-            "stopCommand": "stop",
-            "updateCommand": "./hytale-server-installer-linux",
-            "ie": "UTF-8",
-            "oe": "UTF-8",
-            "processType": "docker",
-            "docker": {
-                "image": "eclipse-temurin:25-jdk",
-                "updateCommandImage": "eclipse-temurin:25-jdk",
-                "ports": [
-                    "{mcsm_port1}:5520/udp"
-                ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
-            }
-        }
-    },
-    {
-        "title": "Terraria Server",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run Terraria Dedicated Server.",
-        "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/terraria.webp",
-        "gameType": "Terraria",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "RAM 8G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./TerrariaServer.bin.x86_64 -port 7777 -autocreate 2 -worldname world1",
-            "stopCommand": "exit",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 105600 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/terraria",
-            "tag": [
-                "terraria"
+        },
+        {
+            "platform": "Linux",
+            "language": "en_us",
+            "image": "https://hytale.com/static/images/logo.png",
+            "gameType": "Hytale",
+            "description": "Use Eclipse Temurin Java Docker image to run Hytale Dedicated Server.",
+            "title": "Hytale Docker Server",
+            "category": "hytale",
+            "runtime": "Linux",
+            "hardware": "RAM 4G+",
+            "targetLink": "https://github.com/SkyKingPX/Hytale-Server-Installer/releases/download/1.0.0/hytale-server-installer-linux-mcsm.zip",
+            "author": "SkyKing_PX",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:7777/tcp"
-                ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+            "setupInfo": {
+                "type": "hytale",
+                "startCommand": "java -Xms2G -Xmx4G -XX:AOTCache=HytaleServer.aot -jar HytaleServer.jar --assets Assets.zip",
+                "stopCommand": "stop",
+                "updateCommand": "./hytale-server-installer-linux",
+                "ie": "UTF-8",
+                "oe": "UTF-8",
+                "processType": "docker",
+                "docker": {
+                    "image": "eclipse-temurin:25-jdk",
+                    "updateCommandImage": "eclipse-temurin:25-jdk",
+                    "ports": [
+                        "{mcsm_port1}:5520/udp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "Palworld Server",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run Palworld Dedicated Server.",
-        "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
-        "gameType": "Palworld",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "RAM 8G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./PalServer.sh -port=8211 -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 2394010 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "Palworld"
+        },
+        {
+            "title": "Terraria Server",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Terraria Dedicated Server.",
+            "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/terraria.webp",
+            "gameType": "Terraria",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "RAM 8G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:8211/udp",
-                    "{mcsm_port2}:25575/tcp"
+            "setupInfo": {
+                "startCommand": "./TerrariaServer.bin.x86_64 -port 7777 -autocreate 2 -worldname world1",
+                "stopCommand": "exit",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 105600 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/terraria",
+                "tag": [
+                    "terraria"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:7777/tcp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "Project Zomboid",
-        "title-zh": "僵尸毁灭工程",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run Project Zomboid Dedicated Server.",
-        "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行 Project Zomboid 专用服务器。",
-        "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/pzomboid.webp",
-        "gameType": "Zombie Survival",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "RAM 8G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./start-server.sh",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 380870 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "Project Zomboid"
+        },
+        {
+            "title": "Palworld Server",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Palworld Dedicated Server.",
+            "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
+            "gameType": "Palworld",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "RAM 8G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:16261/udp",
-                    "{mcsm_port2}:16262/udp"
+            "setupInfo": {
+                "startCommand": "./PalServer.sh -port=8211 -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 2394010 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "Palworld"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:8211/udp",
+                        "{mcsm_port2}:25575/tcp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "Satisfactory Docker Server",
-        "title-zh": "幸福工厂 Docker 服务器",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run Satisfactory Dedicated Server.",
-        "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行幸福工厂专用服务器。",
-        "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/526870/header.jpg",
-        "gameType": "Satisfactory",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "RAM 8G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./FactoryServer.sh",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 1690800 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "Satisfactory"
+        },
+        {
+            "title": "Project Zomboid",
+            "title-zh": "僵尸毁灭工程",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Project Zomboid Dedicated Server.",
+            "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行 Project Zomboid 专用服务器。",
+            "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/pzomboid.webp",
+            "gameType": "Zombie Survival",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "RAM 8G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:7777/udp",
-                    "{mcsm_port2}:15000/udp",
-                    "{mcsm_port3}:15777/udp"
+            "setupInfo": {
+                "startCommand": "./start-server.sh",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 380870 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "Project Zomboid"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:16261/udp",
+                        "{mcsm_port2}:16262/udp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "7 Days to Die Docker Server",
-        "title-zh": "七日杀 Docker 服务器",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run 7 Days to Die Dedicated Server.",
-        "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行七日杀专用服务器。",
-        "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/251570/header.jpg",
-        "gameType": "7 Days to Die",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "RAM 12G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./startserver.sh -configfile=serverconfig.xml",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 294420 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "7 Days to Die"
+        },
+        {
+            "title": "Satisfactory Docker Server",
+            "title-zh": "幸福工厂 Docker 服务器",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Satisfactory Dedicated Server.",
+            "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行幸福工厂专用服务器。",
+            "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/526870/header.jpg",
+            "gameType": "Satisfactory",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "RAM 8G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:26900/udp",
-                    "{mcsm_port2}:26900/tcp"
+            "setupInfo": {
+                "startCommand": "./FactoryServer.sh",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 1690800 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "Satisfactory"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:7777/udp",
+                        "{mcsm_port2}:15000/udp",
+                        "{mcsm_port3}:15777/udp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "Left 4 Dead 2 Docker Server",
-        "title-zh": "求生之路2 Docker 服务器",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run Left 4 Dead 2 Dedicated Server.",
-        "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行求生之路2专用服务器。",
-        "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg",
-        "gameType": "Left 4 Dead 2",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "RAM 4G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./srcds_run -game left4dead2 -port 27015 +maxplayers 8 +map c1m4_atrium",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 222860 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "Left 4 Dead 2"
+        },
+        {
+            "title": "7 Days to Die Docker Server",
+            "title-zh": "七日杀 Docker 服务器",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run 7 Days to Die Dedicated Server.",
+            "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行七日杀专用服务器。",
+            "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/251570/header.jpg",
+            "gameType": "7 Days to Die",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "RAM 12G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:27015/udp",
-                    "{mcsm_port2}:27015/tcp"
+            "setupInfo": {
+                "startCommand": "./startserver.sh -configfile=serverconfig.xml",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 294420 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "7 Days to Die"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:26900/udp",
+                        "{mcsm_port2}:26900/tcp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
-        }
-    },
-    {
-        "title": "ARK: Survival Evolved Docker Server",
-        "title-zh": "方舟：生存进化 Docker 服务器",
-        "language": "en_us",
-        "platform": "Linux",
-        "description": "Use the steam-game-runtime Docker image and SteamCMD to run ARK: Survival Evolved Dedicated Server.",
-        "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行方舟：生存进化专用服务器。",
-        "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/346110/header.jpg",
-        "gameType": "ARK: Survival Evolved",
-        "category": "Latest Version",
-        "runtime": "Linux",
-        "hardware": "RAM 8G+",
-        "size": "",
-        "targetLink": "",
-        "author": "MCSManager",
-        "tags": [
-            "Docker version"
-        ],
-        "setupInfo": {
-            "startCommand": "./ShooterGame/Binaries/Linux/ShooterGameServer Ragnarok?listen?Port=7777?QueryPort=27015?MaxPlayers=120?bRawSockets?AllowCrateSpawnsOnTopOfStructures=True -UseBattlEye -nosteamclient -game -server -log",
-            "stopCommand": "^C",
-            "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 376030 validate\" +quit",
-            "ie": "utf8",
-            "oe": "utf8",
-            "type": "steam/universal",
-            "tag": [
-                "ARK"
+        },
+        {
+            "title": "Left 4 Dead 2 Docker Server",
+            "title-zh": "求生之路2 Docker 服务器",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Left 4 Dead 2 Dedicated Server.",
+            "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行求生之路2专用服务器。",
+            "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg",
+            "gameType": "Left 4 Dead 2",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "RAM 4G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
             ],
-            "fileCode": "utf8",
-            "processType": "docker",
-            "runAs": "steam",
-            "docker": {
-                "image": "githubyumao/steam-game-runtime:latest",
-                "updateCommandImage": "githubyumao/steam-game-runtime:latest",
-                "ports": [
-                    "{mcsm_port1}:7777/udp",
-                    "{mcsm_port2}:7778/udp",
-                    "{mcsm_port3}:27015/udp"
+            "setupInfo": {
+                "startCommand": "./srcds_run -game left4dead2 -port 27015 +maxplayers 8 +map c1m4_atrium",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 222860 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "Left 4 Dead 2"
                 ],
-                "changeWorkdir": true,
-                "workingDir": "/data",
-                "env": [],
-                "extraVolumes": []
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:27015/udp",
+                        "{mcsm_port2}:27015/tcp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
+            }
+        },
+        {
+            "title": "ARK: Survival Evolved Docker Server",
+            "title-zh": "方舟：生存进化 Docker 服务器",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Use the steam-game-runtime Docker image and SteamCMD to run ARK: Survival Evolved Dedicated Server.",
+            "description-zh": "使用 steam-game-runtime Docker 镜像和 SteamCMD 运行方舟：生存进化专用服务器。",
+            "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/346110/header.jpg",
+            "gameType": "ARK: Survival Evolved",
+            "category": "Latest Version",
+            "runtime": "Linux",
+            "hardware": "RAM 8G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
+            ],
+            "setupInfo": {
+                "startCommand": "./ShooterGame/Binaries/Linux/ShooterGameServer Ragnarok?listen?Port=7777?QueryPort=27015?MaxPlayers=120?bRawSockets?AllowCrateSpawnsOnTopOfStructures=True -UseBattlEye -nosteamclient -game -server -log",
+                "stopCommand": "^C",
+                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 376030 validate\" +quit",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/universal",
+                "tag": [
+                    "ARK"
+                ],
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "steam",
+                "docker": {
+                    "image": "githubyumao/steam-game-runtime:latest",
+                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "ports": [
+                        "{mcsm_port1}:7777/udp",
+                        "{mcsm_port2}:7778/udp",
+                        "{mcsm_port3}:27015/udp"
+                    ],
+                    "changeWorkdir": true,
+                    "workingDir": "/data",
+                    "env": [],
+                    "extraVolumes": []
+                }
             }
         }
-    }
-]
+    ]
+}
