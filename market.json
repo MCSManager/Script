@@ -26,6 +26,10 @@
       "remark": "包含基础插件，萌新快速开服！低配机器专属！",
       "targetLink": "https://cloud.alongw.cn/f/DzvHK/Paper-1.21.1-ZH.zip",
       "author": "alongw.cn",
+      "dockerSupport": {
+        "image": "eclipse-temurin:25-jdk",
+        "updateCommandImage": "eclipse-temurin:25-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms4096M -Xmx4096M -jar server.jar nogui",
