@@ -27,8 +27,8 @@
       "targetLink": "https://cloud.alongw.cn/f/DzvHK/Paper-1.21.1-ZH.zip",
       "author": "alongw.cn",
       "dockerOptional": {
-        "image": "eclipse-temurin:25-jdk",
-        "updateCommandImage": "eclipse-temurin:25-jdk"
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
       },
       "setupInfo": {
         "type": "minecraft/java",
@@ -53,6 +53,10 @@
       "remark": "支持插件，最低 8GB 内存要求",
       "targetLink": "https://url.alww.top/mcsm/paper1.20.4.zip",
       "author": "alongw.cn",
+      "dockerOptional": {
+        "image": "eclipse-temurin:17-jdk",
+        "updateCommandImage": "eclipse-temurin:17-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms6144M -Xmx6144M -jar server.jar nogui",
@@ -253,6 +257,10 @@
       "remark": "仅包含 Paper 版本",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.10/builds/84/downloads/paper-1.21.10-84.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.10-84.jar nogui",
@@ -276,6 +284,10 @@
       "remark": "仅包含 Paper 版本",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.8/builds/60/downloads/paper-1.21.8-60.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.8-60.jar nogui",
@@ -299,6 +311,10 @@
       "remark": "仅包含 Paper 版本",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/133/downloads/paper-1.21.1-133.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.1-133.jar nogui",
@@ -322,6 +338,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.3.33/forge-1.20.1-47.3.33-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:17-jdk",
+        "updateCommandImage": "eclipse-temurin:17-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -345,6 +365,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.1-47.3.33/forge-1.20.1-47.3.33-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:17-jdk",
+        "updateCommandImage": "eclipse-temurin:17-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -368,6 +392,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.20.6-50.1.48/forge-1.20.6-50.1.48-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -391,6 +419,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.19.2-43.4.20/forge-1.19.2-43.4.20-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:17-jdk",
+        "updateCommandImage": "eclipse-temurin:17-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -545,6 +577,10 @@
       "remark": "Minecraft Paper",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.11/builds/39/downloads/paper-1.21.11-39.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.11-39.jar nogui",
@@ -568,6 +604,10 @@
       "remark": "Minecraft Paper",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.10/builds/117/downloads/paper-1.21.10-117.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.10-117.jar nogui",
@@ -591,6 +631,10 @@
       "remark": "Minecraft Paper",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.8/builds/60/downloads/paper-1.21.8-60.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.8-60.jar nogui",
@@ -614,6 +658,10 @@
       "remark": "Minecraft Paper",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.4/builds/232/downloads/paper-1.21.4-232.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.4-232.jar nogui",
@@ -637,6 +685,10 @@
       "remark": "Minecraft Paper",
       "targetLink": "https://api.papermc.io/v2/projects/paper/versions/1.21.1/builds/133/downloads/paper-1.21.1-133.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/paper",
         "startCommand": "java -Xms4096M -Xmx4096M -jar paper-1.21.1-133.jar nogui",
@@ -660,6 +712,10 @@
       "remark": "Minecraft Purpur",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.11-2538.jar",
       "author": "purpurmc.org",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.11-2538.jar nogui",
@@ -683,6 +739,10 @@
       "remark": "Minecraft Purpur",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.10-2535.jar",
       "author": "purpurmc.org",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.10-2535.jar nogui",
@@ -706,6 +766,10 @@
       "remark": "Minecraft Purpur",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.8-2497.jar",
       "author": "purpurmc.org",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.8-2497.jar nogui",
@@ -729,6 +793,10 @@
       "remark": "Only Purpur included",
       "targetLink": "https://github.com/SkyKingPX/MCSManagerServerSoftware/releases/download/PurpurMC/purpur-1.21.4-2416.jar",
       "author": "purpurmc.org",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/purpur",
         "startCommand": "java -Xms4096M -Xmx4096M -jar purpur-1.21.4-2416.jar nogui",
@@ -752,6 +820,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.11-61.0.3/forge-1.21.11-61.0.3-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -775,6 +847,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.11-61.0.3/forge-1.21.11-61.0.3-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -798,6 +874,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.10-60.1.5/forge-1.21.10-60.1.5-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -821,6 +901,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.10-60.1.5/forge-1.21.10-60.1.5-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -844,6 +928,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.8-58.1.9/forge-1.21.8-58.1.9-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -867,6 +955,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.8-58.1.9/forge-1.21.8-58.1.9-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -890,6 +982,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.4-54.1.8/forge-1.21.4-54.1.8-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -913,6 +1009,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.4-54.1.8/forge-1.21.4-54.1.8-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -936,6 +1036,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.1-52.1.6/forge-1.21.1-52.1.6-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": "sh ./run.sh",
@@ -959,6 +1063,10 @@
       "remark": "Minecraft Forge",
       "targetLink": "https://maven.minecraftforge.net/net/minecraftforge/forge/1.21.1-52.1.6/forge-1.21.1-52.1.6-installer.jar",
       "author": "minecraftforge.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/forge",
         "startCommand": ".\\run.bat",
@@ -982,6 +1090,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.11.8-beta/neoforge-21.11.8-beta-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": "sh ./run.sh",
@@ -1005,6 +1117,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.11.8-beta/neoforge-21.11.8-beta-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": ".\\run.bat",
@@ -1028,6 +1144,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.10.63/neoforge-21.10.63-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": "sh ./run.sh",
@@ -1051,6 +1171,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.10.63/neoforge-21.10.63-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": ".\\run.bat",
@@ -1074,6 +1198,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.52/neoforge-21.8.52-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": "sh ./run.sh",
@@ -1097,6 +1225,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.8.52/neoforge-21.8.52-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": ".\\run.bat",
@@ -1120,6 +1252,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.4.155/neoforge-21.4.155-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": "sh ./run.sh",
@@ -1143,6 +1279,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.4.155/neoforge-21.4.155-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": ".\\run.bat",
@@ -1166,6 +1306,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.213/neoforge-21.1.213-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": "sh ./run.sh",
@@ -1189,6 +1333,10 @@
       "remark": "Minecraft NeoForge",
       "targetLink": "https://maven.neoforged.net/releases/net/neoforged/neoforge/21.1.213/neoforge-21.1.213-installer.jar",
       "author": "neoforged.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
         "startCommand": ".\\run.bat",
@@ -1212,6 +1360,10 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.1.0/fabric-installer-1.1.0.jar",
       "author": "fabricmc.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1235,6 +1387,10 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.1.0/fabric-installer-1.1.0.jar",
       "author": "fabricmc.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1258,6 +1414,10 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.1.0/fabric-installer-1.1.0.jar",
       "author": "fabricmc.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1281,6 +1441,10 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.1.0/fabric-installer-1.1.0.jar",
       "author": "fabricmc.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1304,6 +1468,10 @@
       "remark": "Minecraft Fabric",
       "targetLink": "https://maven.fabricmc.net/net/fabricmc/fabric-installer/1.1.0/fabric-installer-1.1.0.jar",
       "author": "fabricmc.net",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/fabric",
         "startCommand": "java -Xms4096M -Xmx4096M -jar fabric-server-launch.jar nogui",
@@ -1327,6 +1495,10 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/64bb6d763bed0a9f1d632ec347938594144943ed/server.jar",
       "author": "Mojang Studios",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1350,6 +1522,10 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/95495a7f485eedd84ce928cef5e223b757d2f764/server.jar",
       "author": "Mojang Studios",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1373,6 +1549,10 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/6bce4ef400e4efaa63a13d5e6f6b500be969ef81/server.jar",
       "author": "Mojang Studios",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -1396,6 +1576,10 @@
       "remark": "Minecraft Java",
       "targetLink": "https://piston-data.mojang.com/v1/objects/4707d00eb834b446575d89a61a11b5d548d8c001/server.jar",
       "author": "Mojang Studios",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java",
         "startCommand": "java -Xms2048M -Xmx2048M -jar server.jar nogui",
@@ -2076,6 +2260,10 @@
       "remark": "Minecraft Folia",
       "targetLink": "https://fill-data.papermc.io/v1/objects/f4e9c5c374a53d17b6173cac35242c05c12217b656b6cc5dc07354cc37ec4066/folia-1.21.11-11.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/folia",
         "startCommand": "java -Xms4096M -Xmx4096M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -jar folia-1.21.11-11.jar nogui",
@@ -2099,6 +2287,10 @@
       "remark": "Minecraft Folia",
       "targetLink": "https://fill-data.papermc.io/v1/objects/233843cfd5001b6f658fcab549178d694cc37f0277d004ea295de0a94c57278f/folia-1.21.8-6.jar",
       "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:21-jdk",
+        "updateCommandImage": "eclipse-temurin:21-jdk"
+      },
       "setupInfo": {
         "type": "minecraft/java/folia",
         "startCommand": "java -Xms4096M -Xmx4096M -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled -XX:+PerfDisableSharedMem -XX:+UnlockExperimentalVMOptions -XX:+UseG1GC -XX:G1HeapRegionSize=8M -XX:G1HeapWastePercent=5 -XX:G1MaxNewSizePercent=40 -XX:G1MixedGCCountTarget=4 -XX:G1MixedGCLiveThresholdPercent=90 -XX:G1NewSizePercent=30 -XX:G1RSetUpdatingPauseTimePercent=5 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=15 -XX:MaxGCPauseMillis=200 -XX:MaxTenuringThreshold=1 -XX:SurvivorRatio=32 -jar folia-1.21.8-6.jar nogui",
