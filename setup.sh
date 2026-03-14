@@ -31,6 +31,9 @@ node_version_centos7="v16.20.2"
 # Node download base URL - primary
 node_download_url_base="https://nodejs.org/dist/"
 
+# Unoffical build of Node.js, for more ISA support
+node_unoffical_build_url="https://unofficial-builds.nodejs.org/download/release/"
+
 # Node download URL - fallback.
 # This is the URL points directly to the file, not the base. This can also be a local absolute path.
 # Only supports https:// or http:// for web locations.
@@ -667,6 +670,11 @@ resolve_node_arch() {
       ;;
     armv7l)
       node_arch="armv7l"
+      ;;
+    loongarch64)
+      node_arch="loong64"
+      # Use unoffical build
+      node_download_url_base=$node_unoffical_build_url
       ;;
     *)
       cprint red bold "Unsupported architecture for Node.js: $arch"
