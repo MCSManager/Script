@@ -2299,6 +2299,74 @@
         "ie": "utf-8",
         "oe": "utf-8"
       }
+    },
+    {
+      "language": "zh_cn",
+      "description": "安装之后先编辑更新命令，然后直接点更新就可以安装游戏\n镜像本身不带游戏 但是有steam cmd\n启动命令镜像自带 这个游戏不能匿名下载 必须要购买之后才可以下载服务端",
+      "title": "Planetary_Annihilation_TITANS服务端",
+      "category": "最新版本",
+      "runtime": "docker",
+      "size": "6.2G",
+      "hardware": "RAM7G",
+      "author": "xkmxz2503",
+      "setupInfo": {
+        "stopCommand": "^c",
+        "ie": "UTF-8",
+        "oe": "UTF-8",
+        "createDatetime": 1773638682843,
+        "lastDatetime": 0,
+        "type": "steam/universal",
+        "tag": [],
+        "endTime": 0,
+        "fileCode": "UTF-8",
+        "processType": "docker",
+        "updateCommand": "steamcmd +@sSteamCmdForcePlatformType linux +force_install_dir \"/data/gamefiles\" +login Steam账户 密码 +app_update 386070 validate -timeout 300 +quit",
+        "actionCommandList": [],
+        "crlf": 1,
+        "category": 0,
+        "enableRcon": false,
+        "java": {},
+        "terminalOption": {
+          "haveColor": true,
+          "pty": false,
+          "ptyWindowCol": 164,
+          "ptyWindowRow": 40
+        },
+        "eventTask": {
+          "autoStart": false,
+          "autoRestart": false,
+          "autoRestartMaxTimes": 3,
+          "ignore": false
+        },
+        "docker": {
+          "image": "xkmxz2503/pa-mcsm:v1.3-steamcmd",
+          "memory": "7024",
+          "ports": [
+            "20545:20545/tcp"
+          ],
+          "extraVolumes": [],
+          "networkMode": "bridge",
+          "networkAliases": [],
+          "workingDir": "/data",
+          "env": [
+            "SERVER_PORT=20545",
+            "SERVER_NAME=A Dockerised PA:T Server"
+          ],
+          "changeWorkdir": true,
+          "memorySwap": "0",
+          "memorySwappiness": "0",
+          "labels": []
+        },
+        "pingConfig": {
+          "type": 1
+        },
+        "extraServiceConfig": {}
+      },
+      "gameType": "Planetary_Annihilation_TITANS",
+      "image": "https://shared.cdn.queniuqe.com/store_item_assets/steam/apps/386070/header.jpg?t=1723020373",
+      "platform": "Linux",
+      "tags": [],
+      "isSummary": false
     }
   ]
 }
