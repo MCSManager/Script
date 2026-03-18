@@ -342,9 +342,9 @@
                     "image": "githubyumao/steam-game-runtime:latest",
                     "updateCommandImage": "githubyumao/steam-game-runtime:latest",
                     "ports": [
-                        "{mcsm_port1}:7777/udp",
+                        "{mcsm_port1}:7777/tcp",
                         "{mcsm_port2}:7777/udp",
-                        "{mcsm_port3}:8888/udp"
+                        "{mcsm_port3}:8888/tcp"
                     ],
                     "changeWorkdir": true,
                     "workingDir": "/data",
