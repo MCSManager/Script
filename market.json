@@ -28,7 +28,9 @@
       "author": "alongw.cn",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java",
@@ -55,7 +57,9 @@
       "author": "alongw.cn",
       "dockerOptional": {
         "image": "eclipse-temurin:17-jdk",
-        "updateCommandImage": "eclipse-temurin:17-jdk"
+        "updateCommandImage": "eclipse-temurin:17-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java",
@@ -259,7 +263,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -286,7 +292,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -313,7 +321,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -340,7 +350,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:17-jdk",
-        "updateCommandImage": "eclipse-temurin:17-jdk"
+        "updateCommandImage": "eclipse-temurin:17-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -367,7 +379,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:17-jdk",
-        "updateCommandImage": "eclipse-temurin:17-jdk"
+        "updateCommandImage": "eclipse-temurin:17-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -394,7 +408,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -421,7 +437,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:17-jdk",
-        "updateCommandImage": "eclipse-temurin:17-jdk"
+        "updateCommandImage": "eclipse-temurin:17-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -579,7 +597,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -606,7 +626,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -633,7 +655,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -660,7 +684,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -687,7 +713,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
@@ -714,7 +742,9 @@
       "author": "purpurmc.org",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/purpur",
@@ -741,7 +771,9 @@
       "author": "purpurmc.org",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/purpur",
@@ -768,7 +800,9 @@
       "author": "purpurmc.org",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/purpur",
@@ -795,7 +829,9 @@
       "author": "purpurmc.org",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/purpur",
@@ -822,7 +858,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -849,7 +887,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -876,7 +916,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -903,7 +945,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -930,7 +974,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -957,7 +1003,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -984,7 +1032,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -1011,7 +1061,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -1038,7 +1090,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -1065,7 +1119,9 @@
       "author": "minecraftforge.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/forge",
@@ -1092,7 +1148,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1119,7 +1177,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1146,7 +1206,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1173,7 +1235,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1200,7 +1264,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1227,7 +1293,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1254,7 +1322,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1281,7 +1351,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1308,7 +1380,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1335,7 +1409,9 @@
       "author": "neoforged.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/neoforge",
@@ -1362,7 +1438,9 @@
       "author": "fabricmc.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/fabric",
@@ -1389,7 +1467,9 @@
       "author": "fabricmc.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/fabric",
@@ -1416,7 +1496,9 @@
       "author": "fabricmc.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/fabric",
@@ -1443,7 +1525,9 @@
       "author": "fabricmc.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/fabric",
@@ -1470,7 +1554,9 @@
       "author": "fabricmc.net",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/fabric",
@@ -1497,7 +1583,9 @@
       "author": "Mojang Studios",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java",
@@ -1524,7 +1612,9 @@
       "author": "Mojang Studios",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java",
@@ -1551,7 +1641,9 @@
       "author": "Mojang Studios",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java",
@@ -1578,7 +1670,9 @@
       "author": "Mojang Studios",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java",
@@ -2262,7 +2356,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/folia",
@@ -2289,7 +2385,9 @@
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk"
+        "updateCommandImage": "eclipse-temurin:21-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
       },
       "setupInfo": {
         "type": "minecraft/java/folia",
