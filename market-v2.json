@@ -1609,6 +1609,66 @@
                 "ie": "utf-8",
                 "oe": "utf-8"
             }
+        },
+        {
+            "language": "zh_cn",
+            "description": "高性能Forge/NeoForge Mod服务端,兼容Bukkit/Spigot/Paper插件,官网https://mohistmc.cn/",
+            "title": "[MohistMC] Minecraft 1.20.1 快速开服",
+            "category": "mc-mohist",
+            "runtime": "Java 17+",
+            "hardware": "RAM 8G+",
+            "targetLink": "https://dl.mohistmc.cn:41211/project/mohist/1.20.1/builds/346/download",
+            "author": "MohistMC/WuZi_MC",
+            "setupInfo": {
+                "startCommand": "java -server -jar mohist-1.20.1-46ca7304-server.jar nogui",
+                "stopCommand": "stop",
+                "ie": "UTF-8",
+                "oe": "UTF-8",
+                "createDatetime": 1775401079337,
+                "lastDatetime": 0,
+                "type": "minecraft/java/mohist",
+                "tag": [],
+                "endTime": 0,
+                "fileCode": "UTF-8",
+                "processType": "general",
+                "updateCommand": "sleep 5",
+                "actionCommandList": [],
+                "crlf": 1,
+                "category": 0,
+                "enableRcon": false,
+                "java": {},
+                "terminalOption": {
+                    "haveColor": true,
+                    "pty": false,
+                    "ptyWindowCol": 164,
+                    "ptyWindowRow": 40
+                },
+                "eventTask": {
+                    "autoStart": false,
+                    "autoRestart": false,
+                    "autoRestartMaxTimes": 3,
+                    "ignore": false
+                },
+                "docker": {
+                    "ports": [],
+                    "extraVolumes": [],
+                    "networkMode": "bridge",
+                    "networkAliases": [],
+                    "workingDir": "/data",
+                    "env": [],
+                    "changeWorkdir": true,
+                    "labels": []
+                },
+                "pingConfig": {
+                    "type": 1
+                },
+                "extraServiceConfig": {}
+                },
+            "gameType": "Minecraft",
+            "image": "https://www.mohistmc.cn/_next/image?url=%2Fimg%2Fmohist%2F1.webp&w=1080&q=75",
+            "platform": "全平台",
+            "tags": [],
+            "isSummary": false
         }
     ]
 }
