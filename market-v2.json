@@ -263,6 +263,52 @@
             }
         },
         {
+            "title": "Enshrouded Dedicated Server",
+            "language": "en_us",
+            "platform": "Linux",
+            "description": "Run Enshrouded Dedicated Server with mornedhels/enshrouded-server and edit its server and gameplay settings from MCSManager.",
+            "image": "https://cdn.cloudflare.steamstatic.com/steam/apps/1203620/header.jpg",
+            "gameType": "Enshrouded",
+            "category": "Latest Version",
+            "runtime": "Linux (AMD64)",
+            "hardware": "6 CPU cores, RAM 16G+, SSD 30G+",
+            "size": "",
+            "targetLink": "",
+            "author": "MCSManager",
+            "tags": [
+                "Docker version"
+            ],
+            "setupInfo": {
+                "startCommand": "",
+                "stopCommand": "^C",
+                "updateCommand": "",
+                "ie": "utf8",
+                "oe": "utf8",
+                "type": "steam/enshrouded",
+                "tag": [
+                    "Enshrouded"
+                ],
+                "fileCode": "utf8",
+                "processType": "docker",
+                "runAs": "",
+                "docker": {
+                    "image": "mornedhels/enshrouded-server:latest",
+                    "updateCommandImage": "",
+                    "ports": [
+                        "{mcsm_port1}:15637/udp"
+                    ],
+                    "changeWorkdir": false,
+                    "workingDir": "/opt/enshrouded",
+                    "env": [
+                        "PUID=4711",
+                        "PGID=4711",
+                        "UPDATE_CRON=*/30 * * * *"
+                    ],
+                    "extraVolumes": []
+                }
+            }
+        },
+        {
             "title": "Project Zomboid",
             "title-zh": "僵尸毁灭工程",
             "language": "en_us",
