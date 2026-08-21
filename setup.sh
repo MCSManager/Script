@@ -110,6 +110,7 @@ required_commands=(
   chown
   wget
   tar
+  xz
   stat
   useradd
   usermod
@@ -495,6 +496,29 @@ version_specific_rules() {
         node_version="$node_version_centos7"
         required_node_ver="${node_version#v}"
     fi
+}
+
+# Install system packages needed to extract Node.js .tar.xz archives (e.g. xz-utils on Debian).
+install_system_dependencies() {
+  if command -v xz >/dev/null 2>&1; then
+    return 0
+  fi
+
+  cprint cyan "Installing missing system dependency: xz..."
+  if [[ -x "$(command -v apt-get)" ]]; then
+    apt-get update -y && apt-get install -y xz-utils
+  elif [[ -x "$(command -v dnf)" ]]; then
+    dnf install -y xz
+  elif [[ -x "$(command -v yum)" ]]; then
+    yum install -y xz
+  elif [[ -x "$(command -v pacman)" ]]; then
+    pacman -S --noconfirm --needed xz
+  elif [[ -x "$(command -v zypper)" ]]; then
+    zypper --non-interactive install xz
+  else
+    cprint yellow "Could not detect a package manager; please install xz (xz-utils) manually."
+    return 0
+  fi
 }
 
 # Check if all required commands are available
@@ -1366,7 +1390,8 @@ main() {
 
   # To be moved to a master pre check function.
   safe_run resolve_node_arch "Failed to resolve Node.js architecture"
-  
+
+  safe_run install_system_dependencies "Failed to install system dependencies"
   safe_run check_required_commands "Missing required system commands"
   
   safe_run check_node_installed "Failed to detect Node.js or npm at expected path. Node.js will be installed."
