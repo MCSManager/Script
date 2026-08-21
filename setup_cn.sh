@@ -110,6 +110,7 @@ required_commands=(
   chown
   wget
   tar
+  xz
   stat
   useradd
   usermod
@@ -492,6 +493,29 @@ version_specific_rules() {
         node_version="$node_version_centos7"
         required_node_ver="${node_version#v}"
     fi
+}
+
+# 安装解压 Node.js .tar.xz 所需的系统依赖（Debian 上为 xz-utils）
+install_system_dependencies() {
+  if command -v xz >/dev/null 2>&1; then
+    return 0
+  fi
+
+  cprint cyan "正在安装缺失的系统依赖: xz..."
+  if [[ -x "$(command -v apt-get)" ]]; then
+    apt-get update -y && apt-get install -y xz-utils
+  elif [[ -x "$(command -v dnf)" ]]; then
+    dnf install -y xz
+  elif [[ -x "$(command -v yum)" ]]; then
+    yum install -y xz
+  elif [[ -x "$(command -v pacman)" ]]; then
+    pacman -S --noconfirm --needed xz
+  elif [[ -x "$(command -v zypper)" ]]; then
+    zypper --non-interactive install xz
+  else
+    cprint yellow "未能检测到软件包管理器，请手动安装 xz（xz-utils）。"
+    return 0
+  fi
 }
 
 # 检查是否所有需要的命令都可用
@@ -1364,7 +1388,8 @@ main() {
   
   # 移动到master预检查功能
   safe_run resolve_node_arch "解析 Node.js 架构失败"
-  
+
+  safe_run install_system_dependencies "安装系统依赖失败"
   safe_run check_required_commands "缺少必要的系统命令"
   
   safe_run check_node_installed "未在预期目录检测到可用的 Node.js 或 npm，将安装 Node.js。"
