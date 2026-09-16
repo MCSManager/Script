@@ -1372,6 +1372,9 @@ main() {
     safe_run install_node "Node.js 安装失败"
   fi
 
+  # npm 生命周期脚本通过 PATH 查找 Node.js。
+  export PATH="${node_path}/bin:${PATH}"
+
   safe_run permission_barrier "权限验证失败，中止安装。"
 
   safe_run prepare_user "用户权限准备失败"
