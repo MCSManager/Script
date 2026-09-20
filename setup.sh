@@ -1374,6 +1374,9 @@ main() {
     safe_run install_node "Node.js installation failed"
   fi
 
+  # npm lifecycle scripts resolve node through PATH.
+  export PATH="${node_path}/bin:${PATH}"
+
   safe_run permission_barrier "Permission validation failed — aborting install"
 
   safe_run prepare_user "Failed to prepare user permission."
