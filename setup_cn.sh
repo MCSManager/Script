@@ -5,7 +5,7 @@
 # 受支持的Linux:
 # 此脚本支持以下Linux发行版:
 # - Ubuntu: 18.04, 20.04, 22.04, 24.04
-# - Debian: 10, 11, 12, 13(修复了Debian13因环境变量无法安装的问题)
+# - Debian: 10, 11, 12, 13
 # - CentOS: 7, 8 Stream, 9 Stream, 10 Stream
 # - RHEL:   7, 8, 9, 10
 # - Arch Linux: Support planned (TBD)
@@ -1070,9 +1070,8 @@ install_component() {
 	cleanup_install_tmp
     exit 1
   }
-  
-  export PATH="$(dirname "$node_bin_path"):$PATH"
 
+  export PATH="$(dirname "$node_bin_path"):$PATH"
 
   if ! "$node_bin_path" "$npm_bin_path" install --registry=https://registry.npmmirror.com --no-audit --no-fund --loglevel=warn; then
     cprint red bold "NPM依赖项安装失败 $component"
