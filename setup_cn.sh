@@ -1112,7 +1112,6 @@ ExecReload=/bin/kill -s HUP \$MAINPID
 ExecStop=/bin/kill -s TERM \$MAINPID
 Restart=on-failure
 User=${install_user}
-Environment="PATH=${PATH}"
 Environment="NODE_ENV=production"
 
 [Install]
