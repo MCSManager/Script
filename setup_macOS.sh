@@ -28,26 +28,62 @@ if ! command -v brew &> /dev/null; then
     fi
 fi
 
-if ! command -v node &> /dev/null; then
-    echo "Node.js not found, installing Node.js via Homebrew..."
-    brew install node
-    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-    hash -r
-    if ! command -v node &> /dev/null; then
-        echo "Error: Node.js installation failed."
-        exit 1
+ensure_node_runtime() {
+    local current_version=""
+    local major=0 minor=0 patch=0 required_minor=0 required_patch=0
+
+    if command -v node &> /dev/null; then
+        current_version="$(node -p 'process.versions.node' 2>/dev/null)"
     fi
+
+    if [[ "$current_version" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+        IFS=. read -r major minor patch <<< "$current_version"
+        case "$major" in
+            22) required_minor=23; required_patch=4 ;;
+            24) required_minor=22; required_patch=1 ;;
+            26) required_minor=12; required_patch=1 ;;
+            *)
+                if (( major > 26 )); then
+                    return 0
+                fi
+                major=0
+                ;;
+        esac
+        if (( major == 22 || major == 24 || major == 26 )); then
+            if (( minor > required_minor || (minor == required_minor && patch >= required_patch) )); then
+                return 0
+            fi
+        fi
+    fi
+
+    echo "Installing patched Node.js 22 via Homebrew..."
+    if brew list --versions node@22 &> /dev/null; then
+        brew upgrade node@22 || return 1
+    else
+        brew install node@22 || return 1
+    fi
+    export PATH="$(brew --prefix node@22)/bin:$PATH"
+    hash -r
+
+    current_version="$(node -p 'process.versions.node' 2>/dev/null)"
+    if [[ ! "$current_version" =~ ^22\.([0-9]+)\.([0-9]+)$ ]]; then
+        echo "Error: Node.js 22 installation failed."
+        return 1
+    fi
+    IFS=. read -r _ minor patch <<< "$current_version"
+    if (( minor < 23 || (minor == 23 && patch < 4) )); then
+        echo "Error: Node.js 22.23.4 or newer is required; found $current_version."
+        return 1
+    fi
+}
+
+if ! ensure_node_runtime; then
+    exit 1
 fi
 
 if ! command -v npm &> /dev/null; then
-    echo "npm not found, reinstalling Node.js via Homebrew..."
-    brew install node
-    export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
-    hash -r
-    if ! command -v npm &> /dev/null; then
-        echo "Error: npm installation failed."
-        exit 1
-    fi
+    echo "Error: npm is missing from the selected Node.js installation."
+    exit 1
 fi
 
 if ! command -v curl &> /dev/null; then
