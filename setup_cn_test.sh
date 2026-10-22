@@ -25,7 +25,7 @@ package_name="mcsmanager_linux_release.tar.gz"
 
 # Node.js version to be installed
 # Keep the leading "v"
-node_version="v20.12.2"
+node_version="v22.23.4"
 
 # Node download base URL - primary
 node_download_url_base="https://nodejs.org/dist/"

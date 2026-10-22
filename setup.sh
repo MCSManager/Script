@@ -25,8 +25,7 @@ package_name="mcsmanager_linux_release.tar.gz"
 
 # Node.js version to be installed
 # Keep the leading "v"
-node_version="v20.12.2"
-node_version_centos7="v16.20.2"
+node_version="v22.23.4"
 
 # Node download base URL - primary
 node_download_url_base="https://nodejs.org/dist/"
@@ -121,7 +120,7 @@ required_commands=(
 # enabled -> strict requriement for defined node version
 # false -> newer version allowed
 # Older version is NEVER allowed
-strict_node_version_check=true
+strict_node_version_check=false
 
 # Will be set based on actual node status
 install_node=true
@@ -488,12 +487,8 @@ detect_os_info() {
 }
 
 version_specific_rules() {
-    # Default: do nothing unless a rule matches
-
     if [[ "$distro" == "CentOS" && "$version" == "7" ]]; then
-        cprint yellow "Detected CentOS 7 — overriding Node.js version."
-        node_version="$node_version_centos7"
-        required_node_ver="${node_version#v}"
+        cprint yellow "Detected CentOS 7 — the installer will use a glibc 2.17-compatible Node.js build."
     fi
 }
 
@@ -681,6 +676,24 @@ resolve_node_arch() {
       return 1
       ;;
   esac
+
+  local glibc_version
+  glibc_version=$(getconf GNU_LIBC_VERSION 2>/dev/null | awk '{print $2}')
+  if [[ -n "$glibc_version" ]] && [[ "$(printf '%s\n%s\n' "$glibc_version" "2.28" | sort -V | head -n1)" != "2.28" ]]; then
+    if [[ "$(printf '%s\n%s\n' "$glibc_version" "2.17" | sort -V | head -n1)" != "2.17" ]]; then
+      cprint red bold "Node.js 22 requires glibc 2.17 or newer; found $glibc_version."
+      return 1
+    fi
+
+    if [[ "$node_arch" == "x64" ]]; then
+      node_arch="x64-glibc-217"
+      node_download_url_base="$node_unoffical_build_url"
+      cprint yellow "Using the Node.js build for glibc 2.17 on this x64 system."
+    elif [[ "$node_arch" != "armv7l" ]]; then
+      cprint red bold "Node.js 22 requires glibc 2.28 for $node_arch; found $glibc_version. Upgrade the system runtime or OS."
+      return 1
+    fi
+  fi
 
   # Assign node_path based on resolved arch and current version/install dir
   node_path="${node_install_dir}/node-${node_version}-linux-${node_arch}"

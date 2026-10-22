@@ -4,7 +4,8 @@
 mcsmanager_install_path="/opt/mcsmanager"
 mcsmanager_download_addr="https://github.com/MCSManager/MCSManager/releases/latest/download/mcsmanager_linux_release.tar.gz"
 package_name="mcsmanager_linux_release.tar.gz"
-node="v20.12.2"
+node="v22.23.4"
+node_download_url_base="https://nodejs.org/dist/"
 arch=$(uname -m)
 
 if [ "$(id -u)" -ne 0 ]; then
@@ -57,7 +58,7 @@ Install_Node() {
 
   rm -rf "node-$node-linux-$arch.tar.gz"
 
-  wget "https://nodejs.org/dist/$node/node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to download node release"
+  wget "${node_download_url_base}${node}/node-${node}-linux-${arch}.tar.gz" || Red_Error "[x] Failed to download node release"
 
   tar -zxf "node-$node-linux-$arch.tar.gz" || Red_Error "[x] Failed to untar node"
 
@@ -185,6 +186,25 @@ elif [[ $arch == s390x ]]; then
 else
   Red_Error "[x] Sorry, this architecture is not supported yet!\n[x]Please try to install manually: https://github.com/MCSManager/MCSManager#linux"
 fi
+
+glibc_version=$(getconf GNU_LIBC_VERSION 2>/dev/null | awk '{print $2}')
+if [[ -n "$glibc_version" ]] && [[ "$(printf '%s\n%s\n' "$glibc_version" "2.28" | sort -V | head -n1)" != "2.28" ]]; then
+  if [[ "$(printf '%s\n%s\n' "$glibc_version" "2.17" | sort -V | head -n1)" != "2.17" ]]; then
+    Red_Error "Node.js 22 requires glibc 2.17 or newer; found $glibc_version."
+  fi
+
+  if [[ "$arch" == "x64" ]]; then
+    arch="x64-glibc-217"
+    node_download_url_base="https://unofficial-builds.nodejs.org/download/release/"
+  elif [[ "$arch" != "armv7l" ]]; then
+    Red_Error "Node.js 22 requires glibc 2.28 for $arch; found $glibc_version. Upgrade the system runtime or OS."
+  fi
+fi
+
+case "$arch" in
+  x64|x64-glibc-217|arm64|armv7l|ppc64le|s390x) ;;
+  *) Red_Error "Node.js 22.23.4 has no supported prebuilt binary for $arch. Install a supported Node.js build manually." ;;
+esac
 
 # Define the variable Node installation directory
 node_install_path="/opt/node-$node-linux-$arch"
