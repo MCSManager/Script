@@ -42,6 +42,35 @@
       }
     },
     {
+      "platform": "ALL",
+      "language": "zh_cn",
+      "gameType": "Minecraft",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
+      "description": "Paper Minecraft 26.2 快速开服，性能强，占用少，支持Paper插件，不支持模组",
+      "title": "[PaperMC] Minecraft 26.2 快速开服",
+      "category": "mc-paper",
+      "runtime": "Java 25+",
+      "hardware": "RAM 4G+",
+      "size": "100MB",
+      "remark": "仅包含 Paper 版本",
+      "targetLink": "https://fill-data.papermc.io/v1/objects/3cce0a4922baf79bd8e1275ee5ff9f073f24675770e09b0d4be9442d513e7a6b/paper-26.2-134.jar",
+      "author": "papermc.io",
+      "dockerOptional": {
+        "image": "eclipse-temurin:25-jdk",
+        "updateCommandImage": "eclipse-temurin:25-jdk",
+        "workingDir": "/data",
+        "changeWorkdir": true
+      },
+      "setupInfo": {
+        "type": "minecraft/java/paper",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-26.2-134.jar nogui",
+        "stopCommand": "stop",
+        "updateCommand": "",
+        "ie": "utf-8",
+        "oe": "utf-8"
+      }
+    },
+    {
       "language": "zh_cn",
       "platform": "ALL",
       "description": " 中小型互通服推荐，1.20.4 版本，快速开服，包含ESS, 锁箱子, 操作回滚, 领地商店等基础插件。",
@@ -251,36 +280,7 @@
       "platform": "ALL",
       "language": "zh_cn",
       "gameType": "Minecraft",
-      "image": "https://s4.imlazy.ink:233/img/screenshots/2021-08-19_14.52.11.png",
-      "description": "Paper Minecraft 26.2 快速开服，性能强，占用少，支持插件，不支持模组",
-      "title": "[PaperMC] Minecraft 26.2 快速开服",
-      "category": "mc-paper",
-      "runtime": "Java 21+",
-      "hardware": "RAM 4G+",
-      "size": "100MB",
-      "remark": "仅包含 Paper 版本",
-      "targetLink": "https://fill-data.papermc.io/v1/objects/85efd679ac1b5c0133aa53ea4222fcdc65b8a5b0d7f4e85497b64747f19634aa/paper-26.2-128.jar",
-      "author": "papermc.io",
-      "dockerOptional": {
-        "image": "eclipse-temurin:21-jdk",
-        "updateCommandImage": "eclipse-temurin:21-jdk",
-        "workingDir": "/data",
-        "changeWorkdir": true
-      },
-      "setupInfo": {
-        "type": "minecraft/java/paper",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-26.2-128.jar nogui",
-        "stopCommand": "stop",
-        "updateCommand": "",
-        "ie": "utf-8",
-        "oe": "utf-8"
-      }
-    },
-    {
-      "platform": "ALL",
-      "language": "zh_cn",
-      "gameType": "Minecraft",
-      "image": "https://s4.imlazy.ink:233/img/screenshots/2021-08-19_14.52.11.png",
+      "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/minecraft.webp",
       "description": "Paper Minecraft 26.1.2 快速开服，性能强，占用少，支持插件，不支持模组",
       "title": "[PaperMC] Minecraft 26.1.2 快速开服",
       "category": "mc-paper",
@@ -622,7 +622,7 @@
       "hardware": "RAM 4G+",
       "size": "100MB",
       "remark": "Minecraft Paper",
-      "targetLink": "https://fill-data.papermc.io/v1/objects/85efd679ac1b5c0133aa53ea4222fcdc65b8a5b0d7f4e85497b64747f19634aa/paper-26.2-128.jar",
+      "targetLink": "https://fill-data.papermc.io/v1/objects/3cce0a4922baf79bd8e1275ee5ff9f073f24675770e09b0d4be9442d513e7a6b/paper-26.2-134.jar",
       "author": "papermc.io",
       "dockerOptional": {
         "image": "eclipse-temurin:25-jdk",
@@ -632,7 +632,7 @@
       },
       "setupInfo": {
         "type": "minecraft/java/paper",
-        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-26.2-128.jar nogui",
+        "startCommand": "java -Xms4096M -Xmx4096M -jar paper-26.2-134.jar nogui",
         "stopCommand": "stop",
         "updateCommand": "",
         "ie": "utf-8",
