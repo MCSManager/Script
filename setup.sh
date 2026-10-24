@@ -25,8 +25,7 @@ package_name="mcsmanager_linux_release.tar.gz"
 
 # Node.js version to be installed
 # Keep the leading "v"
-node_version="v20.12.2"
-node_version_centos7="v16.20.2"
+node_version="v22.23.4"
 
 # Node download base URL - primary
 node_download_url_base="https://nodejs.org/dist/"
@@ -110,6 +109,7 @@ required_commands=(
   chown
   wget
   tar
+  xz
   stat
   useradd
   usermod
@@ -121,7 +121,7 @@ required_commands=(
 # enabled -> strict requriement for defined node version
 # false -> newer version allowed
 # Older version is NEVER allowed
-strict_node_version_check=true
+strict_node_version_check=false
 
 # Will be set based on actual node status
 install_node=true
@@ -488,13 +488,32 @@ detect_os_info() {
 }
 
 version_specific_rules() {
-    # Default: do nothing unless a rule matches
-
     if [[ "$distro" == "CentOS" && "$version" == "7" ]]; then
-        cprint yellow "Detected CentOS 7 — overriding Node.js version."
-        node_version="$node_version_centos7"
-        required_node_ver="${node_version#v}"
+        cprint yellow "Detected CentOS 7 — the installer will use a glibc 2.17-compatible Node.js build."
     fi
+}
+
+# Install system packages needed to extract Node.js .tar.xz archives (e.g. xz-utils on Debian).
+install_system_dependencies() {
+  if command -v xz >/dev/null 2>&1; then
+    return 0
+  fi
+
+  cprint cyan "Installing missing system dependency: xz..."
+  if [[ -x "$(command -v apt-get)" ]]; then
+    apt-get update -y && apt-get install -y xz-utils
+  elif [[ -x "$(command -v dnf)" ]]; then
+    dnf install -y xz
+  elif [[ -x "$(command -v yum)" ]]; then
+    yum install -y xz
+  elif [[ -x "$(command -v pacman)" ]]; then
+    pacman -S --noconfirm --needed xz
+  elif [[ -x "$(command -v zypper)" ]]; then
+    zypper --non-interactive install xz
+  else
+    cprint yellow "Could not detect a package manager; please install xz (xz-utils) manually."
+    return 0
+  fi
 }
 
 # Check if all required commands are available
@@ -681,6 +700,24 @@ resolve_node_arch() {
       return 1
       ;;
   esac
+
+  local glibc_version
+  glibc_version=$(getconf GNU_LIBC_VERSION 2>/dev/null | awk '{print $2}')
+  if [[ -n "$glibc_version" ]] && [[ "$(printf '%s\n%s\n' "$glibc_version" "2.28" | sort -V | head -n1)" != "2.28" ]]; then
+    if [[ "$(printf '%s\n%s\n' "$glibc_version" "2.17" | sort -V | head -n1)" != "2.17" ]]; then
+      cprint red bold "Node.js 22 requires glibc 2.17 or newer; found $glibc_version."
+      return 1
+    fi
+
+    if [[ "$node_arch" == "x64" ]]; then
+      node_arch="x64-glibc-217"
+      node_download_url_base="$node_unoffical_build_url"
+      cprint yellow "Using the Node.js build for glibc 2.17 on this x64 system."
+    elif [[ "$node_arch" != "armv7l" ]]; then
+      cprint red bold "Node.js 22 requires glibc 2.28 for $node_arch; found $glibc_version. Upgrade the system runtime or OS."
+      return 1
+    fi
+  fi
 
   # Assign node_path based on resolved arch and current version/install dir
   node_path="${node_install_dir}/node-${node_version}-linux-${node_arch}"
@@ -1114,7 +1151,6 @@ ExecReload=/bin/kill -s HUP \$MAINPID
 ExecStop=/bin/kill -s TERM \$MAINPID
 Restart=on-failure
 User=${install_user}
-Environment="PATH=${PATH}"
 Environment="NODE_ENV=production"
 
 [Install]
@@ -1366,7 +1402,8 @@ main() {
 
   # To be moved to a master pre check function.
   safe_run resolve_node_arch "Failed to resolve Node.js architecture"
-  
+
+  safe_run install_system_dependencies "Failed to install system dependencies"
   safe_run check_required_commands "Missing required system commands"
   
   safe_run check_node_installed "Failed to detect Node.js or npm at expected path. Node.js will be installed."

@@ -25,8 +25,7 @@ package_name="mcsmanager_linux_release.tar.gz"
 
 # 要安装的Node.js版本
 # 保留前导的 "v"
-node_version="v20.12.2"
-node_version_centos7="v16.20.2"
+node_version="v22.23.4"
 
 # Node基础下载URL - primary
 node_download_url_base="https://nodejs.org/dist/"
@@ -110,6 +109,7 @@ required_commands=(
   chown
   wget
   tar
+  xz
   stat
   useradd
   usermod
@@ -121,7 +121,7 @@ required_commands=(
 # enabled->对定义的节点版本严格要求
 # false->允许更新版本
 # 不允许使用旧版本
-strict_node_version_check=true
+strict_node_version_check=false
 
 # 将根据实际node状态进行设置
 install_node=true
@@ -485,13 +485,32 @@ detect_os_info() {
 }
 
 version_specific_rules() {
-    # 默认值: 除非规则匹配,否则不执行任何操作
-
     if [[ "$distro" == "CentOS" && "$version" == "7" ]]; then
-        cprint yellow "检测到 CentOS 7，正在切换至兼容的 Node.js 版本..."
-        node_version="$node_version_centos7"
-        required_node_ver="${node_version#v}"
+        cprint yellow "检测到 CentOS 7，将使用兼容 glibc 2.17 的 Node.js 构建。"
     fi
+}
+
+# 安装解压 Node.js .tar.xz 所需的系统依赖（Debian 上为 xz-utils）
+install_system_dependencies() {
+  if command -v xz >/dev/null 2>&1; then
+    return 0
+  fi
+
+  cprint cyan "正在安装缺失的系统依赖: xz..."
+  if [[ -x "$(command -v apt-get)" ]]; then
+    apt-get update -y && apt-get install -y xz-utils
+  elif [[ -x "$(command -v dnf)" ]]; then
+    dnf install -y xz
+  elif [[ -x "$(command -v yum)" ]]; then
+    yum install -y xz
+  elif [[ -x "$(command -v pacman)" ]]; then
+    pacman -S --noconfirm --needed xz
+  elif [[ -x "$(command -v zypper)" ]]; then
+    zypper --non-interactive install xz
+  else
+    cprint yellow "未能检测到软件包管理器，请手动安装 xz（xz-utils）。"
+    return 0
+  fi
 }
 
 # 检查是否所有需要的命令都可用
@@ -678,6 +697,24 @@ resolve_node_arch() {
       return 1
       ;;
   esac
+
+  local glibc_version
+  glibc_version=$(getconf GNU_LIBC_VERSION 2>/dev/null | awk '{print $2}')
+  if [[ -n "$glibc_version" ]] && [[ "$(printf '%s\n%s\n' "$glibc_version" "2.28" | sort -V | head -n1)" != "2.28" ]]; then
+    if [[ "$(printf '%s\n%s\n' "$glibc_version" "2.17" | sort -V | head -n1)" != "2.17" ]]; then
+      cprint red bold "Node.js 22 需要 glibc 2.17 或更高版本；当前为 $glibc_version。"
+      return 1
+    fi
+
+    if [[ "$node_arch" == "x64" ]]; then
+      node_arch="x64-glibc-217"
+      node_download_url_base="$node_unoffical_build_url"
+      cprint yellow "将使用适配 glibc 2.17 的 Node.js x64 构建。"
+    elif [[ "$node_arch" != "armv7l" ]]; then
+      cprint red bold "Node.js 22 在 $node_arch 架构上需要 glibc 2.28 或更高版本；当前为 $glibc_version。请升级系统运行库或操作系统。"
+      return 1
+    fi
+  fi
 
   # 根据解析的架构和当前版本/安装目录分配node_path
   node_path="${node_install_dir}/node-${node_version}-linux-${node_arch}"
@@ -1112,7 +1149,6 @@ ExecReload=/bin/kill -s HUP \$MAINPID
 ExecStop=/bin/kill -s TERM \$MAINPID
 Restart=on-failure
 User=${install_user}
-Environment="PATH=${PATH}"
 Environment="NODE_ENV=production"
 
 [Install]
@@ -1364,7 +1400,8 @@ main() {
   
   # 移动到master预检查功能
   safe_run resolve_node_arch "解析 Node.js 架构失败"
-  
+
+  safe_run install_system_dependencies "安装系统依赖失败"
   safe_run check_required_commands "缺少必要的系统命令"
   
   safe_run check_node_installed "未在预期目录检测到可用的 Node.js 或 npm，将安装 Node.js。"
