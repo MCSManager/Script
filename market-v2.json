@@ -223,12 +223,12 @@
             "title": "Palworld Server",
             "language": "en_us",
             "platform": "Linux",
-            "description": "Use the steam-game-runtime Docker image and SteamCMD to run Palworld Dedicated Server.",
+            "description": "Run Palworld Dedicated Server with a multi-architecture Docker image that supports AMD64 and ARM64 hosts.",
             "image": "https://mcsmanager.oss-cn-guangzhou.aliyuncs.com/package-images/palworld.webp",
             "gameType": "Palworld",
             "category": "Latest Version",
             "runtime": "Linux",
-            "hardware": "RAM 8G+",
+            "hardware": "RAM 16G+",
             "size": "",
             "targetLink": "",
             "author": "MCSManager",
@@ -236,28 +236,48 @@
                 "Docker version"
             ],
             "setupInfo": {
-                "startCommand": "./PalServer.sh -port=8211 -useperfthreads -NoAsyncLoadingThread -UseMultithreadForDS",
+                "startCommand": "",
                 "stopCommand": "^C",
-                "updateCommand": "/home/steam/steamcmd/steamcmd.sh -net_ipv4 +force_install_dir \"/data\" +login anonymous \"+app_update 2394010 validate\" +quit",
+                "updateCommand": "",
                 "ie": "utf8",
                 "oe": "utf8",
-                "type": "steam/universal",
+                "type": "steam/palworld",
                 "tag": [
                     "Palworld"
                 ],
                 "fileCode": "utf8",
                 "processType": "docker",
-                "runAs": "steam",
+                "runAs": "",
                 "docker": {
-                    "image": "githubyumao/steam-game-runtime:latest",
-                    "updateCommandImage": "githubyumao/steam-game-runtime:latest",
+                    "image": "thijsvanloef/palworld-server-docker:latest",
+                    "updateCommandImage": "",
                     "ports": [
                         "{mcsm_port1}:8211/udp",
-                        "{mcsm_port2}:25575/tcp"
+                        "{mcsm_port2}:27015/udp",
+                        "{mcsm_port3}:8212/tcp",
+                        "{mcsm_port4}:25575/tcp"
                     ],
-                    "changeWorkdir": true,
-                    "workingDir": "/data",
-                    "env": [],
+                    "changeWorkdir": false,
+                    "workingDir": "/palworld",
+                    "env": [
+                        "PUID=1000",
+                        "PGID=1000",
+                        "PORT=8211",
+                        "QUERY_PORT=27015",
+                        "PLAYERS=32",
+                        "MULTITHREADING=true",
+                        "UPDATE_ON_BOOT=true",
+                        "DISABLE_GENERATE_SETTINGS=true",
+                        "REST_API_ENABLED=false",
+                        "REST_API_PORT=8212",
+                        "RCON_ENABLED=false",
+                        "RCON_PORT=25575",
+                        "BACKUP_ENABLED=true",
+                        "AUTO_UPDATE_ENABLED=false",
+                        "LOG_FILTER_ENABLED=false",
+                        "ARM64_DEVICE=generic",
+                        "TZ=UTC"
+                    ],
                     "extraVolumes": []
                 }
             }
